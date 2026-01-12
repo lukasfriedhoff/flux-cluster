@@ -27,7 +27,7 @@ data:
   ceph_csi_namespace: "ceph-csi"
 
   # Let's Encrypt config
-  letsencrypt_email: "${LETSENCRYPT_EMAIL}"
+  letsencrypt_email: "letsencrypt@h4xx.io"
   letsencrypt_server: "https://acme-v02.api.letsencrypt.org/directory"
 
   # Namespace mapping
