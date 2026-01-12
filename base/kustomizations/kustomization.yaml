@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - infra/ceph-csi.yaml
   - infra/cert-manager.yaml
+  - infra/cnpg.yaml
   - infra/letsencrypt-issuer.yaml
   - infra/traefik.yaml
   - infra/cloudflared.yaml
