@@ -1,0 +1,45 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: ceph-csi-pre
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: namespaces
+    - name: secrets
+  interval: ${flux_kustomization_default_interval:=1h0m0s}
+  path: ./base/configs/infra/ceph-csi/pre
+  prune: true
+  retryInterval: ${flux_kustomization_default_retry_interval:=10m0s}
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  timeout: ${flux_kustomization_default_timeout:=5m0s}
+  wait: true
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: base-config
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: ceph-csi-app
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: ceph-csi-pre
+  interval: ${flux_kustomization_default_interval:=1h0m0s}
+  path: ./apps/ceph-csi
+  prune: true
+  retryInterval: ${flux_kustomization_default_retry_interval:=10m0s}
+  sourceRef:
+    kind: GitRepository
+    name: flux-apps
+  timeout: 10m0s
+  wait: true
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: base-config

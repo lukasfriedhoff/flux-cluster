@@ -1,0 +1,13 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: flux-apps
+  namespace: flux-system
+spec:
+  interval: ${flux_gitrepo_interval:=10m0s}
+  ref:
+    branch: develop
+  secretRef:
+    name: github-read-flux-apps
+  url: https://github.com/lukasfriedhoff/flux-apps.git
