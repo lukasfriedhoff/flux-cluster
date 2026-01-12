@@ -4,5 +4,6 @@ resources:
   - ceph-csi.yaml
   - cert-manager.yaml
   - cnpg-system.yaml
+  - nextcloud.yaml
   - traefik.yaml
   - cloudflared.yaml
