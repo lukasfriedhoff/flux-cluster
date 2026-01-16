@@ -8,3 +8,4 @@ resources:
   - infra/nextcloud.yaml
   - infra/traefik.yaml
   - infra/cloudflared.yaml
+  - infra/external-dns.yaml

@@ -7,3 +7,4 @@ resources:
   - nextcloud.yaml
   - traefik.yaml
   - cloudflared.yaml
+  - external-dns.yaml
