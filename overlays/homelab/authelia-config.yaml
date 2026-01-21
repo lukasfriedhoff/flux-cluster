@@ -23,9 +23,9 @@ data:
     access_control:
       default_policy: deny
       rules:
-        - domain: 'auth.lab.h4xx.io'
+        - domain: 'auth.h4xx.io'
           policy: bypass
-        - domain: '*.lab.h4xx.io'
+        - domain: '*.h4xx.io'
           policy: two_factor
 
     session:
@@ -34,7 +34,7 @@ data:
       secret: 'file:/secrets/session_secret'
       expiration: 1h
       inactivity: 15m
-      domain: lab.h4xx.io
+      domain: h4xx.io
 
     storage:
       encryption_key: 'file:/secrets/storage_encryption_key'
