@@ -6,5 +6,6 @@ resources:
   - cnpg-system.yaml
   - nextcloud.yaml
   - traefik.yaml
+  - authelia.yaml
   - cloudflared.yaml
   - external-dns.yaml

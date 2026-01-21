@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared-config
+  namespace: cloudflared
+data:
+  config.yaml: |
+    tunnel: d5e46417-eae1-47fa-9aaa-39a9e84b5733
+    credentials-file: /etc/cloudflared/credentials.json
+    ingress:
+      - hostname: "*.h4xx.io"
+        service: https://traefik.traefik.svc.cluster.local:443
+      - service: http_status:404

@@ -3,6 +3,8 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - secrets.yaml
+  - authelia-config.yaml
+  - cloudflared-config.yaml
   - ../../base/
 patches:
   - path: cluster-patch.yaml

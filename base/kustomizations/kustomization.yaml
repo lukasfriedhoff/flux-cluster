@@ -9,3 +9,4 @@ resources:
   - infra/traefik.yaml
   - infra/cloudflared.yaml
   - infra/external-dns.yaml
+  - infra/authelia.yaml
