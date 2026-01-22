@@ -10,3 +10,4 @@ resources:
   - infra/cloudflared.yaml
   - infra/external-dns.yaml
   - infra/authelia.yaml
+  - infra/reloader.yaml
