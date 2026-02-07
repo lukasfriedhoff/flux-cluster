@@ -7,6 +7,7 @@ resources:
   - infra/letsencrypt-issuer.yaml
   - infra/nextcloud.yaml
   - infra/traefik.yaml
+  - infra/coredns.yaml
   - infra/cloudflared.yaml
   - infra/external-dns.yaml
   - infra/authelia.yaml
