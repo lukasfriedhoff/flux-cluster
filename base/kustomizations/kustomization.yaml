@@ -6,6 +6,7 @@ resources:
   - infra/cnpg.yaml
   - infra/letsencrypt-issuer.yaml
   - infra/nextcloud.yaml
+  - infra/collabora.yaml
   - infra/traefik.yaml
   - infra/coredns.yaml
   - infra/cloudflared.yaml
