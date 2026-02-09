@@ -10,8 +10,13 @@ data:
 
   # Domain config
   kubernetes_cluster_domain: "k8s.lab.h4xx.io"
-  delegating_domain: "lab.h4xx.io"
-  parent_domain: "h4xx.io"
+  delegating_domain: "h4xx.io"
+  external_dns_domain_primary: "h4xx.io"
+  external_dns_domain_secondary: "lab.h4xx.io"
+
+  # Cloudflare Tunnel
+  cloudflare_tunnel_id: "03ed4283-aa2e-4781-8236-fd69a38e130a"
+  cloudflare_tunnel_hostname: "03ed4283-aa2e-4781-8236-fd69a38e130a.cfargotunnel.com"
 
   # Storage - Ceph RBD (disk-type aware naming)
   default_storage_class_name: "ssd-rbd-3r"
@@ -23,12 +28,23 @@ data:
 
   # Ceph CSI config
   ceph_cluster_id: "83897024-e964-11f0-9d5c-0cc47a6c3802"
-  ceph_mon_hosts: "10.1.30.12:6789"
+  ceph_mon_hosts: "v2:10.1.30.12:3300/0"
   ceph_csi_namespace: "ceph-csi"
 
   # Let's Encrypt config
   letsencrypt_email: "letsencrypt@h4xx.io"
   letsencrypt_server: "https://acme-v02.api.letsencrypt.org/directory"
+  letsencrypt_staging_server: "https://acme-staging-v02.api.letsencrypt.org/directory"
+
+  # External DNS
+  external_dns_txt_owner_id: "srv1-k3s"
 
   # Namespace mapping
   cert_manager_namespace: "cert-manager"
+
+  # Authelia
+  authelia_smtp_address: "submission://posteo.de:587"
+  authelia_smtp_startup_check_address: "h4xx@posteo.de"
+
+  # Nextcloud
+  trusted_proxies_cidr: "10.42.0.0/16"
