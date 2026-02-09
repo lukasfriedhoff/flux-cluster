@@ -5,6 +5,7 @@ resources:
   - infra/cert-manager.yaml
   - infra/cnpg.yaml
   - infra/letsencrypt-issuer.yaml
+  - infra/valkey.yaml
   - infra/nextcloud.yaml
   - infra/collabora.yaml
   - infra/traefik.yaml

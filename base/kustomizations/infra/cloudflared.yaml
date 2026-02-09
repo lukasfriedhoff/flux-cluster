@@ -17,3 +17,7 @@ spec:
     name: flux-apps
   timeout: 10m0s
   wait: true
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: base-config

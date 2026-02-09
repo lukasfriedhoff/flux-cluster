@@ -49,3 +49,12 @@ data:
 
   # Nextcloud
   trusted_proxies_cidr: "10.42.0.0/16"
+  nextcloud_data_storage_class_name: "ssd-cephfs-2r"
+  nextcloud_data_size: "500Gi"
+
+  # Valkey
+  valkey_auth_secret_name: "nextcloud-valkey"
+  valkey_replica_count: "2"
+  valkey_min_replicas_to_write: "1"
+  valkey_persistence_size: "8Gi"
+  valkey_storage_class_name: "ssd-rbd-2r"

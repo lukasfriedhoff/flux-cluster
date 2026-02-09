@@ -8,6 +8,7 @@ spec:
     - name: namespaces
     - name: secrets
     - name: cnpg-app
+    - name: valkey-app
     - name: cert-manager-app
     - name: traefik-app
   interval: 1h0m0s
@@ -19,3 +20,7 @@ spec:
     name: flux-apps
   timeout: 15m0s
   wait: true
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: base-config
