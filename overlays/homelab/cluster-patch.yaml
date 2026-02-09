@@ -57,4 +57,4 @@ data:
   valkey_replica_count: "2"
   valkey_min_replicas_to_write: "1"
   valkey_persistence_size: "8Gi"
-  valkey_storage_class_name: "ssd-rbd-2r"
+  valkey_storage_class_name: "ssd-cephfs-2r"
