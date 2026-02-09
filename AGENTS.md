@@ -6,3 +6,8 @@
 - helm values should be merged from sane defaults in flux-apps repo with cluster specific config via this repo. therefore base-config.yaml is used and merges with a cluster specific overlay cluster-patch.yaml
 - flux post build kustomizations should be used for variables like delegating domain
 - always use conventional commits
+- storage decisions:
+  - Ceph RBD (block) for stateful single-writer workloads (Postgres, Valkey, small app data) due to performance and latency.
+  - CephFS (filesystem) for shared RWX data that must be accessed by multiple pods (Nextcloud user data).
+  - local-path only for dev/test or non-critical ephemeral data.
+  - if scaling apps horizontally, ensure all writable paths use RWX (CephFS) or object storage.
