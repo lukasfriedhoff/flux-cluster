@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: ceph-csi-values
+  name: ceph-csi-cephfs-values
   namespace: ${ceph_csi_namespace}
 data:
   values.yaml: |
