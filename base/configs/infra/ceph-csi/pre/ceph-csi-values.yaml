@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ceph-csi-values
+  namespace: ${ceph_csi_namespace}
+data:
+  values.yaml: |
+    provisioner:
+      enableHostNetwork: ${ceph_csi_provisioner_host_network:=false}
