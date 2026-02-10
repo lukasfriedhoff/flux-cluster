@@ -11,3 +11,4 @@ resources:
   - cloudflared.yaml
   - external-dns.yaml
   - reloader.yaml
+  - monitoring.yaml

@@ -66,3 +66,14 @@ data:
   valkey_min_replicas_to_write: "1"
   valkey_persistence_size: "8Gi"
   valkey_storage_class_name: "ssd-cephfs-2r"
+
+  # Monitoring (LGTM)
+  monitoring_storage_class_name: "ssd-rbd-2r"
+  monitoring_minio_storage_class_name: "ssd-rbd-2r"
+  monitoring_minio_size: "10Gi"
+  grafana_persistence_size: "5Gi"
+  monitoring_s3_region: "us-east-1"
+  loki_replication_factor: "1"
+  loki_read_replicas: "1"
+  loki_write_replicas: "1"
+  loki_backend_replicas: "1"
