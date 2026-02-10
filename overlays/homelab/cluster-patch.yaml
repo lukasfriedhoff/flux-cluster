@@ -28,7 +28,7 @@ data:
 
   # Ceph CSI config
   ceph_cluster_id: "83897024-e964-11f0-9d5c-0cc47a6c3802"
-  ceph_mon_hosts: "10.1.30.12:6789"
+  ceph_mon_hosts: "v2:10.1.30.12:3300/0"
   ceph_csi_namespace: "ceph-csi"
   ceph_csi_provisioner_host_network: "true"
 
