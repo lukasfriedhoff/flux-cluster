@@ -69,10 +69,14 @@ data:
 
   # Monitoring (LGTM)
   monitoring_storage_class_name: "ssd-rbd-2r"
-  monitoring_minio_storage_class_name: "ssd-rbd-2r"
-  monitoring_minio_size: "10Gi"
   grafana_persistence_size: "5Gi"
   monitoring_s3_region: "us-east-1"
+  monitoring_s3_endpoint: "srv1.lab.h4xx.io:7480"
+  monitoring_s3_insecure: "true"
+  monitoring_s3_force_path_style: "true"
+  monitoring_loki_bucket: "homelab-loki"
+  monitoring_mimir_bucket: "homelab-mimir"
+  monitoring_tempo_bucket: "homelab-tempo"
   loki_replication_factor: "1"
   loki_read_replicas: "1"
   loki_write_replicas: "1"
