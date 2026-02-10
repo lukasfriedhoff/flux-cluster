@@ -49,8 +49,13 @@ data:
 
   # Nextcloud
   trusted_proxies_cidr: "10.42.0.0/16"
+  nextcloud_app_storage_class_name: "ssd-cephfs-2r"
+  nextcloud_app_size: "20Gi"
   nextcloud_data_storage_class_name: "ssd-cephfs-2r"
   nextcloud_data_size: "500Gi"
+  nextcloud_hpa_min_pods: "1"
+  nextcloud_hpa_max_pods: "3"
+  nextcloud_hpa_cpu_threshold: "60"
 
   # Valkey
   valkey_auth_secret_name: "nextcloud-valkey"
