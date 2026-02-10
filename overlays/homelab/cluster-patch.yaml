@@ -56,6 +56,9 @@ data:
   nextcloud_hpa_min_pods: "1"
   nextcloud_hpa_max_pods: "3"
   nextcloud_hpa_cpu_threshold: "60"
+  nextcloud_resources_requests_cpu: "200m"
+  nextcloud_resources_requests_memory: "512Mi"
+  nextcloud_resources_limits_memory: "2Gi"
 
   # Valkey
   valkey_auth_secret_name: "nextcloud-valkey"
