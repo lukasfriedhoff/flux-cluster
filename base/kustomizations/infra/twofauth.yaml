@@ -1,14 +1,14 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: 2fauth-app
+  name: twofauth-app
   namespace: flux-system
 spec:
   dependsOn:
     - name: namespaces
     - name: secrets
   interval: ${flux_kustomization_default_interval:=1h0m0s}
-  path: ./apps/2fauth
+  path: ./apps/twofauth
   prune: true
   retryInterval: ${flux_kustomization_default_retry_interval:=10m0s}
   sourceRef:
