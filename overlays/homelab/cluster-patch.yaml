@@ -70,6 +70,7 @@ data:
   # Monitoring (LGTM)
   monitoring_storage_class_name: "ssd-rbd-2r"
   grafana_persistence_size: "5Gi"
+  ceph_mgr_prometheus_endpoint: "srv1.lab.h4xx.io:9283"
   monitoring_s3_region: "us-east-1"
   monitoring_s3_endpoint: "srv1.lab.h4xx.io:7480"
   monitoring_s3_insecure: "true"
