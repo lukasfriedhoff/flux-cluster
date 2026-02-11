@@ -12,3 +12,4 @@ resources:
   - external-dns.yaml
   - reloader.yaml
   - monitoring.yaml
+  - media.yaml
