@@ -31,6 +31,13 @@ data:
           enabled: true
     clusterMetrics:
       enabled: true
+      node-exporter:
+        metricsTuning:
+          includeMetrics:
+            - node_uname_info
+        extraArgs:
+          - --collector.uname
+          - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|ramfs|rpc_pipefs|securityfs|selinuxfs|squashfs|erofs|sysfs|tmpfs|tracefs)$
     clusterEvents:
       enabled: true
     podLogs:
@@ -45,13 +52,6 @@ data:
             enabled: true
           http:
             enabled: true
-    node-exporter:
-      metricsTuning:
-        includeMetrics:
-          - node_uname_info
-      extraArgs:
-        - --collector.uname
-        - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|ramfs|rpc_pipefs|securityfs|selinuxfs|squashfs|erofs|sysfs|tmpfs|tracefs)$
     alloy-metrics:
       enabled: true
       includeDestinations:
