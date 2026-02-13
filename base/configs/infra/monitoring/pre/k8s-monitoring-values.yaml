@@ -45,6 +45,10 @@ data:
             enabled: true
           http:
             enabled: true
+    node-exporter:
+      metricsTuning:
+        includeMetrics:
+          - node_uname_info
     alloy-metrics:
       enabled: true
       includeDestinations:
