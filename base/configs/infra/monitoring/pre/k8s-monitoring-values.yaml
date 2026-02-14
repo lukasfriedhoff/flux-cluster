@@ -44,6 +44,11 @@ data:
       enabled: true
     annotationAutodiscovery:
       enabled: true
+      annotations:
+        scrape: prometheus.io/scrape
+        metricsPath: prometheus.io/path
+        metricsPortNumber: prometheus.io/port
+        metricsScheme: prometheus.io/scheme
     applicationObservability:
       enabled: true
       receivers:
