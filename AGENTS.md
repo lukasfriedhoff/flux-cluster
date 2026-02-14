@@ -11,3 +11,4 @@
   - CephFS (filesystem) for shared RWX data that must be accessed by multiple pods (Nextcloud user data).
   - local-path only for dev/test or non-critical ephemeral data.
   - if scaling apps horizontally, ensure all writable paths use RWX (CephFS) or object storage.
+- always check all kustomizations after changes and fix things if they are not ready
