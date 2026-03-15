@@ -10,6 +10,7 @@ resources:
   - infra/media.yaml
   - infra/collabora.yaml
   - infra/traefik.yaml
+  - infra/traefik-resources.yaml
   - infra/coredns.yaml
   - infra/cloudflared.yaml
   - infra/external-dns.yaml
