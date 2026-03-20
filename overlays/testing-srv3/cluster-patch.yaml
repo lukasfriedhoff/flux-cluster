@@ -9,8 +9,6 @@ data:
   kubernetes_cluster_domain: k8s.testing.h4xx.io
   delegating_domain: h4xx.io
   public_host_suffix: -testing
-  external_dns_domain_primary: h4xx.io
-  external_dns_domain_secondary: h4xx.io
   external_dns_txt_owner_id: srv3-k3s
   cloudflare_tunnel_id: a53b5554-e980-4cce-a3bf-0347007f2094
   cloudflare_tunnel_hostname: a53b5554-e980-4cce-a3bf-0347007f2094.cfargotunnel.com
