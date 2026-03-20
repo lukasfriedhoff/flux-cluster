@@ -69,6 +69,8 @@ data:
   # Authelia
   authelia_smtp_address: "submission://posteo.de:587"
   authelia_smtp_startup_check_address: "h4xx@posteo.de"
+  authelia_access_policy: "two_factor"
+  authelia_oidc_policy: "two_factor"
 
   # Nextcloud
   trusted_proxies_cidr: "10.42.0.0/16"
