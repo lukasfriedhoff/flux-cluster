@@ -4,30 +4,32 @@ metadata:
   name: base-config
   namespace: flux-system
 data:
-  # Environment config
+  # Environment/domain overrides
   cluster_environment: "testing"
   cluster_name: "testing-srv3"
-
-  # Domain config
   kubernetes_cluster_domain: "k8s.testing.h4xx.io"
   delegating_domain: "testing.h4xx.io"
   external_dns_domain_primary: "testing.h4xx.io"
   external_dns_domain_secondary: "testing.h4xx.io"
+  external_dns_txt_owner_id: "srv3-k3s"
 
-  # Cloudflare Tunnel
+  # Cloudflare tunnel overrides
   cloudflare_tunnel_id: "56bb9465-c18d-468d-9348-4787c05123ec"
   cloudflare_tunnel_hostname: "56bb9465-c18d-468d-9348-4787c05123ec.cfargotunnel.com"
   cloudflare_tunnel_secret_name: "cloudflare-tunnel-credentials-testing"
 
-  # Storage - Ceph CSI classes and pools (testing-prefixed)
+  # Ceph overrides
+  ceph_cluster_id: "5bb51195-8104-49cb-ad7c-a7cb6a7bfb1c"
+  ceph_mon_hosts: "v2:10.1.30.25:3300/0"
+  ceph_mgr_prometheus_endpoint: "10.1.30.25:9283"
+
+  # Testing-prefixed Ceph storage classes/pools
   ceph_rbd_storage_class_1r_name: "testing-ssd-rbd-1r"
   ceph_rbd_storage_class_1r_pool: "testing-k8s-ssd-1r"
   ceph_rbd_storage_class_2r_name: "testing-ssd-rbd-2r"
   ceph_rbd_storage_class_2r_pool: "testing-k8s-ssd-2r"
   ceph_rbd_storage_class_3r_name: "testing-ssd-rbd-3r"
   ceph_rbd_storage_class_3r_pool: "testing-k8s-ssd-3r"
-  ceph_rbd_storage_class_3r_is_default: "true"
-
   ceph_cephfs_fs_name: "testing-ssd-cephfs"
   ceph_cephfs_storage_class_1r_name: "testing-ssd-cephfs-1r"
   ceph_cephfs_storage_class_1r_pool: "testing-ssd-cephfs-1r"
@@ -36,89 +38,26 @@ data:
   ceph_cephfs_storage_class_3r_name: "testing-ssd-cephfs-3r"
   ceph_cephfs_storage_class_3r_pool: "testing-ssd-cephfs-3r"
 
-  # Storage classes consumed by workloads
+  # Workload storage overrides
   default_storage_class_name: "testing-ssd-rbd-3r"
   default_sts_storage_class_name: "testing-ssd-rbd-2r"
-
-  # Cert-manager - Let's Encrypt
-  default_cluster_issuer: "letsencrypt-prod"
-  cert_issuer_type: "letsencrypt"
-
-  # Ceph CSI config
-  ceph_cluster_id: "5bb51195-8104-49cb-ad7c-a7cb6a7bfb1c"
-  ceph_mon_hosts: "v2:10.1.30.25:3300/0"
-  ceph_csi_namespace: "ceph-csi"
-  ceph_csi_provisioner_host_network: "true"
-
-  # Let's Encrypt config
-  letsencrypt_email: "letsencrypt@h4xx.io"
-  letsencrypt_server: "https://acme-v02.api.letsencrypt.org/directory"
-  letsencrypt_staging_server: "https://acme-staging-v02.api.letsencrypt.org/directory"
-
-  # External DNS
-  external_dns_txt_owner_id: "srv3-k3s"
-
-  # Namespace mapping
-  cert_manager_namespace: "cert-manager"
-
-  # Authelia
-  authelia_smtp_address: "submission://posteo.de:587"
-  authelia_smtp_startup_check_address: "h4xx@posteo.de"
-
-  # Nextcloud
-  trusted_proxies_cidr: "10.42.0.0/16"
-  nextcloud_app_storage_class_name: "testing-ssd-cephfs-2r"
-  nextcloud_app_size: "20Gi"
-  nextcloud_data_storage_class_name: "testing-ssd-cephfs-2r"
-  nextcloud_data_size: "500Gi"
-  nextcloud_hpa_min_pods: "1"
-  nextcloud_hpa_max_pods: "3"
-  nextcloud_hpa_cpu_threshold: "60"
-  nextcloud_resources_requests_cpu: "200m"
-  nextcloud_resources_requests_memory: "512Mi"
-  nextcloud_resources_limits_memory: "2Gi"
-
-  # Valkey
-  valkey_auth_secret_name: "nextcloud-valkey"
-  valkey_replica_count: "2"
-  valkey_min_replicas_to_write: "1"
-  valkey_persistence_size: "8Gi"
   valkey_storage_class_name: "testing-ssd-cephfs-2r"
-
-  # Media stack
-  media_timezone: "Europe/Berlin"
-  media_puid: "1000"
-  media_pgid: "1000"
+  nextcloud_app_storage_class_name: "testing-ssd-cephfs-2r"
+  nextcloud_data_storage_class_name: "testing-ssd-cephfs-2r"
   arr_config_storage_class_name: "testing-ssd-cephfs-1r"
-  arr_config_size: "5Gi"
   arr_media_storage_class_name: "testing-ssd-cephfs-1r"
-  arr_media_size: "1Ti"
   arr_downloads_storage_class_name: "testing-ssd-cephfs-1r"
-  arr_downloads_size: "200Gi"
-  protonvpn_server_countries: "Switzerland"
-  k8s_pod_cidr: "10.42.0.0/16"
-  k8s_service_cidr: "10.43.0.0/16"
 
-  # Monitoring (LGTM)
+  # Monitoring storage/buckets/scaling overrides
   monitoring_storage_class_name: "testing-ssd-rbd-2r"
-  grafana_persistence_size: "5Gi"
-  ceph_mgr_prometheus_endpoint: "10.1.30.25:9283"
-  monitoring_s3_region: "us-east-1"
   monitoring_s3_endpoint: "10.1.30.25:7480"
-  monitoring_s3_insecure: "true"
-  monitoring_s3_force_path_style: "true"
   monitoring_loki_bucket: "testing-loki"
   monitoring_mimir_blocks_bucket: "testing-mimir-blocks"
   monitoring_mimir_alertmanager_bucket: "testing-mimir-alertmanager"
   monitoring_mimir_ruler_bucket: "testing-mimir-ruler"
   monitoring_tempo_bucket: "testing-tempo"
-  loki_replication_factor: "1"
-  loki_read_replicas: "1"
-  loki_write_replicas: "1"
-  loki_backend_replicas: "1"
   mimir_ingester_replicas: "1"
   mimir_ingester_zone_aware_replication: "false"
-  mimir_store_gateway_replicas: "1"
   mimir_store_gateway_zone_aware_replication: "false"
   mimir_querier_replicas: "1"
   mimir_query_scheduler_replicas: "1"

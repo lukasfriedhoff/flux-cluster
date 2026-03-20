@@ -3,5 +3,3 @@ kind: Kustomization
 resources:
   - secrets.yaml
   - ../../base/
-patches:
-  - path: cluster-patch.yaml

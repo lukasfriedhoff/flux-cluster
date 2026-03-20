@@ -6,6 +6,10 @@
 - helm values should be merged from sane defaults in flux-apps repo with cluster specific config via this repo. therefore base-config.yaml is used and merges with a cluster specific overlay cluster-patch.yaml
 - flux post build kustomizations should be used for variables like delegating domain
 - always use conventional commits
+- keep sane defaults in `base/base-config.yaml`.
+- only put per-cluster deltas in `overlays/<cluster>/cluster-patch.yaml`.
+- if an overlay value equals base default, remove it from the overlay patch.
+- when integrating an app from flux-apps, start from `flux-apps/examples/apps/<app>/flux-cluster-kustomization.yaml` and `base-config.defaults.yaml`.
 - storage decisions:
   - Ceph RBD (block) for stateful single-writer workloads (Postgres, Valkey, small app data) due to performance and latency.
   - CephFS (filesystem) for shared RWX data that must be accessed by multiple pods (Nextcloud user data).
