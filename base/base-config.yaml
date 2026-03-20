@@ -11,6 +11,7 @@ data:
   # Domain config
   kubernetes_cluster_domain: "k8s.lab.h4xx.io"
   delegating_domain: "h4xx.io"
+  public_host_suffix: ""
   external_dns_domain_primary: "h4xx.io"
   external_dns_domain_secondary: "lab.h4xx.io"
 
