@@ -17,6 +17,7 @@ data:
   # Cloudflare Tunnel
   cloudflare_tunnel_id: "56bb9465-c18d-468d-9348-4787c05123ec"
   cloudflare_tunnel_hostname: "56bb9465-c18d-468d-9348-4787c05123ec.cfargotunnel.com"
+  cloudflare_tunnel_secret_name: "cloudflare-tunnel-credentials-testing"
 
   # Storage - Ceph CSI classes and pools (testing-prefixed)
   ceph_rbd_storage_class_1r_name: "testing-ssd-rbd-1r"
