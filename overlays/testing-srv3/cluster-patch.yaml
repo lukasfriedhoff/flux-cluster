@@ -15,8 +15,8 @@ data:
   external_dns_domain_secondary: "testing.h4xx.io"
 
   # Cloudflare Tunnel
-  cloudflare_tunnel_id: "03ed4283-aa2e-4781-8236-fd69a38e130a"
-  cloudflare_tunnel_hostname: "03ed4283-aa2e-4781-8236-fd69a38e130a.cfargotunnel.com"
+  cloudflare_tunnel_id: "56bb9465-c18d-468d-9348-4787c05123ec"
+  cloudflare_tunnel_hostname: "56bb9465-c18d-468d-9348-4787c05123ec.cfargotunnel.com"
 
   # Storage - Ceph CSI classes and pools (testing-prefixed)
   ceph_rbd_storage_class_1r_name: "testing-ssd-rbd-1r"
