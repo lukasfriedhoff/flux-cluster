@@ -9,10 +9,10 @@ data:
   cluster_name: "testing-srv3"
 
   # Domain config
-  kubernetes_cluster_domain: "k8s.lab.h4xx.io"
-  delegating_domain: "h4xx.io"
-  external_dns_domain_primary: "h4xx.io"
-  external_dns_domain_secondary: "lab.h4xx.io"
+  kubernetes_cluster_domain: "k8s.testing.h4xx.io"
+  delegating_domain: "testing.h4xx.io"
+  external_dns_domain_primary: "testing.h4xx.io"
+  external_dns_domain_secondary: "testing.h4xx.io"
 
   # Cloudflare Tunnel
   cloudflare_tunnel_id: "03ed4283-aa2e-4781-8236-fd69a38e130a"
