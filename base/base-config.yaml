@@ -9,3 +9,20 @@ data:
   flux_kustomization_default_interval: "1h0m0s"
   flux_kustomization_default_retry_interval: "10m0s"
   flux_kustomization_default_timeout: "5m0s"
+
+  # Default Ceph CSI storage class layout
+  ceph_rbd_storage_class_1r_name: "ssd-rbd-1r"
+  ceph_rbd_storage_class_1r_pool: "k8s-ssd-1r"
+  ceph_rbd_storage_class_2r_name: "ssd-rbd-2r"
+  ceph_rbd_storage_class_2r_pool: "k8s-ssd-2r"
+  ceph_rbd_storage_class_3r_name: "ssd-rbd-3r"
+  ceph_rbd_storage_class_3r_pool: "k8s-ssd-3r"
+  ceph_rbd_storage_class_3r_is_default: "true"
+
+  ceph_cephfs_fs_name: "ssd-cephfs"
+  ceph_cephfs_storage_class_1r_name: "ssd-cephfs-1r"
+  ceph_cephfs_storage_class_1r_pool: "ssd-cephfs-1r"
+  ceph_cephfs_storage_class_2r_name: "ssd-cephfs-2r"
+  ceph_cephfs_storage_class_2r_pool: "ssd-cephfs-2r"
+  ceph_cephfs_storage_class_3r_name: "ssd-cephfs-3r"
+  ceph_cephfs_storage_class_3r_pool: "ssd-cephfs-3r"

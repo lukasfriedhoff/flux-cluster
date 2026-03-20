@@ -45,7 +45,7 @@ data:
 
   # Ceph CSI config
   ceph_cluster_id: "5bb51195-8104-49cb-ad7c-a7cb6a7bfb1c"
-  ceph_mon_hosts: "v2:192.168.122.41:3300/0"
+  ceph_mon_hosts: "v2:10.1.30.25:3300/0"
   ceph_csi_namespace: "ceph-csi"
   ceph_csi_provisioner_host_network: "true"
 
@@ -101,9 +101,9 @@ data:
   # Monitoring (LGTM)
   monitoring_storage_class_name: "testing-ssd-rbd-2r"
   grafana_persistence_size: "5Gi"
-  ceph_mgr_prometheus_endpoint: "srv3.lab.h4xx.io:9283"
+  ceph_mgr_prometheus_endpoint: "10.1.30.25:9283"
   monitoring_s3_region: "us-east-1"
-  monitoring_s3_endpoint: "srv3.lab.h4xx.io:7480"
+  monitoring_s3_endpoint: "10.1.30.25:7480"
   monitoring_s3_insecure: "true"
   monitoring_s3_force_path_style: "true"
   monitoring_loki_bucket: "testing-loki"
