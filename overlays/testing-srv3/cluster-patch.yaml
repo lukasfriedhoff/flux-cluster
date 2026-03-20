@@ -4,61 +4,50 @@ metadata:
   name: base-config
   namespace: flux-system
 data:
-  # Environment/domain overrides
-  cluster_environment: "testing"
-  cluster_name: "testing-srv3"
-  kubernetes_cluster_domain: "k8s.testing.h4xx.io"
-  delegating_domain: "testing.h4xx.io"
-  external_dns_domain_primary: "testing.h4xx.io"
-  external_dns_domain_secondary: "testing.h4xx.io"
-  external_dns_txt_owner_id: "srv3-k3s"
-
-  # Cloudflare tunnel overrides
-  cloudflare_tunnel_id: "56bb9465-c18d-468d-9348-4787c05123ec"
-  cloudflare_tunnel_hostname: "56bb9465-c18d-468d-9348-4787c05123ec.cfargotunnel.com"
-  cloudflare_tunnel_secret_name: "cloudflare-tunnel-credentials-testing"
-
-  # Ceph overrides
-  ceph_cluster_id: "5bb51195-8104-49cb-ad7c-a7cb6a7bfb1c"
-  ceph_mon_hosts: "v2:10.1.30.25:3300/0"
-  ceph_mgr_prometheus_endpoint: "10.1.30.25:9283"
-
-  # Testing-prefixed Ceph storage classes/pools
-  ceph_rbd_storage_class_1r_name: "testing-ssd-rbd-1r"
-  ceph_rbd_storage_class_1r_pool: "testing-k8s-ssd-1r"
-  ceph_rbd_storage_class_2r_name: "testing-ssd-rbd-2r"
-  ceph_rbd_storage_class_2r_pool: "testing-k8s-ssd-2r"
-  ceph_rbd_storage_class_3r_name: "testing-ssd-rbd-3r"
-  ceph_rbd_storage_class_3r_pool: "testing-k8s-ssd-3r"
-  ceph_cephfs_fs_name: "testing-ssd-cephfs"
-  ceph_cephfs_storage_class_1r_name: "testing-ssd-cephfs-1r"
-  ceph_cephfs_storage_class_1r_pool: "testing-ssd-cephfs-1r"
-  ceph_cephfs_storage_class_2r_name: "testing-ssd-cephfs-2r"
-  ceph_cephfs_storage_class_2r_pool: "testing-ssd-cephfs-2r"
-  ceph_cephfs_storage_class_3r_name: "testing-ssd-cephfs-3r"
-  ceph_cephfs_storage_class_3r_pool: "testing-ssd-cephfs-3r"
-
-  # Workload storage overrides
-  default_storage_class_name: "testing-ssd-rbd-3r"
-  default_sts_storage_class_name: "testing-ssd-rbd-2r"
-  valkey_storage_class_name: "testing-ssd-cephfs-2r"
-  nextcloud_app_storage_class_name: "testing-ssd-cephfs-2r"
-  nextcloud_data_storage_class_name: "testing-ssd-cephfs-2r"
-  arr_config_storage_class_name: "testing-ssd-cephfs-1r"
-  arr_media_storage_class_name: "testing-ssd-cephfs-1r"
-  arr_downloads_storage_class_name: "testing-ssd-cephfs-1r"
-
-  # Monitoring storage/buckets/scaling overrides
-  monitoring_storage_class_name: "testing-ssd-rbd-2r"
-  monitoring_s3_endpoint: "10.1.30.25:7480"
-  monitoring_loki_bucket: "testing-loki"
-  monitoring_mimir_blocks_bucket: "testing-mimir-blocks"
-  monitoring_mimir_alertmanager_bucket: "testing-mimir-alertmanager"
-  monitoring_mimir_ruler_bucket: "testing-mimir-ruler"
-  monitoring_tempo_bucket: "testing-tempo"
-  mimir_ingester_replicas: "1"
-  mimir_ingester_zone_aware_replication: "false"
-  mimir_store_gateway_zone_aware_replication: "false"
-  mimir_querier_replicas: "1"
-  mimir_query_scheduler_replicas: "1"
-  tempo_ingester_replicas: "1"
+  cluster_environment: testing
+  cluster_name: testing-srv3
+  kubernetes_cluster_domain: k8s.testing.h4xx.io
+  delegating_domain: testing.h4xx.io
+  external_dns_domain_primary: testing.h4xx.io
+  external_dns_domain_secondary: testing.h4xx.io
+  external_dns_txt_owner_id: srv3-k3s
+  cloudflare_tunnel_id: a53b5554-e980-4cce-a3bf-0347007f2094
+  cloudflare_tunnel_hostname: a53b5554-e980-4cce-a3bf-0347007f2094.cfargotunnel.com
+  cloudflare_tunnel_secret_name: cloudflare-tunnel-credentials-testing
+  ceph_cluster_id: 5bb51195-8104-49cb-ad7c-a7cb6a7bfb1c
+  ceph_mon_hosts: v2:10.1.30.25:3300/0
+  ceph_mgr_prometheus_endpoint: 10.1.30.25:9283
+  ceph_rbd_storage_class_1r_name: testing-ssd-rbd-1r
+  ceph_rbd_storage_class_1r_pool: testing-k8s-ssd-1r
+  ceph_rbd_storage_class_2r_name: testing-ssd-rbd-2r
+  ceph_rbd_storage_class_2r_pool: testing-k8s-ssd-2r
+  ceph_rbd_storage_class_3r_name: testing-ssd-rbd-3r
+  ceph_rbd_storage_class_3r_pool: testing-k8s-ssd-3r
+  ceph_cephfs_fs_name: testing-ssd-cephfs
+  ceph_cephfs_storage_class_1r_name: testing-ssd-cephfs-1r
+  ceph_cephfs_storage_class_1r_pool: testing-ssd-cephfs-1r
+  ceph_cephfs_storage_class_2r_name: testing-ssd-cephfs-2r
+  ceph_cephfs_storage_class_2r_pool: testing-ssd-cephfs-2r
+  ceph_cephfs_storage_class_3r_name: testing-ssd-cephfs-3r
+  ceph_cephfs_storage_class_3r_pool: testing-ssd-cephfs-3r
+  default_storage_class_name: testing-ssd-rbd-3r
+  default_sts_storage_class_name: testing-ssd-rbd-2r
+  valkey_storage_class_name: testing-ssd-cephfs-2r
+  nextcloud_app_storage_class_name: testing-ssd-cephfs-2r
+  nextcloud_data_storage_class_name: testing-ssd-cephfs-2r
+  arr_config_storage_class_name: testing-ssd-cephfs-1r
+  arr_media_storage_class_name: testing-ssd-cephfs-1r
+  arr_downloads_storage_class_name: testing-ssd-cephfs-1r
+  monitoring_storage_class_name: testing-ssd-rbd-2r
+  monitoring_s3_endpoint: 10.1.30.25:7480
+  monitoring_loki_bucket: testing-loki
+  monitoring_mimir_blocks_bucket: testing-mimir-blocks
+  monitoring_mimir_alertmanager_bucket: testing-mimir-alertmanager
+  monitoring_mimir_ruler_bucket: testing-mimir-ruler
+  monitoring_tempo_bucket: testing-tempo
+  mimir_ingester_replicas: '1'
+  mimir_ingester_zone_aware_replication: 'false'
+  mimir_store_gateway_zone_aware_replication: 'false'
+  mimir_querier_replicas: '1'
+  mimir_query_scheduler_replicas: '1'
+  tempo_ingester_replicas: '1'
