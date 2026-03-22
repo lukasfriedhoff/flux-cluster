@@ -46,6 +46,7 @@ data:
   monitoring_mimir_alertmanager_bucket: testing-mimir-alertmanager
   monitoring_mimir_ruler_bucket: testing-mimir-ruler
   monitoring_tempo_bucket: testing-tempo
+  mimir_replication_factor: '1'
   mimir_ingester_replicas: '1'
   mimir_ingester_zone_aware_replication: 'false'
   mimir_store_gateway_zone_aware_replication: 'false'

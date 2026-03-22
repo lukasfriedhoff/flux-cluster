@@ -122,6 +122,7 @@ data:
   monitoring_mimir_alertmanager_bucket: "homelab-mimir-alertmanager"
   monitoring_mimir_ruler_bucket: "homelab-mimir-ruler"
   monitoring_tempo_bucket: "homelab-tempo"
+  mimir_replication_factor: "3"
   loki_replication_factor: "1"
   loki_read_replicas: "1"
   loki_write_replicas: "1"
