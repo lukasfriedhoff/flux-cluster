@@ -36,6 +36,7 @@ data:
   valkey_storage_class_name: testing-ssd-cephfs-2r
   nextcloud_app_storage_class_name: testing-ssd-cephfs-2r
   nextcloud_data_storage_class_name: testing-ssd-cephfs-2r
+  nextcloud_oidc: authelia
   arr_config_storage_class_name: testing-ssd-cephfs-1r
   arr_media_storage_class_name: testing-ssd-cephfs-1r
   arr_downloads_storage_class_name: testing-ssd-cephfs-1r
