@@ -52,4 +52,5 @@ data:
   mimir_store_gateway_zone_aware_replication: 'false'
   mimir_querier_replicas: '1'
   mimir_query_scheduler_replicas: '1'
+  tempo_replication_factor: '1'
   tempo_ingester_replicas: '1'

@@ -133,4 +133,5 @@ data:
   mimir_store_gateway_zone_aware_replication: "true"
   mimir_querier_replicas: "2"
   mimir_query_scheduler_replicas: "2"
+  tempo_replication_factor: "3"
   tempo_ingester_replicas: "3"
