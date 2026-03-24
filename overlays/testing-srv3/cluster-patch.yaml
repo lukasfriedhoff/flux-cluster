@@ -34,6 +34,7 @@ data:
   default_storage_class_name: testing-ssd-rbd-3r
   default_sts_storage_class_name: testing-ssd-rbd-2r
   valkey_storage_class_name: testing-ssd-cephfs-2r
+  valkey_min_replicas_to_write: "0"
   nextcloud_app_storage_class_name: testing-ssd-cephfs-2r
   nextcloud_data_storage_class_name: testing-ssd-cephfs-2r
   nextcloud_oidc: authelia
