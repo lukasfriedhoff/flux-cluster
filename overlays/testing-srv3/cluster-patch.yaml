@@ -29,6 +29,7 @@ data:
   ceph_cephfs_storage_class_1r_pool: testing-ssd-cephfs-1r
   ceph_cephfs_storage_class_2r_name: testing-ssd-cephfs-2r
   ceph_cephfs_storage_class_2r_pool: testing-ssd-cephfs-2r
+  ceph_cephfs_storage_class_2r_kernel_name: testing-ssd-cephfs-2r-kernel
   ceph_cephfs_storage_class_3r_name: testing-ssd-cephfs-3r
   ceph_cephfs_storage_class_3r_pool: testing-ssd-cephfs-3r
   default_storage_class_name: testing-ssd-rbd-3r

@@ -38,6 +38,7 @@ data:
   ceph_cephfs_storage_class_1r_pool: "ssd-cephfs-1r"
   ceph_cephfs_storage_class_2r_name: "ssd-cephfs-2r"
   ceph_cephfs_storage_class_2r_pool: "ssd-cephfs-2r"
+  ceph_cephfs_storage_class_2r_kernel_name: "ssd-cephfs-2r-kernel"
   ceph_cephfs_storage_class_3r_name: "ssd-cephfs-3r"
   ceph_cephfs_storage_class_3r_pool: "ssd-cephfs-3r"
 
@@ -74,8 +75,10 @@ data:
 
   # Nextcloud
   trusted_proxies_cidr: "10.42.0.0/16"
+  nextcloud_app_claim_name: "nextcloud-app"
   nextcloud_app_storage_class_name: "ssd-cephfs-2r"
   nextcloud_app_size: "20Gi"
+  nextcloud_data_claim_name: "nextcloud-nextcloud-data"
   nextcloud_data_storage_class_name: "ssd-cephfs-2r"
   nextcloud_data_size: "500Gi"
   nextcloud_hpa_enabled: "false"
