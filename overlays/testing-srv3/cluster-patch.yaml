@@ -21,7 +21,7 @@ data:
   longhorn_suspend: "false"
   longhorn_default_replica_count: "1"
   longhorn_storage_minimal_available_percentage: "10"
-  longhorn_storage_over_provisioning_percentage: "100"
+  longhorn_storage_over_provisioning_percentage: "300"
   longhorn_storage_reserved_percentage_for_default_disk: "10"
   longhorn_rwo_storage_class_1r_name: testing-longhorn-rwo-1r
   longhorn_rwo_storage_class_1r_replicas: "1"
