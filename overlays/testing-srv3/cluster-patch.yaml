@@ -45,8 +45,11 @@ data:
   valkey_replica_enabled: "false"
   valkey_replica_count: "1"
   valkey_min_replicas_to_write: "0"
-  nextcloud_app_storage_class_name: testing-longhorn-rwx-2r
-  nextcloud_data_storage_class_name: testing-longhorn-rwx-2r
+  nextcloud_app_storage_class_name: testing-longhorn-rwx-1r
+  nextcloud_data_storage_class_name: testing-longhorn-rwx-1r
+  nextcloud_app_claim_name: nextcloud-app-lh1
+  nextcloud_data_claim_name: nextcloud-nextcloud-data-lh2
+  nextcloud_data_size: 10Gi
   nextcloud_hpa_enabled: "true"
   nextcloud_hpa_min_pods: "2"
   nextcloud_hpa_max_pods: "4"
