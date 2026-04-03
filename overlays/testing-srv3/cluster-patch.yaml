@@ -35,15 +35,15 @@ data:
   longhorn_rwx_storage_class_3r_name: testing-longhorn-rwx-3r
   longhorn_rwx_storage_class_3r_replicas: "3"
   s3_suspend: "false"
-  s3_storage_class_name: testing-longhorn-rwo-1r
+  s3_storage_class_name: testing-longhorn-rwo-2r
   s3_data_size: 50Gi
   default_storage_class_name: testing-longhorn-rwo-1r
   default_sts_storage_class_name: testing-longhorn-rwo-1r
   valkey_storage_class_name: testing-longhorn-rwo-1r
   valkey_replica_count: "1"
   valkey_min_replicas_to_write: "0"
-  nextcloud_app_storage_class_name: testing-longhorn-rwx-1r
-  nextcloud_data_storage_class_name: testing-longhorn-rwx-1r
+  nextcloud_app_storage_class_name: testing-longhorn-rwx-2r
+  nextcloud_data_storage_class_name: testing-longhorn-rwx-2r
   nextcloud_hpa_enabled: "true"
   nextcloud_hpa_min_pods: "2"
   nextcloud_hpa_max_pods: "4"
