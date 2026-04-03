@@ -21,11 +21,12 @@ data:
   longhorn_default_replica_count: "1"
   longhorn_rwo_storage_class_1r_name: testing-longhorn-rwo-1r
   longhorn_rwo_storage_class_1r_replicas: "1"
+  longhorn_rwo_storage_class_1r_is_default: "true"
   longhorn_rwo_storage_class_2r_name: testing-longhorn-rwo-2r
   longhorn_rwo_storage_class_2r_replicas: "2"
   longhorn_rwo_storage_class_3r_name: testing-longhorn-rwo-3r
   longhorn_rwo_storage_class_3r_replicas: "3"
-  longhorn_rwo_storage_class_3r_is_default: "true"
+  longhorn_rwo_storage_class_3r_is_default: "false"
   longhorn_rwx_storage_class_1r_name: testing-longhorn-rwx-1r
   longhorn_rwx_storage_class_1r_replicas: "1"
   longhorn_rwx_storage_class_2r_name: testing-longhorn-rwx-2r
@@ -36,8 +37,8 @@ data:
   s3_storage_class_name: testing-longhorn-rwo-2r
   s3_data_size: 50Gi
   default_storage_class_name: testing-longhorn-rwo-3r
-  default_sts_storage_class_name: testing-longhorn-rwo-2r
-  valkey_storage_class_name: testing-longhorn-rwo-2r
+  default_sts_storage_class_name: testing-longhorn-rwo-1r
+  valkey_storage_class_name: testing-longhorn-rwo-1r
   valkey_min_replicas_to_write: "0"
   nextcloud_app_storage_class_name: testing-longhorn-rwx-2r
   nextcloud_data_storage_class_name: testing-longhorn-rwx-2r
@@ -48,7 +49,7 @@ data:
   arr_config_storage_class_name: testing-longhorn-rwo-1r
   arr_media_storage_class_name: testing-longhorn-rwx-1r
   arr_downloads_storage_class_name: testing-longhorn-rwx-1r
-  monitoring_storage_class_name: testing-longhorn-rwo-2r
+  monitoring_storage_class_name: testing-longhorn-rwo-1r
   object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
   object_storage_region: us-east-1
   object_storage_insecure: "true"
