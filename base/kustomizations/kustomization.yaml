@@ -2,6 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - infra/ceph-csi.yaml
+  - infra/longhorn.yaml
+  - infra/s3.yaml
   - infra/cert-manager.yaml
   - infra/cnpg.yaml
   - infra/letsencrypt-issuer.yaml

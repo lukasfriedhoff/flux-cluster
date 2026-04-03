@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - collabora.yaml
   - ceph-csi.yaml
+  - longhorn-system.yaml
   - cert-manager.yaml
   - cnpg-system.yaml
   - nextcloud.yaml
@@ -13,3 +14,4 @@ resources:
   - reloader.yaml
   - monitoring.yaml
   - media.yaml
+  - object-storage.yaml

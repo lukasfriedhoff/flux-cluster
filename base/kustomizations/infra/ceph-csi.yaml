@@ -5,6 +5,7 @@ metadata:
   name: ceph-csi-pre
   namespace: flux-system
 spec:
+  suspend: ${ceph_csi_suspend:=false}
   dependsOn:
     - name: namespaces
     - name: secrets
@@ -28,6 +29,7 @@ metadata:
   name: ceph-csi-app
   namespace: flux-system
 spec:
+  suspend: ${ceph_csi_suspend:=false}
   dependsOn:
     - name: ceph-csi-pre
   interval: ${flux_kustomization_default_interval:=1h0m0s}

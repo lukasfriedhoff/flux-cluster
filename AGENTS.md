@@ -11,8 +11,10 @@
 - if an overlay value equals base default, remove it from the overlay patch.
 - when integrating an app from flux-apps, start from `flux-apps/examples/apps/<app>/flux-cluster-kustomization.yaml` and `base-config.defaults.yaml`.
 - storage decisions:
-  - Ceph RBD (block) for stateful single-writer workloads (Postgres, Valkey, small app data) due to performance and latency.
-  - CephFS (filesystem) for shared RWX data that must be accessed by multiple pods (Nextcloud user data).
+  - in virtualized clusters (for example `testing-srv3`), use Longhorn classes:
+    - `*-rwo-*` for stateful single-writer workloads (Postgres, Valkey, app configs).
+    - `*-rwx-*` for shared RWX data (Nextcloud data, media shared volumes).
+  - in non-virtualized clusters where Ceph is available, Ceph RBD/CephFS can still be used.
   - local-path only for dev/test or non-critical ephemeral data.
-  - if scaling apps horizontally, ensure all writable paths use RWX (CephFS) or object storage.
+  - if scaling apps horizontally, ensure all writable paths use RWX storage or object storage.
 - always check all kustomizations after changes and fix things if they are not ready

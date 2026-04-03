@@ -15,38 +15,45 @@ data:
   cloudflare_tunnel_id: a53b5554-e980-4cce-a3bf-0347007f2094
   cloudflare_tunnel_hostname: a53b5554-e980-4cce-a3bf-0347007f2094.cfargotunnel.com
   cloudflare_tunnel_secret_name: cloudflare-tunnel-credentials-testing
-  ceph_cluster_id: 5bb51195-8104-49cb-ad7c-a7cb6a7bfb1c
-  ceph_mon_hosts: v2:10.1.30.25:3300/0
-  ceph_mgr_prometheus_endpoint: 10.1.30.25:9283
-  ceph_rbd_storage_class_1r_name: testing-ssd-rbd-1r
-  ceph_rbd_storage_class_1r_pool: testing-k8s-ssd-1r
-  ceph_rbd_storage_class_2r_name: testing-ssd-rbd-2r
-  ceph_rbd_storage_class_2r_pool: testing-k8s-ssd-2r
-  ceph_rbd_storage_class_3r_name: testing-ssd-rbd-3r
-  ceph_rbd_storage_class_3r_pool: testing-k8s-ssd-3r
-  ceph_cephfs_fs_name: testing-ssd-cephfs
-  ceph_cephfs_storage_class_1r_name: testing-ssd-cephfs-1r
-  ceph_cephfs_storage_class_1r_pool: testing-ssd-cephfs-1r
-  ceph_cephfs_storage_class_2r_name: testing-ssd-cephfs-2r
-  ceph_cephfs_storage_class_2r_pool: testing-ssd-cephfs-2r
-  ceph_cephfs_storage_class_2r_kernel_name: testing-ssd-cephfs-2r-kernel
-  ceph_cephfs_storage_class_3r_name: testing-ssd-cephfs-3r
-  ceph_cephfs_storage_class_3r_pool: testing-ssd-cephfs-3r
-  default_storage_class_name: testing-ssd-rbd-3r
-  default_sts_storage_class_name: testing-ssd-rbd-2r
-  valkey_storage_class_name: testing-ssd-cephfs-2r
+  ceph_csi_suspend: "true"
+  ceph_mgr_prometheus_endpoint: 127.0.0.1:65535
+  longhorn_suspend: "false"
+  longhorn_default_replica_count: "1"
+  longhorn_rwo_storage_class_1r_name: testing-longhorn-rwo-1r
+  longhorn_rwo_storage_class_1r_replicas: "1"
+  longhorn_rwo_storage_class_2r_name: testing-longhorn-rwo-2r
+  longhorn_rwo_storage_class_2r_replicas: "2"
+  longhorn_rwo_storage_class_3r_name: testing-longhorn-rwo-3r
+  longhorn_rwo_storage_class_3r_replicas: "3"
+  longhorn_rwo_storage_class_3r_is_default: "true"
+  longhorn_rwx_storage_class_1r_name: testing-longhorn-rwx-1r
+  longhorn_rwx_storage_class_1r_replicas: "1"
+  longhorn_rwx_storage_class_2r_name: testing-longhorn-rwx-2r
+  longhorn_rwx_storage_class_2r_replicas: "2"
+  longhorn_rwx_storage_class_3r_name: testing-longhorn-rwx-3r
+  longhorn_rwx_storage_class_3r_replicas: "3"
+  s3_suspend: "false"
+  s3_storage_class_name: testing-longhorn-rwo-2r
+  s3_data_size: 50Gi
+  default_storage_class_name: testing-longhorn-rwo-3r
+  default_sts_storage_class_name: testing-longhorn-rwo-2r
+  valkey_storage_class_name: testing-longhorn-rwo-2r
   valkey_min_replicas_to_write: "0"
-  nextcloud_app_storage_class_name: testing-ssd-cephfs-2r
-  nextcloud_data_storage_class_name: testing-ssd-cephfs-2r
+  nextcloud_app_storage_class_name: testing-longhorn-rwx-2r
+  nextcloud_data_storage_class_name: testing-longhorn-rwx-2r
   nextcloud_hpa_enabled: "true"
   nextcloud_hpa_min_pods: "2"
   nextcloud_hpa_max_pods: "4"
   nextcloud_oidc: authelia
-  arr_config_storage_class_name: testing-ssd-cephfs-1r
-  arr_media_storage_class_name: testing-ssd-cephfs-1r
-  arr_downloads_storage_class_name: testing-ssd-cephfs-1r
-  monitoring_storage_class_name: testing-ssd-rbd-2r
-  monitoring_s3_endpoint: 10.1.30.25:7480
+  arr_config_storage_class_name: testing-longhorn-rwo-1r
+  arr_media_storage_class_name: testing-longhorn-rwx-1r
+  arr_downloads_storage_class_name: testing-longhorn-rwx-1r
+  monitoring_storage_class_name: testing-longhorn-rwo-2r
+  object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
+  object_storage_region: us-east-1
+  object_storage_insecure: "true"
+  object_storage_force_path_style: "true"
+  monitoring_s3_values_secret_name: monitoring-s3-values
   monitoring_loki_bucket: testing-loki
   monitoring_mimir_blocks_bucket: testing-mimir-blocks
   monitoring_mimir_alertmanager_bucket: testing-mimir-alertmanager
