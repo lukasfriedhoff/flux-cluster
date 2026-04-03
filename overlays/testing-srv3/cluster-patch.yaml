@@ -21,12 +21,10 @@ data:
   longhorn_default_replica_count: "1"
   longhorn_rwo_storage_class_1r_name: testing-longhorn-rwo-1r
   longhorn_rwo_storage_class_1r_replicas: "1"
-  longhorn_rwo_storage_class_1r_is_default: "true"
   longhorn_rwo_storage_class_2r_name: testing-longhorn-rwo-2r
   longhorn_rwo_storage_class_2r_replicas: "2"
   longhorn_rwo_storage_class_3r_name: testing-longhorn-rwo-3r
   longhorn_rwo_storage_class_3r_replicas: "3"
-  longhorn_rwo_storage_class_3r_is_default: "false"
   longhorn_rwx_storage_class_1r_name: testing-longhorn-rwx-1r
   longhorn_rwx_storage_class_1r_replicas: "1"
   longhorn_rwx_storage_class_2r_name: testing-longhorn-rwx-2r
