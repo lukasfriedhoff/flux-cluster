@@ -5,4 +5,3 @@ resources:
   - ../../base/
 patches:
   - path: cluster-patch.yaml
-  - path: kustomization-force-patch.yaml

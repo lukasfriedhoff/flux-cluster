@@ -16,6 +16,7 @@ data:
   cloudflare_tunnel_hostname: a53b5554-e980-4cce-a3bf-0347007f2094.cfargotunnel.com
   cloudflare_tunnel_secret_name: cloudflare-tunnel-credentials-testing
   ceph_csi_suspend: "true"
+  media_force: "true"
   ceph_mgr_prometheus_endpoint: 127.0.0.1:65535
   longhorn_suspend: "false"
   longhorn_default_replica_count: "1"
@@ -34,6 +35,7 @@ data:
   longhorn_rwx_storage_class_2r_replicas: "2"
   longhorn_rwx_storage_class_3r_name: testing-longhorn-rwx-3r
   longhorn_rwx_storage_class_3r_replicas: "3"
+  s3_force: "true"
   s3_suspend: "false"
   s3_storage_class_name: testing-longhorn-rwo-2r
   s3_data_size: 50Gi

@@ -4,6 +4,7 @@ metadata:
   name: s3-app
   namespace: flux-system
 spec:
+  force: ${s3_force:=false}
   suspend: ${s3_suspend:=true}
   dependsOn:
     - name: namespaces
