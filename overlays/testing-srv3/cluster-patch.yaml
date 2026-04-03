@@ -42,6 +42,7 @@ data:
   default_storage_class_name: testing-longhorn-rwo-1r
   default_sts_storage_class_name: testing-longhorn-rwo-1r
   valkey_storage_class_name: testing-longhorn-rwo-1r
+  valkey_replica_enabled: "false"
   valkey_replica_count: "1"
   valkey_min_replicas_to_write: "0"
   nextcloud_app_storage_class_name: testing-longhorn-rwx-2r
