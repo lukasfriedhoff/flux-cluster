@@ -54,6 +54,17 @@ data:
   nextcloud_hpa_min_pods: "2"
   nextcloud_hpa_max_pods: "4"
   nextcloud_oidc: authelia
+  immich_suspend: "false"
+  immich_uploads_storage_class_name: testing-longhorn-rwo-1r
+  immich_uploads_size: 200Gi
+  immich_postgres_storage_class_name: testing-longhorn-rwo-1r
+  immich_ml_cache_storage_class_name: testing-longhorn-rwo-1r
+  immich_redis_storage_class_name: testing-longhorn-rwo-1r
+  matrix_suspend: "false"
+  matrix_postgres_storage_class_name: testing-longhorn-rwo-1r
+  matrix_synapse_data_storage_class_name: testing-longhorn-rwo-1r
+  matrix_synapse_media_storage_class_name: testing-longhorn-rwo-1r
+  matrix_bridge_storage_class_name: testing-longhorn-rwo-1r
   arr_config_storage_class_name: testing-longhorn-rwo-1r
   arr_media_storage_class_name: testing-longhorn-rwx-1r
   arr_media_size: 10Gi

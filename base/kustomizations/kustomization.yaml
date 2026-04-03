@@ -9,6 +9,8 @@ resources:
   - infra/letsencrypt-issuer.yaml
   - infra/valkey.yaml
   - infra/nextcloud.yaml
+  - infra/immich.yaml
+  - infra/matrix.yaml
   - infra/media.yaml
   - infra/collabora.yaml
   - infra/traefik.yaml
