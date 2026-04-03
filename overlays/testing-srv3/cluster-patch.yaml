@@ -53,7 +53,9 @@ data:
   nextcloud_oidc: authelia
   arr_config_storage_class_name: testing-longhorn-rwo-1r
   arr_media_storage_class_name: testing-longhorn-rwx-1r
+  arr_media_size: 10Gi
   arr_downloads_storage_class_name: testing-longhorn-rwx-1r
+  arr_downloads_size: 5Gi
   monitoring_storage_class_name: testing-longhorn-rwo-1r
   object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
   object_storage_region: us-east-1
