@@ -65,6 +65,7 @@ data:
   immich_redis_storage_class_name: testing-longhorn-rwo-1r
   immich_redis_size: 1Gi
   matrix_suspend: "false"
+  matrix_oidc: authelia
   matrix_postgres_storage_class_name: testing-longhorn-rwo-1r
   matrix_postgres_size: 1Gi
   matrix_synapse_data_storage_class_name: testing-longhorn-rwo-1r
