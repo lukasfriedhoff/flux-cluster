@@ -55,6 +55,7 @@ data:
   nextcloud_hpa_max_pods: "4"
   nextcloud_oidc: authelia
   immich_suspend: "false"
+  immich_oidc: authelia
   immich_uploads_storage_class_name: testing-longhorn-rwo-1r
   immich_uploads_size: 8Gi
   immich_postgres_storage_class_name: testing-longhorn-rwo-1r

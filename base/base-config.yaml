@@ -134,6 +134,8 @@ data:
   immich_secret_name: "immich-secrets"
   immich_image_tag: "release"
   immich_timezone: "Europe/Berlin"
+  immich_oidc: "none"
+  immich_oidc_client_id: "immich"
   immich_server_replicas: "1"
   immich_server_requests_cpu: "250m"
   immich_server_requests_memory: "512Mi"
