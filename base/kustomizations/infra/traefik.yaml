@@ -4,8 +4,6 @@ metadata:
   name: traefik-app
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: namespaces
   interval: ${flux_kustomization_default_interval:=1h0m0s}
   path: ./apps/traefik
   prune: true
