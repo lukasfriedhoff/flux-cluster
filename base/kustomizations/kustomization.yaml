@@ -4,6 +4,7 @@ resources:
   - infra/ceph-csi.yaml
   - infra/longhorn.yaml
   - infra/s3.yaml
+  - infra/nix-cache.yaml
   - infra/cert-manager.yaml
   - infra/cnpg.yaml
   - infra/letsencrypt-issuer.yaml

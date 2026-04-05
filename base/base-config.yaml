@@ -93,6 +93,13 @@ data:
   object_storage_force_path_style: "true"
   monitoring_s3_values_secret_name: "monitoring-s3-values"
 
+  # Nix binary cache ingress (proxying host nix-serve)
+  nix_cache_suspend: "true"
+  nix_cache_namespace: "nix-cache"
+  nix_cache_service_name: "nix-cache"
+  nix_cache_service_port: "5000"
+  nix_cache_upstream_ip: "127.0.0.1"
+
   # Let's Encrypt config
   letsencrypt_email: "letsencrypt@h4xx.io"
   letsencrypt_server: "https://acme-v02.api.letsencrypt.org/directory"

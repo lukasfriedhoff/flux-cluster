@@ -39,6 +39,8 @@ data:
   s3_suspend: "false"
   s3_storage_class_name: testing-longhorn-rwo-2r
   s3_data_size: 50Gi
+  nix_cache_suspend: "false"
+  nix_cache_upstream_ip: 10.1.30.25
   default_storage_class_name: testing-longhorn-rwo-1r
   default_sts_storage_class_name: testing-longhorn-rwo-1r
   valkey_storage_class_name: testing-longhorn-rwo-1r

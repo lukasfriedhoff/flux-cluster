@@ -17,3 +17,4 @@ resources:
   - monitoring.yaml
   - media.yaml
   - object-storage.yaml
+  - nix-cache.yaml
