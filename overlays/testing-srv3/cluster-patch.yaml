@@ -41,6 +41,10 @@ data:
   s3_data_size: 50Gi
   nix_cache_suspend: "false"
   nix_cache_upstream_ip: 10.1.30.25
+  status_dashboard_suspend: "false"
+  status_dashboard_host: testing.h4xx.io
+  status_dashboard_title: "Testing Services Status"
+  status_dashboard_description: "Public uptime for testing services"
   default_storage_class_name: testing-longhorn-rwo-1r
   default_sts_storage_class_name: testing-longhorn-rwo-1r
   valkey_storage_class_name: testing-longhorn-rwo-1r

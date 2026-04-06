@@ -18,3 +18,4 @@ resources:
   - media.yaml
   - object-storage.yaml
   - nix-cache.yaml
+  - status-dashboard.yaml

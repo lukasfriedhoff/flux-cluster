@@ -100,6 +100,13 @@ data:
   nix_cache_service_port: "5000"
   nix_cache_upstream_ip: "127.0.0.1"
 
+  # Public status dashboard
+  status_dashboard_suspend: "true"
+  status_dashboard_namespace: "status-dashboard"
+  status_dashboard_host: "status.h4xx.io"
+  status_dashboard_title: "Homelab Status"
+  status_dashboard_description: "Public service uptime overview"
+
   # Let's Encrypt config
   letsencrypt_email: "letsencrypt@h4xx.io"
   letsencrypt_server: "https://acme-v02.api.letsencrypt.org/directory"
