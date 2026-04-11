@@ -225,6 +225,8 @@ data:
   media_timezone: "Europe/Berlin"
   media_puid: "1000"
   media_pgid: "1000"
+  arr_api_keys_secret_name: "arr-api-keys"
+  jellyfin_e2e_auth_secret_name: "jellyfin-e2e-auth"
   arr_config_storage_class_name: "ssd-cephfs-1r"
   arr_config_size: "5Gi"
   arr_media_storage_class_name: "ssd-cephfs-1r"

@@ -81,6 +81,8 @@ data:
   matrix_bridge_storage_class_name: testing-longhorn-rwo-1r
   matrix_bridge_data_size: 1Gi
   matrix_signald_data_size: 1Gi
+  arr_api_keys_secret_name: arr-api-keys-testing
+  jellyfin_e2e_auth_secret_name: jellyfin-e2e-auth
   arr_config_storage_class_name: testing-longhorn-rwo-1r
   arr_media_storage_class_name: testing-longhorn-rwx-1r
   arr_media_size: 10Gi
