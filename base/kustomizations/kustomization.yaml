@@ -14,6 +14,7 @@ resources:
   - infra/immich.yaml
   - infra/matrix.yaml
   - infra/media.yaml
+  - infra/moonlight-web.yaml
   - infra/collabora.yaml
   - infra/traefik.yaml
   - infra/traefik-resources.yaml

@@ -237,6 +237,17 @@ data:
   k8s_pod_cidr: "10.42.0.0/16"
   k8s_service_cidr: "10.43.0.0/16"
 
+  # Moonlight Web
+  moonlight_suspend: "true"
+  moonlight_image_tag: "latest"
+  moonlight_requests_cpu: "100m"
+  moonlight_requests_memory: "256Mi"
+  moonlight_limits_cpu: "2000m"
+  moonlight_limits_memory: "1Gi"
+  moonlight_config_storage_class_name: "ssd-rbd-2r"
+  moonlight_config_size: "10Gi"
+  moonlight_webrtc_port_range: "40000:40100"
+
   # Monitoring (LGTM)
   k8s_monitoring_namespace: "monitoring"
   k8s_monitoring_chart_version: "3.4.0"
