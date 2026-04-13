@@ -74,6 +74,13 @@ data:
   longhorn_rwx_storage_class_2r_replicas: "2"
   longhorn_rwx_storage_class_3r_name: "longhorn-rwx-3r"
   longhorn_rwx_storage_class_3r_replicas: "3"
+  longhorn_allow_recurring_job_while_volume_detached: "true"
+  longhorn_backup_target: ""
+  longhorn_backup_target_credential_secret_name: ""
+  longhorn_backup_poll_interval: "300"
+  longhorn_recurring_backup_cron: "15 3 * * *"
+  longhorn_recurring_backup_retain: "14"
+  longhorn_recurring_full_backup_interval: "7"
 
   # S3-compatible object storage
   s3_suspend: "true"
@@ -99,6 +106,21 @@ data:
   nix_cache_service_name: "nix-cache"
   nix_cache_service_port: "5000"
   nix_cache_upstream_ip: "127.0.0.1"
+
+  # Nix remote builder (SSH)
+  nix_remote_builder_suspend: "true"
+  nix_remote_builder_namespace: "nix-cache"
+  nix_remote_builder_service_name: "nix-remote-builder"
+  nix_remote_builder_image_tag: "2.28.3"
+  nix_remote_builder_ssh_port: "22"
+  nix_remote_builder_hostkey_secret_name: "nix-remote-builder-hostkey"
+  nix_remote_builder_storage_class_name: "longhorn-rwo-1r"
+  nix_remote_builder_storage_size: "100Gi"
+  nix_remote_builder_requests_cpu: "500m"
+  nix_remote_builder_requests_memory: "2Gi"
+  nix_remote_builder_limits_cpu: "4000m"
+  nix_remote_builder_limits_memory: "8Gi"
+  nix_remote_builder_authorized_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP25mCZBT7RZ9+kzI57K7+VzU+nPl4YIM0KY4drH1jgQ srv3 mgmt 20260301T131611Z"
 
   # Public status dashboard
   status_dashboard_suspend: "true"

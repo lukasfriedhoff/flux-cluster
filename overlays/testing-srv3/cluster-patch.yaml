@@ -35,12 +35,22 @@ data:
   longhorn_rwx_storage_class_2r_replicas: "2"
   longhorn_rwx_storage_class_3r_name: testing-longhorn-rwx-3r
   longhorn_rwx_storage_class_3r_replicas: "3"
+  longhorn_allow_recurring_job_while_volume_detached: "true"
+  longhorn_backup_target: s3://testing-srv3-longhorn-backups@us-east-1/
+  longhorn_backup_target_credential_secret_name: longhorn-backup-target
+  longhorn_backup_poll_interval: "300"
+  longhorn_recurring_backup_cron: "15 3 * * *"
+  longhorn_recurring_backup_retain: "14"
+  longhorn_recurring_full_backup_interval: "7"
   s3_force: "true"
   s3_suspend: "false"
   s3_storage_class_name: testing-longhorn-rwo-2r
   s3_data_size: 50Gi
   nix_cache_suspend: "false"
   nix_cache_upstream_ip: 10.1.30.25
+  nix_remote_builder_suspend: "false"
+  nix_remote_builder_storage_class_name: testing-longhorn-rwo-1r
+  nix_remote_builder_storage_size: 100Gi
   status_dashboard_suspend: "false"
   status_dashboard_host: testing.h4xx.io
   status_dashboard_title: "Testing Services Status"
