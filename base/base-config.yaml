@@ -100,7 +100,6 @@ data:
   object_storage_force_path_style: "true"
   monitoring_s3_values_secret_name: "monitoring-s3-values"
   nextcloud_postgres_backup_bucket: "nextcloud-postgres-backup"
-  nextcloud_postgres_backup_endpoint_url: ""
   nextcloud_postgres_backup_credential_secret_name: "nextcloud-postgres-backup-credentials"
 
   # Nix binary cache ingress (proxying host nix-serve)
@@ -197,7 +196,6 @@ data:
   immich_postgres_limits_memory: "1Gi"
   immich_postgres_backup_bucket: "immich-postgres-backup"
   immich_postgres_backup_credential_secret_name: "immich-postgres-backup-credentials"
-  immich_postgres_backup_retain_days: "30"
   immich_redis_storage_class_name: "longhorn-rwo-1r"
   immich_redis_size: "5Gi"
   immich_redis_requests_cpu: "50m"
@@ -236,7 +234,6 @@ data:
   matrix_postgres_size: "20Gi"
   matrix_postgres_backup_bucket: "matrix-postgres-backup"
   matrix_postgres_backup_credential_secret_name: "matrix-postgres-backup-credentials"
-  matrix_postgres_backup_retain_days: "30"
   matrix_synapse_data_storage_class_name: "longhorn-rwo-1r"
   matrix_synapse_data_size: "20Gi"
   matrix_synapse_media_storage_class_name: "longhorn-rwo-1r"
