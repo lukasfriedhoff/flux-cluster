@@ -1,0 +1,24 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: nix-remote-builder-app
+  namespace: flux-system
+spec:
+  suspend: ${nix_remote_builder_suspend:=true}
+  dependsOn:
+    - name: namespaces
+    - name: secrets
+    - name: longhorn-app
+  interval: ${flux_kustomization_default_interval:=1h0m0s}
+  path: ./apps/nix-remote-builder
+  prune: true
+  retryInterval: ${flux_kustomization_default_retry_interval:=10m0s}
+  sourceRef:
+    kind: GitRepository
+    name: flux-apps
+  timeout: ${flux_kustomization_default_timeout:=5m0s}
+  wait: true
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: base-config
