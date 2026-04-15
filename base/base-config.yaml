@@ -188,6 +188,7 @@ data:
   immich_ml_cache_size: "20Gi"
   immich_uploads_storage_class_name: "longhorn-rwo-1r"
   immich_uploads_size: "200Gi"
+  immich_postgres_image: "ghcr.io/tensorchord/cloudnative-pgvecto.rs:pg16-v0.3.0"
   immich_postgres_storage_class_name: "longhorn-rwo-1r"
   immich_postgres_size: "50Gi"
   immich_postgres_requests_cpu: "150m"
