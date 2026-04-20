@@ -2,24 +2,3 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../../../base/kustomizations/
-patches:
-  - target:
-      group: kustomize.toolkit.fluxcd.io
-      version: v1
-      kind: Kustomization
-      name: immich-app
-      namespace: flux-system
-    patch: |-
-      - op: replace
-        path: /spec/path
-        value: ./apps/overlays/immich-cnpg-steady-state
-  - target:
-      group: kustomize.toolkit.fluxcd.io
-      version: v1
-      kind: Kustomization
-      name: matrix-app
-      namespace: flux-system
-    patch: |-
-      - op: replace
-        path: /spec/path
-        value: ./apps/overlays/matrix-cnpg-steady-state
