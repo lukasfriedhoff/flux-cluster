@@ -56,14 +56,14 @@ data:
   nextcloud_hpa_enabled: "true"
   nextcloud_hpa_min_pods: "2"
   nextcloud_hpa_max_pods: "4"
-  nextcloud_postgres_backup_endpoint_url: http://srv1.lab.h4xx.io:7480
+  nextcloud_postgres_backup_endpoint_url: http://s3.object-storage.svc.cluster.local:9000
   immich_suspend: "false"
   immich_oidc: authelia
   immich_uploads_storage_class_name: testing-longhorn-rwo-1r
   immich_uploads_size: 8Gi
   immich_postgres_storage_class_name: testing-longhorn-rwo-1r
   immich_postgres_size: 2Gi
-  immich_postgres_backup_endpoint_url: http://srv1.lab.h4xx.io:7480
+  immich_postgres_backup_endpoint_url: http://s3.object-storage.svc.cluster.local:9000
   immich_ml_cache_storage_class_name: testing-longhorn-rwo-1r
   immich_ml_cache_size: 2Gi
   immich_redis_storage_class_name: testing-longhorn-rwo-1r
@@ -72,7 +72,7 @@ data:
   matrix_oidc: authelia
   matrix_postgres_storage_class_name: testing-longhorn-rwo-1r
   matrix_postgres_size: 5Gi
-  matrix_postgres_backup_endpoint_url: http://srv1.lab.h4xx.io:7480
+  matrix_postgres_backup_endpoint_url: http://s3.object-storage.svc.cluster.local:9000
   matrix_synapse_data_storage_class_name: testing-longhorn-rwo-1r
   matrix_synapse_data_size: 2Gi
   matrix_synapse_media_storage_class_name: testing-longhorn-rwo-1r
