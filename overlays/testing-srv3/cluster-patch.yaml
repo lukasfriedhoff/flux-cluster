@@ -56,6 +56,7 @@ data:
   nextcloud_hpa_enabled: "true"
   nextcloud_hpa_min_pods: "2"
   nextcloud_hpa_max_pods: "4"
+  nextcloud_postgres_backup_endpoint_url: http://srv1.lab.h4xx.io:7480
   immich_suspend: "false"
   immich_oidc: authelia
   immich_uploads_storage_class_name: testing-longhorn-rwo-1r

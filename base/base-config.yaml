@@ -100,6 +100,7 @@ data:
   object_storage_force_path_style: "true"
   monitoring_s3_values_secret_name: "monitoring-s3-values"
   nextcloud_postgres_backup_bucket: "nextcloud-postgres-backup"
+  nextcloud_postgres_backup_endpoint_url: ""
   nextcloud_postgres_backup_credential_secret_name: "nextcloud-postgres-backup-credentials"
 
   # Nix binary cache ingress (proxying host nix-serve)
