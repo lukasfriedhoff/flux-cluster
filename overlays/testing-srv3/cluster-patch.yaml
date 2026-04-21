@@ -7,7 +7,6 @@ data:
   cluster_environment: testing
   cluster_name: testing-srv3
   kubernetes_cluster_domain: k8s.testing.h4xx.io
-  delegating_domain: h4xx.io
   public_host_suffix: -testing
   authelia_access_policy: one_factor
   authelia_oidc_policy: one_factor
@@ -24,24 +23,13 @@ data:
   longhorn_storage_over_provisioning_percentage: "500"
   longhorn_storage_reserved_percentage_for_default_disk: "10"
   longhorn_rwo_storage_class_1r_name: testing-longhorn-rwo-1r
-  longhorn_rwo_storage_class_1r_replicas: "1"
   longhorn_rwo_storage_class_2r_name: testing-longhorn-rwo-2r
-  longhorn_rwo_storage_class_2r_replicas: "2"
   longhorn_rwo_storage_class_3r_name: testing-longhorn-rwo-3r
-  longhorn_rwo_storage_class_3r_replicas: "3"
   longhorn_rwx_storage_class_1r_name: testing-longhorn-rwx-1r
-  longhorn_rwx_storage_class_1r_replicas: "1"
   longhorn_rwx_storage_class_2r_name: testing-longhorn-rwx-2r
-  longhorn_rwx_storage_class_2r_replicas: "2"
   longhorn_rwx_storage_class_3r_name: testing-longhorn-rwx-3r
-  longhorn_rwx_storage_class_3r_replicas: "3"
-  longhorn_allow_recurring_job_while_volume_detached: "true"
   longhorn_backup_target: s3://testing-srv3-longhorn-backups@us-east-1/
   longhorn_backup_target_credential_secret_name: longhorn-backup-target
-  longhorn_backup_poll_interval: "300"
-  longhorn_recurring_backup_cron: "15 3 * * *"
-  longhorn_recurring_backup_retain: "14"
-  longhorn_recurring_full_backup_interval: "7"
   s3_force: "true"
   s3_suspend: "false"
   s3_storage_class_name: testing-longhorn-rwo-2r
@@ -50,7 +38,6 @@ data:
   nix_cache_upstream_ip: 10.1.30.25
   nix_remote_builder_suspend: "false"
   nix_remote_builder_storage_class_name: testing-longhorn-rwo-1r
-  nix_remote_builder_storage_size: 100Gi
   status_dashboard_suspend: "false"
   status_dashboard_host: testing.h4xx.io
   status_dashboard_title: "Testing Services Status"
@@ -69,13 +56,14 @@ data:
   nextcloud_hpa_enabled: "true"
   nextcloud_hpa_min_pods: "2"
   nextcloud_hpa_max_pods: "4"
-  nextcloud_oidc: authelia
+  nextcloud_postgres_backup_endpoint_url: http://srv1.lab.h4xx.io:9000
   immich_suspend: "false"
   immich_oidc: authelia
   immich_uploads_storage_class_name: testing-longhorn-rwo-1r
   immich_uploads_size: 8Gi
   immich_postgres_storage_class_name: testing-longhorn-rwo-1r
   immich_postgres_size: 2Gi
+  immich_postgres_backup_endpoint_url: http://srv1.lab.h4xx.io:9000
   immich_ml_cache_storage_class_name: testing-longhorn-rwo-1r
   immich_ml_cache_size: 2Gi
   immich_redis_storage_class_name: testing-longhorn-rwo-1r
@@ -83,7 +71,8 @@ data:
   matrix_suspend: "false"
   matrix_oidc: authelia
   matrix_postgres_storage_class_name: testing-longhorn-rwo-1r
-  matrix_postgres_size: 1Gi
+  matrix_postgres_size: 5Gi
+  matrix_postgres_backup_endpoint_url: http://srv1.lab.h4xx.io:9000
   matrix_synapse_data_storage_class_name: testing-longhorn-rwo-1r
   matrix_synapse_data_size: 2Gi
   matrix_synapse_media_storage_class_name: testing-longhorn-rwo-1r
@@ -92,7 +81,6 @@ data:
   matrix_bridge_data_size: 1Gi
   matrix_signald_data_size: 1Gi
   arr_api_keys_secret_name: arr-api-keys-testing
-  jellyfin_e2e_auth_secret_name: jellyfin-e2e-auth
   arr_config_storage_class_name: testing-longhorn-rwo-1r
   arr_media_storage_class_name: testing-longhorn-rwx-1r
   arr_media_size: 10Gi
@@ -103,10 +91,6 @@ data:
   moonlight_config_size: 5Gi
   monitoring_storage_class_name: testing-longhorn-rwo-1r
   object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
-  object_storage_region: us-east-1
-  object_storage_insecure: "true"
-  object_storage_force_path_style: "true"
-  monitoring_s3_values_secret_name: monitoring-s3-values
   monitoring_loki_bucket: testing-loki
   monitoring_mimir_blocks_bucket: testing-mimir-blocks
   monitoring_mimir_alertmanager_bucket: testing-mimir-alertmanager
@@ -120,3 +104,11 @@ data:
   mimir_query_scheduler_replicas: '1'
   tempo_replication_factor: '1'
   tempo_ingester_replicas: '1'
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: kustomizations
+  namespace: flux-system
+spec:
+  path: ./overlays/testing-srv3/kustomizations/
