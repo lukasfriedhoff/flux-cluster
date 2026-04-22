@@ -25,17 +25,15 @@ fi
 
 secrets_dir="$root/overlays/homelab/secrets"
 arr_keys="$secrets_dir/arr-api-keys.yaml"
-recyclarr_keys="$secrets_dir/recyclarr-secrets.yaml"
-buildarr_keys="$secrets_dir/buildarr-secret.yaml"
 
-if [[ ! -f "$recyclarr_keys" ]]; then
-  echo "missing file: $recyclarr_keys" >&2
+if [[ ! -f "$arr_keys" ]]; then
+  echo "missing file: $arr_keys" >&2
   exit 1
 fi
 
-recipient="$(rg -o 'age1[0-9a-z]+' "$recyclarr_keys" | head -n1 || true)"
+recipient="$(rg -o 'age1[0-9a-z]+' "$arr_keys" | head -n1 || true)"
 if [[ -z "$recipient" ]]; then
-  echo "failed to find age recipient in $recyclarr_keys" >&2
+  echo "failed to find age recipient in $arr_keys" >&2
   exit 1
 fi
 
@@ -51,11 +49,7 @@ import re
 from pathlib import Path
 
 root = Path(".")
-files = {
-    "overlays/homelab/secrets/arr-api-keys.yaml": "arr",
-    "overlays/homelab/secrets/recyclarr-secrets.yaml": "recyclarr",
-    "overlays/homelab/secrets/buildarr-secret.yaml": "buildarr",
-}
+path = root / "overlays/homelab/secrets/arr-api-keys.yaml"
 
 sonarr_key = secrets.token_hex(16)
 radarr_key = secrets.token_hex(16)
@@ -94,23 +88,13 @@ def write_sops(path: Path, plaintext: str) -> None:
         if os.path.exists(tmp):
             os.remove(tmp)
 
-for rel, kind in files.items():
-    path = root / rel
-    plaintext = load_sops(path)
-    if kind in ("arr", "recyclarr"):
-        plaintext = replace_or_fail(plaintext, r"(^\\s*sonarr_api_key:\\s*)\\S+", sonarr_key)
-        plaintext = replace_or_fail(plaintext, r"(^\\s*radarr_api_key:\\s*)\\S+", radarr_key)
-    elif kind == "buildarr":
-        plaintext = replace_or_fail(
-            plaintext, r"(^\\s*sonarr:\\s*\\n\\s*api_key:\\s*)\\S+", sonarr_key
-        )
-        plaintext = replace_or_fail(
-            plaintext, r"(^\\s*radarr:\\s*\\n\\s*api_key:\\s*)\\S+", radarr_key
-        )
-    write_sops(path, plaintext)
+plaintext = load_sops(path)
+plaintext = replace_or_fail(plaintext, r"(^\\s*sonarr_api_key:\\s*)\\S+", sonarr_key)
+plaintext = replace_or_fail(plaintext, r"(^\\s*radarr_api_key:\\s*)\\S+", radarr_key)
+write_sops(path, plaintext)
 PY
 
-git add "$arr_keys" "$recyclarr_keys" "$buildarr_keys"
+git add "$arr_keys"
 git commit -m "chore(media): rotate arr api keys"
 git push
 
@@ -121,18 +105,3 @@ flux reconcile kustomization media-app -n flux-system
 kubectl -n media rollout restart deploy/sonarr deploy/radarr
 kubectl -n media rollout status deploy/sonarr --timeout=180s
 kubectl -n media rollout status deploy/radarr --timeout=180s
-
-ts="$(date +%Y%m%d%H%M%S)"
-recyclarr_job="recyclarr-manual-$ts"
-buildarr_job="buildarr-manual-$ts"
-
-kubectl -n media create job --from=cronjob/recyclarr "$recyclarr_job"
-kubectl -n media create job --from=cronjob/buildarr "$buildarr_job"
-
-kubectl -n media wait --for=condition=complete "job/$recyclarr_job" --timeout=180s
-kubectl -n media wait --for=condition=complete "job/$buildarr_job" --timeout=180s
-
-kubectl -n media logs "job/$recyclarr_job"
-kubectl -n media logs "job/$buildarr_job"
-
-kubectl -n media delete "job/$recyclarr_job" "job/$buildarr_job"
