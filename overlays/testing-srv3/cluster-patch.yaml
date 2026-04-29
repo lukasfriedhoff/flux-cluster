@@ -62,7 +62,7 @@ data:
   immich_uploads_storage_class_name: testing-longhorn-rwo-1r
   immich_uploads_size: 8Gi
   immich_postgres_storage_class_name: testing-longhorn-rwo-1r
-  immich_postgres_size: 8Gi
+  immich_postgres_size: 16Gi
   immich_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   immich_ml_cache_storage_class_name: testing-longhorn-rwo-1r
   immich_ml_cache_size: 2Gi
@@ -96,14 +96,14 @@ data:
   monitoring_mimir_alertmanager_bucket: testing-mimir-alertmanager
   monitoring_mimir_ruler_bucket: testing-mimir-ruler
   monitoring_tempo_bucket: testing-tempo
-  mimir_replication_factor: '1'
-  mimir_ingester_replicas: '1'
-  mimir_ingester_zone_aware_replication: 'false'
-  mimir_store_gateway_zone_aware_replication: 'false'
-  mimir_querier_replicas: '1'
-  mimir_query_scheduler_replicas: '1'
-  tempo_replication_factor: '1'
-  tempo_ingester_replicas: '1'
+  mimir_replication_factor: "1"
+  mimir_ingester_replicas: "1"
+  mimir_ingester_zone_aware_replication: "false"
+  mimir_store_gateway_zone_aware_replication: "false"
+  mimir_querier_replicas: "1"
+  mimir_query_scheduler_replicas: "1"
+  tempo_replication_factor: "1"
+  tempo_ingester_replicas: "1"
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
