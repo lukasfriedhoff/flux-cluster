@@ -85,7 +85,7 @@ data:
   arr_media_storage_class_name: testing-longhorn-rwx-1r
   arr_media_size: 10Gi
   arr_downloads_storage_class_name: testing-longhorn-rwx-1r
-  arr_downloads_size: 5Gi
+  arr_downloads_size: 50Gi
   moonlight_suspend: "false"
   moonlight_config_storage_class_name: testing-longhorn-rwo-1r
   moonlight_config_size: 5Gi
