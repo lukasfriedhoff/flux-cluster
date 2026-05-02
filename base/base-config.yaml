@@ -261,6 +261,7 @@ data:
   jellyfin_e2e_auth_secret_name: "jellyfin-e2e-auth"
   arr_config_storage_class_name: "ssd-cephfs-1r"
   arr_config_size: "5Gi"
+  media_enable_dual_audio_policy: "true"
   arr_media_storage_class_name: "ssd-cephfs-1r"
   arr_media_size: "1Ti"
   arr_downloads_storage_class_name: "ssd-cephfs-1r"
