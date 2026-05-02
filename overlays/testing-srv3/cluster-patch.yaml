@@ -53,6 +53,7 @@ data:
   nextcloud_app_claim_name: nextcloud-app-lh1
   nextcloud_data_claim_name: nextcloud-nextcloud-data-lh2
   nextcloud_data_size: 10Gi
+  nextcloud_postgres_size: 32Gi
   nextcloud_hpa_enabled: "true"
   nextcloud_hpa_min_pods: "2"
   nextcloud_hpa_max_pods: "4"
@@ -71,7 +72,7 @@ data:
   matrix_suspend: "false"
   matrix_oidc: authelia
   matrix_postgres_storage_class_name: testing-longhorn-rwo-1r
-  matrix_postgres_size: 16Gi
+  matrix_postgres_size: 32Gi
   matrix_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   matrix_synapse_data_storage_class_name: testing-longhorn-rwo-1r
   matrix_synapse_data_size: 2Gi
