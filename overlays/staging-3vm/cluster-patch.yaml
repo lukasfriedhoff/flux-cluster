@@ -4,16 +4,16 @@ metadata:
   name: base-config
   namespace: flux-system
 data:
-  cluster_environment: testing
-  cluster_name: testing-srv3
-  kubernetes_cluster_domain: k8s.testing.h4xx.io
-  public_host_suffix: -testing
+  cluster_environment: staging
+  cluster_name: staging-3vm
+  kubernetes_cluster_domain: k8s.staging.h4xx.io
+  public_host_suffix: -staging
   authelia_access_policy: one_factor
   authelia_oidc_policy: one_factor
-  external_dns_txt_owner_id: srv3-k3s
-  cloudflare_tunnel_id: a53b5554-e980-4cce-a3bf-0347007f2094
-  cloudflare_tunnel_hostname: a53b5554-e980-4cce-a3bf-0347007f2094.cfargotunnel.com
-  cloudflare_tunnel_secret_name: cloudflare-tunnel-credentials-testing
+  external_dns_txt_owner_id: srv5-k3s
+  cloudflare_tunnel_id: d95750cb-fa84-4e66-8b7c-99c874cb4e43
+  cloudflare_tunnel_hostname: d95750cb-fa84-4e66-8b7c-99c874cb4e43.cfargotunnel.com
+  cloudflare_tunnel_secret_name: cloudflare-tunnel-credentials-staging
   ceph_csi_suspend: "true"
   media_force: "true"
   ceph_mgr_prometheus_endpoint: 127.0.0.1:65535
@@ -28,7 +28,7 @@ data:
   longhorn_rwx_storage_class_1r_name: testing-longhorn-rwx-1r
   longhorn_rwx_storage_class_2r_name: testing-longhorn-rwx-2r
   longhorn_rwx_storage_class_3r_name: testing-longhorn-rwx-3r
-  longhorn_backup_target: s3://testing-srv3-longhorn-backups@us-east-1/
+  longhorn_backup_target: s3://staging-3vm-longhorn-backups@us-east-1/
   longhorn_backup_target_credential_secret_name: longhorn-backup-target
   s3_force: "true"
   s3_suspend: "false"
@@ -39,9 +39,9 @@ data:
   nix_remote_builder_suspend: "false"
   nix_remote_builder_storage_class_name: testing-longhorn-rwo-1r
   status_dashboard_suspend: "false"
-  status_dashboard_host: testing.h4xx.io
-  status_dashboard_title: "Testing Services Status"
-  status_dashboard_description: "Public uptime for testing services"
+  status_dashboard_host: staging.h4xx.io
+  status_dashboard_title: "Staging Services Status"
+  status_dashboard_description: "Public uptime for staging services"
   default_storage_class_name: testing-longhorn-rwo-1r
   default_sts_storage_class_name: testing-longhorn-rwo-1r
   valkey_storage_class_name: testing-longhorn-rwo-1r
@@ -92,11 +92,11 @@ data:
   moonlight_config_size: 5Gi
   monitoring_storage_class_name: testing-longhorn-rwo-1r
   object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
-  monitoring_loki_bucket: testing-loki
-  monitoring_mimir_blocks_bucket: testing-mimir-blocks
-  monitoring_mimir_alertmanager_bucket: testing-mimir-alertmanager
-  monitoring_mimir_ruler_bucket: testing-mimir-ruler
-  monitoring_tempo_bucket: testing-tempo
+  monitoring_loki_bucket: staging-loki
+  monitoring_mimir_blocks_bucket: staging-mimir-blocks
+  monitoring_mimir_alertmanager_bucket: staging-mimir-alertmanager
+  monitoring_mimir_ruler_bucket: staging-mimir-ruler
+  monitoring_tempo_bucket: staging-tempo
   mimir_replication_factor: "1"
   mimir_ingester_replicas: "1"
   mimir_ingester_zone_aware_replication: "false"
@@ -112,4 +112,4 @@ metadata:
   name: kustomizations
   namespace: flux-system
 spec:
-  path: ./overlays/testing-srv3/kustomizations/
+  path: ./overlays/staging-3vm/kustomizations/
