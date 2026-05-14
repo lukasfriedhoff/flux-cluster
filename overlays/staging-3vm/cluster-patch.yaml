@@ -114,3 +114,4 @@ metadata:
   namespace: flux-system
 spec:
   path: ./overlays/staging-3vm/kustomizations/
+  wait: false
