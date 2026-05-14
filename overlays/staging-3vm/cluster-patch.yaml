@@ -10,6 +10,7 @@ data:
   public_host_suffix: -staging
   authelia_access_policy: one_factor
   authelia_oidc_policy: one_factor
+  authelia_session_cookie_name: authelia_session_staging
   external_dns_txt_owner_id: srv5-k3s
   cloudflare_tunnel_id: d95750cb-fa84-4e66-8b7c-99c874cb4e43
   cloudflare_tunnel_hostname: d95750cb-fa84-4e66-8b7c-99c874cb4e43.cfargotunnel.com
