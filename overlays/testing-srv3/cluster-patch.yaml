@@ -6,7 +6,6 @@ metadata:
 data:
   cluster_environment: testing
   cluster_name: testing-srv3
-  backup_cluster_prefix: testing-srv3
   kubernetes_cluster_domain: k8s.testing.h4xx.io
   public_host_suffix: -testing
   authelia_access_policy: one_factor
