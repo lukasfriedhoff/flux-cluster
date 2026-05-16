@@ -6,6 +6,7 @@ metadata:
 data:
   cluster_environment: staging
   cluster_name: staging-3vm
+  backup_cluster_prefix: staging-3vm
   kubernetes_cluster_domain: k8s.staging.h4xx.io
   public_host_suffix: -staging
   authelia_access_policy: one_factor

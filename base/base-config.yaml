@@ -98,6 +98,7 @@ data:
   object_storage_region: "us-east-1"
   object_storage_insecure: "true"
   object_storage_force_path_style: "true"
+  backup_cluster_prefix: "homelab"
   monitoring_s3_values_secret_name: "monitoring-s3-values"
   nextcloud_postgres_backup_bucket: "nextcloud-postgres-backup"
   nextcloud_postgres_backup_endpoint_url: ""
