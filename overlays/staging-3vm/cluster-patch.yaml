@@ -75,6 +75,7 @@ data:
   matrix_postgres_storage_class_name: testing-longhorn-rwo-1r
   matrix_postgres_size: 32Gi
   matrix_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
+  matrix_synapsedb_backup_path: synapsedb-staging
   matrix_synapse_data_storage_class_name: testing-longhorn-rwo-1r
   matrix_synapse_data_size: 2Gi
   matrix_synapse_media_storage_class_name: testing-longhorn-rwo-1r

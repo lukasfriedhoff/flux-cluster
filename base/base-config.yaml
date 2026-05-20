@@ -240,6 +240,7 @@ data:
   matrix_postgres_backup_bucket: "matrix-postgres-backup"
   matrix_postgres_backup_endpoint_url: "http://backup.h4xx.io:9000"
   matrix_postgres_backup_credential_secret_name: "matrix-postgres-backup-credentials"
+  matrix_synapsedb_backup_path: "synapsedb"
   matrix_synapse_data_storage_class_name: "longhorn-rwo-1r"
   matrix_synapse_data_size: "20Gi"
   matrix_synapse_media_storage_class_name: "longhorn-rwo-1r"
