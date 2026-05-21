@@ -59,7 +59,7 @@ data:
   nextcloud_hpa_min_pods: "2"
   nextcloud_hpa_max_pods: "4"
   nextcloud_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
-  nextcloud_external_photos_enabled: "true"
+  nextcloud_external_photos_enabled: "enabled"
   nextcloud_external_photos_url: https://photos-testing.h4xx.io
   nextcloud_external_photos_label: "Photos"
   immich_suspend: "false"

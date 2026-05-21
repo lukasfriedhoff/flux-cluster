@@ -166,7 +166,7 @@ data:
   nextcloud_resources_requests_cpu: "200m"
   nextcloud_resources_requests_memory: "512Mi"
   nextcloud_resources_limits_memory: "2Gi"
-  nextcloud_external_photos_enabled: "false"
+  nextcloud_external_photos_enabled: "disabled"
   nextcloud_external_photos_url: "https://photos.h4xx.io"
   nextcloud_external_photos_label: "Photos"
   # OIDC provider switch for Nextcloud login integration.
