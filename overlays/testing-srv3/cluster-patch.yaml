@@ -59,6 +59,9 @@ data:
   nextcloud_hpa_min_pods: "2"
   nextcloud_hpa_max_pods: "4"
   nextcloud_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
+  nextcloud_external_photos_enabled: "true"
+  nextcloud_external_photos_url: https://photos-testing.h4xx.io
+  nextcloud_external_photos_label: "Photos"
   immich_suspend: "false"
   immich_oidc: authelia
   immich_uploads_storage_class_name: testing-longhorn-rwo-1r
@@ -70,6 +73,20 @@ data:
   immich_ml_cache_size: 2Gi
   immich_redis_storage_class_name: testing-longhorn-rwo-1r
   immich_redis_size: 1Gi
+  immich_photos_suspend: "false"
+  immich_photos_secret_name: immich-photos-secrets
+  immich_photos_oidc: none
+  immich_photos_uploads_storage_class_name: testing-longhorn-rwo-1r
+  immich_photos_uploads_size: 8Gi
+  immich_photos_postgres_storage_class_name: testing-longhorn-rwo-1r
+  immich_photos_postgres_size: 16Gi
+  immich_photos_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
+  immich_photos_postgres_backup_bucket: immich-postgres-backup
+  immich_photos_postgres_backup_credential_secret_name: immich-photos-postgres-backup-credentials
+  immich_photos_ml_cache_storage_class_name: testing-longhorn-rwo-1r
+  immich_photos_ml_cache_size: 2Gi
+  immich_photos_redis_storage_class_name: testing-longhorn-rwo-1r
+  immich_photos_redis_size: 1Gi
   matrix_suspend: "false"
   matrix_oidc: authelia
   matrix_postgres_storage_class_name: testing-longhorn-rwo-1r

@@ -13,6 +13,7 @@ resources:
   - infra/valkey.yaml
   - infra/nextcloud.yaml
   - infra/immich.yaml
+  - infra/immich-photos.yaml
   - infra/matrix.yaml
   - infra/media.yaml
   - infra/moonlight-web.yaml
