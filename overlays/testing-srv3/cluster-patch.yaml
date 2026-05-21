@@ -105,6 +105,11 @@ data:
   arr_media_size: 100Gi
   arr_downloads_storage_class_name: testing-longhorn-rwx-1r
   arr_downloads_size: 500Gi
+  media_download_promotion_enabled: "enabled"
+  media_download_promotion_dry_run: "false"
+  media_download_promotion_cron: "15 */6 * * *"
+  media_download_promotion_min_age_hours: "120"
+  media_download_promotion_target_base: "/media/staged"
   moonlight_suspend: "false"
   moonlight_config_storage_class_name: testing-longhorn-rwo-1r
   moonlight_config_size: 5Gi
