@@ -131,3 +131,11 @@ metadata:
 spec:
   path: ./overlays/staging-3vm/kustomizations/
   wait: false
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: namespaces
+  namespace: flux-system
+spec:
+  path: ./overlays/staging-3vm/namespaces/
