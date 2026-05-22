@@ -29,6 +29,22 @@ data:
   longhorn_rwx_storage_class_1r_name: testing-longhorn-rwx-1r
   longhorn_rwx_storage_class_2r_name: testing-longhorn-rwx-2r
   longhorn_rwx_storage_class_3r_name: testing-longhorn-rwx-3r
+  longhorn_nvme_disk_selector: nvme
+  longhorn_ssd_disk_selector: ssd
+  longhorn_nvme_rwo_storage_class_1r_name: testing-longhorn-nvme-rwo-1r
+  longhorn_nvme_rwo_storage_class_2r_name: testing-longhorn-nvme-rwo-2r
+  longhorn_nvme_rwo_storage_class_3r_name: testing-longhorn-nvme-rwo-3r
+  longhorn_nvme_rwx_storage_class_1r_name: testing-longhorn-nvme-rwx-1r
+  longhorn_nvme_rwx_storage_class_2r_name: testing-longhorn-nvme-rwx-2r
+  longhorn_nvme_rwx_storage_class_3r_name: testing-longhorn-nvme-rwx-3r
+  longhorn_ssd_rwo_storage_class_1r_name: testing-longhorn-ssd-rwo-1r
+  longhorn_ssd_rwo_storage_class_2r_name: testing-longhorn-ssd-rwo-2r
+  longhorn_ssd_rwo_storage_class_3r_name: testing-longhorn-ssd-rwo-3r
+  longhorn_ssd_rwx_storage_class_1r_name: testing-longhorn-ssd-rwx-1r
+  longhorn_ssd_rwx_storage_class_2r_name: testing-longhorn-ssd-rwx-2r
+  longhorn_ssd_rwx_storage_class_3r_name: testing-longhorn-ssd-rwx-3r
+  longhorn_nvme_storage_reserved_bytes: "32212254720"
+  longhorn_ssd_storage_reserved_bytes: "0"
   longhorn_backup_target: s3://testing-srv3-longhorn-backups@us-east-1/
   longhorn_backup_target_credential_secret_name: longhorn-backup-target
   s3_force: "true"

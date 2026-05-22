@@ -1,0 +1,21 @@
+apiVersion: longhorn.io/v1beta2
+kind: Node
+metadata:
+  name: srv3
+  namespace: longhorn-system
+spec:
+  disks:
+    default-disk-f52ed3ba6efe957a:
+      path: /var/lib/longhorn/
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_nvme_storage_reserved_bytes:=32212254720}
+      tags:
+        - nvme
+    longhorn-ssd-1tb:
+      path: /var/lib/longhorn-disk1
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
+      tags:
+        - ssd
