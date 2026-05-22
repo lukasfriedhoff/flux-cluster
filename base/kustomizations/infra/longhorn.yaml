@@ -18,6 +18,8 @@ spec:
   timeout: 15m0s
   wait: true
   postBuild:
+    substitute:
+      quote: '"'
     substituteFrom:
       - kind: ConfigMap
         name: base-config
