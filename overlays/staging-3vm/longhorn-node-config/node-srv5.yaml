@@ -1,0 +1,9 @@
+apiVersion: longhorn.io/v1beta2
+kind: Node
+metadata:
+  name: srv5-k3s-stg1
+  namespace: longhorn-system
+spec:
+  disks:
+    default-disk-2098b697cbf5dc92:
+      storageReserved: ${longhorn_storage_reserved_bytes:=21474836480}

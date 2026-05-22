@@ -23,6 +23,7 @@ data:
   longhorn_storage_minimal_available_percentage: "10"
   longhorn_storage_over_provisioning_percentage: "500"
   longhorn_storage_reserved_percentage_for_default_disk: "8"
+  longhorn_storage_reserved_bytes: "21474836480"
   longhorn_rwo_storage_class_1r_name: testing-longhorn-rwo-1r
   longhorn_rwo_storage_class_2r_name: testing-longhorn-rwo-2r
   longhorn_rwo_storage_class_3r_name: testing-longhorn-rwo-3r
