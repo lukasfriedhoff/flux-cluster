@@ -75,7 +75,7 @@ data:
   immich_redis_size: 1Gi
   immich_photos_suspend: "false"
   immich_photos_secret_name: immich-photos-secrets
-  immich_photos_oidc: none
+  immich_photos_oidc: authelia
   immich_photos_uploads_storage_class_name: testing-longhorn-rwo-1r
   immich_photos_uploads_size: 8Gi
   immich_photos_postgres_storage_class_name: testing-longhorn-rwo-1r
