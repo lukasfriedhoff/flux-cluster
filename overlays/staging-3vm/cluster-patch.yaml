@@ -63,7 +63,7 @@ data:
   immich_suspend: "false"
   immich_oidc: authelia
   immich_uploads_storage_class_name: testing-longhorn-rwo-1r
-  immich_uploads_size: 250Gi
+  immich_uploads_size: 8Gi
   immich_postgres_storage_class_name: testing-longhorn-rwo-1r
   immich_postgres_size: 16Gi
   immich_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
