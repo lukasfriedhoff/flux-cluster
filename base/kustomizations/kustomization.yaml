@@ -24,5 +24,6 @@ resources:
   - infra/cloudflared.yaml
   - infra/external-dns.yaml
   - infra/authelia.yaml
+  - infra/logday.yaml
   - infra/reloader.yaml
   - infra/monitoring.yaml

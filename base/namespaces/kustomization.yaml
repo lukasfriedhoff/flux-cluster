@@ -17,6 +17,7 @@ resources:
   - reloader.yaml
   - monitoring.yaml
   - media.yaml
+  - logday.yaml
   - object-storage.yaml
   - nix-cache.yaml
   - status-dashboard.yaml

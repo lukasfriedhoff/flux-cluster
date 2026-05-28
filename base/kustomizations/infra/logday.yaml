@@ -1,0 +1,27 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: logday-app
+  namespace: flux-system
+spec:
+  suspend: ${logday_suspend:=true}
+  dependsOn:
+    - name: namespaces
+    - name: secrets
+    - name: cnpg-app
+    - name: cert-manager-app
+    - name: traefik-app
+    - name: authelia-app
+  interval: ${flux_kustomization_default_interval:=1h0m0s}
+  path: ./apps/logday
+  prune: true
+  retryInterval: ${flux_kustomization_default_retry_interval:=10m0s}
+  sourceRef:
+    kind: GitRepository
+    name: flux-apps
+  timeout: 15m0s
+  wait: true
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: base-config

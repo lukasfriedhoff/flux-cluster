@@ -23,6 +23,7 @@ data:
   flux_kustomization_default_interval: "1h0m0s"
   flux_kustomization_default_retry_interval: "10m0s"
   flux_kustomization_default_timeout: "5m0s"
+  logday_repo_secret_name: "github-read-logday-prod"
 
   # Storage - Ceph CSI classes and pools
   ceph_csi_suspend: "false"
@@ -276,6 +277,29 @@ data:
   immich_photos_redis_requests_memory: "128Mi"
   immich_photos_redis_limits_cpu: "500m"
   immich_photos_redis_limits_memory: "512Mi"
+
+  # LogDay
+  logday_suspend: "true"
+  logday_image_repository: "ghcr.io/lukasfriedhoff/logday"
+  logday_image_tag: "latest"
+  logday_replicas: "1"
+  logday_requests_cpu: "100m"
+  logday_requests_memory: "256Mi"
+  logday_limits_cpu: "1000m"
+  logday_limits_memory: "1Gi"
+  logday_db_sslmode: "require"
+  logday_db_auto_migrate: "true"
+  logday_db_connect_retries: "15"
+  logday_postgres_cluster_name: "logday-postgres"
+  logday_postgres_db_name: "logday_db"
+  logday_postgres_user: "logday_user"
+  logday_postgres_instances: "1"
+  logday_postgres_image: "ghcr.io/cloudnative-pg/postgresql:17.6-system-trixie"
+  logday_postgres_size: "10Gi"
+  logday_postgres_requests_cpu: "100m"
+  logday_postgres_requests_memory: "256Mi"
+  logday_postgres_limits_cpu: "1000m"
+  logday_postgres_limits_memory: "1Gi"
 
   # Matrix + bridges
   matrix_suspend: "true"

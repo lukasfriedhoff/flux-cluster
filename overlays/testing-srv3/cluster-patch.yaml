@@ -8,6 +8,7 @@ data:
   cluster_name: testing-srv3
   kubernetes_cluster_domain: k8s.testing.h4xx.io
   public_host_suffix: -testing
+  logday_repo_secret_name: github-read-logday-testing
   authelia_access_policy: one_factor
   authelia_oidc_policy: one_factor
   authelia_session_cookie_name: authelia_session_testing
@@ -103,6 +104,8 @@ data:
   immich_photos_ml_cache_size: 2Gi
   immich_photos_redis_storage_class_name: testing-longhorn-rwo-1r
   immich_photos_redis_size: 1Gi
+  logday_suspend: "false"
+  logday_postgres_size: 10Gi
   matrix_suspend: "false"
   matrix_oidc: authelia
   matrix_postgres_storage_class_name: testing-longhorn-rwo-1r
