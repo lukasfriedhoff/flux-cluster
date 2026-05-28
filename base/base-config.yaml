@@ -282,6 +282,7 @@ data:
   logday_suspend: "true"
   logday_image_repository: "ghcr.io/lukasfriedhoff/logday"
   logday_image_tag: "latest"
+  logday_image_pull_secret_name: "logday-ghcr-pull"
   logday_replicas: "1"
   logday_requests_cpu: "100m"
   logday_requests_memory: "256Mi"
