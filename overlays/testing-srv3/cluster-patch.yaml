@@ -8,6 +8,7 @@ data:
   cluster_name: testing-srv3
   kubernetes_cluster_domain: k8s.testing.h4xx.io
   public_host_suffix: -testing
+  logday_repo_secret_name: github-read-logday-testing
   logday_repo_suspend: "false"
   authelia_access_policy: one_factor
   authelia_oidc_policy: one_factor

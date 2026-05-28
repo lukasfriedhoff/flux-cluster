@@ -8,4 +8,6 @@ spec:
   suspend: ${logday_repo_suspend:=true}
   ref:
     branch: develop
+  secretRef:
+    name: ${logday_repo_secret_name:=github-read-logday-disabled}
   url: https://github.com/lukasfriedhoff/logDay.git
