@@ -23,7 +23,7 @@ data:
   flux_kustomization_default_interval: "1h0m0s"
   flux_kustomization_default_retry_interval: "10m0s"
   flux_kustomization_default_timeout: "5m0s"
-  logday_repo_secret_name: "github-read-logday-prod"
+  logday_repo_suspend: "true"
 
   # Storage - Ceph CSI classes and pools
   ceph_csi_suspend: "false"

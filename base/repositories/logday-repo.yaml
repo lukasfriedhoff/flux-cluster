@@ -5,8 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: ${flux_gitrepo_interval:=10m0s}
+  suspend: ${logday_repo_suspend:=true}
   ref:
     branch: develop
-  secretRef:
-    name: ${logday_repo_secret_name:=github-read-logday-prod}
   url: https://github.com/lukasfriedhoff/logDay.git

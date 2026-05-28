@@ -8,7 +8,7 @@ data:
   cluster_name: staging-3vm
   kubernetes_cluster_domain: k8s.staging.h4xx.io
   public_host_suffix: -staging
-  logday_repo_secret_name: github-read-logday-staging
+  logday_repo_suspend: "false"
   authelia_access_policy: one_factor
   authelia_oidc_policy: one_factor
   authelia_session_cookie_name: authelia_session_staging

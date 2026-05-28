@@ -5,3 +5,4 @@ resources:
   - ../../base/
 patches:
   - path: cluster-patch.yaml
+  - path: logday-repo-auth-patch.yaml

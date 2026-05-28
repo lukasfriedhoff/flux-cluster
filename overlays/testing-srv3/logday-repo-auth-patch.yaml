@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: logday
+  namespace: flux-system
+spec:
+  secretRef:
+    name: github-read-logday-testing
