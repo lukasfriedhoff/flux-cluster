@@ -107,7 +107,7 @@ data:
   immich_photos_redis_size: 1Gi
   logday_suspend: "false"
   logday_image_pull_secret_name: logday-ghcr-pull-testing
-  logday_image_tag: SNAPSHOT-20260529
+  logday_image_tag: SNAPSHOT-20260531
   logday_postgres_size: 10Gi
   matrix_suspend: "false"
   matrix_oidc: authelia
