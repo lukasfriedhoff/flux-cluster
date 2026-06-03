@@ -162,6 +162,7 @@ data:
   attic_image_pull_policy: "IfNotPresent"
   attic_replicas: "1"
   attic_public_url: "https://attic.h4xx.io"
+  attic_api_endpoint: "https://attic.h4xx.io"
   attic_server_secret_name: "attic-server-env"
   attic_cache_name: "homelab"
   attic_cache_priority: "30"

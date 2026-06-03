@@ -64,6 +64,7 @@ data:
   nix_cache_upstream_ip: 10.1.30.25
   attic_suspend: "false"
   attic_public_url: https://attic-testing.h4xx.io
+  attic_api_endpoint: http://10.43.206.159:8080
   attic_storage_class_name: testing-longhorn-rwo-1r
   attic_storage_size: 500Gi
   attic_postgres_storage_class_name: testing-longhorn-rwo-1r
