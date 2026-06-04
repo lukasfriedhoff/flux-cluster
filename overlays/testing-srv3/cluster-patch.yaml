@@ -97,7 +97,7 @@ data:
   nextcloud_photos_claim_name: nextcloud-photos-shared
   nextcloud_photos_storage_class_name: testing-longhorn-rwx-1r
   nextcloud_photos_size: 50Gi
-  photos_shared_nfs_server: pvc-baed51ad-95de-4fdc-bb73-28a561ac7783.longhorn-system.svc.cluster.local
+  photos_shared_nfs_server: 10.43.44.160
   immich_suspend: "false"
   immich_oidc: authelia
   immich_uploads_storage_class_name: testing-longhorn-rwo-1r
