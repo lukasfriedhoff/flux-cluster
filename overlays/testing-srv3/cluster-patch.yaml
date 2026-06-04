@@ -96,7 +96,7 @@ data:
   nextcloud_external_photos_label: "Photos"
   nextcloud_photos_size: 50Gi
   photos_shared_nfs_server: 10.43.44.160
-  photos_shared_nfs_path: /export/pvc-baed51ad-95de-4fdc-bb73-28a561ac7783
+  photos_shared_nfs_path: /pvc-baed51ad-95de-4fdc-bb73-28a561ac7783
   immich_suspend: "false"
   immich_oidc: authelia
   immich_uploads_storage_class_name: testing-longhorn-rwo-1r
