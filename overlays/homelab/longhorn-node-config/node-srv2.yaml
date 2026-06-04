@@ -5,6 +5,12 @@ metadata:
   namespace: longhorn-system
 spec:
   disks:
+    default-disk-ccb62ec5c9533089:
+      path: /var/lib/longhorn/
+      allowScheduling: false
+      evictionRequested: false
+      storageReserved: ${longhorn_root_storage_reserved_bytes:=0}
+      tags: []
     longhorn-ssd-1tb-a:
       path: /var/lib/longhorn-disk1
       allowScheduling: true
