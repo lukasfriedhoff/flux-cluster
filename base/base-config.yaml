@@ -170,8 +170,10 @@ data:
   attic_storage_size: "500Gi"
   attic_requests_cpu: "500m"
   attic_requests_memory: "2Gi"
+  attic_requests_ephemeral_storage: "1Gi"
   attic_limits_cpu: "4000m"
   attic_limits_memory: "8Gi"
+  attic_limits_ephemeral_storage: "4Gi"
   attic_postgres_cluster_name: "attic-postgres"
   attic_postgres_image: "ghcr.io/cloudnative-pg/postgresql:18-system-trixie"
   attic_postgres_instances: "1"
@@ -181,8 +183,10 @@ data:
   attic_postgres_size: "20Gi"
   attic_postgres_requests_cpu: "250m"
   attic_postgres_requests_memory: "512Mi"
+  attic_postgres_requests_ephemeral_storage: "1Gi"
   attic_postgres_limits_cpu: "2000m"
   attic_postgres_limits_memory: "2Gi"
+  attic_postgres_limits_ephemeral_storage: "4Gi"
 
   # Nix remote builder (SSH)
   nix_remote_builder_suspend: "true"
