@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - infra/ceph-csi.yaml
   - infra/longhorn.yaml
+  - infra/longhorn-recurringjobs.yaml
   - infra/s3.yaml
   - infra/nix-cache.yaml
   - infra/attic.yaml
