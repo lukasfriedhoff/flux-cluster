@@ -5,3 +5,10 @@ resources:
   - ../../base/
 patches:
   - path: cluster-patch.yaml
+  - target:
+      kind: Kustomization
+      name: kustomizations
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./overlays/homelab/kustomizations/
