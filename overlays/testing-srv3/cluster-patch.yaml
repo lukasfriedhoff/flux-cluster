@@ -94,9 +94,12 @@ data:
   nextcloud_external_photos_enabled: "enabled"
   nextcloud_external_photos_url: https://photos-testing.h4xx.io
   nextcloud_external_photos_label: "Photos"
+  nextcloud_photos_claim_name: nextcloud-photos-rwx
   nextcloud_photos_size: 50Gi
-  photos_shared_nfs_server: 10.43.44.160
-  photos_shared_nfs_path: /pvc-baed51ad-95de-4fdc-bb73-28a561ac7783
+  immich_photos_shared_claim_name: immich-photos-rwx
+  immich_photos_shared_pv_name: immich-photos-rwx-pv
+  photos_shared_nfs_server: 10.43.132.82
+  photos_shared_nfs_path: /pvc-66fe26b4-0c17-4d5b-be93-93ab654adf6c
   immich_suspend: "false"
   immich_oidc: authelia
   immich_uploads_storage_class_name: testing-longhorn-rwo-1r

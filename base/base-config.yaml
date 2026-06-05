@@ -246,6 +246,12 @@ data:
   nextcloud_external_photos_enabled: "disabled"
   nextcloud_external_photos_url: "https://photos.h4xx.io"
   nextcloud_external_photos_label: "Photos"
+  nextcloud_photos_claim_name: "nextcloud-photos-shared"
+  nextcloud_photos_size: "50Gi"
+  immich_photos_shared_claim_name: "immich-photos-shared"
+  immich_photos_shared_pv_name: "immich-photos-shared-pv"
+  photos_shared_nfs_server: ""
+  photos_shared_nfs_path: "/export"
   # OIDC provider switch for Nextcloud login integration.
   # Supported: authelia | none
   nextcloud_oidc: "authelia"
@@ -257,6 +263,7 @@ data:
   immich_timezone: "Europe/Berlin"
   immich_oidc: "none"
   immich_oidc_client_id: "immich"
+  immich_oidc_role_claim: "role"
   immich_server_replicas: "1"
   immich_server_requests_cpu: "250m"
   immich_server_requests_memory: "512Mi"
@@ -295,6 +302,7 @@ data:
   immich_photos_timezone: "Europe/Berlin"
   immich_photos_oidc: "none"
   immich_photos_oidc_client_id: "immich-photos"
+  immich_photos_oidc_role_claim: "role"
   immich_photos_server_replicas: "1"
   immich_photos_server_requests_cpu: "250m"
   immich_photos_server_requests_memory: "512Mi"
