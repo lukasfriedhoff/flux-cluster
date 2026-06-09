@@ -69,6 +69,7 @@ data:
   attic_storage_size: 500Gi
   attic_postgres_storage_class_name: testing-longhorn-rwo-1r
   attic_postgres_size: 20Gi
+  attic_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   nix_remote_builder_suspend: "false"
   nix_remote_builder_storage_class_name: testing-longhorn-rwo-1r
   status_dashboard_suspend: "false"
@@ -129,7 +130,9 @@ data:
   logday_image_pull_secret_name: logday-ghcr-pull-testing
   logday_image_pull_policy: Always
   logday_image_tag: SNAPSHOT-20260531
+  logday_postgres_storage_class_name: testing-longhorn-rwo-1r
   logday_postgres_size: 10Gi
+  logday_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   matrix_suspend: "false"
   matrix_oidc: authelia
   matrix_postgres_storage_class_name: testing-longhorn-rwo-1r
