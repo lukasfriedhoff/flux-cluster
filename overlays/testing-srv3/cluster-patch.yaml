@@ -141,7 +141,7 @@ data:
   matrix_synapse_data_storage_class_name: testing-longhorn-rwo-1r
   matrix_synapse_data_size: 2Gi
   matrix_synapse_media_storage_class_name: testing-longhorn-rwo-1r
-  matrix_synapse_media_size: 5Gi
+  matrix_synapse_media_size: 100Gi
   matrix_bridge_storage_class_name: testing-longhorn-rwo-1r
   matrix_bridge_data_size: 1Gi
   matrix_signald_data_size: 1Gi
