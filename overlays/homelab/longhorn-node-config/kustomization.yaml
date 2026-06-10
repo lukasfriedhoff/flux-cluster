@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: longhorn-system
 resources:
   - node-srv2.yaml
+  - node-srv8.yaml

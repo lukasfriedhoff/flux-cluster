@@ -11,6 +11,8 @@ data:
   longhorn_storage_over_provisioning_percentage: "200"
   longhorn_storage_reserved_percentage_for_default_disk: "10"
   longhorn_ssd_storage_reserved_bytes: "0"
+  longhorn_disk_storage_reserved_bytes: "0"
+  longhorn_nvme_storage_reserved_bytes: "32212254720"
   longhorn_backup_target: ""
   longhorn_backup_target_credential_secret_name: ""
   s3_force: "true"

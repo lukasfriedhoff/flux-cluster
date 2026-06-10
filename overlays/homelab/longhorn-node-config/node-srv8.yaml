@@ -1,0 +1,44 @@
+apiVersion: longhorn.io/v1beta2
+kind: Node
+metadata:
+  name: srv8
+  namespace: longhorn-system
+spec:
+  disks:
+    # /var/lib/longhorn lives on the BIWIN/FORESEE NVMe root partition.
+    # Carve out a slice for nvme-tier replicas, mirroring testing-srv3.
+    # Keep enough reserved for the OS, k3s and longhorn-manager itself.
+    default-disk-f0a8c6b0b319a94:
+      path: /var/lib/longhorn/
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_nvme_storage_reserved_bytes:=32212254720}
+      tags:
+        - nvme
+    # T-FORCE 1TB SATA SSD (ata-T-FORCE_1TB_TPBF2209020040602781).
+    longhorn-ssd-1tb:
+      path: /var/lib/longhorn-disk1
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
+      tags:
+        - ssd
+    # WD Red 4TB SATA HDD (ata-WDC_WD40EFRX-68N32N0_WD-WCC7K2FFFP9P).
+    longhorn-disk-4tb:
+      path: /var/lib/longhorn-disk2
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_disk_storage_reserved_bytes:=0}
+      tags:
+        - disk
+    # Seagate BUP Slim 2TB USB HDD (usb-Seagate_BUP_Slim_BK_NA7WEQ6F-0:0).
+    # USB transport is the failure surface here — physically it's a normal
+    # 2.5" HDD, but bus power / controller / cable adds risk. Tagged `disk`
+    # alongside the WD per user direction; treat as best-effort capacity.
+    longhorn-disk-2tb-usb:
+      path: /var/lib/longhorn-disk3
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_disk_storage_reserved_bytes:=0}
+      tags:
+        - disk

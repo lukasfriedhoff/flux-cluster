@@ -5,12 +5,17 @@ metadata:
   namespace: longhorn-system
 spec:
   disks:
+    # /var/lib/longhorn lives on the BIWIN NVMe root partition. Carve out a
+    # slice for nvme-tier replicas, mirroring testing-srv3 and srv8. Keep
+    # enough reserved for the OS, k3s and longhorn-manager itself.
     default-disk-ccb62ec5c9533089:
       path: /var/lib/longhorn/
-      allowScheduling: false
+      allowScheduling: true
       evictionRequested: false
-      storageReserved: ${longhorn_root_storage_reserved_bytes:=0}
-      tags: []
+      storageReserved: ${longhorn_nvme_storage_reserved_bytes:=32212254720}
+      tags:
+        - nvme
+    # Crucial CT1000BX500 1TB SATA SSD (ata-CT1000BX500SSD1_2216E629C77B).
     longhorn-ssd-1tb-a:
       path: /var/lib/longhorn-disk1
       allowScheduling: true
@@ -18,10 +23,16 @@ spec:
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
         - ssd
+    # Placeholder for a second 1TB SSD that was never physically wired up.
+    # The path /var/lib/longhorn-disk2 does not exist; longhorn reports the
+    # disk Not Ready. Holds 7 stranded replica records from before the disk
+    # went away, which is why several PVCs are in faulted state. Start
+    # eviction so longhorn marks those replicas for recreation elsewhere;
+    # actual cleanup of the orphaned replica records is a follow-up.
     longhorn-ssd-1tb-b:
       path: /var/lib/longhorn-disk2
-      allowScheduling: true
-      evictionRequested: false
+      allowScheduling: false
+      evictionRequested: true
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
         - ssd
