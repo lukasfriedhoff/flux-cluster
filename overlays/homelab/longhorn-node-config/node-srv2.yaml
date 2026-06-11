@@ -15,11 +15,13 @@ spec:
       storageReserved: ${longhorn_nvme_storage_reserved_bytes:=32212254720}
       tags:
         - nvme
-    # Crucial CT1000BX500 1TB SATA SSD (ata-CT1000BX500SSD1_2216E629C77B).
+    # Crucial CT1000BX500 1TB SATA SSD was moved out of srv2 during the srv8
+    # storage shuffle. Keep the stale disk unschedulable so Longhorn does not
+    # create new replicas on a path whose filesystem UUID no longer matches.
     longhorn-ssd-1tb-a:
       path: /var/lib/longhorn-disk1
-      allowScheduling: true
-      evictionRequested: false
+      allowScheduling: false
+      evictionRequested: true
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
         - ssd
