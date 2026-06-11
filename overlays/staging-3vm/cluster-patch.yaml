@@ -6,6 +6,9 @@ metadata:
 data:
   cluster_environment: staging
   cluster_name: staging-3vm
+  flux_cluster_branch: develop
+  flux_apps_branch: develop
+  logday_branch: develop
   kubernetes_cluster_domain: k8s.staging.h4xx.io
   public_host_suffix: -staging
   logday_repo_secret_name: github-read-logday-staging

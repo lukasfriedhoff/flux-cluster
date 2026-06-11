@@ -6,6 +6,9 @@ metadata:
 data:
   cluster_environment: testing
   cluster_name: testing-srv3
+  flux_cluster_branch: testing
+  flux_apps_branch: testing
+  logday_branch: testing
   kubernetes_cluster_domain: k8s.testing.h4xx.io
   public_host_suffix: -testing
   logday_repo_secret_name: github-read-logday-testing

@@ -1,0 +1,12 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: flux-cluster
+  namespace: flux-system
+spec:
+  interval: ${flux_gitrepo_interval:=10m0s}
+  ref:
+    branch: ${flux_cluster_branch:=develop}
+  timeout: 60s
+  url: https://github.com/lukasfriedhoff/flux-cluster.git
