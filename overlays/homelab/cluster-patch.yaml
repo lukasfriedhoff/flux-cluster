@@ -16,8 +16,8 @@ data:
   longhorn_ssd_storage_reserved_bytes: "0"
   longhorn_disk_storage_reserved_bytes: "0"
   longhorn_nvme_storage_reserved_bytes: "32212254720"
-  longhorn_backup_target: ""
-  longhorn_backup_target_credential_secret_name: ""
+  longhorn_backup_target: s3://homelab-longhorn-backups@us-east-1/
+  longhorn_backup_target_credential_secret_name: longhorn-backup-target
   s3_force: "true"
   s3_suspend: "false"
   default_storage_class_name: longhorn-ssd-rwo-1r
@@ -36,6 +36,7 @@ data:
   valkey_storage_class_name: longhorn-ssd-rwo-1r
   nextcloud_app_storage_class_name: longhorn-ssd-rwx-1r
   nextcloud_data_storage_class_name: longhorn-ssd-rwx-1r
+  nextcloud_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   immich_ml_cache_storage_class_name: longhorn-ssd-rwo-1r
   immich_uploads_storage_class_name: longhorn-ssd-rwo-1r
   immich_postgres_storage_class_name: longhorn-ssd-rwo-1r
