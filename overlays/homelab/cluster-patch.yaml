@@ -31,7 +31,7 @@ data:
   monitoring_mimir_ruler_bucket: homelab-mimir-ruler
   monitoring_tempo_bucket: homelab-tempo
   attic_storage_class_name: longhorn-ssd-rwo-1r
-  attic_postgres_storage_class_name: longhorn-ssd-rwo-1r
+  attic_postgres_storage_class_name: longhorn-nvme-rwo-2r
   nix_remote_builder_storage_class_name: longhorn-ssd-rwo-1r
   valkey_storage_class_name: longhorn-ssd-rwo-1r
   nextcloud_app_storage_class_name: longhorn-ssd-rwx-1r
@@ -39,13 +39,13 @@ data:
   nextcloud_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   immich_ml_cache_storage_class_name: longhorn-ssd-rwo-1r
   immich_uploads_storage_class_name: longhorn-ssd-rwo-1r
-  immich_postgres_storage_class_name: longhorn-ssd-rwo-1r
-  immich_redis_storage_class_name: longhorn-ssd-rwo-1r
+  immich_postgres_storage_class_name: longhorn-nvme-rwo-2r
+  immich_redis_storage_class_name: longhorn-nvme-rwo-2r
   immich_photos_ml_cache_storage_class_name: longhorn-ssd-rwo-1r
   immich_photos_uploads_storage_class_name: longhorn-ssd-rwo-1r
-  immich_photos_postgres_storage_class_name: longhorn-ssd-rwo-1r
-  immich_photos_redis_storage_class_name: longhorn-ssd-rwo-1r
-  matrix_postgres_storage_class_name: longhorn-ssd-rwo-1r
+  immich_photos_postgres_storage_class_name: longhorn-nvme-rwo-2r
+  immich_photos_redis_storage_class_name: longhorn-nvme-rwo-2r
+  matrix_postgres_storage_class_name: longhorn-nvme-rwo-2r
   matrix_synapse_data_storage_class_name: longhorn-ssd-rwo-1r
   matrix_synapse_media_storage_class_name: longhorn-ssd-rwo-1r
   matrix_bridge_storage_class_name: longhorn-ssd-rwo-1r
@@ -54,5 +54,7 @@ data:
   arr_downloads_storage_class_name: longhorn-disk-rwx-1r
   moonlight_config_storage_class_name: longhorn-ssd-rwo-1r
   monitoring_storage_class_name: longhorn-ssd-rwo-1r
+  nextcloud_postgres_storage_class_name: longhorn-nvme-rwo-2r
+  logday_postgres_storage_class_name: longhorn-nvme-rwo-2r
   logday_repo_secret_name: github-read-logday-homelab
   logday_repo_suspend: "false"
