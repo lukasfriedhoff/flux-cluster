@@ -91,6 +91,7 @@ data:
   nextcloud_data_claim_name: nextcloud-nextcloud-data-lh2
   nextcloud_data_size: 10Gi
   nextcloud_postgres_size: 32Gi
+  nextcloud_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
   nextcloud_hpa_enabled: "true"
   nextcloud_hpa_min_pods: "2"
   nextcloud_hpa_max_pods: "4"
