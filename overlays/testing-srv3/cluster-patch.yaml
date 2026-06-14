@@ -74,6 +74,12 @@ data:
   attic_postgres_size: 20Gi
   attic_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   nix_remote_builder_suspend: "false"
+  nix_remote_builder_service_type: NodePort
+  nix_remote_builder_node_port: "30610"
+  nix_remote_builder_external_traffic_policy: Local
+  nix_remote_builder_allowed_cidr_1: 10.1.0.0/16
+  nix_remote_builder_allowed_cidr_2: 10.42.0.0/16
+  nix_remote_builder_allowed_cidr_3: 10.43.0.0/16
   nix_remote_builder_storage_class_name: testing-longhorn-disk-rwo-1r
   hydra_suspend: "false"
   hydra_public_url: https://hydra-testing.h4xx.io
