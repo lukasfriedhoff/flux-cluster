@@ -19,6 +19,7 @@ spec:
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
         - ssd
+        - disk
     longhorn-ssd-500gb:
       path: /var/lib/longhorn-disk2
       allowScheduling: true
@@ -26,3 +27,4 @@ spec:
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
         - ssd
+        - disk
