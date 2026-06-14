@@ -68,13 +68,20 @@ data:
   attic_suspend: "false"
   attic_public_url: https://attic-testing.h4xx.io/
   attic_api_endpoint: https://attic-testing.h4xx.io/
-  attic_storage_class_name: testing-longhorn-ssd-rwo-1r
+  attic_storage_class_name: testing-longhorn-disk-rwo-1r
   attic_storage_size: 500Gi
-  attic_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
+  attic_postgres_storage_class_name: testing-longhorn-disk-rwo-1r
   attic_postgres_size: 20Gi
   attic_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   nix_remote_builder_suspend: "false"
-  nix_remote_builder_storage_class_name: testing-longhorn-ssd-rwo-1r
+  nix_remote_builder_storage_class_name: testing-longhorn-disk-rwo-1r
+  hydra_suspend: "false"
+  hydra_public_url: https://hydra-testing.h4xx.io
+  hydra_binary_cache_public_uri: https://attic-testing.h4xx.io/homelab
+  hydra_storage_class_name: testing-longhorn-disk-rwo-1r
+  hydra_postgres_storage_class_name: testing-longhorn-disk-rwo-1r
+  hydra_nix_substituters: https://attic-testing.h4xx.io/homelab https://cache.nixos.org/
+  hydra_nix_trusted_public_keys: "homelab:KFrqDSi76JxQ7V7R6j5PGM+T9Nk/2A/+CLmp5/G76Hg= cache.nixos.org-1:6NCHdD59X431o0u5F9Edd1bRMA9Gzn4u/PIJ8mTQZTs="
   status_dashboard_suspend: "false"
   status_dashboard_host: testing.h4xx.io
   status_dashboard_title: "Testing Services Status"

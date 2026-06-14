@@ -51,7 +51,9 @@ data:
   nix_cache_suspend: "false"
   nix_cache_upstream_ip: 10.1.30.25
   nix_remote_builder_suspend: "false"
-  nix_remote_builder_storage_class_name: testing-longhorn-rwo-1r
+  nix_remote_builder_storage_class_name: testing-longhorn-disk-rwo-1r
+  hydra_storage_class_name: testing-longhorn-disk-rwo-1r
+  hydra_postgres_storage_class_name: testing-longhorn-disk-rwo-1r
   status_dashboard_suspend: "false"
   status_dashboard_host: staging.h4xx.io
   status_dashboard_title: "Staging Services Status"
