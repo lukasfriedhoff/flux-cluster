@@ -218,6 +218,7 @@ data:
   hydra_service_port: "3000"
   hydra_nix_image_tag: "2.32.8"
   hydra_nix_packages: "github:NixOS/nixpkgs/nixos-26.05#hydra github:NixOS/nixpkgs/nixos-26.05#curl github:NixOS/nixpkgs/nixos-26.05#git github:NixOS/nixpkgs/nixos-26.05#jq github:NixOS/nixpkgs/nixos-26.05#openssh"
+  hydra_nix_extra_packages: "github:NixOS/nixpkgs/nixos-26.05#shadow"
   hydra_public_url: "https://hydra.h4xx.io"
   hydra_admin_secret_name: "hydra-admin"
   hydra_jobset_flake: "git+https://github.com/lukasfriedhoff/nix.git?ref=develop"
