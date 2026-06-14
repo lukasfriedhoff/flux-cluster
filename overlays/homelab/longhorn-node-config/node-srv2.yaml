@@ -15,26 +15,30 @@ spec:
       storageReserved: ${longhorn_nvme_storage_reserved_bytes:=32212254720}
       tags:
         - nvme
-    # Crucial CT1000BX500 1TB SATA SSD was moved out of srv2 during the srv8
-    # storage shuffle. Keep the stale disk unschedulable so Longhorn does not
-    # create new replicas on a path whose filesystem UUID no longer matches.
+    # Crucial CT1000BX500 1TB USB/SATA SSD, mounted through LUKS by srv2.
+    # Keep the existing Longhorn disk ID because live replicas reference it.
     longhorn-ssd-1tb-a:
       path: /var/lib/longhorn-disk1
-      allowScheduling: false
-      evictionRequested: true
+      allowScheduling: true
+      evictionRequested: false
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
         - ssd
-    # Placeholder for a second 1TB SSD that was never physically wired up.
-    # The path /var/lib/longhorn-disk2 does not exist; longhorn reports the
-    # disk Not Ready. Holds 7 stranded replica records from before the disk
-    # went away, which is why several PVCs are in faulted state. Start
-    # eviction so longhorn marks those replicas for recreation elsewhere;
-    # actual cleanup of the orphaned replica records is a follow-up.
+    # SanDisk SD7SF6S256G1122 ~500GiB USB SSD. Keep the existing Longhorn
+    # disk ID to avoid deleting the old disk record while a stopped replica
+    # object still references it.
     longhorn-ssd-1tb-b:
       path: /var/lib/longhorn-disk2
-      allowScheduling: false
-      evictionRequested: true
+      allowScheduling: true
+      evictionRequested: false
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
         - ssd
+    # Seagate ST4000VX016 4TiB USB HDD.
+    longhorn-disk-4tb-usb:
+      path: /var/lib/longhorn-disk3
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_disk_storage_reserved_bytes:=0}
+      tags:
+        - disk
