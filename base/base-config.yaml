@@ -211,10 +211,14 @@ data:
   nix_remote_builder_hostkey_secret_name: "nix-remote-builder-hostkey"
   nix_remote_builder_storage_class_name: "longhorn-disk-rwo-1r"
   nix_remote_builder_storage_size: "100Gi"
+  nix_remote_builder_nix_store_storage_class_name: "longhorn-disk-rwo-1r"
+  nix_remote_builder_nix_store_size: "250Gi"
   nix_remote_builder_requests_cpu: "500m"
   nix_remote_builder_requests_memory: "2Gi"
+  nix_remote_builder_requests_ephemeral_storage: "512Mi"
   nix_remote_builder_limits_cpu: "4000m"
   nix_remote_builder_limits_memory: "8Gi"
+  nix_remote_builder_limits_ephemeral_storage: "2Gi"
   nix_remote_builder_authorized_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP25mCZBT7RZ9+kzI57K7+VzU+nPl4YIM0KY4drH1jgQ srv3 mgmt 20260301T131611Z"
 
   # Hydra build coordinator
@@ -234,6 +238,8 @@ data:
   hydra_notification_sender: "hydra@h4xx.io"
   hydra_storage_class_name: "longhorn-disk-rwo-1r"
   hydra_storage_size: "100Gi"
+  hydra_nix_store_storage_class_name: "longhorn-disk-rwo-1r"
+  hydra_nix_store_size: "250Gi"
   hydra_requests_cpu: "500m"
   hydra_requests_memory: "4Gi"
   hydra_requests_ephemeral_storage: "4Gi"
