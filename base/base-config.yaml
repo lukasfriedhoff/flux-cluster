@@ -240,7 +240,7 @@ data:
   hydra_evaluator_max_memory_size: "4096"
   hydra_max_output_size: "4294967296"
   hydra_nix_substituters: "https://cache.nixos.org/ https://attic.h4xx.io/homelab"
-  hydra_nix_trusted_public_keys: "homelab:KFrqDSi76JxQ7V7R6j5PGM+T9Nk/2A/+CLmp5/G76Hg= cache.nixos.org-1:6NCHdD59X431o0u5F9Edd1bRMA9Gzn4u/PIJ8mTQZTs="
+  hydra_nix_trusted_public_keys: "homelab:KFrqDSi76JxQ7V7R6j5PGM+T9Nk/2A/+CLmp5/G76Hg= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
   hydra_postgres_cluster_name: "hydra-postgres"
   hydra_postgres_image: "ghcr.io/cloudnative-pg/postgresql:18-system-trixie"
   hydra_postgres_instances: "1"
