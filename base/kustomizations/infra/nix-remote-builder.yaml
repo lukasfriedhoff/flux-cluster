@@ -11,6 +11,7 @@ spec:
     - name: longhorn-app
   interval: ${flux_kustomization_default_interval:=1h0m0s}
   path: ./apps/nix-remote-builder
+  force: true
   prune: true
   retryInterval: ${flux_kustomization_default_retry_interval:=10m0s}
   sourceRef:
