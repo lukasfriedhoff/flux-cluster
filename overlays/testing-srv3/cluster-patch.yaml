@@ -66,8 +66,8 @@ data:
   nix_cache_suspend: "false"
   nix_cache_upstream_ip: 10.1.30.25
   attic_suspend: "false"
-  attic_public_url: https://attic-testing.h4xx.io
-  attic_api_endpoint: https://attic-testing.h4xx.io
+  attic_public_url: https://attic-testing.h4xx.io/
+  attic_api_endpoint: https://attic-testing.h4xx.io/
   attic_storage_class_name: testing-longhorn-ssd-rwo-1r
   attic_storage_size: 500Gi
   attic_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
