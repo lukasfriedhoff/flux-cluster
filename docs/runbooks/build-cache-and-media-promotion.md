@@ -3,7 +3,7 @@
 ## Build/cache ownership
 
 - Production is the authoritative build stage.
-- Testing and staging keep Attic and the remote builder online as fallback capacity, but Hydra is suspended by default to avoid rebuilding the same Nix outputs three times.
+- Testing and staging keep Attic and the remote builder online as fallback capacity, but Hydra is reconciled at `replicas=0` by default to avoid rebuilding the same Nix outputs three times.
 - Preferred substituter order is production Attic, then stage-specific caches only for fallback or experiments, then `cache.nixos.org`.
 - Preferred remote builder order for clients is production first, staging second, testing third.
 - Hydra jobsets should build the `nix` flake once and push completed store paths to the authoritative Attic cache.
@@ -12,13 +12,13 @@
 
 | Stage | Branch | Hydra | Attic | Remote builder |
 | --- | --- | --- | --- | --- |
-| testing | `testing` | suspended | enabled | enabled as fallback |
-| staging | `develop` | suspended | enabled | enabled as fallback |
+| testing | `testing` | scaled to zero | enabled | enabled as fallback |
+| staging | `develop` | scaled to zero | enabled | enabled as fallback |
 | production | `main` | enabled | enabled | enabled first-choice |
 
 ## Operational rules
 
-- Do not enable testing or staging Hydra unless validating build-system changes.
+- Do not scale testing or staging Hydra above zero unless validating build-system changes.
 - If production Hydra is unhealthy, fix or recover the production cache path first; do not let non-prod Hydra silently become the canonical builder.
 - Keep `builders-use-substitutes = true` on clients and builders so remote builders consume existing Attic artifacts before compiling.
 - Hydra Nix store PVCs are cache/state for builds, not authoritative artifacts; Attic is the artifact source consumed by clients.
