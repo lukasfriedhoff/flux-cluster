@@ -43,7 +43,7 @@ data:
   hydra_suspend: "false"
   hydra_public_url: https://hydra.h4xx.io
   hydra_binary_cache_public_uri: https://attic.h4xx.io/homelab
-  hydra_nix_max_jobs: "5"
+  hydra_nix_max_jobs: "2"
   hydra_nix_cores: "4"
   hydra_storage_class_name: longhorn-disk-rwo-1r
   hydra_nix_store_storage_class_name: longhorn-disk-rwo-1r

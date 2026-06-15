@@ -83,7 +83,7 @@ data:
   nix_remote_builder_storage_class_name: testing-longhorn-disk-rwo-1r
   nix_remote_builder_nix_store_storage_class_name: testing-longhorn-disk-rwo-1r
   nix_remote_builder_nix_store_size: 250Gi
-  hydra_suspend: "false"
+  hydra_suspend: "true"
   hydra_public_url: https://hydra-testing.h4xx.io
   hydra_binary_cache_public_uri: https://attic-testing.h4xx.io/homelab
   hydra_storage_class_name: testing-longhorn-disk-rwo-1r
@@ -92,7 +92,7 @@ data:
   hydra_postgres_storage_class_name: testing-longhorn-disk-rwo-1r
   hydra_requests_memory: 4Gi
   hydra_limits_memory: 16Gi
-  hydra_nix_substituters: https://cache.nixos.org/
+  hydra_nix_substituters: https://attic.h4xx.io/homelab https://cache.nixos.org/
   hydra_nix_trusted_public_keys: "homelab:KFrqDSi76JxQ7V7R6j5PGM+T9Nk/2A/+CLmp5/G76Hg= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
   status_dashboard_suspend: "false"
   status_dashboard_host: testing.h4xx.io
