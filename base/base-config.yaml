@@ -520,6 +520,7 @@ data:
   media_download_promotion_min_age_hours: "72h"
   media_download_promotion_category_regex: "^(radarr|sonarr|lidarr|readarr)-imported$"
   media_download_promotion_target_base: "/media/staged"
+  media_private_trackers_secret_enabled: "false"
   protonvpn_server_countries: "Switzerland"
   k8s_pod_cidr: "10.42.0.0/16"
   k8s_service_cidr: "10.43.0.0/16"
