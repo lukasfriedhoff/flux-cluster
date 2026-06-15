@@ -87,7 +87,7 @@ data:
   nextcloud_data_size: 10Gi
   nextcloud_postgres_size: 32Gi
   nextcloud_hpa_enabled: "true"
-  nextcloud_hpa_min_pods: "2"
+  nextcloud_hpa_min_pods: "1"
   nextcloud_hpa_max_pods: "4"
   nextcloud_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   immich_suspend: "false"
