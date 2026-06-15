@@ -226,10 +226,11 @@ data:
   nix_remote_builder_authorized_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP25mCZBT7RZ9+kzI57K7+VzU+nPl4YIM0KY4drH1jgQ srv3 mgmt 20260301T131611Z"
 
   # Hydra build coordinator
-  hydra_suspend: "true"
+  hydra_suspend: "false"
   hydra_namespace: "nix-cache"
   hydra_service_name: "hydra"
   hydra_service_port: "3000"
+  hydra_replicas: "0"
   hydra_nix_image_tag: "2.32.8"
   hydra_nix_packages: "github:NixOS/nixpkgs/nixos-26.05#hydra github:NixOS/nixpkgs/nixos-26.05#curl github:NixOS/nixpkgs/nixos-26.05#git github:NixOS/nixpkgs/nixos-26.05#jq github:NixOS/nixpkgs/nixos-26.05#openssh"
   hydra_nix_extra_packages: "github:NixOS/nixpkgs/nixos-26.05#util-linux"

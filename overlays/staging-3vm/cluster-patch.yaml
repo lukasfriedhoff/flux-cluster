@@ -75,7 +75,7 @@ data:
   nix_remote_builder_suspend: "false"
   nix_remote_builder_storage_class_name: staging-longhorn-rwo-1r
   nix_remote_builder_nix_store_storage_class_name: staging-longhorn-rwo-1r
-  hydra_suspend: "true"
+  hydra_suspend: "false"
   hydra_public_url: https://hydra-staging.h4xx.io
   hydra_binary_cache_public_uri: https://attic-staging.h4xx.io/homelab
   hydra_storage_class_name: staging-longhorn-rwo-1r

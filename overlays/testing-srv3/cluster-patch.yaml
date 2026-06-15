@@ -83,7 +83,7 @@ data:
   nix_remote_builder_storage_class_name: testing-longhorn-disk-rwo-1r
   nix_remote_builder_nix_store_storage_class_name: testing-longhorn-disk-rwo-1r
   nix_remote_builder_nix_store_size: 250Gi
-  hydra_suspend: "true"
+  hydra_suspend: "false"
   hydra_public_url: https://hydra-testing.h4xx.io
   hydra_binary_cache_public_uri: https://attic-testing.h4xx.io/homelab
   hydra_storage_class_name: testing-longhorn-disk-rwo-1r
