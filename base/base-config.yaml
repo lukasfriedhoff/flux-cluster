@@ -321,6 +321,7 @@ data:
   nextcloud_photos_size: "50Gi"
   immich_photos_shared_claim_name: "immich-photos-shared"
   immich_photos_shared_pv_name: "immich-photos-shared-pv"
+  immich_photos_shared_storage_class_name: "longhorn-rwx-1r"
   photos_shared_nfs_server: ""
   photos_shared_nfs_path: "/export"
   # OIDC provider switch for Nextcloud login integration.
