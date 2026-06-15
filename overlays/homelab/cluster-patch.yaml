@@ -48,6 +48,7 @@ data:
   hydra_storage_class_name: longhorn-disk-rwo-1r
   hydra_nix_store_storage_class_name: longhorn-disk-rwo-1r
   hydra_postgres_storage_class_name: longhorn-disk-rwo-1r
+  hydra_requests_memory: 2Gi
   status_dashboard_suspend: "false"
   status_dashboard_host: status.h4xx.io
   valkey_storage_class_name: longhorn-ssd-rwo-1r
