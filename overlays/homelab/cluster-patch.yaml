@@ -11,7 +11,7 @@ data:
   longhorn_suspend: "false"
   longhorn_default_replica_count: "1"
   longhorn_storage_minimal_available_percentage: "10"
-  longhorn_storage_over_provisioning_percentage: "200"
+  longhorn_storage_over_provisioning_percentage: "300"
   longhorn_storage_reserved_percentage_for_default_disk: "10"
   longhorn_ssd_storage_reserved_bytes: "0"
   longhorn_disk_storage_reserved_bytes: "0"
@@ -68,6 +68,11 @@ data:
   immich_photos_suspend: "false"
   immich_photos_oidc: authelia
   matrix_postgres_storage_class_name: longhorn-nvme-rwo-2r
+  matrix_synapse_postgres_size: 20Gi
+  matrix_whatsapp_postgres_size: 5Gi
+  matrix_wa_postgres_size: 5Gi
+  matrix_telegram_postgres_size: 5Gi
+  matrix_signal_postgres_size: 5Gi
   matrix_suspend: "false"
   matrix_oidc: authelia
   matrix_synapse_data_storage_class_name: longhorn-ssd-rwo-1r
