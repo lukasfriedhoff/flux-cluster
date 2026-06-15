@@ -30,9 +30,13 @@ data:
   monitoring_mimir_alertmanager_bucket: homelab-mimir-alertmanager
   monitoring_mimir_ruler_bucket: homelab-mimir-ruler
   monitoring_tempo_bucket: homelab-tempo
-  attic_storage_class_name: longhorn-ssd-rwo-1r
-  attic_postgres_storage_class_name: longhorn-nvme-rwo-2r
-  nix_remote_builder_storage_class_name: longhorn-ssd-rwo-1r
+  attic_storage_class_name: longhorn-disk-rwo-1r
+  attic_postgres_storage_class_name: longhorn-disk-rwo-1r
+  nix_remote_builder_storage_class_name: longhorn-disk-rwo-1r
+  nix_remote_builder_nix_store_storage_class_name: longhorn-disk-rwo-1r
+  hydra_storage_class_name: longhorn-disk-rwo-1r
+  hydra_nix_store_storage_class_name: longhorn-disk-rwo-1r
+  hydra_postgres_storage_class_name: longhorn-disk-rwo-1r
   valkey_storage_class_name: longhorn-ssd-rwo-1r
   nextcloud_app_storage_class_name: longhorn-ssd-rwx-1r
   nextcloud_data_storage_class_name: longhorn-ssd-rwx-1r
@@ -41,6 +45,7 @@ data:
   immich_uploads_storage_class_name: longhorn-ssd-rwo-1r
   immich_postgres_storage_class_name: longhorn-nvme-rwo-2r
   immich_redis_storage_class_name: longhorn-nvme-rwo-2r
+  immich_photos_shared_storage_class_name: longhorn-ssd-rwx-2r
   immich_photos_ml_cache_storage_class_name: longhorn-ssd-rwo-1r
   immich_photos_uploads_storage_class_name: longhorn-ssd-rwo-1r
   immich_photos_postgres_storage_class_name: longhorn-nvme-rwo-2r

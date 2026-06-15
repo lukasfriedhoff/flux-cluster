@@ -15,8 +15,8 @@ spec:
       storageReserved: ${longhorn_nvme_storage_reserved_bytes:=32212254720}
       tags:
         - nvme
-    # Crucial CT1000BX500 1TB USB/SATA SSD, mounted through LUKS by srv2.
-    # Keep the existing Longhorn disk ID because live replicas reference it.
+    # Crucial CT1000BX500 ~1TB SATA/USB SSD. Keep the existing Longhorn disk
+    # ID because live replicas reference it.
     longhorn-ssd-1tb-a:
       path: /var/lib/longhorn-disk1
       allowScheduling: true
@@ -24,9 +24,8 @@ spec:
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
         - ssd
-    # SanDisk SD7SF6S256G1122 ~500GiB USB SSD. Keep the existing Longhorn
-    # disk ID to avoid deleting the old disk record while a stopped replica
-    # object still references it.
+    # SanDisk SD7SF6S256G1122 ~500GiB USB SSD. Keep the existing Longhorn disk
+    # ID because live replicas reference it.
     longhorn-ssd-1tb-b:
       path: /var/lib/longhorn-disk2
       allowScheduling: true
