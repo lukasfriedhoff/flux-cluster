@@ -37,4 +37,6 @@
 - Split very large torrent sets across multiple qBittorrent instances by purpose (`movies`, `tv`, `music`, `books`, `archive`) instead of one huge client.
 - Point Sonarr/Radarr/Lidarr/Readarr at the matching qBittorrent service and keep shared `/downloads` and `/media` mounts where hardlinks are required.
 - Add `cross-seed` for finding duplicate seeds from existing data and `qbit_manage` for tagging, no-hardlink detection, orphan cleanup, and ratio/seed lifecycle policy.
+- Add `autobrr` only for announce-driven ingestion; keep ARR-driven requests on the ARR-to-qBittorrent path unless a tracker benefits from IRC/RSS announce automation.
+- Use `autobrr/qui` or a small qBittorrent Web API controller only if one WebUI must manage several qBittorrent instances; do not build custom sharding until category-based instances are insufficient.
 - Keep qBittorrent WebUI/API behind Authelia and internal cluster networking; automation talks to the in-cluster service.
