@@ -157,8 +157,6 @@ data:
   moonlight_config_size: 5Gi
   monitoring_storage_class_name: staging-longhorn-rwo-1r
   nextcloud_postgres_storage_class_name: staging-longhorn-rwo-1r
-  attic_storage_class_name: staging-longhorn-rwo-1r
-  attic_postgres_storage_class_name: staging-longhorn-rwo-1r
   logday_suspend: "false"
   logday_image_pull_secret_name: logday-ghcr-pull-testing
   logday_image_pull_policy: Always
