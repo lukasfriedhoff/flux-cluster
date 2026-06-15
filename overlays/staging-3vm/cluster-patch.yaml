@@ -64,12 +64,29 @@ data:
   s3_data_size: 50Gi
   nix_cache_suspend: "false"
   nix_cache_upstream_ip: 10.1.30.25
+  attic_suspend: "false"
+  attic_public_url: https://attic-staging.h4xx.io/
+  attic_api_endpoint: https://attic-staging.h4xx.io/
+  attic_storage_class_name: staging-longhorn-rwo-1r
+  attic_storage_size: 50Gi
+  attic_postgres_storage_class_name: staging-longhorn-rwo-1r
+  attic_postgres_size: 10Gi
+  attic_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   nix_remote_builder_suspend: "false"
   nix_remote_builder_storage_class_name: staging-longhorn-rwo-1r
   nix_remote_builder_nix_store_storage_class_name: staging-longhorn-rwo-1r
+  hydra_suspend: "false"
+  hydra_public_url: https://hydra-staging.h4xx.io
+  hydra_binary_cache_public_uri: https://attic-staging.h4xx.io/homelab
   hydra_storage_class_name: staging-longhorn-rwo-1r
+  hydra_storage_size: 10Gi
   hydra_nix_store_storage_class_name: staging-longhorn-rwo-1r
+  hydra_nix_store_size: 50Gi
   hydra_postgres_storage_class_name: staging-longhorn-rwo-1r
+  hydra_postgres_size: 10Gi
+  hydra_requests_memory: 2Gi
+  hydra_limits_memory: 8Gi
+  hydra_nix_substituters: https://cache.nixos.org/
   status_dashboard_suspend: "false"
   status_dashboard_host: staging.h4xx.io
   status_dashboard_title: "Staging Services Status"
@@ -142,7 +159,13 @@ data:
   nextcloud_postgres_storage_class_name: staging-longhorn-rwo-1r
   attic_storage_class_name: staging-longhorn-rwo-1r
   attic_postgres_storage_class_name: staging-longhorn-rwo-1r
+  logday_suspend: "false"
+  logday_image_pull_secret_name: logday-ghcr-pull-testing
+  logday_image_pull_policy: Always
+  logday_image_tag: SNAPSHOT-20260531
   logday_postgres_storage_class_name: staging-longhorn-rwo-1r
+  logday_postgres_size: 10Gi
+  logday_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
   monitoring_loki_bucket: staging-loki
   monitoring_mimir_blocks_bucket: staging-mimir-blocks
