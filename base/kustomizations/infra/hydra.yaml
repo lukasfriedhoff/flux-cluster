@@ -1,23 +1,24 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: nix-remote-builder-app
+  name: hydra-app
   namespace: flux-system
 spec:
-  suspend: ${nix_remote_builder_suspend:=true}
+  suspend: ${hydra_suspend:=true}
   dependsOn:
     - name: namespaces
     - name: secrets
-    - name: longhorn-app
+    - name: cnpg-app
+    - name: cert-manager-app
+    - name: traefik-app
   interval: ${flux_kustomization_default_interval:=1h0m0s}
-  path: ./apps/nix-remote-builder
-  force: true
+  path: ./apps/hydra
   prune: true
   retryInterval: ${flux_kustomization_default_retry_interval:=10m0s}
   sourceRef:
     kind: GitRepository
     name: flux-apps
-  timeout: ${flux_kustomization_default_timeout:=5m0s}
+  timeout: 20m0s
   wait: true
   postBuild:
     substituteFrom:

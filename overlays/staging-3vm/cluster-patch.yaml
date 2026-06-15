@@ -29,53 +29,59 @@ data:
   longhorn_storage_over_provisioning_percentage: "500"
   longhorn_storage_reserved_percentage_for_default_disk: "8"
   longhorn_storage_reserved_bytes: "21474836480"
-  longhorn_rwo_storage_class_1r_name: testing-longhorn-rwo-1r
-  longhorn_rwo_storage_class_2r_name: testing-longhorn-rwo-2r
-  longhorn_rwo_storage_class_3r_name: testing-longhorn-rwo-3r
-  longhorn_rwx_storage_class_1r_name: testing-longhorn-rwx-1r
-  longhorn_rwx_storage_class_2r_name: testing-longhorn-rwx-2r
-  longhorn_rwx_storage_class_3r_name: testing-longhorn-rwx-3r
-  longhorn_nvme_rwo_storage_class_1r_name: testing-longhorn-nvme-rwo-1r
-  longhorn_nvme_rwo_storage_class_2r_name: testing-longhorn-nvme-rwo-2r
-  longhorn_nvme_rwo_storage_class_3r_name: testing-longhorn-nvme-rwo-3r
-  longhorn_nvme_rwx_storage_class_1r_name: testing-longhorn-nvme-rwx-1r
-  longhorn_nvme_rwx_storage_class_2r_name: testing-longhorn-nvme-rwx-2r
-  longhorn_nvme_rwx_storage_class_3r_name: testing-longhorn-nvme-rwx-3r
-  longhorn_ssd_rwo_storage_class_1r_name: testing-longhorn-ssd-rwo-1r
-  longhorn_ssd_rwo_storage_class_2r_name: testing-longhorn-ssd-rwo-2r
-  longhorn_ssd_rwo_storage_class_3r_name: testing-longhorn-ssd-rwo-3r
-  longhorn_ssd_rwx_storage_class_1r_name: testing-longhorn-ssd-rwx-1r
-  longhorn_ssd_rwx_storage_class_2r_name: testing-longhorn-ssd-rwx-2r
-  longhorn_ssd_rwx_storage_class_3r_name: testing-longhorn-ssd-rwx-3r
-  longhorn_disk_disk_selector: disk
-  longhorn_disk_rwo_storage_class_1r_name: testing-longhorn-disk-rwo-1r
-  longhorn_disk_rwo_storage_class_2r_name: testing-longhorn-disk-rwo-2r
-  longhorn_disk_rwo_storage_class_3r_name: testing-longhorn-disk-rwo-3r
-  longhorn_disk_rwx_storage_class_1r_name: testing-longhorn-disk-rwx-1r
-  longhorn_disk_rwx_storage_class_2r_name: testing-longhorn-disk-rwx-2r
-  longhorn_disk_rwx_storage_class_3r_name: testing-longhorn-disk-rwx-3r
+  longhorn_rwo_storage_class_1r_name: staging-longhorn-rwo-1r
+  longhorn_rwo_storage_class_2r_name: staging-longhorn-rwo-2r
+  longhorn_rwo_storage_class_3r_name: staging-longhorn-rwo-3r
+  longhorn_rwx_storage_class_1r_name: staging-longhorn-rwx-1r
+  longhorn_rwx_storage_class_2r_name: staging-longhorn-rwx-2r
+  longhorn_rwx_storage_class_3r_name: staging-longhorn-rwx-3r
+  longhorn_nvme_disk_selector: nvme
+  longhorn_ssd_disk_selector: ssd
+  longhorn_nvme_rwo_storage_class_1r_name: staging-longhorn-nvme-rwo-1r
+  longhorn_nvme_rwo_storage_class_2r_name: staging-longhorn-nvme-rwo-2r
+  longhorn_nvme_rwo_storage_class_3r_name: staging-longhorn-nvme-rwo-3r
+  longhorn_nvme_rwx_storage_class_1r_name: staging-longhorn-nvme-rwx-1r
+  longhorn_nvme_rwx_storage_class_2r_name: staging-longhorn-nvme-rwx-2r
+  longhorn_nvme_rwx_storage_class_3r_name: staging-longhorn-nvme-rwx-3r
+  longhorn_ssd_rwo_storage_class_1r_name: staging-longhorn-ssd-rwo-1r
+  longhorn_ssd_rwo_storage_class_2r_name: staging-longhorn-ssd-rwo-2r
+  longhorn_ssd_rwo_storage_class_3r_name: staging-longhorn-ssd-rwo-3r
+  longhorn_ssd_rwx_storage_class_1r_name: staging-longhorn-ssd-rwx-1r
+  longhorn_ssd_rwx_storage_class_2r_name: staging-longhorn-ssd-rwx-2r
+  longhorn_ssd_rwx_storage_class_3r_name: staging-longhorn-ssd-rwx-3r
+  longhorn_disk_disk_selector: ssd
+  longhorn_disk_rwo_storage_class_1r_name: staging-longhorn-disk-rwo-1r
+  longhorn_disk_rwo_storage_class_2r_name: staging-longhorn-disk-rwo-2r
+  longhorn_disk_rwo_storage_class_3r_name: staging-longhorn-disk-rwo-3r
+  longhorn_disk_rwx_storage_class_1r_name: staging-longhorn-disk-rwx-1r
+  longhorn_disk_rwx_storage_class_2r_name: staging-longhorn-disk-rwx-2r
+  longhorn_disk_rwx_storage_class_3r_name: staging-longhorn-disk-rwx-3r
   longhorn_backup_target: s3://staging-3vm-longhorn-backups@us-east-1/
   longhorn_backup_target_credential_secret_name: longhorn-backup-target
   s3_force: "true"
   s3_suspend: "false"
-  s3_storage_class_name: testing-longhorn-ssd-rwo-1r
+  s3_storage_class_name: staging-longhorn-ssd-rwo-1r
   s3_data_size: 50Gi
   nix_cache_suspend: "false"
   nix_cache_upstream_ip: 10.1.30.25
   nix_remote_builder_suspend: "false"
-  nix_remote_builder_storage_class_name: testing-longhorn-ssd-rwo-1r
+  nix_remote_builder_storage_class_name: staging-longhorn-ssd-rwo-1r
+  nix_remote_builder_nix_store_storage_class_name: staging-longhorn-ssd-rwo-1r
+  hydra_storage_class_name: staging-longhorn-ssd-rwo-1r
+  hydra_nix_store_storage_class_name: staging-longhorn-ssd-rwo-1r
+  hydra_postgres_storage_class_name: staging-longhorn-nvme-rwo-1r
   status_dashboard_suspend: "false"
   status_dashboard_host: staging.h4xx.io
   status_dashboard_title: "Staging Services Status"
   status_dashboard_description: "Public uptime for staging services"
-  default_storage_class_name: testing-longhorn-ssd-rwo-2r
-  default_sts_storage_class_name: testing-longhorn-ssd-rwo-1r
-  valkey_storage_class_name: testing-longhorn-ssd-rwo-1r
+  default_storage_class_name: staging-longhorn-ssd-rwo-2r
+  default_sts_storage_class_name: staging-longhorn-ssd-rwo-1r
+  valkey_storage_class_name: staging-longhorn-ssd-rwo-1r
   valkey_replica_enabled: "false"
   valkey_replica_count: "1"
   valkey_min_replicas_to_write: "0"
-  nextcloud_app_storage_class_name: testing-longhorn-ssd-rwx-2r
-  nextcloud_data_storage_class_name: testing-longhorn-ssd-rwx-2r
+  nextcloud_app_storage_class_name: staging-longhorn-ssd-rwx-2r
+  nextcloud_data_storage_class_name: staging-longhorn-ssd-rwx-2r
   nextcloud_app_claim_name: nextcloud-app-lh1
   nextcloud_data_claim_name: nextcloud-nextcloud-data-lh2
   nextcloud_data_size: 10Gi
@@ -86,56 +92,56 @@ data:
   nextcloud_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   immich_suspend: "false"
   immich_oidc: authelia
-  immich_uploads_storage_class_name: testing-longhorn-disk-rwo-2r
+  immich_uploads_storage_class_name: staging-longhorn-ssd-rwo-2r
   immich_uploads_size: 8Gi
-  immich_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
+  immich_postgres_storage_class_name: staging-longhorn-nvme-rwo-1r
   immich_postgres_size: 16Gi
   immich_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
-  immich_ml_cache_storage_class_name: testing-longhorn-ssd-rwo-1r
+  immich_ml_cache_storage_class_name: staging-longhorn-ssd-rwo-1r
   immich_ml_cache_size: 2Gi
-  immich_redis_storage_class_name: testing-longhorn-nvme-rwo-1r
+  immich_redis_storage_class_name: staging-longhorn-nvme-rwo-1r
   immich_redis_size: 1Gi
   immich_photos_suspend: "false"
   immich_photos_secret_name: immich-photos-secrets
   immich_photos_oidc: authelia
-  immich_photos_uploads_storage_class_name: testing-longhorn-disk-rwo-2r
+  immich_photos_uploads_storage_class_name: staging-longhorn-ssd-rwo-2r
   immich_photos_uploads_size: 8Gi
-  immich_photos_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
+  immich_photos_postgres_storage_class_name: staging-longhorn-nvme-rwo-1r
   immich_photos_postgres_size: 16Gi
   immich_photos_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   immich_photos_postgres_backup_bucket: immich-postgres-backup
   immich_photos_postgres_backup_credential_secret_name: immich-postgres-backup-credentials
-  immich_photos_ml_cache_storage_class_name: testing-longhorn-ssd-rwo-1r
+  immich_photos_ml_cache_storage_class_name: staging-longhorn-ssd-rwo-1r
   immich_photos_ml_cache_size: 2Gi
-  immich_photos_redis_storage_class_name: testing-longhorn-nvme-rwo-1r
+  immich_photos_redis_storage_class_name: staging-longhorn-nvme-rwo-1r
   immich_photos_redis_size: 1Gi
   matrix_suspend: "false"
   matrix_oidc: authelia
-  matrix_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
+  matrix_postgres_storage_class_name: staging-longhorn-nvme-rwo-1r
   matrix_postgres_size: 32Gi
   matrix_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   matrix_synapsedb_backup_path: synapsedb-staging
-  matrix_synapse_data_storage_class_name: testing-longhorn-ssd-rwo-1r
+  matrix_synapse_data_storage_class_name: staging-longhorn-ssd-rwo-1r
   matrix_synapse_data_size: 2Gi
-  matrix_synapse_media_storage_class_name: testing-longhorn-disk-rwo-2r
+  matrix_synapse_media_storage_class_name: staging-longhorn-ssd-rwo-2r
   matrix_synapse_media_size: 5Gi
-  matrix_bridge_storage_class_name: testing-longhorn-ssd-rwo-1r
+  matrix_bridge_storage_class_name: staging-longhorn-ssd-rwo-1r
   matrix_bridge_data_size: 1Gi
   matrix_signald_data_size: 1Gi
   arr_api_keys_secret_name: arr-api-keys-testing
-  arr_config_storage_class_name: testing-longhorn-ssd-rwo-1r
-  arr_media_storage_class_name: testing-longhorn-disk-rwx-2r
+  arr_config_storage_class_name: staging-longhorn-ssd-rwo-1r
+  arr_media_storage_class_name: staging-longhorn-ssd-rwx-2r
   arr_media_size: 100Gi
-  arr_downloads_storage_class_name: testing-longhorn-disk-rwx-2r
+  arr_downloads_storage_class_name: staging-longhorn-ssd-rwx-2r
   arr_downloads_size: 500Gi
   moonlight_suspend: "false"
-  moonlight_config_storage_class_name: testing-longhorn-ssd-rwo-1r
+  moonlight_config_storage_class_name: staging-longhorn-ssd-rwo-1r
   moonlight_config_size: 5Gi
-  monitoring_storage_class_name: testing-longhorn-ssd-rwo-1r
-  nextcloud_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
-  attic_storage_class_name: testing-longhorn-ssd-rwo-1r
-  attic_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
-  logday_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
+  monitoring_storage_class_name: staging-longhorn-ssd-rwo-1r
+  nextcloud_postgres_storage_class_name: staging-longhorn-nvme-rwo-1r
+  attic_storage_class_name: staging-longhorn-ssd-rwo-1r
+  attic_postgres_storage_class_name: staging-longhorn-nvme-rwo-1r
+  logday_postgres_storage_class_name: staging-longhorn-nvme-rwo-1r
   object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
   monitoring_loki_bucket: staging-loki
   monitoring_mimir_blocks_bucket: staging-mimir-blocks

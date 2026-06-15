@@ -66,15 +66,34 @@ data:
   nix_cache_suspend: "false"
   nix_cache_upstream_ip: 10.1.30.25
   attic_suspend: "false"
-  attic_public_url: https://attic-testing.h4xx.io
-  attic_api_endpoint: https://attic-testing.h4xx.io
-  attic_storage_class_name: testing-longhorn-ssd-rwo-1r
+  attic_public_url: https://attic-testing.h4xx.io/
+  attic_api_endpoint: https://attic-testing.h4xx.io/
+  attic_storage_class_name: testing-longhorn-disk-rwo-1r
   attic_storage_size: 500Gi
-  attic_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
+  attic_postgres_storage_class_name: testing-longhorn-disk-rwo-1r
   attic_postgres_size: 20Gi
   attic_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   nix_remote_builder_suspend: "false"
-  nix_remote_builder_storage_class_name: testing-longhorn-ssd-rwo-1r
+  nix_remote_builder_service_type: NodePort
+  nix_remote_builder_node_port: "30610"
+  nix_remote_builder_external_traffic_policy: Local
+  nix_remote_builder_allowed_cidr_1: 10.1.0.0/16
+  nix_remote_builder_allowed_cidr_2: 10.42.0.0/16
+  nix_remote_builder_allowed_cidr_3: 10.43.0.0/16
+  nix_remote_builder_storage_class_name: testing-longhorn-disk-rwo-1r
+  nix_remote_builder_nix_store_storage_class_name: testing-longhorn-disk-rwo-1r
+  nix_remote_builder_nix_store_size: 250Gi
+  hydra_suspend: "false"
+  hydra_public_url: https://hydra-testing.h4xx.io
+  hydra_binary_cache_public_uri: https://attic-testing.h4xx.io/homelab
+  hydra_storage_class_name: testing-longhorn-disk-rwo-1r
+  hydra_nix_store_storage_class_name: testing-longhorn-disk-rwo-1r
+  hydra_nix_store_size: 250Gi
+  hydra_postgres_storage_class_name: testing-longhorn-disk-rwo-1r
+  hydra_requests_memory: 4Gi
+  hydra_limits_memory: 16Gi
+  hydra_nix_substituters: https://cache.nixos.org/
+  hydra_nix_trusted_public_keys: "homelab:KFrqDSi76JxQ7V7R6j5PGM+T9Nk/2A/+CLmp5/G76Hg= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
   status_dashboard_suspend: "false"
   status_dashboard_host: testing.h4xx.io
   status_dashboard_title: "Testing Services Status"
@@ -91,6 +110,7 @@ data:
   nextcloud_data_claim_name: nextcloud-nextcloud-data-lh2
   nextcloud_data_size: 10Gi
   nextcloud_postgres_size: 32Gi
+  nextcloud_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
   nextcloud_hpa_enabled: "true"
   nextcloud_hpa_min_pods: "2"
   nextcloud_hpa_max_pods: "4"
@@ -150,6 +170,7 @@ data:
   matrix_signald_data_size: 1Gi
   arr_api_keys_secret_name: arr-api-keys-testing
   arr_config_storage_class_name: testing-longhorn-ssd-rwo-1r
+  jellyfin_config_size: 20Gi
   arr_media_storage_class_name: testing-longhorn-rwx-1r
   arr_media_size: 300Gi
   arr_downloads_storage_class_name: testing-longhorn-rwx-1r

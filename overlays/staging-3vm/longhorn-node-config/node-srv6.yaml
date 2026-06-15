@@ -7,3 +7,6 @@ spec:
   disks:
     default-disk-3e293106e6840bbc:
       storageReserved: ${longhorn_storage_reserved_bytes:=21474836480}
+      tags:
+        - ssd
+        - nvme
