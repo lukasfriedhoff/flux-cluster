@@ -59,6 +59,8 @@ data:
   nextcloud_hpa_min_pods: "2"
   nextcloud_hpa_max_pods: "4"
   nextcloud_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
+  nextcloud_postgres_backup_generation: g20260616/
+  nextcloud_postgres_backup_server_name: nextcloud-postgres-prod-g20260616
   immich_ml_cache_storage_class_name: longhorn-ssd-rwo-1r
   immich_uploads_storage_class_name: longhorn-ssd-rwo-1r
   immich_postgres_storage_class_name: longhorn-nvme-rwo-2r
