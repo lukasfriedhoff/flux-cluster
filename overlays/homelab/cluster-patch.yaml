@@ -87,6 +87,9 @@ data:
   arr_media_storage_class_name: longhorn-ssd-rwx-1r
   arr_downloads_storage_class_name: longhorn-disk-rwx-1r
   media_private_trackers_secret_enabled: "true"
+  qbit_manage_cron: "45 */2 * * *"
+  qbit_manage_dry_run: "False"
+  qbit_manage_suspended: "false"
   moonlight_config_storage_class_name: longhorn-ssd-rwo-1r
   monitoring_storage_class_name: longhorn-ssd-rwo-1r
   nextcloud_postgres_storage_class_name: longhorn-nvme-rwo-2r
