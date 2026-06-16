@@ -1,0 +1,18 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: longhorn-replica-policy
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: longhorn-app
+    - name: longhorn-node-config
+  interval: ${flux_kustomization_default_interval:=1h0m0s}
+  path: ./overlays/homelab/longhorn-replica-policy
+  prune: true
+  retryInterval: ${flux_kustomization_default_retry_interval:=10m0s}
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  timeout: 10m0s
+  wait: true

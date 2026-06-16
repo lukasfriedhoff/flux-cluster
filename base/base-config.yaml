@@ -66,6 +66,7 @@ data:
   longhorn_suspend: "true"
   longhorn_namespace: "longhorn-system"
   longhorn_default_replica_count: "3"
+  longhorn_replica_soft_anti_affinity: "false"
   longhorn_storage_class_reclaim_policy: "Retain"
   longhorn_rwo_storage_class_1r_name: "longhorn-rwo-1r"
   longhorn_rwo_storage_class_1r_replicas: "1"

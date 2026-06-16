@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../../../base/kustomizations/
   - longhorn-node-config.yaml
+  - longhorn-replica-policy.yaml
 patches:
   - path: delete-ceph-csi-pre.yaml
   - path: delete-ceph-csi-app.yaml
