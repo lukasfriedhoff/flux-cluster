@@ -55,6 +55,9 @@ data:
   valkey_storage_class_name: longhorn-ssd-rwo-1r
   nextcloud_app_storage_class_name: longhorn-ssd-rwx-1r
   nextcloud_data_storage_class_name: longhorn-ssd-rwx-1r
+  nextcloud_hpa_enabled: "true"
+  nextcloud_hpa_min_pods: "2"
+  nextcloud_hpa_max_pods: "4"
   nextcloud_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   immich_ml_cache_storage_class_name: longhorn-ssd-rwo-1r
   immich_uploads_storage_class_name: longhorn-ssd-rwo-1r
