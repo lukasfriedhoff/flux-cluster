@@ -327,6 +327,7 @@ data:
   nextcloud_external_photos_url: "https://photos.h4xx.io"
   nextcloud_external_photos_label: "Photos"
   nextcloud_photos_claim_name: "nextcloud-photos-shared"
+  nextcloud_photos_storage_class_name: "ssd-cephfs-2r"
   nextcloud_photos_size: "50Gi"
   immich_photos_shared_claim_name: "immich-photos-shared"
   immich_photos_shared_pv_name: "immich-photos-shared-pv"
