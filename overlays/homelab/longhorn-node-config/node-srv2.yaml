@@ -24,12 +24,15 @@ spec:
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
         - ssd
-    # SanDisk SD7SF6S256G1122 ~500GiB USB SSD. Keep the existing Longhorn disk
-    # ID because live replicas reference it.
+    # SanDisk SD7SF6S256G1122 ~500GiB USB SSD. This disk currently returns
+    # input/output errors on /var/lib/longhorn-disk2 and is not safe for new
+    # replicas. Keep the existing Longhorn disk ID so stranded replica records
+    # can be cleaned up, but evict and block scheduling until the device is
+    # replaced or reformatted.
     longhorn-ssd-1tb-b:
       path: /var/lib/longhorn-disk2
-      allowScheduling: true
-      evictionRequested: false
+      allowScheduling: false
+      evictionRequested: true
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
         - ssd
