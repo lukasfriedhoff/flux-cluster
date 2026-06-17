@@ -67,7 +67,7 @@ spec:
                         | select($pvc != "")
                         | select($pv_status == "Bound")
                         | select($state == "attached")
-                        | (if (($workload_types | index("StatefulSet")) or ($workload_types | index("Cluster"))) then 2 else 3 end) as $target
+                        | (if $namespace == "nix-cache" then 1 elif (($workload_types | index("StatefulSet")) or ($workload_types | index("Cluster"))) then 2 else 3 end) as $target
                         | select((.spec.numberOfReplicas | tonumber) != $target)
                         | [$volume, ($target | tostring), $namespace, $pvc, (.spec.numberOfReplicas | tostring), ($workload_types | join(","))]
                         | @tsv
