@@ -39,6 +39,7 @@ data:
   attic_storage_class_name: longhorn-disk-rwo-1r
   attic_postgres_storage_class_name: longhorn-disk-rwo-1r
   nix_remote_builder_suspend: "false"
+  nix_remote_builder_external_traffic_policy: Cluster
   nix_remote_builder_storage_class_name: longhorn-disk-rwo-1r
   nix_remote_builder_nix_store_storage_class_name: longhorn-disk-rwo-1r
   hydra_suspend: "false"
