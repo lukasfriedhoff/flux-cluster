@@ -538,7 +538,7 @@ data:
   metube_memory_limit: "6Gi"
   metube_memory_request: "512Mi"
   metube_playlist_item_limit: "0"
-  metube_promotion_cron: "*/10 * * * *"
+  metube_promotion_cron: "0/10 * * * *"
   metube_promotion_enabled: "enabled"
   metube_promotion_max_files: "100"
   metube_promotion_min_age_minutes: "2"
