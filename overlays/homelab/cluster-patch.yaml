@@ -67,6 +67,15 @@ data:
   immich_postgres_storage_class_name: longhorn-nvme-rwo-2r
   immich_redis_storage_class_name: longhorn-nvme-rwo-2r
   immich_photos_shared_storage_class_name: longhorn-ssd-rwx-2r
+  nextcloud_external_photos_enabled: "enabled"
+  nextcloud_external_photos_url: https://photos.h4xx.io
+  nextcloud_external_photos_label: "Photos"
+  nextcloud_photos_claim_name: nextcloud-photos-shared
+  nextcloud_photos_size: 50Gi
+  immich_photos_shared_claim_name: immich-photos-nextcloud-shared
+  immich_photos_shared_pv_name: immich-photos-nextcloud-shared-pv
+  photos_shared_nfs_server: 10.43.98.154
+  photos_shared_nfs_path: /pvc-1c196aff-0f34-4bdc-808a-5c58f6191f64
   immich_suspend: "false"
   immich_oidc: authelia
   immich_photos_ml_cache_storage_class_name: longhorn-ssd-rwo-1r
