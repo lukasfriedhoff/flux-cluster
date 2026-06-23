@@ -2,9 +2,10 @@
 set -euo pipefail
 
 repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
-overlays=("${@:-}")
-if [ "${#overlays[@]}" -eq 0 ]; then
+if [ "$#" -eq 0 ]; then
   overlays=(overlays/testing-srv3 overlays/staging-3vm overlays/homelab)
+else
+  overlays=("$@")
 fi
 
 fail() {
