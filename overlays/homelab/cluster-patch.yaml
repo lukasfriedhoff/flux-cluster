@@ -70,12 +70,20 @@ data:
   nextcloud_external_photos_enabled: "enabled"
   nextcloud_external_photos_url: https://photos.h4xx.io
   nextcloud_external_photos_label: "Photos"
+  nextcloud_external_memes_enabled: "enabled"
+  nextcloud_external_memes_url: https://meme.h4xx.io
+  nextcloud_external_memes_label: "Memes"
   nextcloud_photos_claim_name: nextcloud-photos-shared
+  nextcloud_memes_claim_name: nextcloud-photos-shared
   nextcloud_photos_size: 50Gi
   immich_photos_shared_claim_name: immich-photos-nextcloud-shared
   immich_photos_shared_pv_name: immich-photos-nextcloud-shared-pv
   photos_shared_nfs_server: 10.43.98.154
   photos_shared_nfs_path: /pvc-1c196aff-0f34-4bdc-808a-5c58f6191f64
+  immich_memes_shared_claim_name: immich-memes-nextcloud-shared
+  immich_memes_shared_pv_name: immich-memes-nextcloud-shared-pv
+  memes_shared_nfs_server: 10.43.98.154
+  memes_shared_nfs_path: /pvc-1c196aff-0f34-4bdc-808a-5c58f6191f64
   immich_suspend: "false"
   immich_oidc: authelia
   immich_photos_ml_cache_storage_class_name: longhorn-ssd-rwo-1r
