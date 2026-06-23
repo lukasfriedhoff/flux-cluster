@@ -7,7 +7,6 @@ data:
   flux_cluster_branch: main
   flux_apps_branch: main
   logday_branch: main
-  ceph_csi_suspend: "true"
   longhorn_suspend: "false"
   longhorn_default_replica_count: "3"
   longhorn_replica_soft_anti_affinity: "true"

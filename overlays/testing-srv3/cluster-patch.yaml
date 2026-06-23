@@ -20,9 +20,7 @@ data:
   cloudflare_tunnel_id: a53b5554-e980-4cce-a3bf-0347007f2094
   cloudflare_tunnel_hostname: a53b5554-e980-4cce-a3bf-0347007f2094.cfargotunnel.com
   cloudflare_tunnel_secret_name: cloudflare-tunnel-credentials-testing
-  ceph_csi_suspend: "true"
   media_force: "true"
-  ceph_mgr_prometheus_endpoint: 127.0.0.1:65535
   longhorn_suspend: "false"
   longhorn_default_replica_count: "1"
   longhorn_storage_minimal_available_percentage: "10"

@@ -29,15 +29,15 @@ data:
   logday_repo_suspend: "true"
   logday_repo_secret_name: "github-read-logday-disabled"
 
-  # Storage - Ceph CSI classes and pools
-  ceph_csi_suspend: "false"
+  # Storage - legacy Ceph CSI classes and pools
+  ceph_csi_suspend: "true"
   ceph_rbd_storage_class_1r_name: "ssd-rbd-1r"
   ceph_rbd_storage_class_1r_pool: "k8s-ssd-1r"
   ceph_rbd_storage_class_2r_name: "ssd-rbd-2r"
   ceph_rbd_storage_class_2r_pool: "k8s-ssd-2r"
   ceph_rbd_storage_class_3r_name: "ssd-rbd-3r"
   ceph_rbd_storage_class_3r_pool: "k8s-ssd-3r"
-  ceph_rbd_storage_class_3r_is_default: "true"
+  ceph_rbd_storage_class_3r_is_default: "false"
 
   ceph_cephfs_fs_name: "ssd-cephfs"
   ceph_cephfs_storage_class_1r_name: "ssd-cephfs-1r"
@@ -49,8 +49,8 @@ data:
   ceph_cephfs_storage_class_3r_pool: "ssd-cephfs-3r"
 
   # Storage classes consumed by workloads
-  default_storage_class_name: "ssd-rbd-3r"
-  default_sts_storage_class_name: "ssd-rbd-2r"
+  default_storage_class_name: "longhorn-ssd-rwo-1r"
+  default_sts_storage_class_name: "longhorn-ssd-rwo-1r"
 
   # Cert-manager - Let's Encrypt
   default_cluster_issuer: "letsencrypt-prod"
@@ -312,10 +312,10 @@ data:
   # Nextcloud
   trusted_proxies_cidr: "10.42.0.0/16"
   nextcloud_app_claim_name: "nextcloud-app"
-  nextcloud_app_storage_class_name: "ssd-cephfs-2r"
+  nextcloud_app_storage_class_name: "longhorn-ssd-rwx-1r"
   nextcloud_app_size: "20Gi"
   nextcloud_data_claim_name: "nextcloud-nextcloud-data"
-  nextcloud_data_storage_class_name: "ssd-cephfs-2r"
+  nextcloud_data_storage_class_name: "longhorn-ssd-rwx-1r"
   nextcloud_data_size: "500Gi"
   nextcloud_hpa_enabled: "false"
   nextcloud_hpa_min_pods: "1"
@@ -328,7 +328,7 @@ data:
   nextcloud_external_photos_url: "https://photos.h4xx.io"
   nextcloud_external_photos_label: "Photos"
   nextcloud_photos_claim_name: "nextcloud-photos-shared"
-  nextcloud_photos_storage_class_name: "ssd-cephfs-2r"
+  nextcloud_photos_storage_class_name: "longhorn-ssd-rwx-1r"
   nextcloud_photos_size: "50Gi"
   immich_photos_shared_claim_name: "immich-photos-shared"
   immich_photos_shared_pv_name: "immich-photos-shared-pv"
@@ -443,7 +443,7 @@ data:
   logday_postgres_user: "logday_user"
   logday_postgres_instances: "1"
   logday_postgres_image: "ghcr.io/cloudnative-pg/postgresql:17.6-system-trixie"
-  logday_postgres_storage_class_name: "ssd-rbd-2r"
+  logday_postgres_storage_class_name: "longhorn-ssd-rwo-1r"
   logday_postgres_size: "10Gi"
   logday_postgres_backup_enabled: "true"
   logday_postgres_backup_bucket: "logday-postgres-backup"
@@ -514,7 +514,7 @@ data:
   valkey_replica_count: "2"
   valkey_min_replicas_to_write: "1"
   valkey_persistence_size: "8Gi"
-  valkey_storage_class_name: "ssd-cephfs-2r"
+  valkey_storage_class_name: "longhorn-ssd-rwo-1r"
 
   # Media stack
   media_timezone: "Europe/Berlin"
@@ -546,12 +546,12 @@ data:
   metube_video_promoted_dir: "/media/youtube/videos"
   radarr_external_url: "https://radarr${public_host_suffix}.${delegating_domain}"
   sonarr_external_url: "https://sonarr${public_host_suffix}.${delegating_domain}"
-  arr_config_storage_class_name: "ssd-cephfs-1r"
+  arr_config_storage_class_name: "longhorn-ssd-rwo-1r"
   arr_config_size: "5Gi"
   media_enable_dual_audio_policy: "true"
-  arr_media_storage_class_name: "ssd-cephfs-1r"
+  arr_media_storage_class_name: "longhorn-ssd-rwx-1r"
   arr_media_size: "1Ti"
-  arr_downloads_storage_class_name: "ssd-cephfs-1r"
+  arr_downloads_storage_class_name: "longhorn-disk-rwx-1r"
   arr_downloads_size: "200Gi"
   media_download_promotion_enabled: "disabled"
   media_download_promotion_dry_run: "enabled"
@@ -582,7 +582,7 @@ data:
   moonlight_requests_memory: "256Mi"
   moonlight_limits_cpu: "2000m"
   moonlight_limits_memory: "1Gi"
-  moonlight_config_storage_class_name: "ssd-rbd-2r"
+  moonlight_config_storage_class_name: "longhorn-ssd-rwo-1r"
   moonlight_config_size: "10Gi"
   moonlight_webrtc_port_range: "40000:40100"
 
@@ -590,9 +590,9 @@ data:
   k8s_monitoring_namespace: "monitoring"
   k8s_monitoring_chart_version: "3.4.0"
   monitoring_tenant_id: "anonymous"
-  monitoring_storage_class_name: "ssd-rbd-2r"
+  monitoring_storage_class_name: "longhorn-ssd-rwo-1r"
   grafana_persistence_size: "5Gi"
-  ceph_mgr_prometheus_endpoint: "srv1.lab.h4xx.io:9283"
+  ceph_mgr_prometheus_endpoint: "127.0.0.1:65535"
   monitoring_loki_bucket: "homelab-loki"
   monitoring_mimir_blocks_bucket: "homelab-mimir-blocks"
   monitoring_mimir_alertmanager_bucket: "homelab-mimir-alertmanager"
