@@ -20,7 +20,6 @@ data:
   cloudflare_tunnel_id: a53b5554-e980-4cce-a3bf-0347007f2094
   cloudflare_tunnel_hostname: a53b5554-e980-4cce-a3bf-0347007f2094.cfargotunnel.com
   cloudflare_tunnel_secret_name: cloudflare-tunnel-credentials-testing
-  media_force: "true"
   longhorn_suspend: "false"
   longhorn_default_replica_count: "1"
   longhorn_storage_minimal_available_percentage: "10"
@@ -166,18 +165,6 @@ data:
   matrix_bridge_storage_class_name: testing-longhorn-ssd-rwo-1r
   matrix_bridge_data_size: 1Gi
   matrix_signald_data_size: 1Gi
-  arr_api_keys_secret_name: arr-api-keys-testing
-  arr_config_storage_class_name: testing-longhorn-ssd-rwo-1r
-  jellyfin_config_size: 20Gi
-  arr_media_storage_class_name: testing-longhorn-rwx-1r
-  arr_media_size: 300Gi
-  arr_downloads_storage_class_name: testing-longhorn-rwx-1r
-  arr_downloads_size: 500Gi
-  media_download_promotion_enabled: "enabled"
-  media_download_promotion_dry_run: "disabled"
-  media_download_promotion_cron: "15 */6 * * *"
-  media_download_promotion_min_age_hours: "120h"
-  media_download_promotion_target_base: "/media/staged"
   moonlight_suspend: "false"
   moonlight_config_storage_class_name: testing-longhorn-ssd-rwo-1r
   moonlight_config_size: 5Gi

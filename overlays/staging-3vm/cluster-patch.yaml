@@ -20,7 +20,6 @@ data:
   cloudflare_tunnel_id: d95750cb-fa84-4e66-8b7c-99c874cb4e43
   cloudflare_tunnel_hostname: d95750cb-fa84-4e66-8b7c-99c874cb4e43.cfargotunnel.com
   cloudflare_tunnel_secret_name: cloudflare-tunnel-credentials-staging
-  media_force: "true"
   longhorn_suspend: "false"
   longhorn_default_replica_count: "1"
   longhorn_storage_minimal_available_percentage: "4"
@@ -144,12 +143,6 @@ data:
   matrix_bridge_storage_class_name: staging-longhorn-rwo-1r
   matrix_bridge_data_size: 1Gi
   matrix_signald_data_size: 1Gi
-  arr_api_keys_secret_name: arr-api-keys-testing
-  arr_config_storage_class_name: staging-longhorn-rwo-1r
-  arr_media_storage_class_name: staging-longhorn-rwx-2r
-  arr_media_size: 100Gi
-  arr_downloads_storage_class_name: staging-longhorn-rwx-2r
-  arr_downloads_size: 500Gi
   moonlight_suspend: "false"
   moonlight_config_storage_class_name: staging-longhorn-rwo-1r
   moonlight_config_size: 5Gi
