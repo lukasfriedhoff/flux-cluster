@@ -8,5 +8,7 @@ spec:
   interval: ${flux_gitrepo_interval:=10m0s}
   ref:
     branch: ${flux_cluster_branch:=develop}
+  secretRef:
+    name: github-read-flux-cluster
   timeout: 60s
   url: https://github.com/lukasfriedhoff/flux-cluster.git

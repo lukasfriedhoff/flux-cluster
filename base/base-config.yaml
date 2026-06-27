@@ -244,6 +244,7 @@ data:
   hydra_admin_secret_name: "hydra-admin"
   hydra_attic_upload_secret_name: "hydra-attic-upload-token"
   hydra_attic_upload_token_key: "token"
+  hydra_github_credentials_secret_name: "hydra-github-read-token"
   hydra_attic_server: "http://attic.nix-cache.svc.cluster.local:8080"
   hydra_attic_cache: "homelab"
   hydra_jobset_flake: "git+https://github.com/lukasfriedhoff/nix.git?ref=develop"
