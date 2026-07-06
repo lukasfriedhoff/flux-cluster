@@ -8,6 +8,10 @@ spec:
     - name: namespaces
   interval: ${flux_kustomization_default_interval:=1h0m0s}
   path: ./overlays/homelab/coredns
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: base-config
   prune: true
   retryInterval: ${flux_kustomization_default_retry_interval:=10m0s}
   sourceRef:

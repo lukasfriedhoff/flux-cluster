@@ -4,5 +4,11 @@ metadata:
   name: coredns-custom
   namespace: kube-system
 data:
+  lab.server: |-
+    lab.${delegating_domain}:53 {
+      errors
+      cache 30
+      forward . 10.1.30.1 10.0.10.1
+    }
   nextcloud.override: |-
-    rewrite name exact nextcloud.h4xx.io traefik.traefik.svc.cluster.local
+    rewrite name exact nextcloud.${delegating_domain} traefik.traefik.svc.cluster.local
