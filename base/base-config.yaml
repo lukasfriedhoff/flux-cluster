@@ -575,6 +575,7 @@ data:
   qbittorrent_max_active_torrents: "500"
   qbittorrent_max_active_uploads: "300"
   qbittorrent_policy_suspended: "false"
+  qbittorrent_vpn_endpoint_cidr: "0.0.0.0/0"
   prowlarr_default_seed_ratio: ""
   rockethd_quota_bytes: "53687091200"
   qbit_manage_cron: "45 */6 * * *"
