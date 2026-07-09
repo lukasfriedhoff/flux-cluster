@@ -527,6 +527,7 @@ data:
   valkey_storage_class_name: "longhorn-ssd-rwo-1r"
 
   # Media stack
+  media_suspend: "false"
   media_timezone: "Europe/Berlin"
   media_puid: "1000"
   media_pgid: "1000"
@@ -537,6 +538,7 @@ data:
   jellyfin_external_hostname: "jellyfin${public_host_suffix}.${delegating_domain}"
   jellyfin_forgot_password_url: "https://jellyfin${public_host_suffix}.${delegating_domain}/web/index.html#!/forgotpassword.html"
   jellyfin_gpu_enabled: "false"
+  jellyfin_gpu_privileged: "false"
   jellyfin_music_refresh_cron: "0/10 * * * *"
   jellyseerr_app_url: "https://jellyseerr${public_host_suffix}.${delegating_domain}"
   media_auth_issuer_url: "https://auth${public_host_suffix}.${delegating_domain}"

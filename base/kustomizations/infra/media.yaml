@@ -4,6 +4,7 @@ metadata:
   name: media-app
   namespace: flux-system
 spec:
+  suspend: ${media_suspend:=false}
   force: ${media_force:=false}
   dependsOn:
     - name: namespaces
