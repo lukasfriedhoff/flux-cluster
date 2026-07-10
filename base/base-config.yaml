@@ -565,7 +565,7 @@ data:
   arr_media_storage_class_name: "longhorn-ssd-rwx-1r"
   arr_media_size: "1Ti"
   arr_downloads_storage_class_name: "longhorn-disk-rwx-1r"
-  arr_downloads_size: "200Gi"
+  arr_downloads_size: "500Gi"
   media_download_promotion_enabled: "disabled"
   media_download_promotion_dry_run: "enabled"
   media_download_promotion_cron: "30 */6 * * *"
