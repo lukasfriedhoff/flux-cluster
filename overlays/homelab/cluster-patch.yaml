@@ -55,11 +55,9 @@ data:
   valkey_storage_class_name: longhorn-ssd-rwo-1r
   nextcloud_app_storage_class_name: longhorn-ssd-rwx-1r
   nextcloud_data_storage_class_name: longhorn-ssd-rwx-1r
-  # Keep Nextcloud single-replica while /var/www/html is backed by RWX NFS.
-  # Multiple replicas can observe stale app-tree views and serve fatal PHP errors.
-  nextcloud_hpa_enabled: "false"
-  nextcloud_hpa_min_pods: "1"
-  nextcloud_hpa_max_pods: "1"
+  nextcloud_hpa_enabled: "true"
+  nextcloud_hpa_min_pods: "2"
+  nextcloud_hpa_max_pods: "3"
   nextcloud_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   nextcloud_postgres_backup_generation: g20260616/
   nextcloud_postgres_backup_server_name: nextcloud-postgres-prod-g20260616
