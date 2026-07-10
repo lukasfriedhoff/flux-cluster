@@ -75,7 +75,6 @@ data:
   nextcloud_external_memes_url: https://meme.h4xx.io
   nextcloud_external_memes_label: "Memes"
   nextcloud_photos_claim_name: nextcloud-photos-shared
-  media_suspend: "true"
   jellyfin_gpu_privileged: "true"
   nextcloud_memes_claim_name: nextcloud-photos-shared
   nextcloud_photos_size: 50Gi
