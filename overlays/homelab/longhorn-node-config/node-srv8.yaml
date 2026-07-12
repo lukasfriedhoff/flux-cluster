@@ -5,13 +5,13 @@ metadata:
   namespace: longhorn-system
 spec:
   disks:
-    # /var/lib/longhorn lives on the BIWIN/FORESEE NVMe root partition.
-    # Carve out a slice for nvme-tier replicas, mirroring testing-srv3.
-    # Keep enough reserved for the OS, k3s and longhorn-manager itself.
+    # /var/lib/longhorn lives on the encrypted root partition. Do not schedule
+    # data replicas here; keep it only as a managed disk while existing root
+    # replicas are evacuated to dedicated Longhorn disks.
     default-disk-f0a8c6b0b319a94:
       path: /var/lib/longhorn/
-      allowScheduling: true
-      evictionRequested: false
+      allowScheduling: false
+      evictionRequested: true
       storageReserved: ${longhorn_nvme_storage_reserved_bytes:=32212254720}
       tags:
         - nvme
@@ -22,6 +22,7 @@ spec:
       evictionRequested: false
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
+        - nvme
         - ssd
     # WD Red 4TB SATA HDD (ata-WDC_WD40EFRX-68N32N0_WD-WCC7K2FFFP9P).
     longhorn-disk-4tb:

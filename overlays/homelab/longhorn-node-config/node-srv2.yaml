@@ -5,13 +5,13 @@ metadata:
   namespace: longhorn-system
 spec:
   disks:
-    # /var/lib/longhorn lives on the BIWIN NVMe root partition. Carve out a
-    # slice for nvme-tier replicas, mirroring testing-srv3 and srv8. Keep
-    # enough reserved for the OS, k3s and longhorn-manager itself.
+    # /var/lib/longhorn lives on the encrypted root partition. Do not schedule
+    # data replicas here; keep it only as a managed disk while existing root
+    # replicas are evacuated to dedicated Longhorn disks.
     default-disk-ccb62ec5c9533089:
       path: /var/lib/longhorn/
-      allowScheduling: true
-      evictionRequested: false
+      allowScheduling: false
+      evictionRequested: true
       storageReserved: ${longhorn_nvme_storage_reserved_bytes:=32212254720}
       tags:
         - nvme
@@ -23,6 +23,7 @@ spec:
       evictionRequested: false
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
+        - nvme
         - ssd
     # SanDisk SD7SF6S256G1122 ~500GiB USB SSD. This disk currently returns
     # input/output errors on /var/lib/longhorn-disk2 and is not safe for new
