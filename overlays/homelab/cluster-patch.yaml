@@ -110,7 +110,7 @@ data:
   arr_config_storage_class_name: longhorn-ssd-rwo-1r
   arr_media_storage_class_name: longhorn-disk-rwx-2r
   arr_downloads_storage_class_name: longhorn-disk-rwx-1r
-  media_suspend: "true"
+  media_suspend: "false"
   jellyfin_gpu_enabled: "true"
   media_download_promotion_enabled: "enabled"
   media_download_promotion_dry_run: "disabled"
@@ -118,6 +118,7 @@ data:
   qbittorrent_max_active_downloads: "30"
   qbittorrent_max_active_torrents: "500"
   qbittorrent_max_active_uploads: "300"
+  qbittorrent_suspended: "true"
   qbittorrent_policy_suspended: "false"
   qbittorrent_vpn_endpoint_cidr: "146.70.237.130/32"
   prowlarr_default_seed_ratio: ""
