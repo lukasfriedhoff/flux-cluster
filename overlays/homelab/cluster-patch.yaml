@@ -118,13 +118,13 @@ data:
   qbittorrent_max_active_downloads: "30"
   qbittorrent_max_active_torrents: "500"
   qbittorrent_max_active_uploads: "300"
-  qbittorrent_suspended: "false"
-  qbittorrent_policy_suspended: "false"
+  qbittorrent_suspended: "true"
+  qbittorrent_policy_suspended: "true"
   qbittorrent_vpn_endpoint_cidr: "146.70.237.130/32"
   prowlarr_default_seed_ratio: ""
   qbit_manage_cron: "45 */2 * * *"
   qbit_manage_dry_run: "False"
-  qbit_manage_suspended: "false"
+  qbit_manage_suspended: "true"
   moonlight_config_storage_class_name: longhorn-ssd-rwo-1r
   monitoring_storage_class_name: longhorn-ssd-rwo-1r
   nextcloud_postgres_storage_class_name: longhorn-nvme-rwo-2r
