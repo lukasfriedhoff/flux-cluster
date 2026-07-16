@@ -16,12 +16,9 @@ spec:
       tags:
         - nvme
     # T-FORCE 1TB SATA SSD (ata-T-FORCE_1TB_TPBF2209020040602781).
-    # Scheduling disabled after Longhorn reported DiskPressure and guest
-    # filesystems remounted emergency-readonly from allocation failures.
-    # Do not request whole-disk eviction until enough replacement SSD capacity exists.
     longhorn-ssd-1tb:
       path: /var/lib/longhorn-disk1
-      allowScheduling: false
+      allowScheduling: true
       evictionRequested: false
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
@@ -39,10 +36,9 @@ spec:
     # USB transport is the failure surface here — physically it's a normal
     # 2.5" HDD, but bus power / controller / cable adds risk. Tagged `disk`
     # alongside the WD per user direction; treat as best-effort capacity.
-    # Disabled after the filesystem remounted emergency-readonly with I/O errors.
     longhorn-disk-2tb-usb:
       path: /var/lib/longhorn-disk3
-      allowScheduling: false
+      allowScheduling: true
       evictionRequested: false
       storageReserved: ${longhorn_disk_storage_reserved_bytes:=0}
       tags:
