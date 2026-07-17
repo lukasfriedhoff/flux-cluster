@@ -557,7 +557,7 @@ data:
   arr_config_size: "5Gi"
   media_enable_dual_audio_policy: "true"
   arr_media_storage_class_name: "longhorn-disk-rwx-1r"
-  arr_media_size: "2Ti"
+  arr_media_size: "3Ti"
   arr_downloads_storage_class_name: "longhorn-disk-rwx-1r"
   arr_downloads_size: "500Gi"
   media_private_trackers_secret_enabled: "false"
