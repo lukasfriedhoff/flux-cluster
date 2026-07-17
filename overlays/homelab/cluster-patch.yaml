@@ -112,8 +112,6 @@ data:
   arr_downloads_storage_class_name: longhorn-disk-rwx-1r
   media_suspend: "false"
   jellyfin_gpu_enabled: "true"
-  media_download_promotion_enabled: "enabled"
-  media_download_promotion_dry_run: "disabled"
   media_private_trackers_secret_enabled: "true"
   qbittorrent_max_active_downloads: "30"
   qbittorrent_max_active_torrents: "500"
