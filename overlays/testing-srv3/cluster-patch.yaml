@@ -153,7 +153,12 @@ data:
   logday_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
   logday_postgres_size: 10Gi
   logday_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
+
+  # Matrix
   matrix_suspend: "false"
+  matrix_server_name: matrix-testing.h4xx.io
+  matrix_public_hostname: matrix-testing.h4xx.io
+  matrix_public_baseurl: https://matrix-testing.h4xx.io
   matrix_oidc: authelia
   matrix_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
   matrix_postgres_size: 32Gi

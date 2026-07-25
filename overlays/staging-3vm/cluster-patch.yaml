@@ -130,7 +130,12 @@ data:
   immich_photos_ml_cache_size: 2Gi
   immich_photos_redis_storage_class_name: staging-longhorn-rwo-1r
   immich_photos_redis_size: 1Gi
+
+  # Matrix
   matrix_suspend: "false"
+  matrix_server_name: matrix-staging.h4xx.io
+  matrix_public_hostname: matrix-staging.h4xx.io
+  matrix_public_baseurl: https://matrix-staging.h4xx.io
   matrix_oidc: authelia
   matrix_postgres_storage_class_name: staging-longhorn-rwo-1r
   matrix_postgres_size: 32Gi

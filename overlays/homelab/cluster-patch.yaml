@@ -103,6 +103,9 @@ data:
   matrix_telegram_postgres_size: 5Gi
   matrix_signal_postgres_size: 5Gi
   matrix_suspend: "false"
+  matrix_server_name: h4xx.io
+  matrix_public_hostname: h4xx.io
+  matrix_public_baseurl: https://h4xx.io
   matrix_oidc: authelia
   matrix_synapse_data_storage_class_name: longhorn-ssd-rwo-1r
   matrix_synapse_media_storage_class_name: longhorn-ssd-rwo-1r
