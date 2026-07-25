@@ -21,6 +21,10 @@ Do not run this against the live `matrix` namespace until the scratch clone has 
 5. optionally copies `synapsemedia` into the scratch media PVC with a resumable manifest-based copy;
 6. deploys a minimal Synapse instance against the rewritten database.
 
+For larger databases, prefer `all-db-stream` for scratch tests. It rewrites the
+plain SQL restore stream before it enters PostgreSQL, avoiding slow row-by-row
+updates on large Synapse tables.
+
 The scratch Synapse deployment is intentionally egress-isolated to PostgreSQL with a `NetworkPolicy`. If the cluster CNI does not enforce NetworkPolicy, keep the scratch service private and do not expose it publicly until federation behavior has been reviewed.
 
 ## First test
@@ -74,6 +78,20 @@ NEW_SERVER=matrix-staging.h4xx.io \
 NAMESPACE=matrix-rewrite-staging \
 WORK_DIR=$PWD/.matrix-rewrite/staging \
 ./scripts/matrix-server-name-rewrite.sh all-db
+```
+
+Fast restore-time rewrite variant:
+
+```sh
+OLD_SERVER=m.h4.ddnss.org \
+NEW_SERVER=h4xx.io \
+NAMESPACE=matrix-rewrite-prod-dryrun \
+WORK_DIR=$PWD/.matrix-rewrite/prod-h4xx \
+KUBECONTEXT=homelab-prod \
+STORAGE_CLASS=longhorn-ssd-rwo-2r \
+POSTGRES_SIZE=12Gi \
+MEDIA_SIZE=60Gi \
+./scripts/matrix-server-name-rewrite.sh all-db-stream
 ```
 
 ## Cleanup

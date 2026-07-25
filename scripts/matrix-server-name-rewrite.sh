@@ -23,6 +23,8 @@ Commands:
   inventory-dump    Count old/new server-name strings in the SQL dump.
   scratch-up        Create an isolated Postgres + media scratch namespace.
   restore-db        Restore the source dump into scratch Postgres.
+  restore-db-rewritten
+                   Restore dump while rewriting OLD_SERVER to NEW_SERVER in the SQL stream.
   repair-owner      Repair restored DB ownership for the synapse role.
   rewrite-db        Rewrite OLD_SERVER to NEW_SERVER in text/json/jsonb columns.
   copy-media        Copy source synapsemedia into scratch media PVC.
@@ -30,6 +32,7 @@ Commands:
   validate          Show health, logs, and remaining DB/media references.
   delete-scratch    Delete the scratch namespace.
   all-db            Run dump-source, inventory-dump, scratch-up, restore-db, rewrite-db.
+  all-db-stream     Run dump-source, inventory-dump, scratch-up, restore-db-rewritten.
 
 Environment:
   KUBECONTEXT=$context
@@ -260,6 +263,20 @@ restore_db() {
   postgres_pod="$(pod_for_app rewrite-postgres)"
   kubectl_ns cp "$dump" "$postgres_pod:/tmp/synapse.dump"
   kubectl_ns exec deploy/rewrite-postgres -- sh -ceu "export PGPASSWORD='$(postgres_password)'; pg_restore -h 127.0.0.1 -U postgres -d synapse --no-owner --no-acl /tmp/synapse.dump"
+  repair_db_owner
+}
+
+restore_db_rewritten() {
+  require_bin kubectl
+  guard_namespace
+  ensure_work_dir
+  local dump="$work_dir/synapse.dump"
+  test -s "$dump" || die "missing dump: $dump"
+  kubectl_ns exec deploy/rewrite-postgres -- sh -ceu "export PGPASSWORD='$(postgres_password)'; dropdb -h 127.0.0.1 -U postgres --if-exists synapse; dropuser -h 127.0.0.1 -U postgres --if-exists synapse; createuser -h 127.0.0.1 -U postgres synapse; psql -h 127.0.0.1 -U postgres -d postgres -c \"alter role synapse password '$(postgres_password)'\"; createdb -h 127.0.0.1 -U postgres -O synapse synapse"
+  local postgres_pod
+  postgres_pod="$(pod_for_app rewrite-postgres)"
+  kubectl_ns cp "$dump" "$postgres_pod:/tmp/synapse.dump"
+  kubectl_ns exec deploy/rewrite-postgres -- sh -ceu "export PGPASSWORD='$(postgres_password)'; pg_restore --no-owner --no-acl -f - /tmp/synapse.dump | sed 's#$old_server#$new_server#g' | psql -h 127.0.0.1 -U postgres -d synapse -v ON_ERROR_STOP=1"
   repair_db_owner
 }
 
@@ -614,6 +631,7 @@ case "${1:-}" in
   inventory-dump) inventory_dump ;;
   scratch-up) scratch_up ;;
   restore-db) restore_db ;;
+  restore-db-rewritten) restore_db_rewritten ;;
   rewrite-db) rewrite_db ;;
   repair-owner) repair_db_owner ;;
   copy-media) copy_media ;;
@@ -626,6 +644,12 @@ case "${1:-}" in
     scratch_up
     restore_db
     rewrite_db
+    ;;
+  all-db-stream)
+    dump_source
+    inventory_dump
+    scratch_up
+    restore_db_rewritten
     ;;
   -h|--help|help|"") usage ;;
   *) usage >&2; die "unknown command: $1" ;;

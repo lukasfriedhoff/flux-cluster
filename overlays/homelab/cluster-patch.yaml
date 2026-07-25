@@ -4,11 +4,13 @@ metadata:
   name: base-config
   namespace: flux-system
 data:
+  # Git sources
   flux_cluster_branch: main
   flux_apps_branch: main
   logday_branch: main
+
+  # Longhorn
   longhorn_suspend: "false"
-  longhorn_default_replica_count: "3"
   longhorn_replica_soft_anti_affinity: "true"
   longhorn_storage_minimal_available_percentage: "10"
   longhorn_storage_over_provisioning_percentage: "300"
@@ -18,84 +20,66 @@ data:
   longhorn_nvme_storage_reserved_bytes: "32212254720"
   longhorn_backup_target: s3://homelab-longhorn-backups@us-east-1/
   longhorn_backup_target_credential_secret_name: longhorn-backup-target
+
+  # Object storage
   s3_force: "true"
   s3_suspend: "false"
+  s3_storage_class_name: longhorn-ssd-rwo-1r
+  object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
+
+  # Nix cache and builders
   nix_cache_suspend: "false"
   nix_cache_upstream_ip: 10.1.30.25
   attic_suspend: "false"
   attic_public_url: https://attic.h4xx.io/
   attic_api_endpoint: https://attic.h4xx.io/
-  default_storage_class_name: longhorn-ssd-rwo-1r
-  default_sts_storage_class_name: longhorn-ssd-rwo-1r
-  s3_storage_class_name: longhorn-ssd-rwo-1r
-  s3_data_size: 100Gi
-  object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
-  monitoring_loki_bucket: homelab-loki
-  monitoring_mimir_blocks_bucket: homelab-mimir-blocks
-  monitoring_mimir_alertmanager_bucket: homelab-mimir-alertmanager
-  monitoring_mimir_ruler_bucket: homelab-mimir-ruler
-  monitoring_tempo_bucket: homelab-tempo
-  attic_storage_class_name: longhorn-disk-rwo-1r
-  attic_postgres_storage_class_name: longhorn-disk-rwo-1r
   authelia_postgres_storage_class_name: longhorn-disk-rwo-1r
   authelia_valkey_storage_class_name: longhorn-disk-rwo-1r
   nix_remote_builder_suspend: "false"
   nix_remote_builder_external_traffic_policy: Cluster
-  nix_remote_builder_storage_class_name: longhorn-disk-rwo-1r
-  nix_remote_builder_nix_store_storage_class_name: longhorn-disk-rwo-1r
-  hydra_suspend: "false"
   hydra_replicas: "1"
-  hydra_public_url: https://hydra.h4xx.io
-  hydra_binary_cache_public_uri: https://attic.h4xx.io/homelab
-  hydra_nix_max_jobs: "2"
-  hydra_nix_cores: "4"
-  hydra_storage_class_name: longhorn-disk-rwo-1r
-  hydra_nix_store_storage_class_name: longhorn-disk-rwo-1r
-  hydra_postgres_storage_class_name: longhorn-disk-rwo-1r
+
+  # Status dashboard
   status_dashboard_suspend: "false"
-  status_dashboard_host: status.h4xx.io
-  valkey_storage_class_name: longhorn-ssd-rwo-1r
-  nextcloud_app_storage_class_name: longhorn-ssd-rwx-1r
-  nextcloud_data_storage_class_name: longhorn-ssd-rwx-1r
+
+  # Nextcloud
   # Keep Nextcloud single-replica while /var/www/html is backed by RWX NFS.
   # Multiple replicas can observe stale app-tree views and serve fatal PHP errors.
-  nextcloud_hpa_enabled: "false"
-  nextcloud_hpa_min_pods: "1"
   nextcloud_hpa_max_pods: "1"
   nextcloud_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   nextcloud_postgres_backup_generation: g20260616/
   nextcloud_postgres_backup_server_name: nextcloud-postgres-prod-g20260616
+  nextcloud_external_photos_enabled: "enabled"
+  nextcloud_external_memes_enabled: "enabled"
+  nextcloud_postgres_storage_class_name: longhorn-nvme-rwo-2r
+  nextcloud_photos_storage_class_name: longhorn-rwx-1r
+
+  # Shared Nextcloud/Immich folders
+  immich_photos_shared_claim_name: immich-photos-nextcloud-shared
+  immich_photos_shared_pv_name: immich-photos-nextcloud-shared-pv
+  immich_memes_shared_claim_name: immich-memes-nextcloud-shared
+  immich_memes_shared_pv_name: immich-memes-nextcloud-shared-pv
+  photos_shared_nfs_server: 10.43.98.154
+  photos_shared_nfs_path: /pvc-1c196aff-0f34-4bdc-808a-5c58f6191f64
+  memes_shared_nfs_server: 10.43.98.154
+  memes_shared_nfs_path: /pvc-1c196aff-0f34-4bdc-808a-5c58f6191f64
+
+  # Immich
+  immich_suspend: "false"
+  immich_oidc: authelia
   immich_ml_cache_storage_class_name: longhorn-ssd-rwo-1r
   immich_uploads_storage_class_name: longhorn-ssd-rwo-1r
   immich_postgres_storage_class_name: longhorn-nvme-rwo-2r
   immich_redis_storage_class_name: longhorn-nvme-rwo-2r
   immich_photos_shared_storage_class_name: longhorn-ssd-rwx-2r
-  nextcloud_external_photos_enabled: "enabled"
-  nextcloud_external_photos_url: https://photos.h4xx.io
-  nextcloud_external_photos_label: "Photos"
-  nextcloud_external_memes_enabled: "enabled"
-  nextcloud_external_memes_url: https://meme.h4xx.io
-  nextcloud_external_memes_label: "Memes"
-  nextcloud_photos_claim_name: nextcloud-photos-shared
-  jellyfin_gpu_privileged: "true"
-  nextcloud_memes_claim_name: nextcloud-photos-shared
-  nextcloud_photos_size: 50Gi
-  immich_photos_shared_claim_name: immich-photos-nextcloud-shared
-  immich_photos_shared_pv_name: immich-photos-nextcloud-shared-pv
-  photos_shared_nfs_server: 10.43.98.154
-  photos_shared_nfs_path: /pvc-1c196aff-0f34-4bdc-808a-5c58f6191f64
-  immich_memes_shared_claim_name: immich-memes-nextcloud-shared
-  immich_memes_shared_pv_name: immich-memes-nextcloud-shared-pv
-  memes_shared_nfs_server: 10.43.98.154
-  memes_shared_nfs_path: /pvc-1c196aff-0f34-4bdc-808a-5c58f6191f64
-  immich_suspend: "false"
-  immich_oidc: authelia
   immich_photos_ml_cache_storage_class_name: longhorn-ssd-rwo-1r
   immich_photos_uploads_storage_class_name: longhorn-ssd-rwo-1r
   immich_photos_postgres_storage_class_name: longhorn-nvme-rwo-2r
   immich_photos_redis_storage_class_name: longhorn-nvme-rwo-2r
   immich_photos_suspend: "false"
   immich_photos_oidc: authelia
+
+  # Matrix
   matrix_postgres_storage_class_name: longhorn-nvme-rwo-2r
   matrix_synapse_postgres_size: 20Gi
   matrix_whatsapp_postgres_size: 5Gi
@@ -103,37 +87,31 @@ data:
   matrix_telegram_postgres_size: 5Gi
   matrix_signal_postgres_size: 5Gi
   matrix_suspend: "false"
-  matrix_server_name: matrix.h4xx.io
+  matrix_server_name: h4xx.io
   matrix_public_hostname: h4xx.io
   matrix_public_baseurl: https://h4xx.io
   matrix_oidc: authelia
   matrix_synapse_data_storage_class_name: longhorn-ssd-rwo-1r
   matrix_synapse_media_storage_class_name: longhorn-ssd-rwo-1r
   matrix_bridge_storage_class_name: longhorn-ssd-rwo-1r
-  arr_config_storage_class_name: longhorn-ssd-rwo-1r
+
+  # Media stack
   arr_media_storage_class_name: longhorn-disk-rwx-2r
   arr_media_size: 3584Gi
-  arr_downloads_storage_class_name: longhorn-disk-rwx-1r
-  media_suspend: "false"
   jellyfin_gpu_enabled: "true"
+  jellyfin_gpu_privileged: "true"
   media_private_trackers_secret_enabled: "true"
-  qbittorrent_max_active_downloads: "30"
-  qbittorrent_max_active_torrents: "500"
-  qbittorrent_max_active_uploads: "300"
-  qbittorrent_suspended: "false"
   qbittorrent_replicas: "1"
-  qbittorrent_policy_suspended: "false"
   qbittorrent_vpn_endpoint_cidr: "146.70.237.130/32"
-  prowlarr_default_seed_ratio: ""
   qbit_manage_cron: "45 */2 * * *"
   qbit_manage_dry_run: "False"
   qbit_manage_suspended: "false"
-  moonlight_config_storage_class_name: longhorn-ssd-rwo-1r
-  monitoring_storage_class_name: longhorn-ssd-rwo-1r
-  nextcloud_postgres_storage_class_name: longhorn-nvme-rwo-2r
-  nextcloud_photos_storage_class_name: longhorn-rwx-1r
+
+  # LogDay
   logday_postgres_storage_class_name: longhorn-nvme-rwo-2r
   logday_repo_secret_name: github-read-logday-homelab
   logday_repo_suspend: "false"
   logday_suspend: "false"
+
+  # Moonlight
   moonlight_suspend: "false"
