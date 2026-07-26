@@ -4,3 +4,46 @@ resources:
   - ../../../base/kustomizations/
   - longhorn-node-config.yaml
   - longhorn-replica-policy.yaml
+patches:
+  - target:
+      kind: Kustomization
+      name: matrix-app
+    patch: |-
+      - op: add
+        path: /spec/patches
+        value:
+          - target:
+              kind: Ingress
+              name: matrix
+              namespace: matrix
+            patch: |-
+              - op: add
+                path: /spec/rules/-
+                value:
+                  host: matrix.h4xx.io
+                  http:
+                    paths:
+                      - path: /_matrix
+                        pathType: Prefix
+                        backend:
+                          service:
+                            name: synapse
+                            port:
+                              number: 8008
+                      - path: /_synapse
+                        pathType: Prefix
+                        backend:
+                          service:
+                            name: synapse
+                            port:
+                              number: 8008
+                      - path: /
+                        pathType: Prefix
+                        backend:
+                          service:
+                            name: synapse
+                            port:
+                              number: 8008
+              - op: add
+                path: /spec/tls/0/hosts/-
+                value: matrix.h4xx.io
