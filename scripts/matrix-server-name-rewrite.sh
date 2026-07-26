@@ -24,15 +24,15 @@ Commands:
   scratch-up        Create an isolated Postgres + media scratch namespace.
   restore-db        Restore the source dump into scratch Postgres.
   restore-db-rewritten
-                   Restore dump while rewriting OLD_SERVER to NEW_SERVER in the SQL stream.
+                   Disabled: SQL-stream replacement corrupts signed Matrix events.
   repair-owner      Repair restored DB ownership for the synapse role.
-  rewrite-db        Rewrite OLD_SERVER to NEW_SERVER in text/json/jsonb columns.
+  rewrite-db        Rewrite mutable DB fields while preserving signed event payloads.
   copy-media        Copy source synapsemedia into scratch media PVC.
   deploy-synapse    Deploy a scratch Synapse against rewritten DB/media.
   validate          Show health, logs, and remaining DB/media references.
   delete-scratch    Delete the scratch namespace.
   all-db            Run dump-source, inventory-dump, scratch-up, restore-db, rewrite-db.
-  all-db-stream     Run dump-source, inventory-dump, scratch-up, restore-db-rewritten.
+  all-db-stream     Disabled: unsafe restore-time replacement.
 
 Environment:
   KUBECONTEXT=$context
@@ -47,6 +47,7 @@ Environment:
   MEDIA_SIZE=$media_size
   SYNAPSE_IMAGE=$synapse_image
   MEDIA_COPY_BATCH_SIZE=$media_copy_batch_size
+  MATRIX_TEST_ACCESS_TOKEN=<optional scratch-user token for authenticated /sync>
 EOF
 }
 
@@ -247,6 +248,18 @@ spec:
       ports:
         - protocol: TCP
           port: 5432
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
 EOF
   kubectl_ns rollout status deploy/rewrite-postgres --timeout=180s
   kubectl_ns rollout status deploy/rewrite-tool --timeout=180s
@@ -267,17 +280,7 @@ restore_db() {
 }
 
 restore_db_rewritten() {
-  require_bin kubectl
-  guard_namespace
-  ensure_work_dir
-  local dump="$work_dir/synapse.dump"
-  test -s "$dump" || die "missing dump: $dump"
-  kubectl_ns exec deploy/rewrite-postgres -- sh -ceu "export PGPASSWORD='$(postgres_password)'; dropdb -h 127.0.0.1 -U postgres --if-exists synapse; dropuser -h 127.0.0.1 -U postgres --if-exists synapse; createuser -h 127.0.0.1 -U postgres synapse; psql -h 127.0.0.1 -U postgres -d postgres -c \"alter role synapse password '$(postgres_password)'\"; createdb -h 127.0.0.1 -U postgres -O synapse synapse"
-  local postgres_pod
-  postgres_pod="$(pod_for_app rewrite-postgres)"
-  kubectl_ns cp "$dump" "$postgres_pod:/tmp/synapse.dump"
-  kubectl_ns exec deploy/rewrite-postgres -- sh -ceu "export PGPASSWORD='$(postgres_password)'; pg_restore --no-owner --no-acl -f - /tmp/synapse.dump | sed 's#$old_server#$new_server#g' | psql -h 127.0.0.1 -U postgres -d synapse -v ON_ERROR_STOP=1"
-  repair_db_owner
+  die "restore-db-rewritten is disabled: stream-wide replacement changes public.event_json.json and invalidates content-addressed Matrix event IDs"
 }
 
 repair_db_owner() {
@@ -326,6 +329,10 @@ begin
     from information_schema.columns c
     where c.table_schema = 'public'
       and c.data_type in ('text', 'character varying', 'character', 'json', 'jsonb')
+      and not (
+        c.table_name = 'event_json'
+        and c.column_name = 'json'
+      )
   loop
     if item.data_type in ('json', 'jsonb') then
       statement := format(
@@ -598,6 +605,18 @@ spec:
       ports:
         - protocol: TCP
           port: 5432
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
 EOF
   kubectl_ns rollout status deploy/rewrite-synapse --timeout=240s || true
 }
@@ -605,18 +624,43 @@ EOF
 validate() {
   require_bin kubectl
   guard_namespace
+  local recent_logs
   echo "--- pods"
   kubectl_ns get pods -o wide
   echo "--- health"
-  kubectl_ns exec deploy/rewrite-synapse -- python - <<'PY' || true
+  kubectl_ns exec deploy/rewrite-synapse -- python - <<'PY'
 import urllib.request
 print(urllib.request.urlopen("http://127.0.0.1:8008/health", timeout=5).read().decode())
 PY
   echo
   echo "--- recent logs"
-  kubectl_ns logs deploy/rewrite-synapse --tail=120 || true
-  echo "--- remaining references in DB"
-  kubectl_ns exec deploy/rewrite-postgres -- sh -ceu "export PGPASSWORD='$(postgres_password)'; psql -h 127.0.0.1 -U postgres -d synapse -Atc \"select count(*) from (select 1 from event_json where json::text like '%$old_server%' limit 1) s;\" " || true
+  recent_logs="$(kubectl_ns logs deploy/rewrite-synapse --tail=200 2>&1 || true)"
+  printf '%s\n' "$recent_logs"
+  if grep -q 'DatabaseCorruptionError' <<<"$recent_logs"; then
+    die "Synapse reported DatabaseCorruptionError; signed event payloads or event IDs were modified"
+  fi
+  echo "--- signed event payload references retained in DB"
+  kubectl_ns exec deploy/rewrite-postgres -- sh -ceu "export PGPASSWORD='$(postgres_password)'; psql -h 127.0.0.1 -U postgres -d synapse -Atc \"select count(*) from event_json where json::text like '%$old_server%';\" "
+  echo "--- authenticated sync"
+  if [[ -n "${MATRIX_TEST_ACCESS_TOKEN:-}" ]]; then
+    printf '%s' "$MATRIX_TEST_ACCESS_TOKEN" |
+      kubectl_ns exec -i deploy/rewrite-synapse -- python -c '
+import json
+import sys
+import urllib.request
+
+token = sys.stdin.read()
+request = urllib.request.Request(
+    "http://127.0.0.1:8008/_matrix/client/v3/sync?timeout=0",
+    headers={"Authorization": "Bearer " + token},
+)
+with urllib.request.urlopen(request, timeout=30) as response:
+    payload = json.load(response)
+print("joined_rooms=" + str(len(payload.get("rooms", {}).get("join", {}))))
+'
+  else
+    echo "SKIPPED: set MATRIX_TEST_ACCESS_TOKEN to verify room history with /sync"
+  fi
   echo "--- media dirs"
   kubectl_ns exec deploy/rewrite-tool -- du -sh /media_store || true
 }
@@ -646,9 +690,6 @@ case "${1:-}" in
     rewrite_db
     ;;
   all-db-stream)
-    dump_source
-    inventory_dump
-    scratch_up
     restore_db_rewritten
     ;;
   -h|--help|help|"") usage ;;
