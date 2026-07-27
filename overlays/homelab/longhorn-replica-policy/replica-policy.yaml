@@ -16,6 +16,12 @@ rules:
       - get
       - list
       - patch
+  - apiGroups:
+      - longhorn.io
+    resources:
+      - settings
+    verbs:
+      - get
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -53,6 +59,12 @@ spec:
                 - /bin/sh
                 - -ceu
                 - |
+                  rebuild_limit="$(kubectl -n longhorn-system get settings.longhorn.io concurrent-replica-rebuild-per-node-limit -o jsonpath='{.value}')"
+                  if [ "${rebuild_limit}" = "0" ]; then
+                    echo "replica rebuilds are frozen; skipping replica-policy reconciliation"
+                    exit 0
+                  fi
+
                   kubectl -n longhorn-system get volumes.longhorn.io -o json \
                     | jq -r '
                         .items[]
