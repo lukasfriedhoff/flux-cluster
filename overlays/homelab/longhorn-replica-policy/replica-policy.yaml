@@ -4,7 +4,7 @@ metadata:
   name: longhorn-replica-policy
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: ClusterRole
 metadata:
   name: longhorn-replica-policy
 rules:
@@ -22,27 +22,43 @@ rules:
       - settings
     verbs:
       - get
+  - apiGroups:
+      - ""
+    resources:
+      - persistentvolumeclaims
+      - persistentvolumes
+    verbs:
+      - get
+      - list
+  - apiGroups:
+      - storage.k8s.io
+    resources:
+      - storageclasses
+    verbs:
+      - get
+      - list
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: longhorn-replica-policy
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
+  kind: ClusterRole
   name: longhorn-replica-policy
 subjects:
   - kind: ServiceAccount
     name: longhorn-replica-policy
+    namespace: longhorn-system
 ---
 apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: longhorn-replica-policy
 spec:
-  schedule: "*/30 * * * *"
+  schedule: "*/5 * * * *"
   concurrencyPolicy: Forbid
-  successfulJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 3
   jobTemplate:
     spec:
@@ -65,27 +81,52 @@ spec:
                     exit 0
                   fi
 
-                  kubectl -n longhorn-system get volumes.longhorn.io -o json \
+                  kubectl get persistentvolumes -o json \
                     | jq -r '
                         .items[]
-                        | .metadata.name as $volume
-                        | (.status.kubernetesStatus.namespace // "") as $namespace
-                        | (.status.kubernetesStatus.pvcName // "") as $pvc
-                        | (.status.kubernetesStatus.pvStatus // "") as $pv_status
-                        | (.status.state // "") as $state
-                        | (.status.kubernetesStatus.workloadsStatus // []) as $workloads
-                        | ($workloads | map(.workloadType) | unique) as $workload_types
-                        | select($namespace != "" and $namespace != "media")
+                        | select((.spec.csi.driver // "") == "driver.longhorn.io")
+                        | select((.status.phase // "") == "Bound")
+                        | (.spec.csi.volumeHandle // "") as $volume
+                        | (.spec.storageClassName // "") as $storage_class
+                        | (.spec.claimRef.namespace // "") as $namespace
+                        | (.spec.claimRef.name // "") as $pvc
+                        | select($volume != "")
+                        | select($storage_class != "")
+                        | select($namespace != "")
                         | select($pvc != "")
-                        | select($pv_status == "Bound")
-                        | select($state == "attached")
-                        | (if $namespace == "nix-cache" then 1 elif (($workload_types | index("StatefulSet")) or ($workload_types | index("Cluster"))) then 2 else 3 end) as $target
-                        | select((.spec.numberOfReplicas | tonumber) != $target)
-                        | [$volume, ($target | tostring), $namespace, $pvc, (.spec.numberOfReplicas | tostring), ($workload_types | join(","))]
+                        | [$volume, $storage_class, $namespace, $pvc]
                         | @tsv
                       ' \
-                    | while IFS="$(printf '\t')" read -r volume target namespace pvc current workload_types; do
-                        echo "setting ${namespace}/${pvc} (${volume}) from ${current} to ${target} replicas; workloads=${workload_types}"
+                    | while IFS="$(printf '\t')" read -r volume storage_class namespace pvc; do
+                        policy="$(kubectl -n "${namespace}" get persistentvolumeclaim "${pvc}" \
+                          -o jsonpath='{.metadata.annotations.longhorn\.h4xx\.io/replica-policy}' 2>/dev/null || true)"
+                        if [ "${policy}" = "disabled" ]; then
+                          echo "skipping ${namespace}/${pvc} (${volume}); replica policy is disabled"
+                          continue
+                        fi
+
+                        target="$(kubectl get storageclass "${storage_class}" \
+                          -o jsonpath='{.parameters.numberOfReplicas}' 2>/dev/null || true)"
+                        override="$(kubectl -n "${namespace}" get persistentvolumeclaim "${pvc}" \
+                          -o jsonpath='{.metadata.annotations.longhorn\.h4xx\.io/replica-count}' 2>/dev/null || true)"
+                        if [ -n "${override}" ]; then
+                          target="${override}"
+                        fi
+
+                        case "${target}" in
+                          ''|*[!0-9]*|0)
+                            echo "skipping ${namespace}/${pvc} (${volume}); ${storage_class} has no valid numberOfReplicas"
+                            continue
+                            ;;
+                        esac
+
+                        current="$(kubectl -n longhorn-system get volumes.longhorn.io "${volume}" \
+                          -o jsonpath='{.spec.numberOfReplicas}' 2>/dev/null || true)"
+                        if [ -z "${current}" ] || [ "${current}" = "${target}" ]; then
+                          continue
+                        fi
+
+                        echo "setting ${namespace}/${pvc} (${volume}) from ${current} to ${target} replicas; storageClass=${storage_class}"
                         kubectl -n longhorn-system patch volumes.longhorn.io "${volume}" \
                           --type=merge \
                           --patch "{\"spec\":{\"numberOfReplicas\":${target}}}"

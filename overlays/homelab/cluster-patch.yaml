@@ -17,7 +17,7 @@ data:
   # Longhorn
   longhorn_suspend: "false"
   longhorn_replica_soft_anti_affinity: "true"
-  longhorn_storage_minimal_available_percentage: "10"
+  longhorn_storage_minimal_available_percentage: "5"
   longhorn_storage_over_provisioning_percentage: "300"
   longhorn_storage_reserved_percentage_for_default_disk: "10"
   longhorn_ssd_storage_reserved_bytes: "0"
