@@ -125,3 +125,7 @@ message mappings and inspect the history-sync/backfill queues. If every source
 mapping exists on the target and the queues are empty, the bridge has no
 additional historical payload to import. Missing plaintext in that case is a
 remote Signal-ratchet limitation rather than an incomplete database copy.
+
+For a deliberate linked-device history transfer, including the production
+GitOps settings and the Signal recovery flow, follow
+`docs/runbooks/matrix-bridge-history-recovery.md`.

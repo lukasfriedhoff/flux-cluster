@@ -260,6 +260,10 @@ Bridge databases should be checked separately:
   deduplication markers, not pending messages. Do not replay them as chat
   content.
 
+If source event parity is complete but a bridge never imported remote history,
+use `docs/runbooks/matrix-bridge-history-recovery.md`. Do not repeat the
+Synapse database migration.
+
 ## First observed result
 
 The first `m.h4.ddnss.org` -> `matrix-testing.h4xx.io` scratch run booted Synapse successfully in namespace `matrix-rewrite-test`.
