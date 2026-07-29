@@ -70,11 +70,14 @@ is required.
 ## Recover Signal history
 
 1. Take a CNPG backup of `signaldbprivate`.
-2. Open a direct Matrix room with the production Signal bridge bot.
-3. Start the bridge's link command and scan the QR code from Signal.
-4. Approve the history-transfer prompt on the phone.
-5. Keep both devices online until the transfer and portal creation finish.
-6. Verify old messages, recent attachments, and a new inbound and outbound
+2. Open a direct Matrix room with `@signalprivatebotUser:h4xx.io`.
+3. Send `logout` if the bot reports that the bridge is already linked.
+4. Send `login`.
+5. In Signal, open **Settings > Linked devices**, add a device, and scan the
+   QR code from the bridge bot.
+6. Approve the history-transfer prompt on the phone.
+7. Keep both devices online until the transfer and portal creation finish.
+8. Verify old messages, recent attachments, and a new inbound and outbound
    message.
 
 Do not unlink the old Signal session until the new portal history has been
