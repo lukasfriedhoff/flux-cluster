@@ -125,6 +125,141 @@ NAMESPACE=matrix-rewrite-test ./scripts/matrix-server-name-rewrite.sh delete-scr
 - Old server-name references in signed `event_json` payloads are expected and
   must not be treated as failed rewrite residue.
 
+## Repair retained room administrators
+
+Retained rooms preserve their signed room IDs and power-level state. The
+current-domain user and bridge bot therefore do not automatically inherit the
+old-domain identities' room power.
+
+Use the supported Synapse admin endpoint through
+`scripts/repair-matrix-migrated-room-admins.sh`:
+
+```sh
+TARGET_USER_ID='@lukasf:h4xx.io' \
+ACCESS_TOKEN_FILE=/run/secrets/synapse-admin-token \
+SYNAPSE_URL=http://127.0.0.1:8008 \
+  scripts/repair-matrix-migrated-room-admins.sh repair retained-room-ids.txt
+```
+
+Run the same command for a current bridge bot only after a joined
+current-domain room administrator exists. The command is intentionally unable
+to repair a room whose only administrators use the old server name. Replacing
+such a bridge portal is safer than directly changing Synapse event tables,
+because Matrix room state is signed and event-linked.
+
+The script inventories power levels through Synapse's admin room-state API,
+not the client room-state API. This is required because a server administrator
+does not have to be joined to every retained room.
+
+Validate changes to the repair tool with:
+
+```sh
+scripts/verify-matrix-migrated-room-admin-repair.sh
+```
+
+## Expose retained room history to the current user
+
+Joining the current-domain user to a retained room does not expose events that
+predate that membership when the room uses `joined` history visibility.
+Clients show those events as unavailable even though Synapse retained them.
+
+After granting the current-domain user room administrator power, use a
+short-lived Synapse server administrator to emit a signed
+`m.room.history_visibility` state event:
+
+```sh
+REPAIR_USER_ID='@migration-repair:h4xx.io' \
+ACCESS_TOKEN_FILE=/run/secrets/temporary-synapse-admin-token \
+SYNAPSE_URL=http://127.0.0.1:8008 \
+  scripts/repair-matrix-migrated-history-visibility.sh repair retained-room-ids.txt
+```
+
+The repair defaults to `shared`, which keeps the room private while allowing
+joined members to read the retained history. The temporary repair account is
+made room administrator through Synapse's supported API, explicitly joins the
+room, writes the state event through the Matrix client API, verifies it, and
+leaves each room. The explicit join avoids a race where Synapse has accepted
+the admin request but the client state endpoint still reports that the repair
+user is not in the room. Delete or deactivate that account after the repair.
+
+This only repairs Matrix history visibility. It cannot decrypt end-to-end
+encrypted events for a new account. If an old room displays `You don't have
+access to this message` after the room-state repair, restore the old account's
+Megolm keys instead:
+
+1. Open a surviving client session for the old account.
+2. Unlock its key backup with the old recovery key or passphrase.
+3. Export the room keys from that client.
+4. Import the room keys into the current account.
+
+The server stores encrypted event payloads and public device metadata, but it
+does not possess the private recovery key needed to decrypt or re-encrypt old
+Megolm sessions. Without a surviving client crypto store or recovery key, the
+old encrypted message bodies cannot be recovered server-side.
+
+Validate changes to the repair tool with:
+
+```sh
+scripts/verify-matrix-migrated-history-visibility.sh
+```
+
+## Expose retained-origin media
+
+Signed events retain their original `mxc://<old-server>/...` URLs. Copying the
+old media store into the new Synapse local-media directory is not sufficient:
+Synapse correctly treats those URLs as remote media after the server-name
+change.
+
+Run `repair-matrix-migrated-media-cache.py` inside the new Synapse container
+after taking a database backup:
+
+```sh
+python /tmp/repair-matrix-migrated-media-cache.py \
+  --origin m.h4.ddnss.org
+
+python /tmp/repair-matrix-migrated-media-cache.py \
+  --origin m.h4.ddnss.org \
+  --apply
+```
+
+The tool:
+
+- discovers retained-origin MXC IDs directly from signed event JSON without
+  modifying those events;
+- requires every referenced ID to exist in `local_media_repository`;
+- hardlinks local media and thumbnails into Synapse's remote-cache layout, so
+  the migration does not duplicate their disk usage;
+- upserts the matching `remote_media_cache` metadata transactionally; and
+- is idempotent, allowing interrupted runs to be repeated safely.
+
+Validate filesystem behavior with:
+
+```sh
+scripts/verify-matrix-migrated-media-cache.py
+```
+
+The media-cache repair only makes the retained encrypted bytes reachable under
+their original MXC origin. A broken encrypted image after this repair usually
+means the client lacks the corresponding Megolm room key; it does not imply
+that the media object is missing.
+
+## Verify source parity before another sync
+
+Compare immutable Synapse event IDs and media IDs between source and target
+before copying data again. If the target already contains every source event
+and media ID, another database or media sync cannot restore inaccessible
+encrypted content and only increases migration risk.
+
+Bridge databases should be checked separately:
+
+- portal and message mappings prove whether the bridge history was imported;
+- empty backfill/history-sync queues mean there is no pending bridge history;
+- relinking a Signal or WhatsApp account repairs future traffic but does not
+  reconstruct ciphertext that the remote service no longer offers; and
+- `signalmeow_event_buffer` rows with a null `plaintext` column are processed
+  deduplication markers, not pending messages. Do not replay them as chat
+  content.
+
 ## First observed result
 
 The first `m.h4.ddnss.org` -> `matrix-testing.h4xx.io` scratch run booted Synapse successfully in namespace `matrix-rewrite-test`.

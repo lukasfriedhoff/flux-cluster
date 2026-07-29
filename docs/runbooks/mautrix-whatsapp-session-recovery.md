@@ -67,3 +67,61 @@ Before resynchronizing migrated portals:
    `M_EXCLUSIVE` errors are emitted.
 
 Do not remove old ghost users until new messages and membership updates work.
+
+### Supported room-admin repair
+
+Use `scripts/repair-matrix-whatsapp-migrated-rooms.sh` to inventory retained
+rooms and grant the current bridge bot administrator power where a current
+local administrator already exists:
+
+```sh
+ACCESS_TOKEN_FILE=/run/secrets/synapse-admin-token \
+  SYNAPSE_URL=http://127.0.0.1:8008 \
+  scripts/repair-matrix-whatsapp-migrated-rooms.sh inventory room-ids.txt
+
+ACCESS_TOKEN_FILE=/run/secrets/synapse-admin-token \
+  SYNAPSE_URL=http://127.0.0.1:8008 \
+  scripts/repair-matrix-whatsapp-migrated-rooms.sh repair room-ids.txt
+```
+
+The repair command:
+
+- uses Synapse's supported `make_room_admin` API;
+- skips rooms that are already repaired;
+- skips rooms without a current local administrator;
+- observes Synapse rate limits and retries with the advertised delay;
+- verifies the bridge bot's resulting room power; and
+- never prints the access token.
+
+Run `scripts/verify-matrix-whatsapp-room-repair.sh` after changing the tool.
+
+### Rooms without a current local administrator
+
+Synapse cannot impersonate an old-server-name user, and
+`make_room_admin` cannot recover a room that has no current local
+administrator. Do not repair these rooms by directly editing Synapse event or
+state tables: room state is signed, event-linked data and direct SQL updates
+can create state that clients or federation cannot validate.
+
+For those rooms, retain the old room as read-only history and create a new
+portal room with the current bridge identity. Prove this workflow on one room
+before processing the rest:
+
+1. Record and back up the old portal mapping.
+2. Create a new portal for the same remote chat using the bridge's supported
+   portal command or provisioning API.
+3. Confirm the current user joins and the current bridge bot has administrator
+   power.
+4. Trigger history synchronization/backfill and verify new inbound and outbound
+   messages.
+5. Keep the old room and mapping until the replacement has been validated.
+
+Relinking restores future WhatsApp traffic. Historical
+`failed to decrypt normal message` notices cannot be recovered unless WhatsApp
+re-sends the original encrypted payload.
+
+Before attempting another migration sync, compare the source and target bridge
+message mappings and inspect the history-sync/backfill queues. If every source
+mapping exists on the target and the queues are empty, the bridge has no
+additional historical payload to import. Missing plaintext in that case is a
+remote Signal-ratchet limitation rather than an incomplete database copy.
