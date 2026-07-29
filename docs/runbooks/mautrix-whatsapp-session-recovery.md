@@ -38,3 +38,32 @@ repairs future traffic and starts a new supported history sync.
 - Keep `network.use_whatsapp_retry_store` enabled so outgoing messages remain
   available for retry receipts across bridge restarts.
 - Preserve the bridge database and app data PVC during rollouts.
+- Allow both phone-number and LID bridge users in the Synapse appservice
+  registration:
+
+  ```regex
+  ^@whatsapp_(?:[0-9]+|lid-[0-9]+):<server-name>$
+  ```
+
+  Recent WhatsApp linked devices can identify contacts with `lid-*` user IDs.
+  If the appservice only accepts phone numbers, Synapse rejects those users
+  with `M_EXCLUSIVE` and portal synchronization remains incomplete.
+- Run `scripts/verify-matrix-whatsapp-registration.sh` before promoting Matrix
+  secret changes.
+
+## Migrated rooms
+
+Rooms retained from a server-name migration keep their original room IDs and
+state history. Relinking the current bridge does not automatically grant the
+new `@whatsappbot:<server-name>` user permission to repair those rooms.
+
+Before resynchronizing migrated portals:
+
+1. Back up the bridge and Synapse databases.
+2. Ensure the current bridge bot is joined to each retained portal room.
+3. Grant it enough power to update bridge state and invite current ghost users.
+4. Keep the current human owner joined with administrator power.
+5. Resynchronize the portal and confirm that no new `M_FORBIDDEN` or
+   `M_EXCLUSIVE` errors are emitted.
+
+Do not remove old ghost users until new messages and membership updates work.
