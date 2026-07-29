@@ -9,6 +9,6 @@ spec:
   ref:
     branch: ${flux_cluster_branch:=develop}
   secretRef:
-    name: github-read-flux-cluster
+    name: ${flux_cluster_repo_secret_name:=github-read-flux-cluster}
   timeout: 60s
-  url: https://github.com/lukasfriedhoff/flux-cluster.git
+  url: ${flux_cluster_repo_url:=https://github.com/lukasfriedhoff/flux-cluster.git}

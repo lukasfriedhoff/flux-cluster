@@ -6,8 +6,13 @@ metadata:
 data:
   # Git sources
   flux_cluster_branch: main
+  flux_cluster_repo_url: ssh://git@github.com/lukasfriedhoff/flux-cluster.git
+  flux_cluster_repo_secret_name: github-deploy-flux-cluster-prod
   flux_apps_branch: main
+  flux_apps_repo_url: ssh://git@github.com/lukasfriedhoff/flux-apps.git
+  flux_apps_repo_secret_name: github-deploy-flux-apps-prod
   logday_branch: main
+  logday_repo_url: ssh://git@github.com/lukasfriedhoff/logDay.git
 
   # Longhorn
   longhorn_suspend: "false"
@@ -109,7 +114,7 @@ data:
 
   # LogDay
   logday_postgres_storage_class_name: longhorn-nvme-rwo-2r
-  logday_repo_secret_name: github-read-logday-homelab
+  logday_repo_secret_name: github-deploy-logday-prod
   logday_repo_suspend: "false"
   logday_suspend: "false"
 

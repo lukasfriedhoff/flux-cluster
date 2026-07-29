@@ -10,4 +10,4 @@ spec:
     branch: ${logday_branch:=develop}
   secretRef:
     name: ${logday_repo_secret_name:=github-read-logday-disabled}
-  url: https://github.com/lukasfriedhoff/logDay.git
+  url: ${logday_repo_url:=https://github.com/lukasfriedhoff/logDay.git}

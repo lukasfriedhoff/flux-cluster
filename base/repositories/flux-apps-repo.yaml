@@ -9,5 +9,5 @@ spec:
   ref:
     branch: ${flux_apps_branch:=develop}
   secretRef:
-    name: github-read-flux-apps
-  url: https://github.com/lukasfriedhoff/flux-apps.git
+    name: ${flux_apps_repo_secret_name:=github-read-flux-apps}
+  url: ${flux_apps_repo_url:=https://github.com/lukasfriedhoff/flux-apps.git}

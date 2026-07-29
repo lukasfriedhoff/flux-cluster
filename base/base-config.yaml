@@ -21,8 +21,13 @@ data:
   # Flux defaults
   flux_gitrepo_interval: "10m0s"
   flux_cluster_branch: "develop"
+  flux_cluster_repo_url: "https://github.com/lukasfriedhoff/flux-cluster.git"
+  flux_cluster_repo_secret_name: "github-read-flux-cluster"
   flux_apps_branch: "develop"
+  flux_apps_repo_url: "https://github.com/lukasfriedhoff/flux-apps.git"
+  flux_apps_repo_secret_name: "github-read-flux-apps"
   logday_branch: "develop"
+  logday_repo_url: "https://github.com/lukasfriedhoff/logDay.git"
   flux_kustomization_default_interval: "1h0m0s"
   flux_kustomization_default_retry_interval: "10m0s"
   flux_kustomization_default_timeout: "5m0s"
