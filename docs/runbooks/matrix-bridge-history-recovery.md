@@ -23,8 +23,15 @@ Bridge-native history transfer has additional limits:
 - Mautrix's backward backfill queue is Beeper-specific and must remain disabled
   on this Synapse deployment.
 
-Keep old migrated rooms until replacement portals and their history have been
-verified.
+For an in-place retained-room repair, do not create replacement portals.
+Matrix `/sync` remains incremental for new Matrix events, and bridge offline
+syncs remain incremental for events supplied by the remote service. Neither
+mechanism can request arbitrary old WhatsApp or Signal history. If a completed
+WhatsApp relink logs an empty history queue and repeated offline syncs with
+zero events, treat that relink as complete rather than repeating it.
+
+Keep old migrated rooms. Only use the replacement-portal sections below in a
+separately approved recovery attempt; they are not part of in-place repair.
 
 ## GitOps configuration
 

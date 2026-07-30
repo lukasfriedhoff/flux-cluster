@@ -203,6 +203,45 @@ Validate changes to the repair tool with:
 scripts/verify-matrix-migrated-history-visibility.sh
 ```
 
+## Stabilize retained direct-message names
+
+Element derives a fallback title when a room has no explicit `m.room.name`.
+Adding the current-domain account to a retained direct-message room changes
+the joined-member set, so Element may start showing titles such as
+`old account and Partner`. No migration tool renamed the room; the client
+recomputed its fallback title.
+
+Set a stable partner-first title on the existing room ID with:
+
+```sh
+cat >retained-room-names.tsv <<'EOF'
+!room-id:m.h4.ddnss.org	Partner
+EOF
+
+REPAIR_USER_ID='@migration-repair:h4xx.io' \
+ACCESS_TOKEN_FILE=/run/secrets/temporary-synapse-admin-token \
+SYNAPSE_URL=http://127.0.0.1:8008 \
+  scripts/repair-matrix-migrated-room-names.sh inventory retained-room-names.tsv
+
+REPAIR_USER_ID='@migration-repair:h4xx.io' \
+ACCESS_TOKEN_FILE=/run/secrets/temporary-synapse-admin-token \
+SYNAPSE_URL=http://127.0.0.1:8008 \
+  scripts/repair-matrix-migrated-room-names.sh repair retained-room-names.tsv
+```
+
+The tool only writes `m.room.name` in existing rooms. It cannot create rooms
+or bridge portals, refuses to overwrite any non-empty explicit room name, and
+removes the temporary repair user's power-level entry before leaving.
+Generate the TSV conservatively: include only unnamed one-to-one rooms with
+exactly one non-local conversation partner. Keep existing bridge suffixes such
+as `(WA)`, `(WAWork)`, `(Signal)`, or `(Signal Private)` when they are useful.
+
+Validate changes to the repair tool with:
+
+```sh
+scripts/verify-matrix-migrated-room-name-repair.sh
+```
+
 ## Expose retained-origin media
 
 Signed events retain their original `mxc://<old-server>/...` URLs. Copying the
@@ -254,7 +293,12 @@ Bridge databases should be checked separately:
 
 - portal and message mappings prove whether the bridge history was imported;
 - empty backfill/history-sync queues mean there is no pending bridge history;
-- relinking a Signal or WhatsApp account repairs future traffic but does not
+- Matrix `/sync` and bridge offline syncs incrementally deliver new events,
+  but they do not provide arbitrary historical backfill;
+- after a completed WhatsApp relink reports an empty history queue and offline
+  syncs with zero events, do not repeat the relink or create replacement
+  portals: WhatsApp did not offer additional history to import;
+- relinking a Signal or WhatsApp account repairs future traffic but cannot
   reconstruct ciphertext that the remote service no longer offers; and
 - `signalmeow_event_buffer` rows with a null `plaintext` column are processed
   deduplication markers, not pending messages. Do not replay them as chat
