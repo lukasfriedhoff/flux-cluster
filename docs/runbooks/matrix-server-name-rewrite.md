@@ -218,6 +218,41 @@ fallback can legitimately mention both. Making the retained account leave is
 a separate migration decision and must be audited for room history,
 encryption keys, and bridge ownership first.
 
+After restoring history and encryption keys, build an exact room-ID inventory
+for direct messages where both accounts remain joined. The retirement tool
+requires every listed room to be present in the retired account's `m.direct`
+data, the replacement account to be joined with at least the retired
+account's power level, and the shared room name to be absent or empty:
+
+```sh
+scripts/retire-matrix-migrated-direct-memberships.py \
+  --retired-user '@old:old.example' \
+  --replacement-user '@new:new.example' \
+  --access-token-file /run/secrets/retired-matrix-access-token \
+  --synapse-url http://127.0.0.1:8008 \
+  retained-direct-room-ids.txt
+
+scripts/retire-matrix-migrated-direct-memberships.py \
+  --retired-user '@old:old.example' \
+  --replacement-user '@new:new.example' \
+  --access-token-file /run/secrets/retired-matrix-access-token \
+  --synapse-url http://127.0.0.1:8008 \
+  --apply \
+  retained-direct-room-ids.txt
+```
+
+The command is audit-only unless `--apply` is present. Apply mode only calls
+the supported Matrix leave endpoint as the retired account. It cannot create,
+join, invite, forget, rename, alter power levels, or modify another member.
+It honors Synapse rate limits and is safe to rerun. Investigate blocked rooms
+individually rather than weakening the checks.
+
+Validate changes to the retirement tool with:
+
+```sh
+scripts/verify-matrix-migrated-membership-retirement.py
+```
+
 If an earlier repair wrote unsafe explicit titles, create an exact inventory
 from the current room-state event IDs, senders, and values:
 
