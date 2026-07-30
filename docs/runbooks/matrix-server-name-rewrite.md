@@ -203,43 +203,52 @@ Validate changes to the repair tool with:
 scripts/verify-matrix-migrated-history-visibility.sh
 ```
 
-## Stabilize retained direct-message names
+## Preserve participant-safe direct-message names
 
-Element derives a fallback title when a room has no explicit `m.room.name`.
-Adding the current-domain account to a retained direct-message room changes
-the joined-member set, so Element may start showing titles such as
-`old account and Partner`. No migration tool renamed the room; the client
-recomputed its fallback title.
+`m.room.name` is shared room state. Never write a conversation partner's name
+there to improve one user's direct-message list: every participant sees the
+same explicit title, so a room named `SophieEntropie` is also named
+`SophieEntropie` for Sophie.
 
-Set a stable partner-first title on the existing room ID with:
+Element derives a participant-aware fallback title when `m.room.name` is
+missing or empty. The account's `m.direct` data marks a room as a direct
+message, but it is user-scoped metadata and is not a per-user title override.
+If both the retained account and replacement account remain joined, the
+fallback can legitimately mention both. Making the retained account leave is
+a separate migration decision and must be audited for room history,
+encryption keys, and bridge ownership first.
+
+If an earlier repair wrote unsafe explicit titles, create an exact inventory
+from the current room-state event IDs, senders, and values:
 
 ```sh
-cat >retained-room-names.tsv <<'EOF'
-!room-id:m.h4.ddnss.org	Partner
+cat >unsafe-room-names.tsv <<'EOF'
+!room-id:m.h4.ddnss.org	$event-id	@migration_name_repair_1:h4xx.io	SophieEntropie
 EOF
 
-REPAIR_USER_ID='@migration-repair:h4xx.io' \
 ACCESS_TOKEN_FILE=/run/secrets/temporary-synapse-admin-token \
 SYNAPSE_URL=http://127.0.0.1:8008 \
-  scripts/repair-matrix-migrated-room-names.sh inventory retained-room-names.tsv
+  scripts/clear-matrix-migrated-room-names.sh inventory unsafe-room-names.tsv
 
-REPAIR_USER_ID='@migration-repair:h4xx.io' \
 ACCESS_TOKEN_FILE=/run/secrets/temporary-synapse-admin-token \
 SYNAPSE_URL=http://127.0.0.1:8008 \
-  scripts/repair-matrix-migrated-room-names.sh repair retained-room-names.tsv
+  scripts/clear-matrix-migrated-room-names.sh apply unsafe-room-names.tsv
 ```
 
-The tool only writes `m.room.name` in existing rooms. It cannot create rooms
-or bridge portals, refuses to overwrite any non-empty explicit room name, and
-removes the temporary repair user's power-level entry before leaving.
-Generate the TSV conservatively: include only unnamed one-to-one rooms with
-exactly one non-local conversation partner. Keep existing bridge suffixes such
-as `(WA)`, `(WAWork)`, `(Signal)`, or `(Signal Private)` when they are useful.
+The rollback tool only replaces an exact matching non-empty `m.room.name`
+event with an empty name. It protects any participant-modified or otherwise
+drifted state. It cannot create or join rooms, invite users, alter power
+levels, or write another non-empty title. The token user must already be
+joined and permitted to send room-name state. For a retained room with no
+joined local administrator, use a joined administrator on the legacy
+homeserver to invite the replacement account into that existing room, accept
+the invite, clear the exact unsafe event, and restore the replacement
+account's previous membership afterward.
 
-Validate changes to the repair tool with:
+Validate changes to the rollback tool with:
 
 ```sh
-scripts/verify-matrix-migrated-room-name-repair.sh
+scripts/verify-matrix-migrated-room-name-clear.sh
 ```
 
 ## Expose retained-origin media
