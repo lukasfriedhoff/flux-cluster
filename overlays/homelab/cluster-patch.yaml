@@ -40,6 +40,9 @@ data:
   attic_api_endpoint: https://attic.h4xx.io/
   authelia_postgres_storage_class_name: longhorn-disk-rwo-1r
   authelia_valkey_storage_class_name: longhorn-disk-rwo-1r
+  authelia_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
+  authelia_postgres_backup_generation: g20260801/
+  authelia_postgres_backup_server_name: authelia-postgres-prod-g20260801
   nix_remote_builder_suspend: "false"
   nix_remote_builder_external_traffic_policy: Cluster
   hydra_replicas: "1"
