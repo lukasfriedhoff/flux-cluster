@@ -33,13 +33,13 @@ spec:
       tags:
         - disk
     # Seagate BUP Slim 2TB USB HDD (usb-Seagate_BUP_Slim_BK_NA7WEQ6F-0:0).
-    # USB transport is the failure surface here — physically it's a normal
-    # 2.5" HDD, but bus power / controller / cable adds risk. Tagged `disk`
-    # alongside the WD per user direction; treat as best-effort capacity.
+    # Keep this disk quarantined after its 2026-07-27 USB disconnect left the
+    # filesystem read-only. The filesystem is repaired, but no new replicas
+    # should be scheduled until the cable/power/bridge is proven reliable.
     longhorn-disk-2tb-usb:
       path: /var/lib/longhorn-disk3
-      allowScheduling: true
-      evictionRequested: false
+      allowScheduling: false
+      evictionRequested: true
       storageReserved: ${longhorn_disk_storage_reserved_bytes:=0}
       tags:
         - disk
