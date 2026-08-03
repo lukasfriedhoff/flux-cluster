@@ -7,3 +7,4 @@ resources:
   - storage-minimal-available.yaml
   - node-srv2.yaml
   - node-srv8.yaml
+  - node-srv9.yaml

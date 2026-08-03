@@ -105,7 +105,7 @@ data:
 
   # Media stack
   arr_media_storage_class_name: longhorn-disk-rwx-2r
-  arr_media_size: 3584Gi
+  arr_media_size: 16T
   jellyfin_gpu_enabled: "true"
   jellyfin_gpu_privileged: "true"
   media_private_trackers_secret_enabled: "true"

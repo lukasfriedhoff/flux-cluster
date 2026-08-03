@@ -1,0 +1,72 @@
+apiVersion: longhorn.io/v1beta2
+kind: Node
+metadata:
+  name: srv9
+  namespace: longhorn-system
+spec:
+  tags:
+    - arr-media-v2
+  disks:
+    # /var/lib/longhorn lives on the encrypted root partition. Do not schedule
+    # replicas here; use only the seven dedicated encrypted data disks below.
+    default-disk-db3e3ac3754e9b44:
+      path: /var/lib/longhorn/
+      allowScheduling: false
+      evictionRequested: true
+      storageReserved: ${longhorn_nvme_storage_reserved_bytes:=32212254720}
+      tags:
+        - nvme
+    # Seagate ST8000NM0205 ~8TB HDDs.
+    longhorn-disk-8tb-a:
+      path: /var/lib/longhorn-disk1
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_disk_storage_reserved_bytes:=0}
+      tags:
+        - disk
+    longhorn-disk-8tb-b:
+      path: /var/lib/longhorn-disk2
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_disk_storage_reserved_bytes:=0}
+      tags:
+        - disk
+    # Seagate Exos ~18TB HDDs.
+    longhorn-disk-18tb-a:
+      path: /var/lib/longhorn-disk3
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_disk_storage_reserved_bytes:=0}
+      tags:
+        - disk
+        - arr-media-v2
+    longhorn-disk-18tb-b:
+      path: /var/lib/longhorn-disk4
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_disk_storage_reserved_bytes:=0}
+      tags:
+        - disk
+        - arr-media-v2
+    # ~800GB SAS SSDs.
+    longhorn-ssd-800gb-a:
+      path: /var/lib/longhorn-disk5
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
+      tags:
+        - ssd
+    longhorn-ssd-800gb-b:
+      path: /var/lib/longhorn-disk6
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
+      tags:
+        - ssd
+    longhorn-ssd-800gb-c:
+      path: /var/lib/longhorn-disk7
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
+      tags:
+        - ssd
