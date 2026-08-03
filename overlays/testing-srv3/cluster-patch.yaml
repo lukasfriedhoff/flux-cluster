@@ -4,6 +4,7 @@ metadata:
   name: base-config
   namespace: flux-system
 data:
+  # Cluster identity
   cluster_environment: testing
   cluster_name: testing-srv3
   flux_cluster_branch: testing
@@ -11,8 +12,12 @@ data:
   logday_branch: testing
   kubernetes_cluster_domain: k8s.testing.h4xx.io
   public_host_suffix: -testing
+
+  # Git sources
   logday_repo_secret_name: github-read-logday-testing
   logday_repo_suspend: "false"
+
+  # Auth and ingress
   authelia_access_policy: one_factor
   authelia_oidc_policy: one_factor
   authelia_session_cookie_name: authelia_session_testing
@@ -20,6 +25,8 @@ data:
   cloudflare_tunnel_id: a53b5554-e980-4cce-a3bf-0347007f2094
   cloudflare_tunnel_hostname: a53b5554-e980-4cce-a3bf-0347007f2094.cfargotunnel.com
   cloudflare_tunnel_secret_name: cloudflare-tunnel-credentials-testing
+
+  # Longhorn
   longhorn_suspend: "false"
   longhorn_default_replica_count: "1"
   longhorn_storage_minimal_available_percentage: "10"
@@ -31,9 +38,6 @@ data:
   longhorn_rwx_storage_class_1r_name: testing-longhorn-rwx-1r
   longhorn_rwx_storage_class_2r_name: testing-longhorn-rwx-2r
   longhorn_rwx_storage_class_3r_name: testing-longhorn-rwx-3r
-  longhorn_nvme_disk_selector: nvme
-  longhorn_ssd_disk_selector: ssd
-  longhorn_disk_disk_selector: disk
   longhorn_nvme_rwo_storage_class_1r_name: testing-longhorn-nvme-rwo-1r
   longhorn_nvme_rwo_storage_class_2r_name: testing-longhorn-nvme-rwo-2r
   longhorn_nvme_rwo_storage_class_3r_name: testing-longhorn-nvme-rwo-3r
@@ -56,51 +60,51 @@ data:
   longhorn_ssd_storage_reserved_bytes: "0"
   longhorn_backup_target: s3://testing-srv3-longhorn-backups@us-east-1/
   longhorn_backup_target_credential_secret_name: longhorn-backup-target
+
+  # Object storage
   s3_force: "true"
   s3_suspend: "false"
   s3_storage_class_name: testing-longhorn-ssd-rwo-1r
   s3_data_size: 50Gi
+  object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
+
+  # Nix cache and builders
   nix_cache_suspend: "false"
   nix_cache_upstream_ip: 10.1.30.25
   attic_suspend: "false"
   attic_public_url: https://attic-testing.h4xx.io/
   attic_api_endpoint: https://attic-testing.h4xx.io/
   attic_storage_class_name: testing-longhorn-disk-rwo-1r
-  attic_storage_size: 500Gi
   attic_postgres_storage_class_name: testing-longhorn-disk-rwo-1r
-  attic_postgres_size: 20Gi
   attic_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   nix_remote_builder_suspend: "false"
-  nix_remote_builder_service_type: NodePort
-  nix_remote_builder_node_port: "30610"
-  nix_remote_builder_external_traffic_policy: Local
-  nix_remote_builder_allowed_cidr_1: 10.1.0.0/16
-  nix_remote_builder_allowed_cidr_2: 10.42.0.0/16
-  nix_remote_builder_allowed_cidr_3: 10.43.0.0/16
   nix_remote_builder_storage_class_name: testing-longhorn-disk-rwo-1r
   nix_remote_builder_nix_store_storage_class_name: testing-longhorn-disk-rwo-1r
-  nix_remote_builder_nix_store_size: 250Gi
-  hydra_suspend: "false"
   hydra_public_url: https://hydra-testing.h4xx.io
   hydra_binary_cache_public_uri: https://attic-testing.h4xx.io/homelab
   hydra_storage_class_name: testing-longhorn-disk-rwo-1r
   hydra_nix_store_storage_class_name: testing-longhorn-disk-rwo-1r
-  hydra_nix_store_size: 250Gi
   hydra_postgres_storage_class_name: testing-longhorn-disk-rwo-1r
   hydra_requests_memory: 4Gi
-  hydra_limits_memory: 16Gi
   hydra_nix_substituters: https://attic.h4xx.io/homelab https://cache.nixos.org/
-  hydra_nix_trusted_public_keys: "homelab:KFrqDSi76JxQ7V7R6j5PGM+T9Nk/2A/+CLmp5/G76Hg= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+
+  # Status dashboard
   status_dashboard_suspend: "false"
   status_dashboard_host: testing.h4xx.io
   status_dashboard_title: "Testing Services Status"
   status_dashboard_description: "Public uptime for testing services"
+
+  # Default storage classes
   default_storage_class_name: testing-longhorn-ssd-rwo-1r
   default_sts_storage_class_name: testing-longhorn-ssd-rwo-1r
+
+  # Valkey
   valkey_storage_class_name: testing-longhorn-nvme-rwo-1r
   valkey_replica_enabled: "false"
   valkey_replica_count: "1"
   valkey_min_replicas_to_write: "0"
+
+  # Nextcloud
   nextcloud_app_storage_class_name: testing-longhorn-ssd-rwx-1r
   nextcloud_data_storage_class_name: testing-longhorn-rwx-1r
   nextcloud_app_claim_name: nextcloud-app-lh1
@@ -114,13 +118,15 @@ data:
   nextcloud_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
   nextcloud_external_photos_enabled: "enabled"
   nextcloud_external_photos_url: https://photos-testing.h4xx.io
-  nextcloud_external_photos_label: "Photos"
   nextcloud_photos_claim_name: nextcloud-photos-rwx
-  nextcloud_photos_size: 50Gi
+
+  # Shared Nextcloud/Immich folders
   immich_photos_shared_claim_name: immich-photos-rwx
   immich_photos_shared_pv_name: immich-photos-rwx-pv
   photos_shared_nfs_server: 10.43.132.82
   photos_shared_nfs_path: /pvc-66fe26b4-0c17-4d5b-be93-93ab654adf6c
+
+  # Immich
   immich_suspend: "false"
   immich_oidc: authelia
   immich_uploads_storage_class_name: testing-longhorn-rwo-1r
@@ -133,25 +139,23 @@ data:
   immich_redis_storage_class_name: testing-longhorn-nvme-rwo-1r
   immich_redis_size: 1Gi
   immich_photos_suspend: "false"
-  immich_photos_secret_name: immich-photos-secrets
   immich_photos_oidc: authelia
   immich_photos_uploads_storage_class_name: testing-longhorn-rwo-1r
   immich_photos_uploads_size: 8Gi
   immich_photos_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
   immich_photos_postgres_size: 16Gi
   immich_photos_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
-  immich_photos_postgres_backup_bucket: immich-postgres-backup
-  immich_photos_postgres_backup_credential_secret_name: immich-photos-postgres-backup-credentials
   immich_photos_ml_cache_storage_class_name: testing-longhorn-ssd-rwo-1r
   immich_photos_ml_cache_size: 2Gi
   immich_photos_redis_storage_class_name: testing-longhorn-nvme-rwo-1r
   immich_photos_redis_size: 1Gi
+
+  # LogDay
   logday_suspend: "false"
   logday_image_pull_secret_name: logday-ghcr-pull-testing
   logday_image_pull_policy: Always
   logday_image_tag: SNAPSHOT-20260531
   logday_postgres_storage_class_name: testing-longhorn-nvme-rwo-1r
-  logday_postgres_size: 10Gi
   logday_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
 
   # Matrix
@@ -166,15 +170,17 @@ data:
   matrix_synapse_data_storage_class_name: testing-longhorn-ssd-rwo-1r
   matrix_synapse_data_size: 2Gi
   matrix_synapse_media_storage_class_name: testing-longhorn-rwo-1r
-  matrix_synapse_media_size: 100Gi
   matrix_bridge_storage_class_name: testing-longhorn-ssd-rwo-1r
   matrix_bridge_data_size: 1Gi
   matrix_signald_data_size: 1Gi
+
+  # Moonlight
   moonlight_suspend: "false"
   moonlight_config_storage_class_name: testing-longhorn-ssd-rwo-1r
   moonlight_config_size: 5Gi
+
+  # Monitoring
   monitoring_storage_class_name: testing-longhorn-nvme-rwo-1r
-  object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
   monitoring_loki_bucket: testing-loki
   monitoring_mimir_blocks_bucket: testing-mimir-blocks
   monitoring_mimir_alertmanager_bucket: testing-mimir-alertmanager

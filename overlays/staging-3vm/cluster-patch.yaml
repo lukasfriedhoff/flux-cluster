@@ -4,15 +4,17 @@ metadata:
   name: base-config
   namespace: flux-system
 data:
+  # Cluster identity
   cluster_environment: staging
   cluster_name: staging-3vm
-  flux_cluster_branch: develop
-  flux_apps_branch: develop
-  logday_branch: develop
   kubernetes_cluster_domain: k8s.staging.h4xx.io
   public_host_suffix: -staging
+
+  # Git sources
   logday_repo_secret_name: github-read-logday-staging
   logday_repo_suspend: "false"
+
+  # Auth and ingress
   authelia_access_policy: one_factor
   authelia_oidc_policy: one_factor
   authelia_session_cookie_name: authelia_session_staging
@@ -20,6 +22,8 @@ data:
   cloudflare_tunnel_id: d95750cb-fa84-4e66-8b7c-99c874cb4e43
   cloudflare_tunnel_hostname: d95750cb-fa84-4e66-8b7c-99c874cb4e43.cfargotunnel.com
   cloudflare_tunnel_secret_name: cloudflare-tunnel-credentials-staging
+
+  # Longhorn
   longhorn_suspend: "false"
   longhorn_default_replica_count: "1"
   longhorn_storage_minimal_available_percentage: "4"
@@ -55,10 +59,15 @@ data:
   longhorn_disk_rwx_storage_class_3r_name: staging-longhorn-disk-rwx-3r
   longhorn_backup_target: s3://staging-3vm-longhorn-backups@us-east-1/
   longhorn_backup_target_credential_secret_name: longhorn-backup-target
+
+  # Object storage
   s3_force: "true"
   s3_suspend: "false"
   s3_storage_class_name: staging-longhorn-rwo-1r
   s3_data_size: 50Gi
+  object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
+
+  # Nix cache and builders
   nix_cache_suspend: "false"
   nix_cache_upstream_ip: 10.1.30.25
   attic_suspend: "false"
@@ -72,7 +81,6 @@ data:
   nix_remote_builder_suspend: "false"
   nix_remote_builder_storage_class_name: staging-longhorn-rwo-1r
   nix_remote_builder_nix_store_storage_class_name: staging-longhorn-rwo-1r
-  hydra_suspend: "false"
   hydra_public_url: https://hydra-staging.h4xx.io
   hydra_binary_cache_public_uri: https://attic-staging.h4xx.io/homelab
   hydra_storage_class_name: staging-longhorn-rwo-1r
@@ -84,26 +92,35 @@ data:
   hydra_requests_memory: 2Gi
   hydra_limits_memory: 8Gi
   hydra_nix_substituters: https://attic.h4xx.io/homelab https://attic-testing.h4xx.io/homelab https://cache.nixos.org/
+
+  # Status dashboard
   status_dashboard_suspend: "false"
   status_dashboard_host: staging.h4xx.io
   status_dashboard_title: "Staging Services Status"
   status_dashboard_description: "Public uptime for staging services"
+
+  # Default storage classes
   default_storage_class_name: staging-longhorn-rwo-2r
   default_sts_storage_class_name: staging-longhorn-rwo-1r
+
+  # Valkey
   valkey_storage_class_name: staging-longhorn-rwo-1r
   valkey_replica_enabled: "false"
   valkey_replica_count: "1"
   valkey_min_replicas_to_write: "0"
+
+  # Nextcloud
   nextcloud_app_storage_class_name: staging-longhorn-rwx-2r
   nextcloud_data_storage_class_name: staging-longhorn-rwx-2r
   nextcloud_app_claim_name: nextcloud-app-lh1
   nextcloud_data_claim_name: nextcloud-nextcloud-data-lh2
   nextcloud_data_size: 10Gi
+  nextcloud_postgres_storage_class_name: staging-longhorn-rwo-1r
   nextcloud_postgres_size: 32Gi
-  nextcloud_hpa_enabled: "false"
-  nextcloud_hpa_min_pods: "1"
   nextcloud_hpa_max_pods: "1"
   nextcloud_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
+
+  # Immich
   immich_suspend: "false"
   immich_oidc: authelia
   immich_uploads_storage_class_name: staging-longhorn-rwo-2r
@@ -116,7 +133,6 @@ data:
   immich_redis_storage_class_name: staging-longhorn-rwo-1r
   immich_redis_size: 1Gi
   immich_photos_suspend: "false"
-  immich_photos_secret_name: immich-photos-secrets
   immich_photos_oidc: authelia
   immich_photos_shared_storage_class_name: staging-longhorn-rwx-1r
   immich_photos_uploads_storage_class_name: staging-longhorn-rwo-2r
@@ -124,7 +140,6 @@ data:
   immich_photos_postgres_storage_class_name: staging-longhorn-rwo-1r
   immich_photos_postgres_size: 16Gi
   immich_photos_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
-  immich_photos_postgres_backup_bucket: immich-postgres-backup
   immich_photos_postgres_backup_credential_secret_name: immich-postgres-backup-credentials
   immich_photos_ml_cache_storage_class_name: staging-longhorn-rwo-1r
   immich_photos_ml_cache_size: 2Gi
@@ -148,19 +163,14 @@ data:
   matrix_bridge_storage_class_name: staging-longhorn-rwo-1r
   matrix_bridge_data_size: 1Gi
   matrix_signald_data_size: 1Gi
+
+  # Moonlight
   moonlight_suspend: "false"
   moonlight_config_storage_class_name: staging-longhorn-rwo-1r
   moonlight_config_size: 5Gi
+
+  # Monitoring
   monitoring_storage_class_name: staging-longhorn-rwo-1r
-  nextcloud_postgres_storage_class_name: staging-longhorn-rwo-1r
-  logday_suspend: "false"
-  logday_image_pull_secret_name: logday-ghcr-pull-testing
-  logday_image_pull_policy: Always
-  logday_image_tag: SNAPSHOT-20260531
-  logday_postgres_storage_class_name: staging-longhorn-rwo-1r
-  logday_postgres_size: 10Gi
-  logday_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
-  object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
   monitoring_loki_bucket: staging-loki
   monitoring_mimir_blocks_bucket: staging-mimir-blocks
   monitoring_mimir_alertmanager_bucket: staging-mimir-alertmanager
@@ -174,6 +184,14 @@ data:
   mimir_query_scheduler_replicas: "1"
   tempo_replication_factor: "1"
   tempo_ingester_replicas: "1"
+
+  # LogDay
+  logday_suspend: "false"
+  logday_image_pull_secret_name: logday-ghcr-pull-testing
+  logday_image_pull_policy: Always
+  logday_image_tag: SNAPSHOT-20260531
+  logday_postgres_storage_class_name: staging-longhorn-rwo-1r
+  logday_postgres_backup_endpoint_url: http://storage01.storage.lab.h4xx.io:9000
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization

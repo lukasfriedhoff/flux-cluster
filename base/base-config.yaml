@@ -4,14 +4,16 @@ metadata:
   name: base-config
   namespace: flux-system
 data:
-  # Environment config
+  # Cluster identity
   cluster_environment: "prod"
   cluster_name: "homelab"
 
-  # Domain config
+  # Domains and cluster networking
   kubernetes_cluster_domain: "k8s.lab.h4xx.io"
   delegating_domain: "h4xx.io"
   public_host_suffix: ""
+  k8s_pod_cidr: "10.42.0.0/16"
+  k8s_service_cidr: "10.43.0.0/16"
 
   # Cloudflare Tunnel
   cloudflare_tunnel_id: "03ed4283-aa2e-4781-8236-fd69a38e130a"
@@ -588,8 +590,6 @@ data:
   qbit_manage_dry_run: "True"
   qbit_manage_image_tag: "v4.8.1"
   qbit_manage_suspended: "true"
-  k8s_pod_cidr: "10.42.0.0/16"
-  k8s_service_cidr: "10.43.0.0/16"
 
   # Moonlight Web
   moonlight_suspend: "true"
