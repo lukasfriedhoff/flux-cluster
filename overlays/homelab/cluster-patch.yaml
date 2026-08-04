@@ -54,6 +54,7 @@ data:
   # Keep Nextcloud single-replica while /var/www/html is backed by RWX NFS.
   # Multiple replicas can observe stale app-tree views and serve fatal PHP errors.
   nextcloud_hpa_max_pods: "1"
+  nextcloud_resources_limits_memory: "8Gi"
   nextcloud_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   nextcloud_postgres_backup_generation: g20260616/
   nextcloud_postgres_backup_server_name: nextcloud-postgres-prod-g20260616
