@@ -104,6 +104,20 @@ data:
   matrix_synapse_media_storage_class_name: longhorn-ssd-rwo-1r
   matrix_bridge_storage_class_name: longhorn-ssd-rwo-1r
 
+  # Matrix Authentication Service.
+  # Staged rollout: MAS runs alongside Synapse in read-only mode first, so
+  # nothing about the live legacy login path changes. Flipping to delegated
+  # auth requires, in order: preflight dry-run -> cutover job ->
+  # matrix_auth_mode: delegated + matrix_mas_synapse_kind: synapse_modern +
+  # matrix_mas_compat_host: h4xx.io
+  matrix_mas_suspend: "false"
+  matrix_mas_replicas: "1"
+  matrix_mas_synapse_kind: synapse_read_only
+  matrix_mas_preflight_suspend: "true"
+  matrix_mas_cutover_suspend: "true"
+  matrix_mas_postgres_storage_class_name: longhorn-nvme-rwo-2r
+  matrix_mas_postgres_size: 10Gi
+
   # Media stack
   arr_media_storage_class_name: longhorn-disk-rwx-2r
   arr_media_size: 16T

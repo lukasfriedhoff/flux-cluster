@@ -18,6 +18,9 @@ resources:
   - infra/immich.yaml
   - infra/immich-photos.yaml
   - infra/matrix.yaml
+  - infra/matrix-authentication-service.yaml
+  - infra/matrix-authentication-service-preflight.yaml
+  - infra/matrix-authentication-service-cutover.yaml
   - infra/media.yaml
   # - infra/moonlight-web.yaml
   - infra/collabora.yaml
