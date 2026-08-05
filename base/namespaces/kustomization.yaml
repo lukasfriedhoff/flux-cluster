@@ -4,6 +4,7 @@ resources:
   - immich.yaml
   - immich-photos.yaml
   - matrix.yaml
+  - forgejo.yaml
   - collabora.yaml
   - ceph-csi.yaml
   - longhorn-system.yaml

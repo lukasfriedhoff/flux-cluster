@@ -119,6 +119,13 @@ data:
   matrix_mas_postgres_storage_class_name: longhorn-nvme-rwo-2r
   matrix_mas_postgres_size: 10Gi
 
+  # Forgejo
+  forgejo_suspend: "false"
+  forgejo_data_storage_class_name: longhorn-ssd-rwo-1r
+  forgejo_data_size: 50Gi
+  forgejo_postgres_storage_class_name: longhorn-nvme-rwo-2r
+  forgejo_postgres_size: 20Gi
+
   # Media stack
   arr_media_storage_class_name: longhorn-disk-rwx-2r
   arr_media_size: 16T

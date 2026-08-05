@@ -17,6 +17,7 @@ resources:
   - infra/nextcloud.yaml
   - infra/immich.yaml
   - infra/immich-photos.yaml
+  - infra/forgejo.yaml
   - infra/matrix.yaml
   - infra/matrix-authentication-service.yaml
   - infra/matrix-authentication-service-preflight.yaml
