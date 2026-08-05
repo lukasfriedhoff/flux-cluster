@@ -62,6 +62,9 @@ data:
   nextcloud_external_memes_enabled: "enabled"
   nextcloud_postgres_storage_class_name: longhorn-nvme-rwo-2r
   nextcloud_photos_storage_class_name: longhorn-rwx-1r
+  # Temporary, for diagnosing half-completed writes from the Android app.
+  # Reset to __none__ once the root cause is found.
+  nextcloud_debug_user: 08f11a25-d9f3-487d-8a31-0a15df131ca1
 
   # Shared Nextcloud/Immich folders
   immich_photos_shared_claim_name: immich-photos-nextcloud-shared

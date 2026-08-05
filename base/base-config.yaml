@@ -169,6 +169,10 @@ data:
   nextcloud_postgres_backup_server_name: "nextcloud-postgres"
   nextcloud_postgres_backup_credential_secret_name: "nextcloud-postgres-backup-credentials"
   nextcloud_postgres_size: "20Gi"
+  # Keep a single upload request well inside Cloudflare's ~100s proxy window.
+  nextcloud_max_chunk_size: "10485760"
+  # Set to a user id to get debug-level logging for just that account.
+  nextcloud_debug_user: "__none__"
 
   # Nix binary cache ingress (proxying host nix-serve)
   nix_cache_suspend: "true"
