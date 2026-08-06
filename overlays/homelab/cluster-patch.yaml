@@ -116,7 +116,7 @@ data:
   matrix_mas_suspend: "false"
   matrix_mas_replicas: "1"
   matrix_mas_synapse_kind: synapse_read_only
-  matrix_mas_preflight_suspend: "false"
+  matrix_mas_preflight_suspend: "true"
   matrix_mas_preflight_generation: prod-20260806-2
   matrix_mas_cutover_suspend: "true"
   matrix_mas_postgres_storage_class_name: longhorn-nvme-rwo-2r
