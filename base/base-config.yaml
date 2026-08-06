@@ -500,6 +500,9 @@ data:
   matrix_oidc: "none"
   matrix_oidc_client_id: "matrix-synapse"
   matrix_auth_mode: "legacy"
+  # !!str because kustomize drops the quotes around a bare ${var}; a plain
+  # true would then parse as a boolean and be rejected in a container env.
+  matrix_metrics_enabled: "!!str true"
   matrix_synapse_replicas: "1"
   matrix_synapse_requests_cpu: "250m"
   matrix_synapse_requests_memory: "512Mi"
@@ -693,4 +696,6 @@ data:
   forgejo_postgres_requests_cpu: "100m"
   forgejo_postgres_requests_memory: "256Mi"
   forgejo_postgres_limits_memory: "1Gi"
+  # !!str for the same reason as matrix_metrics_enabled.
+  forgejo_metrics_enabled: "!!str true"
 
