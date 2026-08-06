@@ -5,10 +5,10 @@ resources:
   - infra/longhorn.yaml
   - infra/longhorn-recurringjobs.yaml
   - infra/s3.yaml
-  # - infra/nix-cache.yaml
-  # - infra/attic.yaml
-  # - infra/nix-remote-builder.yaml
-  # - infra/hydra.yaml
+  - infra/nix-cache.yaml
+  - infra/attic.yaml
+  - infra/nix-remote-builder.yaml
+  - infra/hydra.yaml
   - infra/status-dashboard.yaml
   - infra/cert-manager.yaml
   - infra/cnpg.yaml
