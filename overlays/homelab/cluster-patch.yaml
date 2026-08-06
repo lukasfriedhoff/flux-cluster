@@ -113,8 +113,13 @@ data:
   # auth requires, in order: preflight dry-run -> cutover job ->
   # matrix_auth_mode: delegated + matrix_mas_synapse_kind: synapse_modern +
   # matrix_mas_compat_host: h4xx.io
+  # MAINTENANCE: Synapse and MAS are scaled to zero for the syn2mas cutover.
+  # The cutover job refuses to run unless both deployments report
+  # desired=0/ready=0, because it rewrites the auth tables out from under
+  # them. Both go back to 1 in the same change that enables delegated auth.
+  matrix_synapse_replicas: "0"
   matrix_mas_suspend: "false"
-  matrix_mas_replicas: "1"
+  matrix_mas_replicas: "0"
   matrix_mas_synapse_kind: synapse_read_only
   matrix_mas_preflight_suspend: "true"
   matrix_mas_preflight_generation: prod-20260806-2
