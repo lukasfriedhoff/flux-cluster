@@ -131,7 +131,15 @@ data:
 
   # Media stack
   arr_media_storage_class_name: longhorn-disk-rwx-2r
-  arr_media_size: 16T
+  # Held at the volume's real size. The 16T request could never be admitted:
+  # both replicas sit on full 3TB disks, so Longhorn's webhook rejected the
+  # expansion and took the whole media Kustomization down with it. Raise this
+  # only once the volume lives on srv9's 18TB disks.
+  arr_media_size: 3584Gi
+  # Temporarily 3 so Longhorn schedules a replica on srv9, which is the only
+  # node matching the volume's arr-media-v2 node/disk selectors. Drop to 1
+  # after the old srv2/srv8 replicas are removed.
+  arr_media_replica_count: "3"
   jellyfin_gpu_enabled: "true"
   jellyfin_gpu_privileged: "true"
   media_private_trackers_secret_enabled: "true"
