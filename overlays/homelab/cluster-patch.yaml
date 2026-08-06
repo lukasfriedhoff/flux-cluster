@@ -113,17 +113,20 @@ data:
   # auth requires, in order: preflight dry-run -> cutover job ->
   # matrix_auth_mode: delegated + matrix_mas_synapse_kind: synapse_modern +
   # matrix_mas_compat_host: h4xx.io
-  # MAINTENANCE: Synapse and MAS are scaled to zero for the syn2mas cutover.
-  # The cutover job refuses to run unless both deployments report
-  # desired=0/ready=0, because it rewrites the auth tables out from under
-  # them. Both go back to 1 in the same change that enables delegated auth.
-  matrix_synapse_replicas: "0"
+  # Cutover completed 2026-08-06: 39 users, 1 upstream OIDC link, 9 tokens
+  # and 9 devices moved into MAS. Authentication is now delegated, so MAS
+  # owns login and Synapse no longer serves the legacy password/SSO flows.
+  matrix_auth_mode: delegated
+  matrix_synapse_replicas: "1"
   matrix_mas_suspend: "false"
-  matrix_mas_replicas: "0"
-  matrix_mas_synapse_kind: synapse_read_only
+  matrix_mas_replicas: "1"
+  matrix_mas_synapse_kind: synapse_modern
+  # Arms the compat layer: MAS now answers /_matrix/client/*/login|logout|
+  # refresh on the host clients actually discover via /.well-known.
+  matrix_mas_compat_host: h4xx.io
   matrix_mas_preflight_suspend: "true"
   matrix_mas_preflight_generation: prod-20260806-2
-  matrix_mas_cutover_suspend: "false"
+  matrix_mas_cutover_suspend: "true"
   matrix_mas_cutover_generation: prod-20260806-1
   matrix_mas_postgres_storage_class_name: longhorn-nvme-rwo-2r
   matrix_mas_postgres_size: 10Gi
