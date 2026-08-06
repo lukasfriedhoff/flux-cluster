@@ -46,6 +46,11 @@ data:
   nix_remote_builder_suspend: "false"
   nix_remote_builder_external_traffic_policy: Cluster
   hydra_replicas: "1"
+  # Hydra uploaded to Attic but never read from it: the base default lists
+  # only cache.nixos.org, so `nix config show` resolved substituters to
+  # cache.nixos.org three times over while the homelab key sat in
+  # trusted-public-keys unused. Attic first, public cache as the fallback.
+  hydra_nix_substituters: https://attic.h4xx.io/homelab https://cache.nixos.org/
 
   # Status dashboard
   status_dashboard_suspend: "false"
