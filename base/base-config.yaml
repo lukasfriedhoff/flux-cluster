@@ -612,7 +612,7 @@ data:
   arr_media_size: "3Ti"
   # Per-volume replica override for longhorn-replica-policy; empty defers to
   # the storage class.
-  arr_media_replica_count: ""
+  arr_media_replica_count: "!!str "
   arr_downloads_storage_class_name: "longhorn-disk-rwx-1r"
   arr_downloads_size: "500Gi"
   media_private_trackers_secret_enabled: "false"
