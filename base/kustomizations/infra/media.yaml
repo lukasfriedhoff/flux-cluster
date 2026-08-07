@@ -1,3 +1,33 @@
+---
+# Media secrets moved out of the cluster overlay together with the manifests,
+# so the whole stack lives in one private repo. Decryption is unchanged: the
+# sops-age secret in flux-system handles it regardless of source repo.
+#
+# media-app depends on this rather than the overlay's `secrets` Kustomization,
+# because the credentials it needs are no longer in flux-cluster.
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: media-secrets
+  namespace: flux-system
+spec:
+  suspend: ${media_suspend:=false}
+  dependsOn:
+    - name: namespaces
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  interval: 1h0m0s
+  path: ./secrets/${media_secrets_overlay:=homelab}
+  prune: true
+  retryInterval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-app-media
+  timeout: 5m0s
+  wait: true
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -9,6 +39,7 @@ spec:
   dependsOn:
     - name: namespaces
     - name: secrets
+    - name: media-secrets
     - name: traefik-app
     - name: authelia-app
   interval: 1h0m0s
@@ -17,7 +48,7 @@ spec:
   retryInterval: 10m0s
   sourceRef:
     kind: GitRepository
-    name: flux-apps
+    name: flux-app-media
   timeout: 15m0s
   wait: true
   postBuild:

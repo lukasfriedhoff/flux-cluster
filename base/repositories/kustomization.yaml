@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
   - flux-cluster-repo.yaml
   - flux-apps-repo.yaml
+  - flux-app-media-repo.yaml
   - logday-repo.yaml

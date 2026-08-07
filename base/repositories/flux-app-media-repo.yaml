@@ -1,0 +1,16 @@
+---
+# Private repository holding the media stack, split out of flux-apps so that
+# repo can be published. Defaults are inert: clusters that do not run media
+# leave flux_app_media_suspend at true and never resolve this source.
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: flux-app-media
+  namespace: flux-system
+spec:
+  interval: ${flux_gitrepo_interval:=10m0s}
+  ref:
+    branch: ${flux_app_media_branch:=main}
+  secretRef:
+    name: ${flux_app_media_repo_secret_name:=github-deploy-flux-app-media-prod}
+  url: ${flux_app_media_repo_url:=ssh://git@github.com/lukasfriedhoff/flux-app-media.git}
