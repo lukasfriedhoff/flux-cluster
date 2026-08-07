@@ -490,11 +490,16 @@ data:
   matrix_suspend: "true"
   matrix_synapse_image_tag: "latest"
   matrix_element_image_tag: "latest"
-  # Repinned 2026-08-08: upstream pushed a new :latest on 2026-08-07 and garbage
-  # collected the previous digest, so the old pin stopped resolving and the
-  # bridge sat in ImagePullBackOff (1253 attempts). Pinning by digest is still
-  # right — it just has to be refreshed when mau.dev prunes.
-  matrix_whatsapp_image_tag: "latest@sha256:b87af6ade7b35c92d4b48ec86e007152de3cf66cf3428d700e0e5c6f4acb7780"
+  # Was pinned to a :latest digest, which upstream garbage collected on
+  # 2026-08-07 — the bridge then sat in ImagePullBackOff for ~5h (1253 pull
+  # attempts) and kept matrix-app from going ready. Repinning to the current
+  # :latest only traded that for a crash loop: the dev build runs WhatsApp's
+  # LID identity migration and aborts with "failed to re-ID ...".
+  #
+  # A dated release tag is the right pin for a bridge holding migration state.
+  # :latest is a moving dev build, so it both disappears and ships unfinished
+  # migrations.
+  matrix_whatsapp_image_tag: "v26.07@sha256:716cb6e6b59b1710bde0b7740e295aa889fef6494a8efcd4ad02ea1965293eaf"
   matrix_telegram_image_tag: "latest"
   matrix_signal_image_tag: "latest"
   matrix_signald_image_tag: "latest"
