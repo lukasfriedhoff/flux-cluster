@@ -490,7 +490,11 @@ data:
   matrix_suspend: "true"
   matrix_synapse_image_tag: "latest"
   matrix_element_image_tag: "latest"
-  matrix_whatsapp_image_tag: "latest@sha256:f69d45a49b81d822b7d30372615ee2403f2bee21cfbe48d6f81df677e371e64f"
+  # Repinned 2026-08-08: upstream pushed a new :latest on 2026-08-07 and garbage
+  # collected the previous digest, so the old pin stopped resolving and the
+  # bridge sat in ImagePullBackOff (1253 attempts). Pinning by digest is still
+  # right — it just has to be refreshed when mau.dev prunes.
+  matrix_whatsapp_image_tag: "latest@sha256:b87af6ade7b35c92d4b48ec86e007152de3cf66cf3428d700e0e5c6f4acb7780"
   matrix_telegram_image_tag: "latest"
   matrix_signal_image_tag: "latest"
   matrix_signald_image_tag: "latest"
