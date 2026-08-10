@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: base-config
+  namespace: flux-system
+data:
+  cluster_environment: testingrke2
+  cluster_name: testingrke2
+  kubernetes_cluster_domain: k8s.testingrke2.h4xx.io
+  public_host_suffix: -testingrke2
+  authelia_session_cookie_name: authelia_session_testingrke2
+  external_dns_txt_owner_id: testingrke2
+
+  # This cluster is a local VM validation environment. It must not compete with
+  # testing-srv3 for public DNS records or the shared Cloudflare tunnel.
+  cloudflared_suspend: "true"
+  external_dns_suspend: "true"
+  status_dashboard_host: testingrke2.h4xx.io
+  status_dashboard_title: "Testing RKE2 Services Status"
+  status_dashboard_description: "Local RKE2 migration validation environment"
+
+  # Keep storage active, but isolate backup object names from testing-srv3.
+  longhorn_backup_target: s3://testingrke2-longhorn-backups@us-east-1/
+  attic_postgres_backup_generation: g20260727-testingrke2/
+  attic_postgres_backup_server_name: attic-postgres-testingrke2-g20260727
+  hydra_postgres_backup_generation: g20260727-testingrke2/
+  hydra_postgres_backup_server_name: hydra-postgres-testingrke2-g20260727
+  nextcloud_postgres_backup_generation: g20260727-testingrke2/
+  nextcloud_postgres_backup_server_name: nextcloud-postgres-testingrke2-g20260727
+  immich_postgres_backup_generation: g20260727-testingrke2/
+  immich_postgres_backup_server_name: immich-postgres-testingrke2-g20260727
+  immich_photos_postgres_backup_generation: g20260727-testingrke2/
+  immich_photos_postgres_backup_server_name: immich-photos-postgres-testingrke2-g20260727
+  logday_postgres_backup_generation: g20260727-testingrke2/
+  logday_postgres_backup_server_name: logday-postgres-testingrke2-g20260727
+  matrix_synapsedb_backup_generation: g20260727-testingrke2/
+  matrix_synapsedb_backup_server_name: synapsedb-testingrke2-g20260727
+  matrix_whatsappdb_backup_generation: g20260727-testingrke2/
+  matrix_whatsappdb_backup_server_name: whatsappdb-testingrke2-g20260727
+  matrix_wadb_backup_generation: g20260727-testingrke2/
+  matrix_wadb_backup_server_name: wadb-testingrke2-g20260727
+  matrix_telegramdb_backup_generation: g20260727-testingrke2/
+  matrix_telegramdb_backup_server_name: telegramdb-testingrke2-g20260727
+  matrix_signaldbprivate_backup_generation: g20260727-testingrke2/
+  matrix_signaldbprivate_backup_server_name: signaldbprivate-testingrke2-g20260727
+
+  # The overlay inherits the testing application set. These workloads either
+  # consume too much of the laptop lab or need cluster-specific OIDC/NFS/cache
+  # secrets, so they remain defined but suspended for the first bootstrap.
+  media_suspend: "true"
+  nix_cache_suspend: "true"
+  attic_suspend: "true"
+  nix_remote_builder_suspend: "true"
+  hydra_suspend: "true"
+  navigation_suspend: "true"
+  moonlight_suspend: "true"
+  nextcloud_suspend: "true"
+  immich_suspend: "true"
+  immich_photos_suspend: "true"
+  logday_suspend: "true"
+  matrix_suspend: "true"
+  forgejo_suspend: "true"
+
+  attic_public_url: https://attic-testingrke2.h4xx.io/
+  attic_api_endpoint: https://attic-testingrke2.h4xx.io/
+  hydra_public_url: https://hydra-testingrke2.h4xx.io
+  hydra_binary_cache_public_uri: https://attic-testingrke2.h4xx.io/homelab
+  nextcloud_external_photos_enabled: disabled
+  nextcloud_external_photos_url: https://photos-testingrke2.h4xx.io
+  nextcloud_external_memes_enabled: disabled
+  nextcloud_external_memes_url: https://meme-testingrke2.h4xx.io
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: kustomizations
+  namespace: flux-system
+spec:
+  path: ./overlays/testingrke2/kustomizations/
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: namespaces
+  namespace: flux-system
+spec:
+  path: ./overlays/testingrke2/namespaces/

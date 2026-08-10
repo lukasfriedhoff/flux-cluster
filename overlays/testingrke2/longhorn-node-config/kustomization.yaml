@@ -1,0 +1,7 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: longhorn-system
+resources:
+  - node-testingrke2-01.yaml
+  - node-testingrke2-02.yaml
+  - node-testingrke2-03.yaml

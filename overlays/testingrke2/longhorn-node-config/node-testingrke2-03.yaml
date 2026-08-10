@@ -1,0 +1,15 @@
+apiVersion: longhorn.io/v1beta2
+kind: Node
+metadata:
+  name: testingrke2-03
+  namespace: longhorn-system
+spec:
+  disks:
+    longhorn-ssd:
+      path: /var/lib/longhorn-disk1
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
+      tags:
+        - ssd
+        - disk
