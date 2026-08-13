@@ -141,6 +141,74 @@ data:
           scrape_interval = "30s"
           scrape_timeout = "10s"
         }
+
+        // Attic exposes no metrics at all: its server crate has no prometheus,
+        // metrics or OpenTelemetry code. nix-remote-builder is a bare sshd with
+        // nothing to scrape either. Both were previously represented on the
+        // nix-build-pipeline dashboard by kube_deployment_status_replicas_available,
+        // which only says a pod exists — a wedged Attic that accepts no
+        // connections still reads as healthy. Blackbox probes answer the
+        // question that actually matters: does it respond?
+        //
+        // Hydra is probed as well even though it does export metrics, because
+        // its exporter and its web server are separate listeners; the queue
+        // runner can be up while the UI is unreachable.
+        prometheus.exporter.blackbox "nix_pipeline" {
+          config = "{ modules: { http_2xx: { prober: http, timeout: 5s }, tcp_connect: { prober: tcp, timeout: 5s } } }"
+
+          target {
+            name    = "attic"
+            address = "http://attic.nix-cache.svc.cluster.local:8080/"
+            module  = "http_2xx"
+            labels  = {
+              component = "nix-pipeline",
+              service   = "attic",
+            }
+          }
+
+          target {
+            name    = "hydra"
+            address = "http://hydra.nix-cache.svc.cluster.local:3000/"
+            module  = "http_2xx"
+            labels  = {
+              component = "nix-pipeline",
+              service   = "hydra",
+            }
+          }
+
+          target {
+            name    = "nix-remote-builder"
+            address = "nix-remote-builder.nix-cache.svc.cluster.local:22"
+            module  = "tcp_connect"
+            labels  = {
+              component = "nix-pipeline",
+              service   = "nix-remote-builder",
+            }
+          }
+        }
+
+        discovery.relabel "nix_pipeline_blackbox" {
+          targets = prometheus.exporter.blackbox.nix_pipeline.targets
+
+          rule {
+            action = "replace"
+            target_label = "cluster"
+            replacement = "${cluster_name}"
+          }
+
+          rule {
+            action = "replace"
+            target_label = "namespace"
+            replacement = "nix-cache"
+          }
+        }
+
+        prometheus.scrape "nix_pipeline_blackbox" {
+          targets = discovery.relabel.nix_pipeline_blackbox.output
+          forward_to = [prometheus.remote_write.mimir.receiver]
+          scrape_interval = "60s"
+          scrape_timeout = "20s"
+        }
     alloy-logs:
       enabled: true
     alloy-singleton:
