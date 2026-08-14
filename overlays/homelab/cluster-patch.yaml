@@ -51,6 +51,9 @@ data:
   # cache.nixos.org three times over while the homelab key sat in
   # trusted-public-keys unused. Attic first, public cache as the fallback.
   hydra_nix_substituters: https://attic.h4xx.io/homelab https://cache.nixos.org/
+  hydra_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
+  hydra_postgres_backup_generation: g20260814/
+  hydra_postgres_backup_server_name: hydra-postgres-prod-g20260814
 
   # Status dashboard
   status_dashboard_suspend: "false"
@@ -142,6 +145,9 @@ data:
   forgejo_data_size: 50Gi
   forgejo_postgres_storage_class_name: longhorn-nvme-rwo-2r
   forgejo_postgres_size: 20Gi
+  forgejo_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
+  forgejo_postgres_backup_generation: g20260814/
+  forgejo_postgres_backup_server_name: forgejo-postgres-prod-g20260814
 
   # Media stack
   arr_media_storage_class_name: longhorn-disk-rwx-2r
