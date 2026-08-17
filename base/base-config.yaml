@@ -293,7 +293,7 @@ data:
   hydra_min_spare_servers: "1"
   hydra_max_spare_servers: "2"
   hydra_evaluator_max_memory_size: "4096"
-  hydra_max_output_size: "4294967296"
+  hydra_max_output_size: "12884901888"
   hydra_nix_substituters: "https://cache.nixos.org/"
   hydra_nix_trusted_public_keys: "homelab:KFrqDSi76JxQ7V7R6j5PGM+T9Nk/2A/+CLmp5/G76Hg= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
   hydra_postgres_cluster_name: "hydra-postgres"
