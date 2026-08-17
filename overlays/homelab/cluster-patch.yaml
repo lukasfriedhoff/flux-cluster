@@ -58,10 +58,6 @@ data:
   # Status dashboard
   status_dashboard_suspend: "false"
 
-  # Traefik: LAN entry point on node IPs (svclb) for split-horizon DNS.
-  # LAN resolver should point *.h4xx.io at 10.1.30.26 (srv2).
-  traefik_service_type: "LoadBalancer"
-
   # Nextcloud
   # HA: 2+ replicas over RWX NFS. History: multiple replicas once observed
   # stale app-tree views (/var/www/html over NFS) and served fatal PHP
