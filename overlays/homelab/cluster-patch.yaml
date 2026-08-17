@@ -59,9 +59,17 @@ data:
   status_dashboard_suspend: "false"
 
   # Nextcloud
-  # Keep Nextcloud single-replica while /var/www/html is backed by RWX NFS.
-  # Multiple replicas can observe stale app-tree views and serve fatal PHP errors.
-  nextcloud_hpa_max_pods: "1"
+  # HA: 2+ replicas over RWX NFS. History: multiple replicas once observed
+  # stale app-tree views (/var/www/html over NFS) and served fatal PHP
+  # errors. That failure mode concentrates around app installs/updates and
+  # version bumps, so ANY change that writes the app tree must be done at a
+  # single replica: set min/max to 1, change, then scale back up. If stale
+  # app-tree errors reappear in steady state, revert to max_pods "1".
+  nextcloud_hpa_enabled: "true"
+  nextcloud_hpa_min_pods: "2"
+  nextcloud_hpa_max_pods: "3"
+  nextcloud_pdb_min_available: "1"
+  nextcloud_postgres_instances: "2"
   nextcloud_resources_limits_memory: "8Gi"
   nextcloud_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   nextcloud_postgres_backup_generation: g20260616/
