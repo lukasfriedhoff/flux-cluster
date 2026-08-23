@@ -20,6 +20,8 @@ spec:
   suspend: ${icarus_suspend:=true}
   wait: true
   postBuild:
+    substitute:
+      quote: '"'
     substituteFrom:
       - kind: ConfigMap
         name: base-config
