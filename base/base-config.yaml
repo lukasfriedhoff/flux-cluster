@@ -758,4 +758,4 @@ data:
   icarus_backup_keep_weekly: "8"
   icarus_olivetin_image: "ghcr.io/olivetin/olivetin:2025.11.13"
   icarus_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.44.0"
-  icarus_kubectl_image: "registry.k8s.io/kubectl:v1.35.0"
+  icarus_kubectl_image: "docker.io/alpine/k8s:1.34.1"
