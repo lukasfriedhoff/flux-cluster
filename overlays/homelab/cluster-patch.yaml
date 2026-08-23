@@ -159,11 +159,11 @@ data:
 
   # Media stack
   arr_media_storage_class_name: longhorn-disk-rwx-2r
-  # Held at the volume's real size. The 16T request could never be admitted:
-  # both replicas sit on full 3TB disks, so Longhorn's webhook rejected the
-  # expansion and took the whole media Kustomization down with it. Raise this
-  # only once the volume lives on srv9's 18TB disks.
-  arr_media_size: 3584Gi
+  # Both replicas moved to srv9's 18TB disks (arr-media-v2 node/disk
+  # selectors) on 2026-08-23, which is what earlier expansion attempts were
+  # missing — a legacy replica on a full 3TB disk made Longhorn's webhook
+  # reject any growth.
+  arr_media_size: 8Ti
   # Temporarily 3 so Longhorn schedules a replica on srv9, which is the only
   # node matching the volume's arr-media-v2 node/disk selectors. Drop to 1
   # after the old srv2/srv8 replicas are removed.
