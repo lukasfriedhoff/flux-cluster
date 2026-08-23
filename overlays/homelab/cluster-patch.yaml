@@ -185,3 +185,9 @@ data:
 
   # Moonlight
   moonlight_suspend: "false"
+
+  # Icarus dedicated server (image imported node-locally on srv9; see
+  # flux-apps/apps/icarus). Suspended by default in base; live here.
+  icarus_suspend: "false"
+  icarus_node: "srv9"
+  icarus_server_name: "h4xx Icarus"
