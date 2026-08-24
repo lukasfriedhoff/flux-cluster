@@ -29,6 +29,7 @@ resources:
   - infra/traefik.yaml
   - infra/traefik-resources.yaml
   - infra/coredns.yaml
+  - infra/coredns-ha.yaml
   - infra/cloudflared.yaml
   - infra/external-dns.yaml
   - infra/authelia.yaml

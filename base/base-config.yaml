@@ -26,6 +26,13 @@ data:
   flux_cluster_repo_url: "https://github.com/lukasfriedhoff/flux-cluster.git"
   flux_cluster_repo_secret_name: "github-read-flux-cluster"
   flux_apps_branch: "develop"
+  # Ingress-path HA: replica counts enforced with hard node anti-affinity
+  # (cloudflared/traefik) and an HPA floor for the k3s-bundled coredns.
+  # Single-node clusters must set these to "1".
+  cloudflared_replicas: "2"
+  traefik_replicas: "2"
+  coredns_min_replicas: "2"
+  coredns_max_replicas: "3"
   flux_apps_repo_url: "https://github.com/lukasfriedhoff/flux-apps.git"
   flux_apps_repo_secret_name: "github-read-flux-apps"
   logday_branch: "develop"
