@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  name: base-config
+  namespace: flux-system
+data:
   # mimir-distributor OOM-looped at 2Gi replaying post-outage WAL backlogs
   # (2026-08-25); doubled.
   mimir_distributor_requests_memory: "1Gi"
   mimir_distributor_limits_memory: "4Gi"
-  name: base-config
-  namespace: flux-system
-data:
   # Git sources
   flux_cluster_branch: main
   flux_cluster_repo_url: ssh://git@github.com/lukasfriedhoff/flux-cluster.git
