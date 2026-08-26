@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":semanticCommits", ":disableRateLimiting"],
+  "labels": ["renovate"],
+  "kubernetes": {
+    "managerFilePatterns": ["/(base|overlays)/.+\\.ya?ml$/"]
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Image tag variables in base-config/cluster-patch, annotated with '# renovate: datasource=... depName=...' comments on the preceding line",
+      "managerFilePatterns": ["/base/base-config\\.ya?ml$/", "/overlays/.+/cluster-patch\\.ya?ml$/"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-]+) depName=(?<depName>[^\\s]+)\\s+\\n\\s+[a-z0-9_]+: [\"']?(?<currentValue>[^\\s\"']+)[\"']?"
+      ]
+    }
+  ]
+}
