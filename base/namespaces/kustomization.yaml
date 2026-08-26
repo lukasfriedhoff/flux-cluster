@@ -23,3 +23,7 @@ resources:
   - object-storage.yaml
   - nix-cache.yaml
   - status-dashboard.yaml
+  - reflector.yaml
+  - backrest.yaml
+  - coturn.yaml
+  - home-automation.yaml
