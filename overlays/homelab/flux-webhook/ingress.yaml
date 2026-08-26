@@ -1,0 +1,26 @@
+# Public endpoint for GitHub webhooks. Deliberately no authelia forwardauth:
+# GitHub cannot authenticate interactively; the receiver validates the HMAC
+# signature (X-Hub-Signature) against flux-webhook-token instead, and the
+# path itself contains an unguessable token digest.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flux-webhook
+  namespace: flux-system
+  annotations:
+    external-dns.alpha.kubernetes.io/target: ${cloudflare_tunnel_hostname}
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: flux-webhook${public_host_suffix}.${delegating_domain}
+      http:
+        paths:
+          - path: /hook/
+            pathType: Prefix
+            backend:
+              service:
+                name: webhook-receiver
+                port:
+                  number: 80

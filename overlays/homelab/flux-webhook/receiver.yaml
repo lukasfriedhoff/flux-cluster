@@ -1,0 +1,30 @@
+# Push-driven reconciliation: GitHub webhooks hit this receiver and Flux
+# fetches immediately; the interval-based polling stays as drift fallback.
+apiVersion: notification.toolkit.fluxcd.io/v1
+kind: Receiver
+metadata:
+  name: github-push
+  namespace: flux-system
+spec:
+  type: github
+  events:
+    - push
+  secretRef:
+    name: flux-webhook-token
+  resources:
+    - apiVersion: source.toolkit.fluxcd.io/v1
+      kind: GitRepository
+      name: flux-cluster
+      namespace: flux-system
+    - apiVersion: source.toolkit.fluxcd.io/v1
+      kind: GitRepository
+      name: flux-apps
+      namespace: flux-system
+    - apiVersion: source.toolkit.fluxcd.io/v1
+      kind: GitRepository
+      name: flux-app-media
+      namespace: flux-system
+    - apiVersion: source.toolkit.fluxcd.io/v1
+      kind: GitRepository
+      name: logday
+      namespace: flux-system
