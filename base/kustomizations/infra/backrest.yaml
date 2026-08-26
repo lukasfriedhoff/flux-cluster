@@ -1,0 +1,26 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: backrest-app
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: namespaces
+    - name: longhorn-app
+    - name: traefik-app
+    - name: authelia-app
+  interval: 1h0m0s
+  path: ./apps/backrest
+  prune: true
+  retryInterval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-apps
+  suspend: ${backrest_suspend:=true}
+  wait: true
+  postBuild:
+    substitute:
+      quote: '"'
+    substituteFrom:
+      - kind: ConfigMap
+        name: base-config

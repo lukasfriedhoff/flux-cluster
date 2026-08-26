@@ -35,4 +35,8 @@ resources:
   - infra/authelia.yaml
   # - infra/logday.yaml
   - infra/reloader.yaml
+  - infra/reflector.yaml
+  - infra/backrest.yaml
+  - infra/coturn.yaml
+  - infra/home-automation.yaml
   - infra/monitoring.yaml
