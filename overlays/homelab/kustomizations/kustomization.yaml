@@ -4,7 +4,6 @@ resources:
   - ../../../base/kustomizations/
   - longhorn-node-config.yaml
   - longhorn-replica-policy.yaml
-  - flux-webhook.yaml
 patches:
   - target:
       kind: Kustomization
