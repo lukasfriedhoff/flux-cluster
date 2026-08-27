@@ -522,10 +522,10 @@ data:
   # migrations.
   # renovate: datasource=docker depName=dock.mau.dev/mautrix/whatsapp
   matrix_whatsapp_image_tag: "v26.07@sha256:716cb6e6b59b1710bde0b7740e295aa889fef6494a8efcd4ad02ea1965293eaf"
-  # renovate: datasource=docker depName=dock.mau.dev/mautrix/telegram
-  matrix_telegram_image_tag: "latest@sha256:936089fd78c6eb159a2f0bfe3e99d974de0b73475c5102bd6c6021003325e512"
-  # renovate: datasource=docker depName=dock.mau.dev/mautrix/signal
-  matrix_signal_image_tag: "latest@sha256:4d26ad3e2bcdf46cf82795aabc318967850dd3f3da4423ffa0766032ee1ed8a5"
+  # dock.mau.dev garbage-collects old manifests: digest pins break pulls.
+  # Proper pinning needs these mirrored into the forgejo registry first.
+  matrix_telegram_image_tag: "latest"
+  matrix_signal_image_tag: "latest"
   # renovate: datasource=docker depName=docker.io/signald/signald
   matrix_signald_image_tag: "latest@sha256:edbff058278cfb9b6ecb5763c9fa1a77bbe8d961ee1787a8524d81f2858c1390"
   matrix_server_name: "matrix.h4xx.io"
