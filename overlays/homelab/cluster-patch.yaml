@@ -195,7 +195,6 @@ data:
   icarus_suspend: "false"
   reflector_suspend: "false"
   backrest_suspend: "false"
-  # coturn stays suspended until coturn_public_hostname is set (manualToDo)
   home_automation_suspend: "false"
   icarus_node: "srv9"
   icarus_server_name: "h4xx Icarus"
