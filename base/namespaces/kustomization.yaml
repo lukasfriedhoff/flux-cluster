@@ -25,5 +25,4 @@ resources:
   - status-dashboard.yaml
   - reflector.yaml
   - backrest.yaml
-  - coturn.yaml
   - home-automation.yaml
