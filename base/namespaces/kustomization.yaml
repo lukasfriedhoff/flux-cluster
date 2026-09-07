@@ -24,5 +24,6 @@ resources:
   - nix-cache.yaml
   - status-dashboard.yaml
   - reflector.yaml
+  - obsidian-livesync.yaml
   - backrest.yaml
   - home-automation.yaml

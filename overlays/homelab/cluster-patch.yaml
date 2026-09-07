@@ -194,6 +194,7 @@ data:
   # flux-apps/apps/icarus). Suspended by default in base; live here.
   icarus_suspend: "false"
   reflector_suspend: "false"
+  obsidian_livesync_suspend: "false"
   backrest_suspend: "false"
   home_automation_suspend: "false"
   icarus_node: "srv9"

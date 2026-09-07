@@ -743,6 +743,11 @@ data:
   # Icarus dedicated server
   icarus_suspend: "true"
   reflector_suspend: "true"
+  obsidian_livesync_suspend: "true"
+  obsidian_couchdb_image: "docker.io/library/couchdb:3.5.2"
+  obsidian_storage_class: "longhorn-ssd-rwo-2r"
+  obsidian_data_size: "10Gi"
+  obsidian_secret_name: "couchdb-admin"
   backrest_suspend: "true"
   backrest_image: "docker.io/garethgeorge/backrest:v1.14.1-alpine"
   backrest_storage_class: "longhorn-ssd-rwo-1r"
