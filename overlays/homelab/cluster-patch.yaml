@@ -81,7 +81,11 @@ data:
   hydra_postgres_instances: "3"
   forgejo_postgres_instances: "3"
   matrix_mas_postgres_instances: "3"
-  matrix_postgres_instances: "3"
+  # Temporarily reverted to 1: scaling synapsedb 1->3 collided with a Longhorn
+  # volume disruption on the primary, aborting the replica pg_basebackup and
+  # leaving a dangling PVC with no primary (Matrix outage 2026-09-10). Recover
+  # the single primary first, then re-approach HA one matrix DB at a time.
+  matrix_postgres_instances: "1"
   authelia_postgres_instances: "3"
   immich_postgres_instances: "3"
   immich_photos_postgres_instances: "3"
