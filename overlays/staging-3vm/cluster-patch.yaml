@@ -162,7 +162,6 @@ data:
   matrix_synapse_media_size: 5Gi
   matrix_bridge_storage_class_name: staging-longhorn-rwo-1r
   matrix_bridge_data_size: 1Gi
-  matrix_signald_data_size: 1Gi
 
   # Moonlight
   moonlight_suspend: "false"

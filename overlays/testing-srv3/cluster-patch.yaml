@@ -172,7 +172,6 @@ data:
   matrix_synapse_media_storage_class_name: testing-longhorn-rwo-1r
   matrix_bridge_storage_class_name: testing-longhorn-ssd-rwo-1r
   matrix_bridge_data_size: 1Gi
-  matrix_signald_data_size: 1Gi
 
   # Moonlight
   moonlight_suspend: "false"
