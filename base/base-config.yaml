@@ -509,7 +509,9 @@ data:
 
   # Matrix + bridges
   matrix_suspend: "true"
-  matrix_synapse_image_tag: "latest"
+  # Digest-pinned (was bare "latest"): a moved :latest digest + Always pull
+  # policy ImagePullBackOff'd the homeserver on 2026-09-10. Bump via Renovate.
+  matrix_synapse_image_tag: "latest@sha256:18db676dd9f1a053edcf3033a78daeff035b773d58e5bc68802e379947332302"
   matrix_element_image_tag: "latest"
   # Was pinned to a :latest digest, which upstream garbage collected on
   # 2026-08-07 — the bridge then sat in ImagePullBackOff for ~5h (1253 pull
