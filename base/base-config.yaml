@@ -591,6 +591,11 @@ data:
   matrix_mas_postgres_user: "mas"
   matrix_mas_postgres_database: "mas"
   matrix_mas_postgres_instances: "1"
+  # CNPG instance counts (default 1; prod overlay raises these to 3 for HA).
+  matrix_postgres_instances: "1"
+  authelia_postgres_instances: "1"
+  immich_postgres_instances: "1"
+  immich_photos_postgres_instances: "1"
   matrix_mas_postgres_storage_class_name: "longhorn-rwo-1r"
   matrix_mas_postgres_size: "10Gi"
   matrix_mas_postgres_requests_cpu: "100m"

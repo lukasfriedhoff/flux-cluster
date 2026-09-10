@@ -73,7 +73,18 @@ data:
   nextcloud_hpa_min_pods: "2"
   nextcloud_hpa_max_pods: "3"
   nextcloud_pdb_min_available: "1"
-  nextcloud_postgres_instances: "2"
+  # Postgres HA: all prod CNPG databases run 3 instances (streaming replication
+  # + automatic failover), so a node/volume blip fails over in seconds instead
+  # of waiting on a Longhorn re-attach (see the 2026-09-10 synapsedb incident).
+  nextcloud_postgres_instances: "3"
+  attic_postgres_instances: "3"
+  hydra_postgres_instances: "3"
+  forgejo_postgres_instances: "3"
+  matrix_mas_postgres_instances: "3"
+  matrix_postgres_instances: "3"
+  authelia_postgres_instances: "3"
+  immich_postgres_instances: "3"
+  immich_photos_postgres_instances: "3"
   nextcloud_resources_limits_memory: "8Gi"
   nextcloud_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   nextcloud_postgres_backup_generation: g20260616/
