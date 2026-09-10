@@ -748,6 +748,16 @@ data:
   obsidian_storage_class: "longhorn-ssd-rwo-2r"
   obsidian_data_size: "10Gi"
   obsidian_secret_name: "couchdb-admin"
+  # LLDAP (LDAP user store + web UI, backing Authelia's LDAP backend)
+  lldap_suspend: "true"
+  # renovate: datasource=docker depName=docker.io/lldap/lldap
+  lldap_image_tag: "stable"
+  lldap_base_dn: "dc=example,dc=com"
+  lldap_admin_email: "admin@example.com"
+  lldap_secret_name: "lldap-secrets"
+  lldap_postgres_instances: "3"
+  lldap_postgres_storage_class_name: "longhorn-disk-rwo-1r"
+  lldap_postgres_size: "2Gi"
   backrest_suspend: "true"
   backrest_image: "docker.io/garethgeorge/backrest:v1.14.1-alpine"
   backrest_storage_class: "longhorn-ssd-rwo-1r"
