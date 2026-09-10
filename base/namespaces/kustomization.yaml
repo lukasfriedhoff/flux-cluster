@@ -25,5 +25,6 @@ resources:
   - status-dashboard.yaml
   - reflector.yaml
   - obsidian-livesync.yaml
+  - lldap.yaml
   - backrest.yaml
   - home-automation.yaml
