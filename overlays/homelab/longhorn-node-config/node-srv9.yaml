@@ -48,7 +48,10 @@ spec:
       tags:
         - disk
         - arr-media-v2
-    # ~800GB SAS SSDs.
+    # ~800GB SAS SSDs. Also tagged `nvme` so the fast DB storage class
+    # (longhorn-nvme-rwo-2r, diskSelector=nvme) schedules onto genuine flash
+    # here instead of the USB-backed SSDs on srv2/srv8 (measured ~10ms/12MB/s
+    # vs 0.19ms/692MB/s here — 2026-09-10).
     longhorn-ssd-800gb-a:
       path: /var/lib/longhorn-disk5
       allowScheduling: true
@@ -56,6 +59,7 @@ spec:
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
         - ssd
+        - nvme
     longhorn-ssd-800gb-b:
       path: /var/lib/longhorn-disk6
       allowScheduling: true
@@ -63,6 +67,7 @@ spec:
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
         - ssd
+        - nvme
     longhorn-ssd-800gb-c:
       path: /var/lib/longhorn-disk7
       allowScheduling: true
@@ -70,3 +75,4 @@ spec:
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
         - ssd
+        - nvme
