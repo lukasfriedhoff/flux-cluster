@@ -526,8 +526,6 @@ data:
   # Proper pinning needs these mirrored into the forgejo registry first.
   matrix_telegram_image_tag: "latest"
   matrix_signal_image_tag: "latest"
-  # renovate: datasource=docker depName=docker.io/signald/signald
-  matrix_signald_image_tag: "latest@sha256:edbff058278cfb9b6ecb5763c9fa1a77bbe8d961ee1787a8524d81f2858c1390"
   matrix_server_name: "matrix.h4xx.io"
   matrix_public_hostname: "matrix.h4xx.io"
   matrix_public_baseurl: "https://matrix.h4xx.io"
@@ -546,10 +544,6 @@ data:
   matrix_bridge_requests_memory: "256Mi"
   matrix_bridge_limits_cpu: "1000m"
   matrix_bridge_limits_memory: "1Gi"
-  matrix_signald_requests_cpu: "100m"
-  matrix_signald_requests_memory: "256Mi"
-  matrix_signald_limits_cpu: "1000m"
-  matrix_signald_limits_memory: "1Gi"
   matrix_postgres_requests_cpu: "100m"
   matrix_postgres_requests_memory: "256Mi"
   matrix_postgres_limits_cpu: "1000m"
@@ -576,7 +570,6 @@ data:
   matrix_synapse_media_size: "100Gi"
   matrix_bridge_storage_class_name: "longhorn-rwo-1r"
   matrix_bridge_data_size: "20Gi"
-  matrix_signald_data_size: "20Gi"
 
   # Matrix Authentication Service (MSC3861 native OIDC)
   matrix_mas_suspend: "true"
