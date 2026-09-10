@@ -86,6 +86,8 @@ data:
   # leaving a dangling PVC with no primary (Matrix outage 2026-09-10). Recover
   # the single primary first, then re-approach HA one matrix DB at a time.
   matrix_postgres_instances: "1"
+  # HA rollout, one DB at a time (post-incident): synapsedb first, solo.
+  matrix_synapse_postgres_instances: "3"
   authelia_postgres_instances: "3"
   immich_postgres_instances: "3"
   immich_photos_postgres_instances: "3"
