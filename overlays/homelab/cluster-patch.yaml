@@ -158,7 +158,7 @@ data:
   matrix_auth_mode: delegated
   matrix_synapse_replicas: "1"
   matrix_mas_suspend: "false"
-  matrix_mas_replicas: "1"
+  matrix_mas_replicas: "3"
   matrix_mas_synapse_kind: synapse_modern
   # Arms the compat layer: MAS now answers /_matrix/client/*/login|logout|
   # refresh on the host clients actually discover via /.well-known.
