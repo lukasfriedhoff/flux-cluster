@@ -217,6 +217,9 @@ data:
   lldap_suspend: "false"
   lldap_base_dn: "dc=h4xx,dc=io"
   lldap_admin_email: "admin@h4xx.io"
+  lldap_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
+  lldap_postgres_backup_generation: g20260801/
+  lldap_postgres_backup_server_name: lldap-postgres-prod-g20260801
   backrest_suspend: "false"
   home_automation_suspend: "false"
   icarus_node: "srv9"
