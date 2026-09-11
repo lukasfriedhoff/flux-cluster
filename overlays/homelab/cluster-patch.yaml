@@ -71,7 +71,7 @@ data:
   # app-tree errors reappear in steady state, revert to max_pods "1".
   nextcloud_hpa_enabled: "true"
   nextcloud_hpa_min_pods: "3"
-  nextcloud_hpa_max_pods: "3"
+  nextcloud_hpa_max_pods: "9"
   nextcloud_pdb_min_available: "1"
   # Postgres HA: all prod CNPG databases run 3 instances (streaming replication
   # + automatic failover), so a node/volume blip fails over in seconds instead
