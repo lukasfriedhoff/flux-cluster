@@ -209,6 +209,19 @@ data:
           scrape_interval = "60s"
           scrape_timeout = "20s"
         }
+
+        // storage01: external backup host (MinIO on docker). Scrape node + SMART
+        // exporters. This host was previously UNMONITORED, so a FAILED disk (sdi)
+        // and a MinIO OOM crash-loop went unnoticed for ~6 weeks.
+        prometheus.scrape "storage01_host" {
+          targets = [
+            { "__address__" = "10.1.40.244:9100", "job" = "node-exporter", "instance" = "storage01", "cluster" = "homelab" },
+            { "__address__" = "10.1.40.244:9633", "job" = "smartctl-exporter", "instance" = "storage01", "cluster" = "homelab" },
+          ]
+          forward_to = [prometheus.remote_write.mimir.receiver]
+          scrape_interval = "30s"
+          scrape_timeout  = "10s"
+        }
     alloy-logs:
       enabled: true
     alloy-singleton:
