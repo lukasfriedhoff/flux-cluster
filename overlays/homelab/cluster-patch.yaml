@@ -69,6 +69,12 @@ data:
   # version bumps, so ANY change that writes the app tree must be done at a
   # single replica: set min/max to 1, change, then scale back up. If stale
   # app-tree errors reappear in steady state, revert to max_pods "1".
+  # 2Ti data volume cutover (2026-09-12): moved off the 500Gi SSD RWX claim
+  # onto the pre-synced HDD 2-replica volume. Old claim kept ~1 week as
+  # rollback (nextcloud-nextcloud-data).
+  nextcloud_data_claim_name: "nextcloud-data-hdd"
+  nextcloud_data_storage_class_name: "longhorn-disk-rwx-2r"
+  nextcloud_data_size: "2Ti"
   nextcloud_hpa_enabled: "true"
   nextcloud_hpa_min_pods: "3"
   nextcloud_hpa_max_pods: "9"
