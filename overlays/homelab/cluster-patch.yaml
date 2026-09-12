@@ -92,6 +92,10 @@ data:
   matrix_synapse_postgres_instances: "1"
   authelia_postgres_instances: "3"
   immich_postgres_instances: "3"
+  # PG18 major upgrade 2026-09-12: fresh backup generation (old-major WAL cannot
+  # restore a new major; new base backups land under a clean prefix)
+  immich_postgres_backup_generation: "g20260912/"
+  immich_photos_postgres_backup_generation: "g20260912/"
   immich_photos_postgres_instances: "3"
   nextcloud_resources_limits_memory: "8Gi"
   nextcloud_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
