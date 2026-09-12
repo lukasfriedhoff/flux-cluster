@@ -1,0 +1,9 @@
+apiVersion: longhorn.io/v1beta2
+kind: Setting
+metadata:
+  name: concurrent-automatic-engine-upgrade-per-node-limit
+  namespace: longhorn-system
+# Auto-upgrade volumes to the default engine image, bounded per node. Was 0
+# (disabled) which left 63/99 volumes stranded on the old v1.12.0 image with a
+# half-drained instance-manager, breaking replica rebuilds on srv8.
+value: "3"
