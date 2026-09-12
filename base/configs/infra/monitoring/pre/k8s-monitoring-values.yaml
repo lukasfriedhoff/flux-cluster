@@ -35,6 +35,14 @@ data:
         metricsTuning:
           includeMetrics:
             - node_uname_info
+            # conntrack + UDP error counters: absent from the default
+            # allowlist, which blinded the 2026-09-12 DNS-timeout debugging
+            # (had to ssh onto nodes for /proc counters).
+            - node_nf_conntrack_entries
+            - node_nf_conntrack_entries_limit
+            - node_netstat_Udp_InErrors
+            - node_netstat_Udp_RcvbufErrors
+            - node_netstat_Udp_SndbufErrors
         extraArgs:
           - --collector.uname
           - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|ramfs|rpc_pipefs|securityfs|selinuxfs|squashfs|erofs|sysfs|tmpfs|tracefs)$
