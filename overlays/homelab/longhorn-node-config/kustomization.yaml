@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: longhorn-system
 resources:
   - concurrent-rebuild-limit.yaml
+  - auto-engine-upgrade-limit.yaml
   - storage-overprovisioning.yaml
   - storage-minimal-available.yaml
   - node-srv2.yaml
