@@ -95,7 +95,7 @@ data:
   # synapsedb HA scale-up reproducibly kills its primary during the replica
   # pg_basebackup (primary readiness probe 500s under basebackup + Longhorn
   # rebuild-backlog IO contention). Hold at 1 until Longhorn is fully healthy.
-  matrix_synapse_postgres_instances: "1"
+  matrix_synapse_postgres_instances: "3"
   authelia_postgres_instances: "3"
   immich_postgres_instances: "3"
   # PG18 major upgrade 2026-09-12: fresh backup generation (old-major WAL cannot
