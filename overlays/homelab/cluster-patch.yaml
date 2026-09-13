@@ -99,7 +99,7 @@ data:
   # Bridge DBs: scaled to HA one at a time (staggered, gated) 2026-09-13.
   matrix_telegramdb_postgres_instances: "3"
   matrix_whatsappdb_postgres_instances: "3"
-  matrix_signaldb_postgres_instances: "1"
+  matrix_signaldb_postgres_instances: "3"
   authelia_postgres_instances: "3"
   immich_postgres_instances: "3"
   # PG18 major upgrade 2026-09-12: fresh backup generation (old-major WAL cannot
