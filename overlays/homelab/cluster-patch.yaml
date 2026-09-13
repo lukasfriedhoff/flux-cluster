@@ -74,7 +74,7 @@ data:
   # rollback (nextcloud-nextcloud-data).
   nextcloud_data_claim_name: "nextcloud-data-hdd"
   nextcloud_data_storage_class_name: "longhorn-disk-rwx-2r"
-  nextcloud_data_size: "2Ti"
+  nextcloud_data_size: "5Ti"
   nextcloud_hpa_enabled: "true"
   nextcloud_hpa_min_pods: "3"
   nextcloud_hpa_max_pods: "9"
