@@ -15,16 +15,20 @@ spec:
       storageReserved: ${longhorn_nvme_storage_reserved_bytes:=32212254720}
       tags:
         - nvme
-    # Crucial CT1000BX500 ~1TB SATA/USB SSD. Keep the existing Longhorn disk
-    # ID because live replicas reference it.
+    # Crucial CT1000BX500 ~1TB USB SSD. DEMOTED out of the nvme/ssd fast tier
+    # (2026-09-13): it is USB-attached (~10ms/12MB/s vs srv9 SAS 0.19ms/692MB/s,
+    # see longhorn-usb-disk-bottleneck), so the fast storage classes should
+    # prefer the genuine flash on srv1 (5x T-FORCE) and srv9 (SAS SSD). Left
+    # schedulable + untagged so it still serves the default (untagged) classes
+    # as fallback capacity; the 43 existing replicas here are not evicted, they
+    # just won't be re-picked for nvme/ssd volumes. Keep the disk ID (live
+    # replicas reference it).
     longhorn-ssd-1tb-a:
       path: /var/lib/longhorn-disk1
       allowScheduling: true
       evictionRequested: false
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
-      tags:
-        - nvme
-        - ssd
+      tags: []
     # SanDisk SD7SF6S256G1122 ~500GiB USB SSD. This disk currently returns
     # input/output errors on /var/lib/longhorn-disk2 and is not safe for new
     # replicas. Keep the existing Longhorn disk ID so stranded replica records
