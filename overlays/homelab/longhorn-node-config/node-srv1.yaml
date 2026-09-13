@@ -1,0 +1,62 @@
+apiVersion: longhorn.io/v1beta2
+kind: Node
+metadata:
+  name: srv1
+  namespace: longhorn-system
+spec:
+  disks:
+    # /var/lib/longhorn lives on the encrypted root partition (SanDisk Ultra II
+    # 960GB). Do not schedule replicas here; the five dedicated encrypted
+    # T-FORCE SSDs below carry all data.
+    default-disk-2a06537bca726bdf:
+      path: /var/lib/longhorn/
+      allowScheduling: false
+      evictionRequested: true
+      storageReserved: ${longhorn_nvme_storage_reserved_bytes:=32212254720}
+      tags:
+        - nvme
+    # 5x T-FORCE 1TB SATA SSD (genuine flash, LUKS-encrypted, mounted by
+    # srv1-longhorn-disks.service). Tagged nvme+ssd so the fast storage classes
+    # (longhorn-nvme-*, longhorn-ssd-*, diskSelector=nvme/ssd) prefer srv1 and
+    # srv9 — real flash — over the USB-backed SSDs on srv2/srv8 (measured
+    # ~10ms/12MB/s vs 0.19ms/692MB/s on srv9's SAS SSDs, 2026-09-10).
+    longhorn-ssd-1tb-a:
+      path: /var/lib/longhorn-disk1
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
+      tags:
+        - nvme
+        - ssd
+    longhorn-ssd-1tb-b:
+      path: /var/lib/longhorn-disk2
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
+      tags:
+        - nvme
+        - ssd
+    longhorn-ssd-1tb-c:
+      path: /var/lib/longhorn-disk3
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
+      tags:
+        - nvme
+        - ssd
+    longhorn-ssd-1tb-d:
+      path: /var/lib/longhorn-disk4
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
+      tags:
+        - nvme
+        - ssd
+    longhorn-ssd-1tb-e:
+      path: /var/lib/longhorn-disk5
+      allowScheduling: true
+      evictionRequested: false
+      storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
+      tags:
+        - nvme
+        - ssd
