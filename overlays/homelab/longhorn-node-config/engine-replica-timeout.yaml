@@ -1,0 +1,9 @@
+apiVersion: longhorn.io/v1beta2
+kind: Setting
+metadata:
+  name: engine-replica-timeout
+  namespace: longhorn-system
+# Default 8s is too tight for USB-attached disks (srv2/srv8): a transient
+# latency spike under load makes the engine declare a healthy replica dead,
+# triggering needless rebuild storms. 30s (the max) tolerates USB hiccups.
+value: "30"
