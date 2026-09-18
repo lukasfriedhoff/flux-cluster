@@ -638,7 +638,7 @@ data:
   metube_audio_download_dir: "/media/music/YouTube"
   metube_clear_completed_after: "604800"
   metube_config_size: "2Gi"
-  metube_image_tag: "2026.06.18"
+  metube_image_tag: "2026.09.15"
   metube_max_concurrent_downloads: "2"
   metube_memory_limit: "2Gi"
   metube_memory_request: "128Mi"
