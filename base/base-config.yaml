@@ -685,13 +685,14 @@ data:
 
   # Selkies cloud desktop (nix-built image from harbor.h4xx.io/library)
   selkies_suspend: "true"
-  selkies_image_tag: "2026-09-19-1"
+  selkies_image_tag: "2026-09-19-2"
   selkies_user: "lukasf"
   selkies_requests_cpu: "500m"
   selkies_requests_memory: "1Gi"
   selkies_limits_cpu: "4000m"
   selkies_limits_memory: "4Gi"
   selkies_shm_size: "512Mi"
+  selkies_cache_size: "8Gi"
   selkies_home_storage_class_name: "longhorn-rwo-1r"
   selkies_home_size: "10Gi"
 
