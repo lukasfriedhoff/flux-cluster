@@ -7,6 +7,7 @@ resources:
   - icarus.yaml
   - forgejo.yaml
   - harbor.yaml
+  - metallb-system.yaml
   - smb.yaml
   - kiosk.yaml
   - kutschenapp.yaml
