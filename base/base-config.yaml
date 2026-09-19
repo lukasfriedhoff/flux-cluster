@@ -810,6 +810,8 @@ data:
   metallb_namespace: "metallb-system"
   metallb_chart_version: "0.16.1"
   metallb_pool_range: "10.1.20.40-10.1.20.59"
+  metallb_iot_pool: "10.1.12.13/32"
+  metallb_iot_interface: "brvlan12"
   traefik_lan_vip: "10.1.20.40"
   smb_vip: "10.1.20.41"
 
@@ -862,6 +864,8 @@ data:
   # e.g. /dev/serial/by-id/usb-Silicon_Labs_CP2102N...-if00-port0
   ha_thread_serial: "/dev/null"
   ha_thread_baud: "460800"
+  ha_thread_radio_url: "spinel+hdlc+uart:///dev/null?uart-baudrate=460800"
+  ha_iot_vip: "10.1.12.13"
   icarus_namespace: "icarus"
   icarus_node: ""
   icarus_image: "localhost/icarus-server:v1"
