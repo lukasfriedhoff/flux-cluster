@@ -8,7 +8,7 @@ metadata:
   name: flux-webhook
   namespace: flux-system
   annotations:
-    external-dns.alpha.kubernetes.io/target: ${cloudflare_tunnel_hostname}
+    external-dns.kubernetes.io/target: ${cloudflare_tunnel_hostname}
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
