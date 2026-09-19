@@ -687,6 +687,7 @@ data:
   selkies_suspend: "true"
   selkies_image_tag: "2.1.0-unstable-2026-09-17"
   selkies_user: "lukasf"
+  selkies_node: "srv8"
   selkies_requests_cpu: "500m"
   selkies_requests_memory: "1Gi"
   selkies_limits_cpu: "4000m"
