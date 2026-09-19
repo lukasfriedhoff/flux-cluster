@@ -227,6 +227,10 @@ data:
   # Moonlight
   moonlight_suspend: "false"
 
+  # Selkies cloud desktop (browser streaming; image in harbor.h4xx.io/library)
+  selkies_suspend: "false"
+  selkies_home_storage_class_name: "longhorn-nvme-rwo-2r"
+
   # Icarus dedicated server (image imported node-locally on srv9; see
   # flux-apps/apps/icarus). Suspended by default in base; live here.
   icarus_suspend: "false"
