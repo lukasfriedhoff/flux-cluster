@@ -22,7 +22,7 @@ data:
   # ZBT-1 bridged from srv4 via serial-over-TCP to a pty on srv9; UART
   # params (460800 + flow control) applied at the source, pty is raw.
   ha_thread_serial: "/dev/ttyThreadRCP"
-  ha_thread_radio_url: "spinel+hdlc+uart:///dev/ttyThreadRCP"
+  ha_thread_radio_url: "spinel+hdlc+forkpty:///usr/bin/python3?arg=/otbr-bridge/bridge.py&arg=srv4.lab.h4xx.io&arg=3333"
   ha_otbr_replicas: "1"
   ha_matter_replicas: "1"
 
