@@ -41,6 +41,22 @@ nc-clone.h4xx.io validated the whole pipeline (2026-09-19).
 Revert the flux-cluster cutover commit (identity secret out of kustomization +
 db name back) → reconcile. Old prod DB (`nextcloud`) is untouched throughout.
 
+## ddnss.org path flip (same window, after step 6 passes)
+The k8s WireGuard leg is LIVE and tested (ionos1 -> wg -> ddnss-ingress pod
+10.172.0.4 -> haproxy -> traefik; :80=301, :443 SNI routes correctly).
+On ionos1 (Ubuntu, NOT nix-managed):
+- [ ] Replace the PREROUTING DNAT targets for 80/443: 10.172.0.3 -> 10.172.0.4;
+      add matching SNAT POSTROUTING rules
+      (`-d 10.172.0.4 --dport 80/443 -j SNAT --to-source 10.172.0.1`);
+      drop the port 8008 rule (dead matrix legacy). Persist the rules.
+- [ ] Add the ddnss hosts to the nextcloud ingress (nextcloud.h4.ddnss.org,
+      h4.ddnss.org) + 301 redirects for retired names (oodocs, gua,
+      cloud.h4xx.io -> nextcloud.h4xx.io). Certs via http-01 over the tunnel.
+- [ ] Office: Collabora only (decision 2026-09-19); onlyoffice and
+      oodocs.h4.ddnss.org are NOT migrated.
+- [ ] Retire the labrouter WG peer (10.172.0.3) + its forwards when the
+      docker-host is decommissioned.
+
 ## Post-cutover cleanup
 - Repoint ddnss clients (mobile apps, CalDAV/CardDAV accounts) to nextcloud.h4xx.io.
 - Delete: nextcloud-clone deploy/svc/ingress, conv-* stack, nc-migration pod,
