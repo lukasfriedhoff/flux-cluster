@@ -18,6 +18,14 @@ data:
   logday_branch: main
   logday_repo_url: ssh://git@github.com/lukasfriedhoff/logDay.git
 
+  # --- Home Assistant Thread/Matter cutover (2026-09-19) ---
+  # ZBT-1 bridged from srv4 via serial-over-TCP to a pty on srv9; UART
+  # params (460800 + flow control) applied at the source, pty is raw.
+  ha_thread_serial: "/dev/ttyThreadRCP"
+  ha_thread_radio_url: "spinel+hdlc+uart:///dev/ttyThreadRCP"
+  ha_otbr_replicas: "1"
+  ha_matter_replicas: "1"
+
   # Longhorn
   longhorn_suspend: "false"
   longhorn_replica_soft_anti_affinity: "true"
