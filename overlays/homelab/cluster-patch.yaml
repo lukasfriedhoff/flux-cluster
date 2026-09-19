@@ -200,6 +200,7 @@ data:
   kutschenapp_suspend: "false"
   kioskproxy_suspend: "false"
   smb_suspend: "false"
+  metallb_suspend: "false"
 
   # Media stack
   arr_media_storage_class_name: longhorn-disk-rwx-2r

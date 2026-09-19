@@ -805,6 +805,14 @@ data:
   smb_storage_class_name: "longhorn-ssd-rwo-1r"
   smb_shares_size: "10Gi"
 
+  # --- metallb (L2 service VIPs on VLAN20/SERVER, below the DHCP pool) ---
+  metallb_suspend: "true"
+  metallb_namespace: "metallb-system"
+  metallb_chart_version: "0.16.1"
+  metallb_pool_range: "10.1.20.40-10.1.20.59"
+  traefik_lan_vip: "10.1.20.40"
+  smb_vip: "10.1.20.41"
+
   # Icarus dedicated server
   icarus_suspend: "true"
   reflector_suspend: "true"

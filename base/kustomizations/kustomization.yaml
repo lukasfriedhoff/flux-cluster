@@ -20,6 +20,7 @@ resources:
   - infra/immich-photos.yaml
   - infra/forgejo.yaml
   - infra/harbor.yaml
+  - infra/metallb.yaml
   - infra/smb.yaml
   - infra/kiosk-proxy.yaml
   - infra/kutschenapp.yaml
