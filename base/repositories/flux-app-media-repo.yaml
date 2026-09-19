@@ -12,5 +12,5 @@ spec:
   ref:
     branch: ${flux_app_media_branch:=main}
   secretRef:
-    name: ${flux_app_media_repo_secret_name:=github-deploy-flux-app-media-prod}
-  url: ${flux_app_media_repo_url:=ssh://git@github.com/lukasfriedhoff/flux-app-media.git}
+    name: ${flux_app_media_repo_secret_name:=codeberg-read}
+  url: ${flux_app_media_repo_url:=https://codeberg.org/lukasfriedhoff/flux-app-media.git}

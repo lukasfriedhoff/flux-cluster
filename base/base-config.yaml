@@ -23,8 +23,8 @@ data:
   # Flux defaults
   flux_gitrepo_interval: "10m0s"
   flux_cluster_branch: "develop"
-  flux_cluster_repo_url: "https://github.com/lukasfriedhoff/flux-cluster.git"
-  flux_cluster_repo_secret_name: "github-read-flux-cluster"
+  flux_cluster_repo_url: "https://codeberg.org/lukasfriedhoff/flux-cluster.git"
+  flux_cluster_repo_secret_name: "codeberg-read"
   flux_apps_branch: "develop"
   # Ingress-path HA: replica counts enforced with hard node anti-affinity
   # (cloudflared/traefik) and an HPA floor for the k3s-bundled coredns.
@@ -33,10 +33,10 @@ data:
   traefik_replicas: "2"
   coredns_min_replicas: "2"
   coredns_max_replicas: "3"
-  flux_apps_repo_url: "https://github.com/lukasfriedhoff/flux-apps.git"
-  flux_apps_repo_secret_name: "github-read-flux-apps"
+  flux_apps_repo_url: "https://codeberg.org/lukasfriedhoff/flux-apps.git"
+  flux_apps_repo_secret_name: "codeberg-read"
   logday_branch: "develop"
-  logday_repo_url: "https://github.com/lukasfriedhoff/logDay.git"
+  logday_repo_url: "https://codeberg.org/lukasfriedhoff/logDay.git"
   flux_kustomization_default_interval: "1h0m0s"
   flux_kustomization_default_retry_interval: "10m0s"
   flux_kustomization_default_timeout: "5m0s"
