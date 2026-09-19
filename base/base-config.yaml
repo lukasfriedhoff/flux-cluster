@@ -879,7 +879,7 @@ data:
   ha_iot_vip: "10.1.12.13"
   icarus_namespace: "icarus"
   icarus_node: ""
-  icarus_image: "localhost/icarus-server:v1"
+  icarus_image: "harbor.h4xx.io/library/icarus-server:sha-fc282200"
   icarus_replicas: "1"
   icarus_server_name: "Icarus Dedicated"
   icarus_game_port: "17777"
