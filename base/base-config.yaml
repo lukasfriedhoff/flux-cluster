@@ -733,6 +733,17 @@ data:
   forgejo_ssh_public_port: "!!str 2222"
   forgejo_requests_cpu: "250m"
   forgejo_requests_memory: "512Mi"
+
+  # Forgejo Actions runner (CI builds -> Harbor)
+  forgejo_runner_suspend: "true"
+  forgejo_runner_image: "code.forgejo.org/forgejo/runner:6.3.1"
+  forgejo_runner_dind_image: "docker.io/library/docker:27.5.1-dind"
+  forgejo_runner_name: "k8s-homelab"
+  forgejo_runner_instance_url: "https://git.h4xx.io"
+  forgejo_runner_token_secret_name: "forgejo-runner-token"
+  forgejo_runner_state_size: "1Gi"
+  forgejo_runner_dind_cache_size: "30Gi"
+  forgejo_runner_storage_class_name: "longhorn-ssd-rwo-1r"
   forgejo_requests_ephemeral_storage: "256Mi"
   forgejo_limits_memory: "2Gi"
   forgejo_limits_ephemeral_storage: "2Gi"

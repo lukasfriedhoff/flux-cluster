@@ -12,3 +12,9 @@ data:
     }
   nextcloud.override: |-
     rewrite name exact nextcloud.${delegating_domain} traefik.traefik.svc.cluster.local
+  # In-cluster pushes/pulls must bypass the CF tunnel (~100MB body cap kills
+  # image layer pushes); LAN clients get the same via the MikroTik DNS static.
+  harbor.override: |-
+    rewrite name exact harbor.${delegating_domain} traefik.traefik.svc.cluster.local
+  git.override: |-
+    rewrite name exact git.${delegating_domain} traefik.traefik.svc.cluster.local
