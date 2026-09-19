@@ -851,6 +851,17 @@ data:
   ha_zigbee2mqtt_replicas: "0"
   ha_config_size: "10Gi"
   ha_zigbee_serial: "/dev/null"
+  # OTBR upstream only publishes a rolling :latest tag, hence the digest pin.
+  ha_otbr_image: "docker.io/openthread/otbr@sha256:35c6e6520080116572fea50bbf271eff337992dd34e0cb095f4289f7853311e9"
+  ha_matter_image: "ghcr.io/matter-js/python-matter-server:8.1.2"
+  ha_otbr_replicas: "0"
+  ha_matter_replicas: "0"
+  # Host interface otbr-agent uses as Thread backbone (IoT VLAN bridge).
+  ha_otbr_backbone_if: "brvlan12"
+  # Stable serial path of the Thread RCP stick once attached to ha_node,
+  # e.g. /dev/serial/by-id/usb-Silicon_Labs_CP2102N...-if00-port0
+  ha_thread_serial: "/dev/null"
+  ha_thread_baud: "460800"
   icarus_namespace: "icarus"
   icarus_node: ""
   icarus_image: "localhost/icarus-server:v1"
