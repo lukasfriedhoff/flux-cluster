@@ -26,7 +26,7 @@ data:
   # matter-js fork (8.1.2) derives a different fabric from the same chip
   # storage; the VM addon ran home-assistant-libs 8.1.1 - stay on that
   # lineage for fabric continuity (4 commissioned nodes).
-  ha_matter_image: "ghcr.io/home-assistant-libs/python-matter-server:8.1.1"
+  ha_matter_image: "ghcr.io/home-assistant-libs/python-matter-server:8.1.0"
   ha_otbr_replicas: "1"
   ha_matter_replicas: "1"
 
