@@ -781,6 +781,30 @@ data:
   harbor_postgres_requests_memory: "512Mi"
   harbor_postgres_limits_memory: "1Gi"
 
+  # --- kutschenapp (docker-host migration) ---
+  kutschenapp_suspend: "true"
+  kutschenapp_namespace: "kutschenapp"
+  kutschenapp_mariadb_tag: "11.4"
+  kutschenapp_db_secret_name: "kutschenapp-db"
+  kutschenapp_db_storage_class_name: "longhorn-ssd-rwo-1r"
+  kutschenapp_db_size: "5Gi"
+  kutschenapp_api_image: "harbor.h4xx.io/library/kutschenapp-api:m1"
+  kutschenapp_frontend_image: "harbor.h4xx.io/library/kutschenapp-frontend:m1"
+
+  # --- kiosk-proxy (ingress to Home Assistant on the IOT VLAN) ---
+  kioskproxy_suspend: "true"
+  kiosk_namespace: "kiosk"
+  kiosk_homeassistant_ip: "10.1.12.13"
+
+  # --- smb (LAN-only samba; smb.h4xx.io via MikroTik split-horizon only) ---
+  smb_suspend: "true"
+  smb_namespace: "smb"
+  smb_node: "srv9"
+  smb_image_tag: "smbd-only-a3.24.2-s4.23.8-r0"
+  smb_accounts_secret_name: "smb-accounts"
+  smb_storage_class_name: "longhorn-ssd-rwo-1r"
+  smb_shares_size: "10Gi"
+
   # Icarus dedicated server
   icarus_suspend: "true"
   reflector_suspend: "true"

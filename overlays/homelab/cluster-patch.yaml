@@ -197,6 +197,9 @@ data:
   harbor_postgres_instances: "3"
   harbor_postgres_storage_class_name: longhorn-nvme-rwo-2r
   harbor_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
+  kutschenapp_suspend: "false"
+  kioskproxy_suspend: "false"
+  smb_suspend: "false"
 
   # Media stack
   arr_media_storage_class_name: longhorn-disk-rwx-2r

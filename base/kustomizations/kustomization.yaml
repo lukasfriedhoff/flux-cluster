@@ -20,6 +20,9 @@ resources:
   - infra/immich-photos.yaml
   - infra/forgejo.yaml
   - infra/harbor.yaml
+  - infra/smb.yaml
+  - infra/kiosk-proxy.yaml
+  - infra/kutschenapp.yaml
   - infra/matrix.yaml
   - infra/matrix-authentication-service.yaml
   - infra/matrix-authentication-service-preflight.yaml

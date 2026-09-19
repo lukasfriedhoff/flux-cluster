@@ -7,6 +7,9 @@ resources:
   - icarus.yaml
   - forgejo.yaml
   - harbor.yaml
+  - smb.yaml
+  - kiosk.yaml
+  - kutschenapp.yaml
   - collabora.yaml
   - ceph-csi.yaml
   - longhorn-system.yaml
