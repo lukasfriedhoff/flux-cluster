@@ -19,6 +19,7 @@ resources:
   - infra/immich.yaml
   - infra/immich-photos.yaml
   - infra/forgejo.yaml
+  - infra/harbor.yaml
   - infra/matrix.yaml
   - infra/matrix-authentication-service.yaml
   - infra/matrix-authentication-service-preflight.yaml
