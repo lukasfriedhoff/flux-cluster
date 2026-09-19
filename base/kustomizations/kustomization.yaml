@@ -19,6 +19,7 @@ resources:
   - infra/immich.yaml
   - infra/immich-photos.yaml
   - infra/forgejo.yaml
+  - infra/forgejo-runner.yaml
   - infra/harbor.yaml
   - infra/metallb.yaml
   - infra/smb.yaml
