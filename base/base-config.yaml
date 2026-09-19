@@ -742,6 +742,31 @@ data:
   # !!str for the same reason as matrix_metrics_enabled.
   forgejo_metrics_enabled: "!!str true"
 
+  # --- harbor (container registry) ---
+  harbor_suspend: "true"
+  harbor_namespace: "harbor"
+  harbor_chart_version: "1.19.2"
+  harbor_admin_secret_name: "harbor-admin"
+  harbor_trivy_enabled: "true"
+  harbor_registry_storage_class_name: "longhorn-ssd-rwo-1r"
+  harbor_registry_size: "100Gi"
+  harbor_aux_storage_class_name: "longhorn-ssd-rwo-1r"
+  harbor_joblog_size: "2Gi"
+  harbor_redis_size: "2Gi"
+  harbor_trivy_size: "5Gi"
+  harbor_postgres_cluster_name: "harbor-postgres"
+  harbor_postgres_image: "ghcr.io/cloudnative-pg/postgresql:18-system-trixie"
+  harbor_postgres_instances: "1"
+  harbor_postgres_db_name: "registry"
+  harbor_postgres_user: "harbor"
+  harbor_postgres_storage_class_name: "longhorn-nvme-rwo-1r"
+  harbor_postgres_size: "10Gi"
+  harbor_postgres_backup_bucket: "harbor-postgres-backup"
+  harbor_postgres_backup_endpoint_url: ""
+  harbor_postgres_requests_cpu: "100m"
+  harbor_postgres_requests_memory: "512Mi"
+  harbor_postgres_limits_memory: "1Gi"
+
   # Icarus dedicated server
   icarus_suspend: "true"
   reflector_suspend: "true"

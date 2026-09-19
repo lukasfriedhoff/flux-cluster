@@ -193,6 +193,10 @@ data:
   forgejo_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   forgejo_postgres_backup_generation: g20260814/
   forgejo_postgres_backup_server_name: forgejo-postgres-prod-g20260814
+  harbor_suspend: "false"
+  harbor_postgres_instances: "3"
+  harbor_postgres_storage_class_name: longhorn-nvme-rwo-2r
+  harbor_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
 
   # Media stack
   arr_media_storage_class_name: longhorn-disk-rwx-2r

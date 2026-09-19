@@ -6,6 +6,7 @@ resources:
   - matrix.yaml
   - icarus.yaml
   - forgejo.yaml
+  - harbor.yaml
   - collabora.yaml
   - ceph-csi.yaml
   - longhorn-system.yaml
