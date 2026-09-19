@@ -279,7 +279,9 @@ data:
   hydra_github_credentials_secret_name: "hydra-github-read-token"
   hydra_attic_server: "http://attic.nix-cache.svc.cluster.local:8080"
   hydra_attic_cache: "homelab"
-  hydra_jobset_flake: "git+https://github.com/lukasfriedhoff/nix.git?ref=develop"
+  # Codeberg is an external push mirror of the Forgejo primary (git.h4xx.io);
+  # Hydra must not build from in-cluster infrastructure.
+  hydra_jobset_flake: "git+https://codeberg.org/lukasfriedhoff/nix.git?ref=develop"
   hydra_jobset_check_interval: "3600"
   hydra_jobset_keep_nr: "3"
   hydra_binary_cache_public_uri: "https://attic.h4xx.io/homelab"
