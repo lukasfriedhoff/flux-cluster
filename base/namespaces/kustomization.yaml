@@ -8,6 +8,7 @@ resources:
   - forgejo.yaml
   - harbor.yaml
   - metallb-system.yaml
+  - ddnss-ingress.yaml
   - smb.yaml
   - kiosk.yaml
   - kutschenapp.yaml

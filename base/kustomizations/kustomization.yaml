@@ -22,6 +22,7 @@ resources:
   - infra/forgejo-runner.yaml
   - infra/harbor.yaml
   - infra/metallb.yaml
+  - infra/ddnss-ingress.yaml
   - infra/smb.yaml
   - infra/kiosk-proxy.yaml
   - infra/kutschenapp.yaml
