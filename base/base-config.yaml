@@ -788,7 +788,7 @@ data:
   kutschenapp_db_secret_name: "kutschenapp-db"
   kutschenapp_db_storage_class_name: "longhorn-ssd-rwo-1r"
   kutschenapp_db_size: "5Gi"
-  kutschenapp_api_image: "harbor.h4xx.io/library/kutschenapp-api:m1"
+  kutschenapp_api_image: "harbor.h4xx.io/library/kutschenapp-api:m2"
   kutschenapp_frontend_image: "harbor.h4xx.io/library/kutschenapp-frontend:m1"
 
   # --- kiosk-proxy (ingress to Home Assistant on the IOT VLAN) ---
