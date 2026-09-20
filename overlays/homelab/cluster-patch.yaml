@@ -215,6 +215,8 @@ data:
   smb_suspend: "false"
   metallb_suspend: "false"
   ddnss_ingress_suspend: "false"
+  # ddnss merge: the converted database (identity secret must ship in the same reconcile)
+  nextcloud_db_name: "nextcloud_merged"
 
   # Media stack
   arr_media_storage_class_name: longhorn-disk-rwx-2r
