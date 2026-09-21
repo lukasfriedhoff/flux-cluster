@@ -266,4 +266,5 @@ data:
   backrest_suspend: "false"
   home_automation_suspend: "false"
   icarus_node: "srv9"
+  icarus_update_on_start: "true"
   icarus_server_name: "h4xx Icarus"
