@@ -837,7 +837,7 @@ data:
   # --- k8s apiserver VIP (prod.k8s.lab.h4xx.io) ---
   k8s_api_lb_suspend: "true"
   k8s_api_lb_namespace: "kube-system"
-  k8s_api_vip: "10.1.20.43"
+  k8s_api_vip: "10.1.20.53"
   k8s_api_member1: "10.1.30.12"
   k8s_api_member2: "10.1.30.27"
   k8s_api_member3: "10.1.30.31"
