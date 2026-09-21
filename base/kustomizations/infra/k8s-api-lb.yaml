@@ -1,0 +1,20 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: k8s-api-lb-app
+  namespace: flux-system
+spec:
+  suspend: ${k8s_api_lb_suspend:=true}
+  interval: ${flux_kustomization_default_interval:=1h0m0s}
+  path: ./apps/k8s-api-lb
+  prune: true
+  retryInterval: ${flux_kustomization_default_retry_interval:=10m0s}
+  sourceRef:
+    kind: GitRepository
+    name: flux-apps
+  timeout: ${flux_kustomization_default_timeout:=10m0s}
+  wait: true
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: base-config
