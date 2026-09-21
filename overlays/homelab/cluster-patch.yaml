@@ -215,6 +215,7 @@ data:
   smb_suspend: "false"
   metallb_suspend: "false"
   ddnss_ingress_suspend: "false"
+  k8s_api_lb_suspend: "false"
   # ddnss merge: the converted database (identity secret must ship in the same reconcile)
   nextcloud_db_name: "nextcloud_merged"
 
