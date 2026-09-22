@@ -266,4 +266,8 @@ data:
   backrest_suspend: "false"
   home_automation_suspend: "false"
   icarus_node: "srv9"
+  valheim_suspend: "false"
+  valheim_node: "srv9"
+  valheim_server_name: "h4xx Valheim"
+  valheim_world_name: "Midgard"
   icarus_server_name: "h4xx Icarus"

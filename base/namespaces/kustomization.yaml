@@ -5,6 +5,7 @@ resources:
   - immich-photos.yaml
   - matrix.yaml
   - icarus.yaml
+  - valheim.yaml
   - forgejo.yaml
   - harbor.yaml
   - metallb-system.yaml
