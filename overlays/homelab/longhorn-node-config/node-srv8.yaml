@@ -16,18 +16,28 @@ spec:
       tags:
         - nvme
     # T-FORCE 1TB SATA SSD (ata-T-FORCE_1TB_TPBF2209020040602781).
+    # 2026-09-22: NUC retirement - scheduling OFF. srv2/srv8 are the NUCs; all
+    # new replicas go to srv1 (Supermicro) and srv9 (R740xd), both of which
+    # carry nvme+ssd tags. Eviction deliberately NOT requested: existing
+    # replicas keep serving and a mass migration would collide with the
+    # rebuild backlog still draining.
     longhorn-ssd-1tb:
       path: /var/lib/longhorn-disk1
-      allowScheduling: true
+      allowScheduling: false
       evictionRequested: false
       storageReserved: ${longhorn_ssd_storage_reserved_bytes:=0}
       tags:
         - nvme
         - ssd
     # WD Red 4TB SATA HDD (ata-WDC_WD40EFRX-68N32N0_WD-WCC7K2FFFP9P).
+    # Scheduling OFF (NUC retirement). CAVEAT: this disk still HOLDS the only
+    # non-srv9 replica of nextcloud-data-hdd (1.8TiB). srv1 carries no `disk`
+    # tag, so the `disk` tier is now srv9-only for NEW placement - that volume
+    # cannot regain cross-node redundancy until srv1 gets a `disk`-tagged disk.
+    # Do not evict this replica before that is fixed.
     longhorn-disk-4tb:
       path: /var/lib/longhorn-disk2
-      allowScheduling: true
+      allowScheduling: false
       evictionRequested: false
       storageReserved: ${longhorn_disk_storage_reserved_bytes:=0}
       tags:
