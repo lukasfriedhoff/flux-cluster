@@ -143,7 +143,10 @@ data:
   longhorn_manager_limits_cpu: "1000m"
   longhorn_manager_limits_memory: "2Gi"
   longhorn_recurring_backup_cron: "15 3 * * *"
-  longhorn_recurring_backup_retain: "14"
+  # 14 dailies x ~120 volumes produced 1.77M objects and helped fill storage01
+  # (2026-09-22 incident). 7 halves future growth; the fast-churn volumes were
+  # the cost driver and the worst of those are now excluded entirely.
+  longhorn_recurring_backup_retain: "7"
   longhorn_recurring_full_backup_interval: "7"
 
   # S3-compatible object storage
