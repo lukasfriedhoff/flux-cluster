@@ -19,10 +19,15 @@ data:
   logday_repo_url: https://codeberg.org/lukasfriedhoff/logDay.git
 
   # --- Home Assistant Thread/Matter cutover (2026-09-19) ---
-  # ZBT-1 bridged from srv4 via serial-over-TCP to a pty on srv9; UART
-  # params (460800 + flow control) applied at the source, pty is raw.
-  ha_thread_serial: "/dev/ttyThreadRCP"
-  ha_thread_radio_url: "spinel+hdlc+forkpty:///usr/bin/python3?forkpty-arg=/otbr-bridge/bridge.py&forkpty-arg=10.1.30.17&forkpty-arg=3333"
+  # 2026-09-23: the ZBT-1 now hangs off srv9 directly (same node as the OTBR
+  # pod), so otbr-agent opens the tty itself - no socat on srv4, no TCP hop,
+  # no forkpty bridge. This also frees srv4 to be rebuilt as a cluster node.
+  # The MikroTik was evaluated as the host and REJECTED: RouterOS enumerates
+  # the CP210x and offers /port remote-access, but the port only accepts
+  # baud-rate=auto (460800/230400/115200 all rejected) and its RFC2217 lacks
+  # the com-port control option, so the 460800 line rate is unreachable.
+  ha_thread_serial: "/dev/serial/by-id/usb-Nabu_Casa_Home_Assistant_Connect_ZBT-1_3ea9aeea08d7ed11879a6b6162c613ac-if00-port0"
+  ha_thread_radio_url: "spinel+hdlc+uart:///dev/serial/by-id/usb-Nabu_Casa_Home_Assistant_Connect_ZBT-1_3ea9aeea08d7ed11879a6b6162c613ac-if00-port0?uart-baudrate=460800&uart-flow-control=1"
   # matter-js fork (8.1.2) derives a different fabric from the same chip
   # storage; the VM addon ran home-assistant-libs 8.1.1 - stay on that
   # lineage for fabric continuity (4 commissioned nodes).
