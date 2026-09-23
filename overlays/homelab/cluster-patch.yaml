@@ -158,7 +158,7 @@ data:
 
   # Matrix
   matrix_postgres_storage_class_name: longhorn-nvme-rwo-2r
-  matrix_synapse_postgres_size: 20Gi
+  matrix_synapse_postgres_size: 30Gi
   matrix_whatsapp_postgres_size: 5Gi
   matrix_wa_postgres_size: 5Gi
   matrix_telegram_postgres_size: 5Gi
