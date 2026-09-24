@@ -36,3 +36,4 @@ resources:
   - lldap.yaml
   - backrest.yaml
   - home-automation.yaml
+  - sitemap.yaml

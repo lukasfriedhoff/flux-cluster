@@ -330,6 +330,11 @@ data:
   hydra_postgres_limits_ephemeral_storage: "4Gi"
 
   # Public status dashboard
+  # Friendly landing page listing the user-facing services (start.<domain>),
+  # behind Authelia. Suspended by default like other optional apps.
+  sitemap_suspend: "true"
+  sitemap_namespace: "sitemap"
+  sitemap_replicas: "2"
   status_dashboard_suspend: "true"
   status_dashboard_namespace: "status-dashboard"
   status_dashboard_host: "status.h4xx.io"

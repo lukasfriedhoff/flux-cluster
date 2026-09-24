@@ -51,3 +51,4 @@ resources:
   - infra/home-automation.yaml
   - infra/monitoring.yaml
   - infra/selkies-desktop.yaml
+  - infra/sitemap.yaml
