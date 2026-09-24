@@ -269,6 +269,8 @@ data:
   lldap_postgres_backup_generation: g20260801/
   lldap_postgres_backup_server_name: lldap-postgres-prod-g20260801
   backrest_suspend: "false"
+  # Landing page for family/friends: one login, then links to everything.
+  sitemap_suspend: "false"
   home_automation_suspend: "false"
   icarus_node: "srv9"
   valheim_suspend: "false"
