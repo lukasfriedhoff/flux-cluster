@@ -5,6 +5,7 @@ resources:
   - infra/icarus.yaml
   - infra/valheim.yaml
   - infra/gameserver-exporter.yaml
+  - infra/uptime-kuma.yaml
   - infra/longhorn.yaml
   - infra/longhorn-recurringjobs.yaml
   - infra/s3.yaml

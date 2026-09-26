@@ -278,6 +278,7 @@ data:
   valheim_server_name: "h4xx Valheim"
   valheim_world_name: "Midgard"
   gameserver_exporter_suspend: "false"
+  uptime_kuma_suspend: "false"
   # A2S QUERY ports (game port + 1 for valheim), via the MetalLB VIPs.
   gameserver_exporter_targets: "valheim=10.1.20.43:2457,icarus=10.1.20.42:27015"
   icarus_server_name: "h4xx Icarus"
