@@ -78,6 +78,13 @@ data:
 
   # Status dashboard
   status_dashboard_suspend: "false"
+  # Gatus is stateless now (history is in CNPG), so this is just a number.
+  # Not active-active: Gatus has no leader election, so each replica runs
+  # every check independently. With no alerting configured that costs
+  # duplicate probe traffic only, not duplicate notifications - and it buys
+  # a status page that survives losing a node, which is the one time you
+  # actually need it.
+  status_dashboard_replicas: "2"
 
   # Nextcloud
   # HA: 2+ replicas over RWX NFS. History: multiple replicas once observed
