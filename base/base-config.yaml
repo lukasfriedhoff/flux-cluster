@@ -970,5 +970,14 @@ data:
   valheim_olivetin_image: "ghcr.io/olivetin/olivetin:2024.05.27"
   valheim_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.44.0"
   valheim_kubectl_image: "docker.io/alpine/k8s:1.34.1"
+
+  # A2S exporter: real player counts + client-visible latency for the game
+  # servers (feeds the Grafana dashboard and status.h4xx.io).
+  gameserver_exporter_suspend: "true"
+  gameserver_exporter_namespace: "monitoring"
+  gameserver_exporter_image: "docker.io/library/python:3.13-alpine"
+  gameserver_exporter_port: "9109"
+  gameserver_exporter_interval: "20"
+  gameserver_exporter_targets: ""
   # MetalLB VIP for the game service (router DNAT target)
   icarus_vip: "10.1.20.42"
