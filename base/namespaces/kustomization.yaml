@@ -6,7 +6,6 @@ resources:
   - matrix.yaml
   - icarus.yaml
   - valheim.yaml
-  - uptime-kuma.yaml
   - forgejo.yaml
   - harbor.yaml
   - metallb-system.yaml

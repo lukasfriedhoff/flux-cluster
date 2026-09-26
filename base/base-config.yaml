@@ -340,20 +340,16 @@ data:
   status_dashboard_host: "status.h4xx.io"
   status_dashboard_title: "Homelab Status"
   status_dashboard_description: "Public service uptime overview"
-  status_dashboard_data_size: "2Gi"
-  status_dashboard_storage_class_name: "longhorn-ssd-rwo-1r"
+  status_dashboard_replicas: "1"
+  status_dashboard_postgres_instances: "3"
+  status_dashboard_postgres_storage_class_name: "longhorn-disk-rwo-1r"
+  status_dashboard_postgres_size: "2Gi"
+  status_dashboard_postgres_requests_cpu: "50m"
+  status_dashboard_postgres_requests_memory: "128Mi"
+  status_dashboard_postgres_limits_cpu: "500m"
+  status_dashboard_postgres_limits_memory: "512Mi"
 
   # Uptime Kuma - second, independent status page (persistent SQLite).
-  uptime_kuma_suspend: "true"
-  uptime_kuma_namespace: "uptime-kuma"
-  uptime_kuma_host: "status-alt.h4xx.io"
-  uptime_kuma_image: "docker.io/louislam/uptime-kuma:2.5.5"
-  uptime_kuma_timezone: "Europe/Berlin"
-  uptime_kuma_data_size: "5Gi"
-  uptime_kuma_storage_class_name: "longhorn-ssd-rwo-1r"
-  uptime_kuma_requests_cpu: "50m"
-  uptime_kuma_requests_memory: "256Mi"
-  uptime_kuma_limits_memory: "1Gi"
 
   # Let's Encrypt config
   letsencrypt_email: "letsencrypt@h4xx.io"
