@@ -148,9 +148,22 @@ data:
   immich_photos_shared_pv_name: immich-photos-nextcloud-shared-pv
   immich_memes_shared_claim_name: immich-memes-nextcloud-shared
   immich_memes_shared_pv_name: immich-memes-nextcloud-shared-pv
-  photos_shared_nfs_server: 10.43.98.154
+  # The Longhorn share-manager Service, by DNS NAME and never by ClusterIP.
+  # longhorn-rwx-1r implements RWX with a share-manager pod that NFS-exports
+  # the volume, and that Service is recreated - with a NEW ClusterIP - whenever
+  # the share-manager restarts. This was pinned to 10.43.98.154; the share
+  # manager was recreated on 2026-09-11 and now answers on 10.43.200.250, so
+  # the PVs pointed at an address nothing held.
+  #
+  # The failure is silent and nasty: an NFS mount to a dead IP HANGS rather
+  # than erroring, so kubelet emits no event at all and the pod sits in
+  # ContainerCreating forever. Worse, already-running pods keep working off
+  # their existing mount, so nothing breaks until the next restart - immich
+  # ran 47 days that way and only fell over when restarted. The Service NAME
+  # is stable (it is the PV name), so DNS survives every recreation.
+  photos_shared_nfs_server: pvc-1c196aff-0f34-4bdc-808a-5c58f6191f64.longhorn-system.svc.cluster.local
   photos_shared_nfs_path: /pvc-1c196aff-0f34-4bdc-808a-5c58f6191f64
-  memes_shared_nfs_server: 10.43.98.154
+  memes_shared_nfs_server: pvc-1c196aff-0f34-4bdc-808a-5c58f6191f64.longhorn-system.svc.cluster.local
   memes_shared_nfs_path: /pvc-1c196aff-0f34-4bdc-808a-5c58f6191f64
 
   # Immich

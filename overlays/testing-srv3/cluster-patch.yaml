@@ -123,7 +123,10 @@ data:
   # Shared Nextcloud/Immich folders
   immich_photos_shared_claim_name: immich-photos-rwx
   immich_photos_shared_pv_name: immich-photos-rwx-pv
-  photos_shared_nfs_server: 10.43.132.82
+  # By DNS name, not ClusterIP - the Longhorn share-manager Service gets a new
+  # IP every time it is recreated, and a stale one makes the mount HANG with no
+  # kubelet event at all. This bit homelab on 2026-09-28; same shape here.
+  photos_shared_nfs_server: pvc-66fe26b4-0c17-4d5b-be93-93ab654adf6c.longhorn-system.svc.cluster.local
   photos_shared_nfs_path: /pvc-66fe26b4-0c17-4d5b-be93-93ab654adf6c
 
   # Immich
