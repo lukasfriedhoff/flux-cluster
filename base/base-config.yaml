@@ -292,7 +292,13 @@ data:
   hydra_storage_class_name: "longhorn-disk-rwo-1r"
   hydra_storage_size: "100Gi"
   hydra_nix_store_storage_class_name: "longhorn-disk-rwo-1r"
-  hydra_nix_store_size: "250Gi"
+  hydra_nix_store_size: "800Gi"
+  # Nothing ever ran a store GC, so /nix grew to 91% of 250Gi and alerted.
+  # The pod now collects garbage itself when the store crosses the trigger,
+  # freeing down to the target (hysteresis, so it does not run every cycle).
+  hydra_nix_store_gc_trigger_percent: "80"
+  hydra_nix_store_gc_target_percent: "65"
+  hydra_nix_store_gc_interval: "1800"
   hydra_requests_cpu: "500m"
   hydra_requests_memory: "1Gi"
   hydra_requests_ephemeral_storage: "4Gi"
