@@ -393,6 +393,14 @@ data:
   nextcloud_external_photos_enabled: "disabled"
   nextcloud_external_photos_url: "https://photos.h4xx.io"
   nextcloud_external_photos_label: "Photos"
+  # Shared Music: the media NFS music library mounted at every user's root,
+  # read-only by default (all users share the one folder, so write access lets
+  # any single account delete the library).
+  nextcloud_shared_music_enabled: "disabled"
+  nextcloud_shared_music_label: "Music"
+  nextcloud_external_music_readonly: "true"
+  media_nfs_server: "10.1.120.10"
+  media_nfs_music_path: "/data/cmc/pub/h4xx/music"
   nextcloud_external_memes_enabled: "disabled"
   nextcloud_external_memes_url: "https://meme.h4xx.io"
   nextcloud_external_memes_label: "Memes"
