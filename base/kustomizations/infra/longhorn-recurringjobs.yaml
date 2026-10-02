@@ -17,6 +17,13 @@ spec:
   timeout: 10m0s
   wait: true
   postBuild:
+    substitute:
+      # The literal-quote sentinel for env values whose substitution default
+      # is a bare bool or number (kustomize strips plain quoting around a
+      # lone substitution). Same as the eight sibling Kustomizations that
+      # already define it; its absence here is why ${quote} silently emptied
+      # and the 2026-10-02 watchdog/music-env fixes appeared not to work.
+      quote: '"'
     substituteFrom:
       - kind: ConfigMap
         name: base-config
