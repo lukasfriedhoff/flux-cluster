@@ -974,7 +974,6 @@ data:
   # a substitution variable rather than a hardcode in flux-apps. The same value
   # also lives as public_host in the credentials secret, where the Steam-listing
   # check reads it; keep the two in step.
-  valheim_public_host: "redacted.invalid"
   valheim_update_cron: "*/15 * * * *"
   valheim_update_if_idle: "true"
   valheim_internal_backups: "true"
