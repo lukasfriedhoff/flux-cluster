@@ -307,7 +307,6 @@ data:
   sitemap_suspend: "false"
   home_automation_suspend: "false"
   icarus_node: "srv9"
-  icarus_update_on_start: "true"  # one-shot: 25290454 -> 25621760; revert after
   valheim_suspend: "false"
   valheim_node: "srv9"
   valheim_server_name: "h4xx Valheim"
