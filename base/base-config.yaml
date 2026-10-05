@@ -147,6 +147,8 @@ data:
   # (2026-09-22 incident). 7 halves future growth; the fast-churn volumes were
   # the cost driver and the worst of those are now excluded entirely.
   longhorn_recurring_backup_retain: "7"
+  # Serial (1) lets a single lock-blocked volume starve the whole queue.
+  longhorn_recurring_backup_concurrency: "2"
   longhorn_recurring_full_backup_interval: "7"
 
   # S3-compatible object storage
