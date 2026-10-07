@@ -19,6 +19,9 @@ resources:
   - infra/valkey.yaml
   - infra/nextcloud.yaml
   - infra/immich.yaml
+  - infra/mailpit.yaml
+  - infra/pretix.yaml
+  - infra/pretalx.yaml
   - infra/immich-photos.yaml
   - infra/forgejo.yaml
   - infra/forgejo-runner.yaml
