@@ -1001,6 +1001,39 @@ data:
   valheim_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.44.0"
   valheim_kubectl_image: "docker.io/alpine/k8s:1.34.1"
 
+  # tf-game: "Deploy Day" booth web game (game_tf2026 repo; Phaser PWA + API +
+  # bundled PostgreSQL). The Helm chart ships inside the game repo, so it has a
+  # dedicated game-tf2026 GitRepository. Images come from the repo's GitHub
+  # Actions (pushes to main) via the Harbor ghcr proxy-cache; pin an immutable
+  # sha-* tag once builds exist. Suspended by default in base.
+  tf_game_suspend: "true"
+  tf_game_repo_url: "https://github.com/lukasfriedhoff/game_tf2026.git"
+  tf_game_branch: "main"
+  tf_game_repo_suspend: "true"
+  tf_game_web_image_repository: "harbor.h4xx.io/proxy-ghcr/lukasfriedhoff/game_tf2026-web"
+  tf_game_api_image_repository: "harbor.h4xx.io/proxy-ghcr/lukasfriedhoff/game_tf2026-api"
+  tf_game_image_tag: "main"
+  tf_game_web_replicas: "2"
+  tf_game_web_requests_cpu: "10m"
+  tf_game_web_requests_memory: "16Mi"
+  tf_game_web_limits_memory: "64Mi"
+  tf_game_api_replicas: "2"
+  tf_game_api_log_level: "info"
+  tf_game_api_requests_cpu: "50m"
+  tf_game_api_requests_memory: "96Mi"
+  tf_game_api_limits_memory: "256Mi"
+  tf_game_host_label: "game"
+  tf_game_postgres_size: "2Gi"
+  tf_game_postgres_storage_class_name: ""
+  tf_game_postgres_requests_cpu: "100m"
+  tf_game_postgres_requests_memory: "256Mi"
+  tf_game_postgres_limits_memory: "512Mi"
+  tf_game_event_timezone: "Europe/Berlin"
+  tf_game_event_start: ""
+  tf_game_event_end: ""
+  tf_game_leaderboard_frozen: "false"
+  tf_game_rewards_enabled: "true"
+
   # A2S exporter: real player counts + client-visible latency for the game
   # servers (feeds the Grafana dashboard and status.h4xx.io).
   gameserver_exporter_suspend: "true"

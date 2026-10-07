@@ -313,6 +313,10 @@ data:
   valheim_node: "srv9"
   valheim_server_name: "h4xx Valheim"
   valheim_world_name: "Midgard"
+  # "Deploy Day" booth game at game.h4xx.io.
+  tf_game_repo_suspend: "false"
+  tf_game_suspend: "false"
+  tf_game_postgres_storage_class_name: longhorn-nvme-rwo-2r
   gameserver_exporter_suspend: "false"
   # Event apps (ticketing + CfP) and their shared mail catcher. Backups for
   # pretix/pretalx Postgres are wired (barman -> backup.h4xx.io MinIO).

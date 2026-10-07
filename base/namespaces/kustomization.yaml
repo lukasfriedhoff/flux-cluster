@@ -40,3 +40,4 @@ resources:
   - backrest.yaml
   - home-automation.yaml
   - sitemap.yaml
+  - tf-game.yaml

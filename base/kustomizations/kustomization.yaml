@@ -56,3 +56,4 @@ resources:
   - infra/monitoring.yaml
   - infra/selkies-desktop.yaml
   - infra/sitemap.yaml
+  - tf-game.yaml

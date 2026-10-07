@@ -1,0 +1,28 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: tf-game-app
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: namespaces
+    - name: secrets
+    - name: longhorn-app
+    - name: cert-manager-app
+    - name: traefik-app
+  interval: ${flux_kustomization_default_interval:=1h0m0s}
+  path: ./apps/tf-game
+  prune: true
+  retryInterval: ${flux_kustomization_default_retry_interval:=10m0s}
+  sourceRef:
+    kind: GitRepository
+    name: flux-apps
+  suspend: ${tf_game_suspend:=true}
+  timeout: 15m0s
+  wait: true
+  postBuild:
+    substitute:
+      quote: '"'
+    substituteFrom:
+      - kind: ConfigMap
+        name: base-config

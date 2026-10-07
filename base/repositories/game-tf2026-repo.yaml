@@ -1,0 +1,14 @@
+# "Deploy Day" booth game. The repo carries its own Helm chart
+# (deploy/helm/tf-game), consumed by the tf-game-app Kustomization via
+# flux-apps/apps/tf-game. Public repo on GitHub (its primary), no secretRef.
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: game-tf2026
+  namespace: flux-system
+spec:
+  interval: ${flux_gitrepo_interval:=10m0s}
+  suspend: ${tf_game_repo_suspend:=true}
+  ref:
+    branch: ${tf_game_branch:=main}
+  url: ${tf_game_repo_url:=https://github.com/lukasfriedhoff/game_tf2026.git}

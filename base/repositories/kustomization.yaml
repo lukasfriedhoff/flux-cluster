@@ -5,3 +5,4 @@ resources:
   - flux-apps-repo.yaml
   - flux-app-media-repo.yaml
   - logday-repo.yaml
+  - game-tf2026-repo.yaml
