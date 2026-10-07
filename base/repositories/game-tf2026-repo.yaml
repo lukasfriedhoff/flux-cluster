@@ -1,6 +1,7 @@
 # "Deploy Day" booth game. The repo carries its own Helm chart
 # (deploy/helm/tf-game), consumed by the tf-game-app Kustomization via
-# flux-apps/apps/tf-game. Public repo on GitHub (its primary), no secretRef.
+# flux-apps/apps/tf-game. Private repo on GitHub (its primary; NOT mirrored
+# from Forgejo) — read auth reuses the Forgejo mirror PAT.
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
@@ -11,4 +12,6 @@ spec:
   suspend: ${tf_game_repo_suspend:=true}
   ref:
     branch: ${tf_game_branch:=main}
+  secretRef:
+    name: ${tf_game_repo_secret_name:=github-read-game-tf2026}
   url: ${tf_game_repo_url:=https://github.com/lukasfriedhoff/game_tf2026.git}

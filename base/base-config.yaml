@@ -1010,6 +1010,7 @@ data:
   tf_game_repo_url: "https://github.com/lukasfriedhoff/game_tf2026.git"
   tf_game_branch: "main"
   tf_game_repo_suspend: "true"
+  tf_game_repo_secret_name: "github-read-game-tf2026"
   tf_game_web_image_repository: "harbor.h4xx.io/proxy-ghcr/lukasfriedhoff/game_tf2026-web"
   tf_game_api_image_repository: "harbor.h4xx.io/proxy-ghcr/lukasfriedhoff/game_tf2026-api"
   tf_game_image_tag: "main"
