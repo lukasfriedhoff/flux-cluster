@@ -63,6 +63,8 @@ data:
   authelia_valkey_storage_class_name: longhorn-disk-rwo-1r
   authelia_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   status_dashboard_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
+  pretix_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
+  pretalx_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   authelia_postgres_backup_generation: g20260801/
   authelia_postgres_backup_server_name: authelia-postgres-prod-g20260801
   nix_remote_builder_suspend: "false"
@@ -312,6 +314,11 @@ data:
   valheim_server_name: "h4xx Valheim"
   valheim_world_name: "Midgard"
   gameserver_exporter_suspend: "false"
+  # Event apps (ticketing + CfP) and their shared mail catcher. Backups for
+  # pretix/pretalx Postgres are wired (barman -> backup.h4xx.io MinIO).
+  mailpit_suspend: "false"
+  pretix_suspend: "false"
+  pretalx_suspend: "false"
   # A2S QUERY ports (game port + 1 for valheim), via the MetalLB VIPs.
   gameserver_exporter_targets: "valheim=10.1.20.43:2457,icarus=10.1.20.42:27015"
   icarus_server_name: "h4xx Icarus"
