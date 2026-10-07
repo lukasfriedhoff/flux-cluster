@@ -1051,18 +1051,24 @@ data:
 
   # --- Event tooling: pretix (ticketing), pretalx (CfP/schedule), mailpit ---
   # All three ship suspended; flip the _suspend flags to "false" to enable.
-  # Hostnames resolve as <host>${public_host_suffix}.${delegating_domain}; add
-  # hackimpott.de later by extending delegating_domain handling or the ingress
-  # rules. Email goes to the in-cluster mailpit CATCHER (nothing is delivered
-  # onward) until a real relay is wired via MP_SMTP_RELAY_*.
+  # Canonical URLs live on hackimpott.de (*_url_host): its DNS is an external
+  # nameserver with A records at ionos1, traffic rides the ddnss-ingress
+  # WireGuard path, certs are http-01. The h4xx.io names (<host>.${delegating_domain})
+  # stay as Cloudflare-tunnel aliases. Email goes to the in-cluster mailpit
+  # CATCHER (nothing is delivered onward) until a relay is wired via
+  # MP_SMTP_RELAY_*.
   mailpit_suspend: "true"
   mailpit_host: "mail"
   pretix_suspend: "true"
   pretix_primary_host: "pretix"
   pretix_alias_host: "tickets"
   pretix_instance_name: "h4xx Tickets"
-  pretix_mail_from: "tickets@h4xx.io"
+  pretix_url_host: "tickets.hackimpott.de"
+  pretix_event_alias_host: "pretix.hackimpott.de"
+  pretix_mail_from: "tickets@hackimpott.de"
   pretalx_suspend: "true"
   pretalx_primary_host: "pretalx"
   pretalx_alias_host: "cfp"
-  pretalx_mail_from: "cfp@h4xx.io"
+  pretalx_url_host: "cfp.hackimpott.de"
+  pretalx_event_alias_host: "pretalx.hackimpott.de"
+  pretalx_mail_from: "cfp@hackimpott.de"
