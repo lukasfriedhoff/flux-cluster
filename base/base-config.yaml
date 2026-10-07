@@ -148,7 +148,11 @@ data:
   # the cost driver and the worst of those are now excluded entirely.
   longhorn_recurring_backup_retain: "7"
   # Serial (1) lets a single lock-blocked volume starve the whole queue.
-  longhorn_recurring_backup_concurrency: "2"
+  # Raised 2 -> 4 on 2026-10-07: at concurrency 2 a full pass over ~120
+  # volumes took >19h (executionCount 107/120 after 19 hours), so each
+  # nightly run overran into the next and the tail of the queue - always
+  # the same few volumes - went a week without a backup.
+  longhorn_recurring_backup_concurrency: "4"
   longhorn_recurring_full_backup_interval: "7"
 
   # S3-compatible object storage
