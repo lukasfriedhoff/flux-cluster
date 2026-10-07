@@ -1011,9 +1011,12 @@ data:
   tf_game_branch: "main"
   tf_game_repo_suspend: "true"
   tf_game_repo_secret_name: "github-read-game-tf2026"
-  tf_game_web_image_repository: "harbor.h4xx.io/proxy-ghcr/lukasfriedhoff/game_tf2026-web"
-  tf_game_api_image_repository: "harbor.h4xx.io/proxy-ghcr/lukasfriedhoff/game_tf2026-api"
+  # Private ghcr packages: pull from ghcr.io directly with the pull secret
+  # (the anonymous Harbor proxy-ghcr only caches public packages).
+  tf_game_web_image_repository: "ghcr.io/lukasfriedhoff/game_tf2026-web"
+  tf_game_api_image_repository: "ghcr.io/lukasfriedhoff/game_tf2026-api"
   tf_game_image_tag: "main"
+  tf_game_image_pull_secret_name: "tf-game-ghcr-pull"
   tf_game_web_replicas: "2"
   tf_game_web_requests_cpu: "10m"
   tf_game_web_requests_memory: "16Mi"
