@@ -153,6 +153,17 @@ data:
   # nightly run overran into the next and the tail of the queue - always
   # the same few volumes - went a week without a backup.
   longhorn_recurring_backup_concurrency: "4"
+  # Hourly reaper for orphaned backupstore .lck files. Longhorn never
+  # cleans these up, so an interrupted backup blocks that volume forever:
+  # 46 lock failures across ~30 volumes in one day (2026-10-08), oldest
+  # orphan dated 2026-07-17.
+  longhorn_lock_reaper_cron: "25 * * * *"
+  longhorn_lock_max_age: "6h"
+  longhorn_backup_bucket: "homelab-longhorn-backups"
+  longhorn_backup_credential_secret: "longhorn-backup-target"
+  longhorn_recurring_snapshot_cleanup_cron: "0 1 * * *"
+  longhorn_recurring_snapshot_retain: "10"
+  longhorn_recurring_snapshot_concurrency: "2"
   longhorn_recurring_full_backup_interval: "7"
 
   # S3-compatible object storage
