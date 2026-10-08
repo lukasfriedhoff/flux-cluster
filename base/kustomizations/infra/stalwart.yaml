@@ -1,0 +1,30 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: stalwart-app
+  namespace: flux-system
+spec:
+  interval: ${flux_kustomization_default_interval:=1h0m0s}
+  retryInterval: ${flux_kustomization_default_retry_interval:=10m0s}
+  timeout: ${flux_kustomization_default_timeout:=5m0s}
+  suspend: ${stalwart_suspend:=true}
+  sourceRef:
+    kind: GitRepository
+    name: flux-apps
+  path: ./apps/stalwart
+  prune: true
+  wait: true
+  dependsOn:
+    - name: namespaces
+    - name: secrets
+    - name: cnpg-app
+    - name: s3-app
+    - name: reflector-app
+    - name: cert-manager-app
+    - name: traefik-app
+  postBuild:
+    substitute:
+      quote: '"'
+    substituteFrom:
+      - kind: ConfigMap
+        name: base-config

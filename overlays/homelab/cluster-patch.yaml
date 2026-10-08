@@ -65,6 +65,7 @@ data:
   status_dashboard_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   pretix_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   pretalx_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
+  stalwart_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   authelia_postgres_backup_generation: g20260801/
   authelia_postgres_backup_server_name: authelia-postgres-prod-g20260801
   nix_remote_builder_suspend: "false"
@@ -325,6 +326,7 @@ data:
   mailpit_suspend: "false"
   pretix_suspend: "false"
   pretalx_suspend: "false"
+  stalwart_suspend: "false"
   # A2S QUERY ports (game port + 1 for valheim), via the MetalLB VIPs.
   gameserver_exporter_targets: "valheim=10.1.20.43:2457,icarus=10.1.20.42:27015"
   icarus_server_name: "h4xx Icarus"

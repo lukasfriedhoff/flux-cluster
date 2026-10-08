@@ -1087,3 +1087,13 @@ data:
   pretalx_url_host: "cfp.hackimpott.de"
   pretalx_event_alias_host: "pretalx.hackimpott.de"
   pretalx_mail_from: "cfp@hackimpott.de"
+
+  # --- Stalwart mailstack (complete mail for hackimpott.de) ---
+  # Phase 1: core server, suspended by default; overlay flips it on.
+  # Directory/OIDC/DKIM/cluster settings live in Stalwart's Postgres
+  # settings store (webadmin/API), not here - by design.
+  stalwart_suspend: "true"
+  stalwart_mail_hostname: "mail.hackimpott.de"
+  stalwart_replicas: "1"
+  stalwart_image_tag: "v0.16.25"
+  stalwart_blob_bucket: "stalwart-blobs"
