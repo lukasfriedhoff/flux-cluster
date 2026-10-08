@@ -318,7 +318,7 @@ data:
   tf_game_suspend: "false"
   tf_game_postgres_storage_class_name: longhorn-nvme-rwo-2r
   # Immutable image pin; bump to the sha-* tag of the desired CI build.
-  tf_game_image_tag: sha-4a59468
+  tf_game_image_tag: sha-71aaa5f
   gameserver_exporter_suspend: "false"
   # Event apps (ticketing + CfP) and their shared mail catcher. Backups for
   # pretix/pretalx Postgres are wired (barman -> backup.h4xx.io MinIO).
