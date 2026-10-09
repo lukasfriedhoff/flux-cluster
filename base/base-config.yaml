@@ -158,7 +158,11 @@ data:
   # 46 lock failures across ~30 volumes in one day (2026-10-08), oldest
   # orphan dated 2026-07-17.
   longhorn_lock_reaper_cron: "25 * * * *"
-  longhorn_lock_max_age: "6h"
+  # 30m, not 6h: each failed backup writes a fresh lock, so a 6h window was
+  # never reachable and left backups blocked for days (2026-10-09). Safe at
+  # 30m because the reaper now skips volumes with a backup/restore actually
+  # running, instead of inferring liveness from file age.
+  longhorn_lock_max_age: "30m"
   longhorn_backup_bucket: "homelab-longhorn-backups"
   longhorn_backup_credential_secret: "longhorn-backup-target"
   longhorn_recurring_snapshot_cleanup_cron: "0 1 * * *"
