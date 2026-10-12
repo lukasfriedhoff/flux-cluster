@@ -1078,6 +1078,16 @@ data:
   # MP_SMTP_RELAY_*.
   mailpit_suspend: "true"
   mailpit_host: "mail"
+  # Keyboard-driven start page (trial) + declarative launcher (trial).
+  nextdash_suspend: "true"
+  nextdash_host: "nextdash"
+  nextdash_image_tag: "v1.19.2"
+  nextdash_data_size: "1Gi"
+  nextdash_storage_class_name: "longhorn-ssd-rwo-1r"
+  homepage_suspend: "true"
+  homepage_host: "homepage"
+  homepage_domain: "h4xx.io"
+  homepage_image_tag: "v1.4.5"
   pretix_suspend: "true"
   pretix_primary_host: "pretix"
   pretix_alias_host: "tickets"

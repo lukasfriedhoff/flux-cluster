@@ -10,6 +10,8 @@ resources:
   - matrix.yaml
   - icarus.yaml
   - valheim.yaml
+  - nextdash.yaml
+  - homepage.yaml
   - forgejo.yaml
   - harbor.yaml
   - metallb-system.yaml

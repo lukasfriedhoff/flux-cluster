@@ -21,6 +21,8 @@ resources:
   - infra/nextcloud.yaml
   - infra/immich.yaml
   - infra/mailpit.yaml
+  - infra/nextdash.yaml
+  - infra/homepage.yaml
   - infra/pretix.yaml
   - infra/pretalx.yaml
   - infra/immich-photos.yaml
