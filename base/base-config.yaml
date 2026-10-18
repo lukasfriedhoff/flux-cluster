@@ -72,7 +72,7 @@ data:
 
   # Ceph CSI config
   ceph_cluster_id: "83897024-e964-11f0-9d5c-0cc47a6c3802"
-  ceph_mon_hosts: "v2:10.1.30.12:3300/0"
+  ceph_mon_hosts: "v2:10.3.30.12:3300/0"
   ceph_csi_namespace: "ceph-csi"
   ceph_csi_provisioner_host_network: "true"
 
@@ -270,7 +270,7 @@ data:
   nix_remote_builder_service_type: "NodePort"
   nix_remote_builder_node_port: "30610"
   nix_remote_builder_external_traffic_policy: "Local"
-  nix_remote_builder_allowed_cidr_1: "10.1.0.0/16"
+  nix_remote_builder_allowed_cidr_1: "10.3.0.0/16"
   nix_remote_builder_allowed_cidr_2: "10.42.0.0/16"
   nix_remote_builder_allowed_cidr_3: "10.43.0.0/16"
   nix_remote_builder_hostkey_secret_name: "nix-remote-builder-hostkey"
@@ -420,7 +420,7 @@ data:
   nextcloud_shared_music_enabled: "disabled"
   nextcloud_shared_music_label: "Music"
   nextcloud_external_music_readonly: "true"
-  media_nfs_server: "10.1.120.10"
+  media_nfs_server: "10.3.120.10"
   media_nfs_music_path: "/data/cmc/pub/h4xx/music"
   nextcloud_external_memes_enabled: "disabled"
   nextcloud_external_memes_url: "https://meme.h4xx.io"
@@ -859,7 +859,7 @@ data:
   # --- kiosk-proxy (ingress to Home Assistant on the IOT VLAN) ---
   kioskproxy_suspend: "true"
   kiosk_namespace: "kiosk"
-  kiosk_homeassistant_ip: "10.1.12.13"
+  kiosk_homeassistant_ip: "10.3.12.13"
 
   # --- smb (LAN-only samba; smb.h4xx.io via MikroTik split-horizon only) ---
   smb_suspend: "true"
@@ -874,12 +874,12 @@ data:
   metallb_suspend: "true"
   metallb_namespace: "metallb-system"
   metallb_chart_version: "0.16.1"
-  metallb_pool_range: "10.1.20.40-10.1.20.49"
-  metallb_apiserver_pool: "10.1.20.50-10.1.20.59"
-  metallb_iot_pool: "10.1.12.13/32"
+  metallb_pool_range: "10.3.20.40-10.3.20.49"
+  metallb_apiserver_pool: "10.3.20.50-10.3.20.59"
+  metallb_iot_pool: "10.3.12.13/32"
   metallb_iot_interface: "brvlan12"
-  traefik_lan_vip: "10.1.20.40"
-  smb_vip: "10.1.20.41"
+  traefik_lan_vip: "10.3.20.40"
+  smb_vip: "10.3.20.41"
 
   # --- ddnss-ingress (ionos1 -> wg -> haproxy -> traefik) ---
   ddnss_ingress_suspend: "true"
@@ -891,10 +891,10 @@ data:
   # --- k8s apiserver VIP (prod.k8s.lab.h4xx.io) ---
   k8s_api_lb_suspend: "true"
   k8s_api_lb_namespace: "kube-system"
-  k8s_api_vip: "10.1.20.53"
-  k8s_api_member1: "10.1.30.12"
-  k8s_api_member2: "10.1.30.27"
-  k8s_api_member3: "10.1.30.31"
+  k8s_api_vip: "10.3.20.53"
+  k8s_api_member1: "10.3.30.12"
+  k8s_api_member2: "10.3.30.27"
+  k8s_api_member3: "10.3.30.31"
 
   # Icarus dedicated server
   icarus_suspend: "true"
@@ -946,7 +946,7 @@ data:
   ha_thread_serial: "/dev/null"
   ha_thread_baud: "460800"
   ha_thread_radio_url: "spinel+hdlc+uart:///dev/null?uart-baudrate=460800"
-  ha_iot_vip: "10.1.12.13"
+  ha_iot_vip: "10.3.12.13"
   icarus_namespace: "icarus"
   icarus_node: ""
   icarus_image: "harbor.h4xx.io/library/icarus-server:sha-fc282200"
@@ -990,7 +990,7 @@ data:
   valheim_game_port: "2456"
   valheim_query_port: "2457"
   valheim_status_port: "9110"
-  valheim_vip: "10.1.20.43"
+  valheim_vip: "10.3.20.43"
   # Address players actually type. Shown on the OliveTin landing page, so it is
   # a substitution variable rather than a hardcode in flux-apps. The same value
   # also lives as public_host in the credentials secret, where the Steam-listing
@@ -1066,7 +1066,7 @@ data:
   gameserver_exporter_interval: "20"
   gameserver_exporter_targets: ""
   # MetalLB VIP for the game service (router DNAT target)
-  icarus_vip: "10.1.20.42"
+  icarus_vip: "10.3.20.42"
 
   # --- Event tooling: pretix (ticketing), pretalx (CfP/schedule), mailpit ---
   # All three ship suspended; flip the _suspend flags to "false" to enable.

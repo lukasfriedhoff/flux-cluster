@@ -161,7 +161,7 @@ data:
   # It MUST be an IP. The obvious improvement - use the Service DNS name so it
   # survives share-manager recreation - does not work and was tried on
   # 2026-09-28: kubelet performs NFS mounts in the HOST network namespace using
-  # the NODE's resolver, and the nodes resolve via LAN DNS (10.1.30.1 et al),
+  # the NODE's resolver, and the nodes resolve via LAN DNS (10.3.30.1 et al),
   # not CoreDNS. So *.svc.cluster.local is unresolvable at mount time and the
   # mount fails with "mount.nfs: Resource temporarily unavailable". Verified
   # with a hostNetwork+dnsPolicy:Default probe pod on srv9.
@@ -330,5 +330,5 @@ data:
   pretalx_suspend: "false"
   stalwart_suspend: "false"
   # A2S QUERY ports (game port + 1 for valheim), via the MetalLB VIPs.
-  gameserver_exporter_targets: "valheim=10.1.20.43:2457,icarus=10.1.20.42:27015"
+  gameserver_exporter_targets: "valheim=10.3.20.43:2457,icarus=10.3.20.42:27015"
   icarus_server_name: "h4xx Icarus"
