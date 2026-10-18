@@ -32,7 +32,12 @@ data:
   # storage; the VM addon ran home-assistant-libs 8.1.1 - stay on that
   # lineage for fabric continuity (4 commissioned nodes).
   ha_matter_image: "ghcr.io/home-assistant-libs/python-matter-server:8.1.0"
-  ha_otbr_replicas: "1"
+  # 0 while the ZBT-1 Thread radio is detached (it didn't survive the Hiesfelder
+  # move; otbr.yaml hard-mounts it as a CharDevice hostPath, so replicas>0 =
+  # permanent FailedMount pod + event spam). Restore to "1" after the radio is
+  # at the kiosk RB5009 + the socat TCP bridge is up + ha_thread_radio_url is
+  # repointed to the forkpty/TCP form. See the on-site checklist.
+  ha_otbr_replicas: "0"
   ha_matter_replicas: "1"
 
   # Longhorn
