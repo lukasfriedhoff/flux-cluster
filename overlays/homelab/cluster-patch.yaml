@@ -128,6 +128,7 @@ data:
   matrix_telegramdb_postgres_instances: "3"
   matrix_whatsappdb_postgres_instances: "3"
   matrix_signaldb_postgres_instances: "3"
+  matrix_discorddb_postgres_instances: "3"
   authelia_postgres_instances: "3"
   immich_postgres_instances: "3"
   # PG18 major upgrade 2026-09-12: fresh backup generation (old-major WAL cannot
@@ -205,6 +206,7 @@ data:
   matrix_wa_postgres_size: 5Gi
   matrix_telegram_postgres_size: 5Gi
   matrix_signal_postgres_size: 5Gi
+  matrix_discord_postgres_size: 5Gi
   matrix_suspend: "false"
   matrix_server_name: h4xx.io
   matrix_public_hostname: h4xx.io

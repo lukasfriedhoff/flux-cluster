@@ -593,6 +593,9 @@ data:
   # dock.mau.dev garbage-collects old manifests, so only pin digests that are
   # known-good and node-cached. signal stays on the floating tag until pinned.
   matrix_signal_image_tag: "latest"
+  # bridgev2 (mautrix-discord v0.7.x line). Digest-pinned like whatsapp/telegram.
+  # renovate: datasource=docker depName=dock.mau.dev/mautrix/discord
+  matrix_discord_image_tag: "v0.7.7@sha256:065405ca2f961b2687ca577c4eb65592c139d641342a9611d98b5394f30cf84a"
   matrix_server_name: "matrix.h4xx.io"
   matrix_public_hostname: "matrix.h4xx.io"
   matrix_public_baseurl: "https://matrix.h4xx.io"
