@@ -9,6 +9,7 @@ resources:
   - infra/longhorn.yaml
   - infra/longhorn-recurringjobs.yaml
   - infra/s3.yaml
+  - infra/garage.yaml
   - infra/nix-cache.yaml
   - infra/attic.yaml
   - infra/nix-remote-builder.yaml

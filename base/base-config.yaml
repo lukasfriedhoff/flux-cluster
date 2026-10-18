@@ -187,6 +187,30 @@ data:
   object_storage_insecure: "true"
   object_storage_force_path_style: "true"
   monitoring_s3_values_secret_name: "monitoring-s3-values"
+
+  # Garage: 3-node, replication_factor=3 S3 cluster (replaces the single-node
+  # MinIO `s3` app). Each node runs as a node-pinned Deployment on node-local
+  # hostPath (NOT Longhorn - Garage replicates itself, quorum 2/3). The node
+  # names/paths below are cluster-specific and set in the overlay.
+  garage_suspend: "true"
+  garage_namespace: "object-storage"
+  garage_replication_factor: "3"
+  garage_s3_region: "us-east-1"
+  garage_secrets_name: "garage-secrets"
+  garage_image: "harbor.h4xx.io/proxy-docker/dxflrs/garage:v2.3.0"
+  garage_init_image: "harbor.h4xx.io/proxy-docker/library/busybox:1.37.0"
+  garage_requests_cpu: "100m"
+  garage_requests_memory: "256Mi"
+  garage_limits_memory: "1536Mi"
+  garage_node1_name: "node1"
+  garage_node1_path: "/var/lib/garage"
+  garage_node2_name: "node2"
+  garage_node2_path: "/var/lib/garage"
+  garage_node3_name: "node3"
+  garage_node3_path: "/var/lib/garage"
+  # Cutover target for S3 consumers: flip a consumer's endpoint from
+  # ${object_storage_endpoint} (MinIO) to this once Garage is verified.
+  garage_s3_endpoint: "garage.object-storage.svc.cluster.local:3900"
   authelia_postgres_backup_bucket: "authelia-postgres-backup"
   authelia_postgres_backup_endpoint_url: ""
   authelia_postgres_backup_generation: ""

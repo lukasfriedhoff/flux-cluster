@@ -58,6 +58,18 @@ data:
   s3_storage_class_name: longhorn-ssd-rwo-1r
   object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
 
+  # Garage 3-node S3 cluster (replaces MinIO `s3`). Node-local hostPath per
+  # node. srv1/srv9 use the root disk; srv8's root is nearly full (18G) so it
+  # uses a dedicated dir on its large longhorn-disk1 filesystem (891G free).
+  # This is a raw local directory, NOT Longhorn CSI (no double-replication).
+  garage_suspend: "false"
+  garage_node1_name: srv1
+  garage_node1_path: /var/lib/garage
+  garage_node2_name: srv8
+  garage_node2_path: /var/lib/longhorn-disk1/garage
+  garage_node3_name: srv9
+  garage_node3_path: /var/lib/garage
+
   # Nix cache and builders
   nix_cache_suspend: "false"
   nix_cache_upstream_ip: 10.1.30.25
