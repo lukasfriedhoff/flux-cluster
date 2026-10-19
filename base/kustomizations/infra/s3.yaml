@@ -1,3 +1,22 @@
+# MinIO (single-node) S3. Being replaced by the 3-node Garage cluster
+# (garage-app, rf=3). KEPT RUNNING as rollback/fallback.
+#
+# Status (2026-10-19): Tempo + Mimir cut over to Garage and verified.
+# Stalwart's blob store is not wired to S3 (Postgres datastore only), so
+# nothing uses the stalwart-blobs bucket here. Loki STILL writes here.
+#
+# DECOMMISSION (only after Garage is proven AND Loki is migrated):
+#   1. Migrate Loki: `rclone sync` homelab-loki MinIO->Garage (286k objects,
+#      ~11GiB; the stalwart/monitoring keys already exist in Garage). Briefly
+#      pause/flush loki writes or accept a short re-fetch window, then flip
+#      loki-helm-release.yaml endpoint ${object_storage_endpoint} ->
+#      ${garage_s3_endpoint}; reconcile; verify Loki reads+writes Garage.
+#   2. Once NOTHING resolves ${object_storage_endpoint} to s3:9000, set
+#      s3_suspend "true" in the homelab overlay, confirm all consumers healthy
+#      for a few days, then delete apps/s3 + its Longhorn PVC (data-s3-0) and
+#      the s3-root / s3-monitoring-credentials / monitoring S3 buckets.
+#   Roll back any consumer by restoring ${object_storage_endpoint}; MinIO and
+#   its data stay intact until step 2's PVC deletion.
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
