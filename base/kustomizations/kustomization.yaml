@@ -60,4 +60,4 @@ resources:
   - infra/monitoring.yaml
   - infra/selkies-desktop.yaml
   - infra/sitemap.yaml
-  - tf-game.yaml
+  # - tf-game.yaml  # disabled 2026-10-23: game-tf2026 source removed (PAT auth fail)
