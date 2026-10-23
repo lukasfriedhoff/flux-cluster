@@ -5,4 +5,4 @@ resources:
   - flux-apps-repo.yaml
   - flux-app-media-repo.yaml
   - logday-repo.yaml
-  - game-tf2026-repo.yaml
+  # - game-tf2026-repo.yaml  # disabled 2026-10-23: GitHub PAT auth fail blocked repositories ks (see cluster-patch tf_game notes)
