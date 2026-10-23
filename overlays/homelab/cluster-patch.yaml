@@ -54,7 +54,12 @@ data:
 
   # Object storage
   s3_force: "true"
-  s3_suspend: "false"
+  # Suspended 2026-10-23: Garage replaced the single-node MinIO. Loki was the
+  # last consumer (data rclone-synced, endpoint flipped, reads+writes verified
+  # on Garage); Mimir/Tempo moved earlier; stalwart-blobs was always empty.
+  # The MinIO StatefulSet + PVC (data-s3-0) are LEFT RUNNING as rollback until
+  # a few days of healthy Garage operation, then deleted (see base s3.yaml).
+  s3_suspend: "true"
   s3_storage_class_name: longhorn-ssd-rwo-1r
   object_storage_endpoint: s3.object-storage.svc.cluster.local:9000
 
