@@ -60,4 +60,4 @@ resources:
   - infra/monitoring.yaml
   - infra/selkies-desktop.yaml
   - infra/sitemap.yaml
-  - tf-game.yaml
+  # - tf-game.yaml  # disabled: game-tf2026 source removed

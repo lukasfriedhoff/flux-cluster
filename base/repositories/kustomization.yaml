@@ -5,4 +5,4 @@ resources:
   - flux-apps-repo.yaml
   - flux-app-media-repo.yaml
   - logday-repo.yaml
-  - game-tf2026-repo.yaml
+  # - game-tf2026-repo.yaml  # disabled: PAT auth fail (see tf_game notes)

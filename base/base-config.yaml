@@ -616,7 +616,7 @@ data:
   matrix_telegram_image_tag: "v26.10@sha256:ed3f3b39289fae425a875311d8875729271c24f88ba03209bd1bfbaf31e6c78f"
   # dock.mau.dev garbage-collects old manifests, so only pin digests that are
   # known-good and node-cached. signal stays on the floating tag until pinned.
-  matrix_signal_image_tag: "latest"
+  matrix_signal_image_tag: "v26.10@sha256:39afa721aa69472b2e91c75bd7d81a739e47f7e480fc0ff5ac8247af28eb2d0a"
   # bridgev2 (mautrix-discord v0.7.x line). Digest-pinned like whatsapp/telegram.
   # renovate: datasource=docker depName=dock.mau.dev/mautrix/discord
   matrix_discord_image_tag: "v0.7.7@sha256:065405ca2f961b2687ca577c4eb65592c139d641342a9611d98b5394f30cf84a"
