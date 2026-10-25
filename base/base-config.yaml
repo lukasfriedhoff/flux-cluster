@@ -784,6 +784,7 @@ data:
 
   # Monitoring (LGTM)
   k8s_monitoring_namespace: "monitoring"
+  # renovate: datasource=helm depName=k8s-monitoring registryUrl=https://grafana.github.io/helm-charts
   k8s_monitoring_chart_version: "3.4.0"
   monitoring_tenant_id: "anonymous"
   monitoring_storage_class_name: "longhorn-ssd-rwo-1r"
@@ -857,7 +858,8 @@ data:
   # --- harbor (container registry) ---
   harbor_suspend: "true"
   harbor_namespace: "harbor"
-  harbor_chart_version: "1.19.2"
+  # renovate: datasource=helm depName=harbor registryUrl=https://helm.goharbor.io
+  harbor_chart_version: "1.19.4"
   harbor_admin_secret_name: "harbor-admin"
   harbor_trivy_enabled: "true"
   harbor_registry_storage_class_name: "longhorn-ssd-rwo-1r"
@@ -906,6 +908,7 @@ data:
   # --- metallb (L2 service VIPs on VLAN20/SERVER, below the DHCP pool) ---
   metallb_suspend: "true"
   metallb_namespace: "metallb-system"
+  # renovate: datasource=helm depName=metallb registryUrl=https://metallb.github.io/metallb
   metallb_chart_version: "0.16.1"
   metallb_pool_range: "10.3.20.40-10.3.20.49"
   metallb_apiserver_pool: "10.3.20.50-10.3.20.59"

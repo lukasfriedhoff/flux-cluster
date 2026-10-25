@@ -8,10 +8,11 @@
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Image tag variables in base-config/cluster-patch, annotated with '# renovate: datasource=... depName=...' comments on the preceding line",
+      "description": "Image tag AND helm chart version variables in base-config/cluster-patch, annotated with '# renovate: datasource=... depName=... [registryUrl=...]' on the preceding line. The registryUrl form is required for datasource=helm (chart versions): without a manager here Renovate's native flux manager cannot see a version that lives in a substitution variable, and the chart silently stops being updated - that is how k8s-monitoring drifted a whole major behind.",
       "managerFilePatterns": ["/base/base-config\\.ya?ml$/", "/overlays/.+/cluster-patch\\.ya?ml$/"],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-]+) depName=(?<depName>[^\\s]+)\\s+\\n\\s+[a-z0-9_]+: [\"']?(?<currentValue>[^\\s\"']+)[\"']?"
+        "# renovate: datasource=(?<datasource>[a-z-]+) depName=(?<depName>[^\\s]+) registryUrl=(?<registryUrl>[^\\s]+)[ \\t]*\\n\\s+[a-z0-9_]+: [\"']?(?<currentValue>[^\\s\"']+)[\"']?",
+        "# renovate: datasource=(?<datasource>[a-z-]+) depName=(?<depName>[^\\s]+)[ \\t]*\\n\\s+[a-z0-9_]+: [\"']?(?<currentValue>[^\\s\"']+)[\"']?"
       ]
     }
   ]
