@@ -18,7 +18,19 @@ spec:
     - name: namespaces
     - name: secrets
     - name: cnpg-app
-    - name: s3-app
+    # Garage, not s3-app. MinIO was decommissioned on 2026-10-23 and its
+    # Kustomization suspended - and a SUSPENDED Kustomization never advances its
+    # lastAppliedRevision, so every dependent waits forever on
+    # "dependency 'flux-system/s3-app' revision is not up to date". stalwart-app
+    # had been stuck on exactly that, which also kept the parent `kustomizations`
+    # Kustomization permanently not-Ready.
+    #
+    # NOTE: this unblocks reconciliation only. stalwart's own S3 usage - the CNPG
+    # barman archive in postgres.yaml and the bucket bootstrap in
+    # s3-bootstrap.yaml - still points at the MinIO service, which is still
+    # running despite being suspended. Those need a Garage bucket, a Garage
+    # access key and fresh SOPS credentials before MinIO can actually be removed.
+    - name: garage-app
     - name: reflector-app
     - name: cert-manager-app
     - name: traefik-app
