@@ -19,25 +19,24 @@ data:
   logday_repo_url: https://codeberg.org/lukasfriedhoff/logDay.git
 
   # --- Home Assistant Thread/Matter cutover (2026-09-19) ---
-  # 2026-09-23: the ZBT-1 now hangs off srv9 directly (same node as the OTBR
-  # pod), so otbr-agent opens the tty itself - no socat on srv4, no TCP hop,
-  # no forkpty bridge. This also frees srv4 to be rebuilt as a cluster node.
-  # The MikroTik was evaluated as the host and REJECTED: RouterOS enumerates
-  # the CP210x and offers /port remote-access, but the port only accepts
-  # baud-rate=auto (460800/230400/115200 all rejected) and its RFC2217 lacks
-  # the com-port control option, so the 460800 line rate is unreachable.
-  ha_thread_serial: "/dev/serial/by-id/usb-Nabu_Casa_Home_Assistant_Connect_ZBT-1_3ea9aeea08d7ed11879a6b6162c613ac-if00-port0"
-  ha_thread_radio_url: "spinel+hdlc+uart:///dev/serial/by-id/usb-Nabu_Casa_Home_Assistant_Connect_ZBT-1_3ea9aeea08d7ed11879a6b6162c613ac-if00-port0?uart-baudrate=460800&uart-flow-control=1"
+  # 2026-10-28: the ZBT-1 lives on storage01 at the KIOSK (where the Thread
+  # mesh is); the OTBR pod runs on srv9 at Hiesfelder. storage01 is Arch, not
+  # nix: the docker container `ha-thread-rcp` (alpine/socat, host network,
+  # --restart unless-stopped) exports /dev/ttyUSB0 @460800+crtscts as raw TCP
+  # on 10.1.30.15:3333, range-guarded to 10.3.30.0/24 (use the IP, a DNS name
+  # on the h4xx VLAN gets SNATed and trips the guard). otbr-agent reaches it via
+  # the forkpty python bridge from the otbr-bridge ConfigMap. The kiosk MikroTik
+  # was evaluated as serial host and REJECTED (baud auto only, rfc2217 without
+  # the com-port control option).
+  # ha_thread_serial must still name an EXISTING char device on srv9: otbr.yaml
+  # hard-mounts it as a CharDevice hostPath. /dev/null over /dev/null is a no-op.
+  ha_thread_serial: "/dev/null"
+  ha_thread_radio_url: "spinel+hdlc+forkpty:///usr/bin/python3?forkpty-arg=/otbr-bridge/bridge.py&forkpty-arg=10.1.30.15&forkpty-arg=3333"
   # matter-js fork (8.1.2) derives a different fabric from the same chip
   # storage; the VM addon ran home-assistant-libs 8.1.1 - stay on that
   # lineage for fabric continuity (4 commissioned nodes).
   ha_matter_image: "ghcr.io/home-assistant-libs/python-matter-server:8.1.0"
-  # 0 while the ZBT-1 Thread radio is detached (it didn't survive the Hiesfelder
-  # move; otbr.yaml hard-mounts it as a CharDevice hostPath, so replicas>0 =
-  # permanent FailedMount pod + event spam). Restore to "1" after the radio is
-  # at the kiosk RB5009 + the socat TCP bridge is up + ha_thread_radio_url is
-  # repointed to the forkpty/TCP form. See the on-site checklist.
-  ha_otbr_replicas: "0"
+  ha_otbr_replicas: "1"
   ha_matter_replicas: "1"
 
   # Longhorn
