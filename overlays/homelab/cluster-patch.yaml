@@ -354,12 +354,18 @@ data:
   gameserver_exporter_suspend: "false"
   # Event apps (ticketing + CfP) and their shared mail catcher. Backups for
   # pretix/pretalx Postgres are wired (barman -> backup.h4xx.io MinIO).
-  mailpit_suspend: "false"
+  # Mailpit stopped 2026-10-30 until the hackimpott.de DNS change is merged
+  # (Kustomization suspended, workloads scaled to 0 by hand; flip back to
+  # "false" and `flux reconcile ks` to resume on the git-declared state).
+  mailpit_suspend: "true"
   nextdash_suspend: "false"
   homepage_suspend: "false"
   pretix_suspend: "false"
   pretalx_suspend: "false"
-  stalwart_suspend: "false"
+  # Stalwart stopped 2026-10-30 until the hackimpott.de DNS change is merged
+  # (Kustomization suspended, workloads scaled to 0 by hand; flip back to
+  # "false" and `flux reconcile ks` to resume on the git-declared state).
+  stalwart_suspend: "true"
   # A2S QUERY ports (game port + 1 for valheim), via the MetalLB VIPs.
   gameserver_exporter_targets: "valheim=10.3.20.43:2457,icarus=10.3.20.42:27015"
   icarus_server_name: "h4xx Icarus"
