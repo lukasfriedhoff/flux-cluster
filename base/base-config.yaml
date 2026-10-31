@@ -785,7 +785,7 @@ data:
   # Monitoring (LGTM)
   k8s_monitoring_namespace: "monitoring"
   # renovate: datasource=helm depName=k8s-monitoring registryUrl=https://grafana.github.io/helm-charts
-  k8s_monitoring_chart_version: "3.4.0"
+  k8s_monitoring_chart_version: "4.6.0"
   monitoring_tenant_id: "anonymous"
   monitoring_storage_class_name: "longhorn-ssd-rwo-1r"
   grafana_persistence_size: "5Gi"
