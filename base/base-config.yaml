@@ -735,6 +735,9 @@ data:
   radarr_external_url: "https://radarr${public_host_suffix}.${delegating_domain}"
   sonarr_external_url: "https://sonarr${public_host_suffix}.${delegating_domain}"
   arr_config_storage_class_name: "longhorn-ssd-rwo-1r"
+  # Jellyfin metadata (library + People images) hit 86% of the 30Gi default on
+  # 2026-10-31 and was trending to full within days; Longhorn expands online.
+  jellyfin_config_size: "60Gi"
   arr_config_size: "5Gi"
   media_enable_dual_audio_policy: "true"
   arr_media_storage_class_name: "longhorn-disk-rwx-1r"
