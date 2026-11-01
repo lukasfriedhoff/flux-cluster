@@ -903,7 +903,7 @@ data:
   smb_suspend: "true"
   smb_namespace: "smb"
   smb_node: "srv9"
-  smb_image_tag: "smbd-only-a3.24.2-s4.23.8-r0"
+  smb_image_tag: "smbd-only-a3.24.3-s4.23.8-r0"
   smb_accounts_secret_name: "smb-accounts"
   smb_storage_class_name: "longhorn-ssd-rwo-1r"
   smb_shares_size: "10Gi"
