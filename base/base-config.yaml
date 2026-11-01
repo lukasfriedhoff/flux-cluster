@@ -815,7 +815,10 @@ data:
   forgejo_suspend: "true"
   forgejo_namespace: "forgejo"
   forgejo_service_name: "forgejo"
-  forgejo_image: "codeberg.org/forgejo/forgejo:15.0.11-rootless"
+  forgejo_image: "codeberg.org/forgejo/forgejo:17.0.1-rootless"
+  # Pinned in-app since Forgejo 16 removed the `*` container default; pod
+  # CIDR (traefik) + loopback.
+  forgejo_reverse_proxy_trusted_proxies: "10.42.0.0/16,127.0.0.0/8,::1/128"
   forgejo_image_pull_policy: "IfNotPresent"
   forgejo_replicas: "1"
   forgejo_admin_secret_name: "forgejo-admin"
