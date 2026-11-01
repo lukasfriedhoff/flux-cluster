@@ -10,14 +10,22 @@ data:
     global:
       scrapeInterval: 30s
       scrapeTimeout: 10s
+    # chart 4.x: destinations are a MAP keyed by name, not a list with `name:`.
     destinations:
-      - name: mimir
+      mimir:
         type: prometheus
         url: http://mimir-gateway.monitoring.svc.cluster.local/api/v1/push
-      - name: loki
+        # Sends X-Scope-OrgID explicitly. mimir-gateway already maps a missing
+        # header to `anonymous`, so this changes nothing on the wire today; it
+        # just stops the write path depending on that gateway default.
+        # extraHeaders (plain string) rather than tenantId: tenantId makes the
+        # chart create a Secret and read it back via remote.kubernetes.secret.
+        extraHeaders:
+          X-Scope-OrgID: ${monitoring_tenant_id:=anonymous}
+      loki:
         type: loki
         url: http://loki-gateway.monitoring.svc.cluster.local/loki/api/v1/push
-      - name: tempo
+      tempo:
         type: otlp
         url: tempo-distributor.monitoring.svc.cluster.local:4317
         protocol: grpc
@@ -29,9 +37,23 @@ data:
           enabled: false
         traces:
           enabled: true
+    # chart 4.x: every feature must name its collector explicitly. The implicit
+    # default only applies when exactly one collector exists; with four of them
+    # an unset `collector:` fails the render ("requires a collector to be
+    # assigned"). Assignment mirrors 3.x: metrics features on alloy-metrics,
+    # events on alloy-singleton, pod logs on alloy-logs, OTLP on alloy-receiver.
     clusterMetrics:
       enabled: true
-      node-exporter:
+      collector: alloy-metrics
+    # chart 4.x: node-exporter scraping moved out of clusterMetrics into its own
+    # hostMetrics feature. Leaving these under clusterMetrics.node-exporter is
+    # silently ignored (the values schema does not reject unknown keys), which
+    # would drop node_uname_info and the conntrack/UDP counters without any error.
+    hostMetrics:
+      enabled: true
+      collector: alloy-metrics
+      linuxHosts:
+        enabled: true
         metricsTuning:
           includeMetrics:
             - node_uname_info
@@ -43,15 +65,22 @@ data:
             - node_netstat_Udp_InErrors
             - node_netstat_Udp_RcvbufErrors
             - node_netstat_Udp_SndbufErrors
-        extraArgs:
-          - --collector.uname
-          - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|ramfs|rpc_pipefs|securityfs|selinuxfs|squashfs|erofs|sysfs|tmpfs|tracefs)$
     clusterEvents:
       enabled: true
-    podLogs:
+      collector: alloy-singleton
+    # chart 4.x: `podLogs` split by destination format. gatherMethod `volumes`
+    # (the 3.x default this cluster used) is now `podLogsViaLoki`.
+    podLogsViaLoki:
       enabled: true
+      collector: alloy-logs
+      # 4.x flipped this default to true (and dropped the volumeGatherSettings
+      # wrapper). Pinned to the 3.x value so the upgrade does not also change
+      # log-gathering behaviour; flip it to true (chart default) if alloy-logs
+      # restarts start replaying history into Loki.
+      onlyGatherNewLogLines: false
     annotationAutodiscovery:
       enabled: true
+      collector: alloy-metrics
       annotations:
         scrape: prometheus.io/scrape
         metricsPath: prometheus.io/path
@@ -59,190 +88,257 @@ data:
         metricsScheme: prometheus.io/scheme
     applicationObservability:
       enabled: true
+      collector: alloy-receiver
       receivers:
         otlp:
           grpc:
             enabled: true
           http:
             enabled: true
-    alloy-metrics:
-      enabled: true
-      includeDestinations:
-        - mimir
-      extraConfig: |-
-        discovery.kubernetes "monitoring_pods" {
-          role = "pod"
-        }
-
-        discovery.relabel "monitoring_components" {
-          targets = discovery.kubernetes.monitoring_pods.targets
-
-          rule {
-            action = "keep"
-            source_labels = ["__meta_kubernetes_namespace"]
-            regex = "monitoring"
-          }
-
-          rule {
-            action = "keep"
-            source_labels = ["__meta_kubernetes_pod_label_app_kubernetes_io_name"]
-            regex = "loki|mimir|tempo"
-          }
-
-          rule {
-            action = "keep"
-            source_labels = ["__meta_kubernetes_pod_container_port_name"]
-            regex = "http-metrics"
-          }
-
-          rule {
-            action = "replace"
-            source_labels = ["__meta_kubernetes_pod_ip", "__meta_kubernetes_pod_container_port_number"]
-            target_label = "__address__"
-            regex = "(.+);(\\d+)"
-            replacement = "$1:$2"
-          }
-
-          rule {
-            action = "labelmap"
-            regex = "__meta_kubernetes_pod_label_(.+)"
-          }
-
-          rule {
-            action = "replace"
-            source_labels = ["__meta_kubernetes_namespace", "__meta_kubernetes_pod_label_app_kubernetes_io_component"]
-            target_label = "job"
-            regex = "(.+);(.+)"
-            replacement = "$1/$2"
-          }
-
-          rule {
-            action = "replace"
-            source_labels = ["job", "__meta_kubernetes_namespace", "__meta_kubernetes_pod_label_app_kubernetes_io_name"]
-            target_label = "job"
-            regex = ";(.+);(.+)"
-            replacement = "$1/$2"
-          }
-
-          rule {
-            action = "replace"
-            source_labels = ["__meta_kubernetes_namespace"]
-            target_label = "namespace"
-          }
-
-          rule {
-            action = "replace"
-            target_label = "cluster"
-            replacement = "${cluster_name}"
-          }
-
-          rule {
-            action = "replace"
-            source_labels = ["__meta_kubernetes_pod_name"]
-            target_label = "pod"
-          }
-        }
-
-        prometheus.scrape "monitoring_components" {
-          targets = discovery.relabel.monitoring_components.output
-          forward_to = [prometheus.remote_write.mimir.receiver]
-          scrape_interval = "30s"
-          scrape_timeout = "10s"
-        }
-
-        // Attic exposes no metrics at all: its server crate has no prometheus,
-        // metrics or OpenTelemetry code. nix-remote-builder is a bare sshd with
-        // nothing to scrape either. Both were previously represented on the
-        // nix-build-pipeline dashboard by kube_deployment_status_replicas_available,
-        // which only says a pod exists — a wedged Attic that accepts no
-        // connections still reads as healthy. Blackbox probes answer the
-        // question that actually matters: does it respond?
-        //
-        // Hydra is probed as well even though it does export metrics, because
-        // its exporter and its web server are separate listeners; the queue
-        // runner can be up while the UI is unreachable.
-        prometheus.exporter.blackbox "nix_pipeline" {
-          config = "{ modules: { http_2xx: { prober: http, timeout: 5s }, tcp_connect: { prober: tcp, timeout: 5s } } }"
-
-          target {
-            name    = "attic"
-            address = "http://attic.nix-cache.svc.cluster.local:8080/"
-            module  = "http_2xx"
-            labels  = {
-              component = "nix-pipeline",
-              service   = "attic",
-            }
-          }
-
-          target {
-            name    = "hydra"
-            address = "http://hydra.nix-cache.svc.cluster.local:3000/"
-            module  = "http_2xx"
-            labels  = {
-              component = "nix-pipeline",
-              service   = "hydra",
-            }
-          }
-
-          target {
-            name    = "nix-remote-builder"
-            address = "nix-remote-builder.nix-cache.svc.cluster.local:22"
-            module  = "tcp_connect"
-            labels  = {
-              component = "nix-pipeline",
-              service   = "nix-remote-builder",
-            }
-          }
-        }
-
-        discovery.relabel "nix_pipeline_blackbox" {
-          targets = prometheus.exporter.blackbox.nix_pipeline.targets
-
-          rule {
-            action = "replace"
-            target_label = "cluster"
-            replacement = "${cluster_name}"
-          }
-
-          rule {
-            action = "replace"
-            target_label = "namespace"
-            replacement = "nix-cache"
-          }
-        }
-
-        prometheus.scrape "nix_pipeline_blackbox" {
-          targets = discovery.relabel.nix_pipeline_blackbox.output
-          forward_to = [prometheus.remote_write.mimir.receiver]
-          scrape_interval = "60s"
-          scrape_timeout = "20s"
-        }
-
-        // storage01: external backup host (MinIO on docker). Scrape node + SMART
-        // exporters. This host was previously UNMONITORED, so a FAILED disk (sdi)
-        // and a MinIO OOM crash-loop went unnoticed for ~6 weeks.
-        prometheus.scrape "storage01_host" {
-          targets = [
-            { "__address__" = "10.1.40.244:9100", "job" = "node-exporter", "instance" = "storage01", "cluster" = "homelab" },
-            { "__address__" = "10.1.40.244:9633", "job" = "smartctl-exporter", "instance" = "storage01", "cluster" = "homelab" },
-          ]
-          forward_to = [prometheus.remote_write.mimir.receiver]
-          scrape_interval = "30s"
-          scrape_timeout  = "10s"
-        }
-    alloy-logs:
-      enabled: true
-    alloy-singleton:
-      enabled: true
-    alloy-receiver:
-      enabled: true
+    # chart 4.x: the deployable exporters moved out of the feature charts into
+    # telemetryServices, and all of them now default to deploy: false. Without
+    # these two, kube-state-metrics and node-exporter simply stop being deployed.
+    telemetryServices:
+      kube-state-metrics:
+        deploy: true
+      node-exporter:
+        deploy: true
+        extraArgs:
+          - --collector.uname
+          - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|ramfs|rpc_pipefs|securityfs|selinuxfs|squashfs|erofs|sysfs|tmpfs|tracefs)$
+    # chart 4.x: the named alloy-* collectors became a `collectors` map, and the
+    # workload shape comes from presets instead of hardcoded per-collector
+    # defaults. These presets reproduce the 3.4.0 shapes exactly: alloy-metrics
+    # clustered StatefulSet, alloy-logs DaemonSet with /var/log mounted,
+    # alloy-singleton single-replica Deployment, alloy-receiver DaemonSet with
+    # the OTLP ports open.
+    #
+    # Resources are set HERE, natively. In 3.x they were attempted via Flux
+    # postRenderer patches in flux-apps, but the collector workloads are created
+    # by the Alloy operator from `Alloy` CRs, not by Helm, so those patches never
+    # matched and all four collectors ran with `resources: {}`. Sizes are from
+    # the 7-day peak working set / CPU (2026-11-01): alloy-metrics ~2.5Gi (the
+    # old 1Gi patch value would have OOM-killed it on the spot), alloy-logs
+    # ~225Mi / ~0.45 core, alloy-receiver ~275Mi, alloy-singleton ~110Mi,
+    # config-reloader <= 41Mi.
+    collectorCommon:
       alloy:
-        extraPorts:
-          - name: otlp-grpc
-            port: 4317
-            targetPort: 4317
-            protocol: TCP
-          - name: otlp-http
-            port: 4318
-            targetPort: 4318
-            protocol: TCP
+        configReloader:
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+    collectors:
+      alloy-metrics:
+        presets:
+          - clustered
+          - statefulset
+        alloy:
+          resources:
+            requests:
+              cpu: 200m
+              memory: 2Gi
+            limits:
+              cpu: 2000m
+              memory: 4Gi
+        includeDestinations:
+          - mimir
+        extraConfig: |-
+          discovery.kubernetes "monitoring_pods" {
+            role = "pod"
+          }
+
+          discovery.relabel "monitoring_components" {
+            targets = discovery.kubernetes.monitoring_pods.targets
+
+            rule {
+              action = "keep"
+              source_labels = ["__meta_kubernetes_namespace"]
+              regex = "monitoring"
+            }
+
+            rule {
+              action = "keep"
+              source_labels = ["__meta_kubernetes_pod_label_app_kubernetes_io_name"]
+              regex = "loki|mimir|tempo"
+            }
+
+            rule {
+              action = "keep"
+              source_labels = ["__meta_kubernetes_pod_container_port_name"]
+              regex = "http-metrics"
+            }
+
+            rule {
+              action = "replace"
+              source_labels = ["__meta_kubernetes_pod_ip", "__meta_kubernetes_pod_container_port_number"]
+              target_label = "__address__"
+              regex = "(.+);(\\d+)"
+              replacement = "$1:$2"
+            }
+
+            rule {
+              action = "labelmap"
+              regex = "__meta_kubernetes_pod_label_(.+)"
+            }
+
+            rule {
+              action = "replace"
+              source_labels = ["__meta_kubernetes_namespace", "__meta_kubernetes_pod_label_app_kubernetes_io_component"]
+              target_label = "job"
+              regex = "(.+);(.+)"
+              replacement = "$1/$2"
+            }
+
+            rule {
+              action = "replace"
+              source_labels = ["job", "__meta_kubernetes_namespace", "__meta_kubernetes_pod_label_app_kubernetes_io_name"]
+              target_label = "job"
+              regex = ";(.+);(.+)"
+              replacement = "$1/$2"
+            }
+
+            rule {
+              action = "replace"
+              source_labels = ["__meta_kubernetes_namespace"]
+              target_label = "namespace"
+            }
+
+            rule {
+              action = "replace"
+              target_label = "cluster"
+              replacement = "${cluster_name}"
+            }
+
+            rule {
+              action = "replace"
+              source_labels = ["__meta_kubernetes_pod_name"]
+              target_label = "pod"
+            }
+          }
+
+          prometheus.scrape "monitoring_components" {
+            targets = discovery.relabel.monitoring_components.output
+            forward_to = [prometheus.remote_write.mimir.receiver]
+            scrape_interval = "30s"
+            scrape_timeout = "10s"
+          }
+
+          // Attic exposes no metrics at all: its server crate has no prometheus,
+          // metrics or OpenTelemetry code. nix-remote-builder is a bare sshd with
+          // nothing to scrape either. Both were previously represented on the
+          // nix-build-pipeline dashboard by kube_deployment_status_replicas_available,
+          // which only says a pod exists — a wedged Attic that accepts no
+          // connections still reads as healthy. Blackbox probes answer the
+          // question that actually matters: does it respond?
+          //
+          // Hydra is probed as well even though it does export metrics, because
+          // its exporter and its web server are separate listeners; the queue
+          // runner can be up while the UI is unreachable.
+          prometheus.exporter.blackbox "nix_pipeline" {
+            config = "{ modules: { http_2xx: { prober: http, timeout: 5s }, tcp_connect: { prober: tcp, timeout: 5s } } }"
+
+            target {
+              name    = "attic"
+              address = "http://attic.nix-cache.svc.cluster.local:8080/"
+              module  = "http_2xx"
+              labels  = {
+                component = "nix-pipeline",
+                service   = "attic",
+              }
+            }
+
+            target {
+              name    = "hydra"
+              address = "http://hydra.nix-cache.svc.cluster.local:3000/"
+              module  = "http_2xx"
+              labels  = {
+                component = "nix-pipeline",
+                service   = "hydra",
+              }
+            }
+
+            target {
+              name    = "nix-remote-builder"
+              address = "nix-remote-builder.nix-cache.svc.cluster.local:22"
+              module  = "tcp_connect"
+              labels  = {
+                component = "nix-pipeline",
+                service   = "nix-remote-builder",
+              }
+            }
+          }
+
+          discovery.relabel "nix_pipeline_blackbox" {
+            targets = prometheus.exporter.blackbox.nix_pipeline.targets
+
+            rule {
+              action = "replace"
+              target_label = "cluster"
+              replacement = "${cluster_name}"
+            }
+
+            rule {
+              action = "replace"
+              target_label = "namespace"
+              replacement = "nix-cache"
+            }
+          }
+
+          prometheus.scrape "nix_pipeline_blackbox" {
+            targets = discovery.relabel.nix_pipeline_blackbox.output
+            forward_to = [prometheus.remote_write.mimir.receiver]
+            scrape_interval = "60s"
+            scrape_timeout = "20s"
+          }
+
+          // storage01: external backup host (MinIO on docker). Scrape node + SMART
+          // exporters. This host was previously UNMONITORED, so a FAILED disk (sdi)
+          // and a MinIO OOM crash-loop went unnoticed for ~6 weeks.
+          prometheus.scrape "storage01_host" {
+            targets = [
+              { "__address__" = "10.1.40.244:9100", "job" = "node-exporter", "instance" = "storage01", "cluster" = "homelab" },
+              { "__address__" = "10.1.40.244:9633", "job" = "smartctl-exporter", "instance" = "storage01", "cluster" = "homelab" },
+            ]
+            forward_to = [prometheus.remote_write.mimir.receiver]
+            scrape_interval = "30s"
+            scrape_timeout  = "10s"
+          }
+      alloy-logs:
+        presets:
+          - daemonset
+          - filesystem-log-reader
+        alloy:
+          resources:
+            requests:
+              cpu: 50m
+              memory: 192Mi
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+      alloy-singleton:
+        presets:
+          - singleton
+        alloy:
+          resources:
+            requests:
+              cpu: 25m
+              memory: 96Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+      alloy-receiver:
+        presets:
+          - daemonset
+          - otel-receiver
+        alloy:
+          resources:
+            requests:
+              cpu: 25m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
