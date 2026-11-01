@@ -927,7 +927,7 @@ data:
   ddnss_ingress_suspend: "true"
   ddnss_ingress_namespace: "ddnss-ingress"
   ddnss_ingress_wireguard_tag: "1.0.20260223"
-  ddnss_ingress_haproxy_tag: "3.0-alpine"
+  ddnss_ingress_haproxy_tag: "3.4-alpine"
   ddnss_ingress_wg_secret_name: "ddnss-ingress-wg"
 
   # --- k8s apiserver VIP (prod.k8s.lab.h4xx.io) ---
@@ -1014,7 +1014,7 @@ data:
   icarus_backup_cron: "45 3 * * *"
   icarus_backup_keep_daily: "14"
   icarus_backup_keep_weekly: "8"
-  icarus_olivetin_image: "ghcr.io/olivetin/olivetin:2024.05.27"
+  icarus_olivetin_image: "ghcr.io/olivetin/olivetin:3000.21.0"
   icarus_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.63.23"
   icarus_kubectl_image: "docker.io/alpine/k8s:1.35.10"
 
@@ -1058,7 +1058,7 @@ data:
   valheim_backup_keep_daily: "14"
   valheim_backup_keep_weekly: "8"
   valheim_restic_image: "restic/restic:0.19.1"
-  valheim_olivetin_image: "ghcr.io/olivetin/olivetin:2024.05.27"
+  valheim_olivetin_image: "ghcr.io/olivetin/olivetin:3000.21.0"
   valheim_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.63.23"
   valheim_kubectl_image: "docker.io/alpine/k8s:1.35.10"
 
@@ -1103,7 +1103,7 @@ data:
   # servers (feeds the Grafana dashboard and status.h4xx.io).
   gameserver_exporter_suspend: "true"
   gameserver_exporter_namespace: "monitoring"
-  gameserver_exporter_image: "docker.io/library/python:3.13-alpine"
+  gameserver_exporter_image: "docker.io/library/python:3.15-alpine"
   gameserver_exporter_port: "9109"
   gameserver_exporter_interval: "20"
   gameserver_exporter_targets: ""
@@ -1137,7 +1137,7 @@ data:
   homepage_suspend: "true"
   homepage_host: "homepage"
   homepage_domain: "h4xx.io"
-  homepage_image_tag: "v1.13.2"
+  homepage_image_tag: "v2.7.0"
   pretix_suspend: "true"
   pretix_primary_host: "pretix"
   pretix_alias_host: "tickets"
