@@ -1011,7 +1011,7 @@ data:
   icarus_backup_cron: "45 3 * * *"
   icarus_backup_keep_daily: "14"
   icarus_backup_keep_weekly: "8"
-  icarus_olivetin_image: "ghcr.io/olivetin/olivetin:2024.05.27"
+  icarus_olivetin_image: "ghcr.io/olivetin/olivetin:3000.21.0"
   icarus_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.63.23"
   icarus_kubectl_image: "docker.io/alpine/k8s:1.35.10"
 
@@ -1055,7 +1055,7 @@ data:
   valheim_backup_keep_daily: "14"
   valheim_backup_keep_weekly: "8"
   valheim_restic_image: "restic/restic:0.19.1"
-  valheim_olivetin_image: "ghcr.io/olivetin/olivetin:2024.05.27"
+  valheim_olivetin_image: "ghcr.io/olivetin/olivetin:3000.21.0"
   valheim_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.63.23"
   valheim_kubectl_image: "docker.io/alpine/k8s:1.35.10"
 
