@@ -758,7 +758,7 @@ data:
   prowlarr_default_seed_ratio: ""
   qbit_manage_cron: "45 */6 * * *"
   qbit_manage_dry_run: "True"
-  qbit_manage_image_tag: "v4.8.1"
+  qbit_manage_image_tag: "v4.14.0"
   qbit_manage_suspended: "true"
 
   # Moonlight Web
