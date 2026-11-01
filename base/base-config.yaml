@@ -521,7 +521,9 @@ data:
   # Immich Photos (second isolated Immich instance)
   immich_photos_suspend: "true"
   immich_photos_secret_name: "immich-photos-secrets"
-  immich_photos_image_tag: "release"
+  # Pinned like immich_image_tag (see there).
+  # renovate: datasource=docker depName=ghcr.io/immich-app/immich-server
+  immich_photos_image_tag: "v3.3.5"
   immich_photos_timezone: "Europe/Berlin"
   immich_photos_oidc: "none"
   immich_photos_oidc_client_id: "immich-photos"
