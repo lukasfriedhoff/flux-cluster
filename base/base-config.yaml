@@ -1134,7 +1134,7 @@ data:
   homepage_suspend: "true"
   homepage_host: "homepage"
   homepage_domain: "h4xx.io"
-  homepage_image_tag: "v1.13.2"
+  homepage_image_tag: "v2.7.0"
   pretix_suspend: "true"
   pretix_primary_host: "pretix"
   pretix_alias_host: "tickets"
