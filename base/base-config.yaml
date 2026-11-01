@@ -1100,7 +1100,7 @@ data:
   # servers (feeds the Grafana dashboard and status.h4xx.io).
   gameserver_exporter_suspend: "true"
   gameserver_exporter_namespace: "monitoring"
-  gameserver_exporter_image: "docker.io/library/python:3.13-alpine"
+  gameserver_exporter_image: "docker.io/library/python:3.15-alpine"
   gameserver_exporter_port: "9109"
   gameserver_exporter_interval: "20"
   gameserver_exporter_targets: ""
