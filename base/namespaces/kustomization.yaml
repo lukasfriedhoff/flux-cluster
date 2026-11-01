@@ -44,3 +44,4 @@ resources:
   - home-automation.yaml
   - sitemap.yaml
   - tf-game.yaml
+  - cryo.yaml

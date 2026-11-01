@@ -372,3 +372,8 @@ data:
   # A2S QUERY ports (game port + 1 for valheim), via the MetalLB VIPs.
   gameserver_exporter_targets: "valheim=10.3.20.43:2457,icarus=10.3.20.42:27015"
   icarus_server_name: "h4xx Icarus"
+  # kryomat: adopts the hand-applied cryo namespace (kryomat repo deploy/flux).
+  # Needs codeberg.org/lukasfriedhoff/kryomat (push mirror of git.h4xx.io)
+  # to exist BEFORE this merges — see base/repositories/kryomat-repo.yaml.
+  kryomat_repo_suspend: "false"
+  kryomat_suspend: "false"

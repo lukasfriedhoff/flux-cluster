@@ -1158,3 +1158,13 @@ data:
   stalwart_replicas: "1"
   stalwart_image_tag: "v0.16.25"
   stalwart_blob_bucket: "stalwart-blobs"
+  # kryomat (Cryo Chamber automation, namespace cryo; repo
+  # git.h4xx.io/lukasf/kryomat, read via its Codeberg mirror). Both the source
+  # and the Kustomization are suspended by default; the overlay of the cluster
+  # that runs it flips them.
+  kryomat_suspend: "true"
+  kryomat_repo_suspend: "true"
+  kryomat_repo_url: "https://codeberg.org/lukasfriedhoff/kryomat.git"
+  kryomat_repo_secret_name: "codeberg-read"
+  kryomat_branch: "main"
+  kryomat_path: "./deploy/flux"

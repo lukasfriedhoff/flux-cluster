@@ -1,0 +1,36 @@
+---
+# kryomat — Cryo Chamber automation (namespace cryo). Adopts the objects that
+# were kubectl-applied in September 2026; deploy/flux in the kryomat repo is
+# that live state exported object-for-object.
+#
+# No postBuild on purpose: deploy/flux is fully rendered and contains no
+# substitution placeholders, which keeps it clear of both Flux substitution
+# traps (quotes dropped on bools/numbers/cron, a placeholder in a comment
+# killing the apply). Operating state (replicas 0, collector suspended) is
+# changed in that repo, never with kubectl — Flux reverts drift hourly.
+#
+# Credentials are hand-made Secrets in cryo and are NOT part of this path;
+# prune only touches objects carrying this Kustomization's labels.
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: kryomat-app
+  namespace: flux-system
+spec:
+  suspend: ${kryomat_suspend:=true}
+  dependsOn:
+    - name: namespaces
+    - name: longhorn-app
+    # network-policy-media.yaml lives in the media namespace, and the executor
+    # talks to qBittorrent there.
+    - name: media-app
+  interval: ${flux_kustomization_default_interval:=1h0m0s}
+  path: ${kryomat_path:=./deploy/flux}
+  prune: true
+  retryInterval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: kryomat
+  # wait covers Scylla's StatefulSet: its startup probe allows 36 x 10 s.
+  wait: true
+  timeout: 10m0s

@@ -1,0 +1,23 @@
+---
+# kryomat (Cryo Chamber automation, namespace cryo). Its own private repo with
+# its own image pipeline, so it is not in flux-apps. Primary is
+# git.h4xx.io/lukasf/kryomat; Flux reads the Codeberg push-mirror like every
+# other source, so a Forgejo outage can never block reconciliation.
+#
+# Suspended by default: an enabled GitRepository whose URL does not resolve
+# turns `repositories` (wait: true) not-ready and with it every infra
+# Kustomization spec change. Only flip kryomat_repo_suspend once the mirror
+# exists and codeberg-read can clone it.
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: kryomat
+  namespace: flux-system
+spec:
+  interval: ${flux_gitrepo_interval:=10m0s}
+  suspend: ${kryomat_repo_suspend:=true}
+  ref:
+    branch: ${kryomat_branch:=main}
+  secretRef:
+    name: ${kryomat_repo_secret_name:=codeberg-read}
+  url: ${kryomat_repo_url:=https://codeberg.org/lukasfriedhoff/kryomat.git}
