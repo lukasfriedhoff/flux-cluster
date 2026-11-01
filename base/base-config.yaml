@@ -197,8 +197,8 @@ data:
   garage_replication_factor: "3"
   garage_s3_region: "us-east-1"
   garage_secrets_name: "garage-secrets"
-  garage_image: "harbor.h4xx.io/proxy-docker/dxflrs/garage:v2.3.0"
-  garage_init_image: "harbor.h4xx.io/proxy-docker/library/busybox:1.37.0"
+  garage_image: "harbor.h4xx.io/proxy-docker/dxflrs/garage:v2.5.0"
+  garage_init_image: "harbor.h4xx.io/proxy-docker/library/busybox:1.38.0"
   garage_requests_cpu: "100m"
   garage_requests_memory: "256Mi"
   garage_limits_memory: "1536Mi"
@@ -576,7 +576,7 @@ data:
   logday_postgres_db_name: "logday_db"
   logday_postgres_user: "logday_user"
   logday_postgres_instances: "1"
-  logday_postgres_image: "ghcr.io/cloudnative-pg/postgresql:17.6-system-trixie"
+  logday_postgres_image: "ghcr.io/cloudnative-pg/postgresql:17.11-system-trixie"
   logday_postgres_storage_class_name: "longhorn-ssd-rwo-1r"
   logday_postgres_size: "10Gi"
   logday_postgres_backup_enabled: "true"
@@ -596,7 +596,7 @@ data:
   matrix_suspend: "true"
   # Digest-pinned (was bare "latest"): a moved :latest digest + Always pull
   # policy ImagePullBackOff'd the homeserver on 2026-09-10. Bump via Renovate.
-  matrix_synapse_image_tag: "latest@sha256:18db676dd9f1a053edcf3033a78daeff035b773d58e5bc68802e379947332302"
+  matrix_synapse_image_tag: "v1.164.1@sha256:fa4aa980f279bcf26d4e7ecc2a2c9a701c73f2ebe8841da9bdcf3b2fdf693d75"
   matrix_element_image_tag: "latest"
   # Was pinned to a :latest digest, which upstream garbage collected on
   # 2026-08-07 — the bridge then sat in ImagePullBackOff for ~5h (1253 pull
@@ -669,7 +669,7 @@ data:
   matrix_mas_suspend: "true"
   matrix_mas_preflight_suspend: "true"
   matrix_mas_cutover_suspend: "true"
-  matrix_mas_image: "ghcr.io/element-hq/matrix-authentication-service:1.21.0@sha256:9b5013992767f9e67ca10848e1f4c7951e335360cd70f8f5427adc21bb185d8c"
+  matrix_mas_image: "ghcr.io/element-hq/matrix-authentication-service:1.28.0@sha256:494c67f08ee8344368f4ed336611dea02b26c4e058bf37a212d090d50b612659"
   matrix_mas_replicas: "0"
   matrix_mas_synapse_kind: "synapse_read_only"
   matrix_mas_upstream_provider_id: "01K1ZQ2A9S7F4P8K6W3C5D0R1T"
@@ -758,7 +758,7 @@ data:
   prowlarr_default_seed_ratio: ""
   qbit_manage_cron: "45 */6 * * *"
   qbit_manage_dry_run: "True"
-  qbit_manage_image_tag: "v4.8.1"
+  qbit_manage_image_tag: "v4.14.0"
   qbit_manage_suspended: "true"
 
   # Moonlight Web
@@ -788,7 +788,7 @@ data:
   # Monitoring (LGTM)
   k8s_monitoring_namespace: "monitoring"
   # renovate: datasource=helm depName=k8s-monitoring registryUrl=https://grafana.github.io/helm-charts
-  k8s_monitoring_chart_version: "3.4.0"
+  k8s_monitoring_chart_version: "4.5.5"
   monitoring_tenant_id: "anonymous"
   monitoring_storage_class_name: "longhorn-ssd-rwo-1r"
   grafana_persistence_size: "5Gi"
@@ -815,7 +815,7 @@ data:
   forgejo_suspend: "true"
   forgejo_namespace: "forgejo"
   forgejo_service_name: "forgejo"
-  forgejo_image: "codeberg.org/forgejo/forgejo:15.0.3-rootless"
+  forgejo_image: "codeberg.org/forgejo/forgejo:15.0.11-rootless"
   forgejo_image_pull_policy: "IfNotPresent"
   forgejo_replicas: "1"
   forgejo_admin_secret_name: "forgejo-admin"
@@ -903,7 +903,7 @@ data:
   smb_suspend: "true"
   smb_namespace: "smb"
   smb_node: "srv9"
-  smb_image_tag: "smbd-only-a3.24.2-s4.23.8-r0"
+  smb_image_tag: "smbd-only-a3.24.3-s4.23.8-r0"
   smb_accounts_secret_name: "smb-accounts"
   smb_storage_class_name: "longhorn-ssd-rwo-1r"
   smb_shares_size: "10Gi"
@@ -923,7 +923,7 @@ data:
   # --- ddnss-ingress (ionos1 -> wg -> haproxy -> traefik) ---
   ddnss_ingress_suspend: "true"
   ddnss_ingress_namespace: "ddnss-ingress"
-  ddnss_ingress_wireguard_tag: "1.0.20210914"
+  ddnss_ingress_wireguard_tag: "1.0.20260223"
   ddnss_ingress_haproxy_tag: "3.0-alpine"
   ddnss_ingress_wg_secret_name: "ddnss-ingress-wg"
 
@@ -939,7 +939,7 @@ data:
   icarus_suspend: "true"
   reflector_suspend: "true"
   obsidian_livesync_suspend: "true"
-  obsidian_couchdb_image: "docker.io/library/couchdb:3.5.2"
+  obsidian_couchdb_image: "docker.io/library/couchdb:3.5.3"
   obsidian_storage_class: "longhorn-ssd-rwo-2r"
   obsidian_data_size: "10Gi"
   obsidian_secret_name: "couchdb-admin"
@@ -969,7 +969,7 @@ data:
   ha_storage_class: "longhorn-ssd-rwo-1r"
   ha_image: "docker.io/homeassistant/home-assistant:stable"
   ha_mosquitto_image: "docker.io/library/eclipse-mosquitto:2.1.2-alpine"
-  ha_zigbee2mqtt_image: "docker.io/koenkk/zigbee2mqtt:2.13.0"
+  ha_zigbee2mqtt_image: "docker.io/koenkk/zigbee2mqtt:2.14.3"
   ha_zigbee2mqtt_replicas: "0"
   ha_config_size: "10Gi"
   ha_zigbee_serial: "/dev/null"
@@ -1012,8 +1012,8 @@ data:
   icarus_backup_keep_daily: "14"
   icarus_backup_keep_weekly: "8"
   icarus_olivetin_image: "ghcr.io/olivetin/olivetin:2024.05.27"
-  icarus_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.44.0"
-  icarus_kubectl_image: "docker.io/alpine/k8s:1.34.1"
+  icarus_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.63.23"
+  icarus_kubectl_image: "docker.io/alpine/k8s:1.35.10"
 
   # Valheim dedicated server (upstream image via the Harbor ghcr proxy-cache;
   # see flux-apps/apps/valheim). Suspended by default in base.
@@ -1056,8 +1056,8 @@ data:
   valheim_backup_keep_weekly: "8"
   valheim_restic_image: "restic/restic:0.19.1"
   valheim_olivetin_image: "ghcr.io/olivetin/olivetin:2024.05.27"
-  valheim_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.44.0"
-  valheim_kubectl_image: "docker.io/alpine/k8s:1.34.1"
+  valheim_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.63.23"
+  valheim_kubectl_image: "docker.io/alpine/k8s:1.35.10"
 
   # tf-game: "Deploy Day" booth web game (game_tf2026 repo; Phaser PWA + API +
   # bundled PostgreSQL). The Helm chart ships inside the game repo, so it has a
@@ -1128,13 +1128,13 @@ data:
   # Keyboard-driven start page (trial) + declarative launcher (trial).
   nextdash_suspend: "true"
   nextdash_host: "nextdash"
-  nextdash_image_tag: "v1.19.2"
+  nextdash_image_tag: "v1.23.0"
   nextdash_data_size: "1Gi"
   nextdash_storage_class_name: "longhorn-ssd-rwo-1r"
   homepage_suspend: "true"
   homepage_host: "homepage"
   homepage_domain: "h4xx.io"
-  homepage_image_tag: "v1.4.5"
+  homepage_image_tag: "v1.13.2"
   pretix_suspend: "true"
   pretix_primary_host: "pretix"
   pretix_alias_host: "tickets"
