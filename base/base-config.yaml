@@ -576,7 +576,7 @@ data:
   logday_postgres_db_name: "logday_db"
   logday_postgres_user: "logday_user"
   logday_postgres_instances: "1"
-  logday_postgres_image: "ghcr.io/cloudnative-pg/postgresql:17.6-system-trixie"
+  logday_postgres_image: "ghcr.io/cloudnative-pg/postgresql:17.11-system-trixie"
   logday_postgres_storage_class_name: "longhorn-ssd-rwo-1r"
   logday_postgres_size: "10Gi"
   logday_postgres_backup_enabled: "true"
