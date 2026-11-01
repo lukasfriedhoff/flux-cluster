@@ -289,7 +289,7 @@ data:
   nix_remote_builder_suspend: "true"
   nix_remote_builder_namespace: "nix-cache"
   nix_remote_builder_service_name: "nix-remote-builder"
-  nix_remote_builder_image_tag: "2.32.8"
+  nix_remote_builder_image_tag: "2.35.4@sha256:f159a58f390677f41e8e900a74b6e2f9c7f27b364122ae6acf7a652ce6c551c0"
   nix_remote_builder_ssh_port: "22"
   nix_remote_builder_service_type: "NodePort"
   nix_remote_builder_node_port: "30610"
@@ -316,7 +316,7 @@ data:
   hydra_service_name: "hydra"
   hydra_service_port: "3000"
   hydra_replicas: "0"
-  hydra_nix_image_tag: "2.32.8"
+  hydra_nix_image_tag: "2.35.4@sha256:f159a58f390677f41e8e900a74b6e2f9c7f27b364122ae6acf7a652ce6c551c0"
   hydra_nix_packages: "github:NixOS/nixpkgs/nixos-26.05#hydra github:NixOS/nixpkgs/nixos-26.05#curl github:NixOS/nixpkgs/nixos-26.05#git github:NixOS/nixpkgs/nixos-26.05#jq github:NixOS/nixpkgs/nixos-26.05#openssh"
   hydra_nix_extra_packages: "github:NixOS/nixpkgs/nixos-26.05#util-linux"
   hydra_nix_attic_package: "github:NixOS/nixpkgs/nixos-26.05#attic-client"
@@ -476,7 +476,12 @@ data:
   # Immich
   immich_suspend: "true"
   immich_secret_name: "immich-secrets"
-  immich_image_tag: "release"
+  # Pinned: the floating "release" tag let nodes run mixed versions (server
+  # 3.1.0 next to an ML pod that had already pulled 3.3.5). Tag only - the
+  # same var feeds immich-server and immich-machine-learning, whose digests differ.
+  # Server DB migrations are forward-only: roll back by restoring the CNPG backup.
+  # renovate: datasource=docker depName=ghcr.io/immich-app/immich-server
+  immich_image_tag: "v3.3.5"
   immich_timezone: "Europe/Berlin"
   immich_oidc: "none"
   immich_oidc_client_id: "immich"
@@ -495,7 +500,6 @@ data:
   immich_ml_cache_size: "20Gi"
   immich_uploads_storage_class_name: "longhorn-rwo-1r"
   immich_uploads_size: "200Gi"
-  immich_postgres_image: "ghcr.io/tensorchord/cloudnative-pgvecto.rs:pg16-v0.3.0"
   immich_postgres_storage_class_name: "longhorn-rwo-1r"
   immich_postgres_size: "50Gi"
   immich_postgres_requests_cpu: "150m"
@@ -607,8 +611,14 @@ data:
   # A dated release tag is the right pin for a bridge holding migration state.
   # :latest is a moving dev build, so it both disappears and ships unfinished
   # migrations.
+  #
+  # v26.08+ re-IDs every phone-number DM portal to its LID synchronously at
+  # startup and aborts on the first Matrix error. Run
+  # scripts/preflight-matrix-whatsapp-lid-migration.sh before any bump from
+  # <= v26.07 and detach the rooms it reports as blocked, or the bridge
+  # crash-loops once per broken portal.
   # renovate: datasource=docker depName=dock.mau.dev/mautrix/whatsapp
-  matrix_whatsapp_image_tag: "v26.07@sha256:716cb6e6b59b1710bde0b7740e295aa889fef6494a8efcd4ad02ea1965293eaf"
+  matrix_whatsapp_image_tag: "v26.10@sha256:c807054cb015d0f5c90d20d85aac216d062b4a6f4ae834b931fd5e7f03e27391"
   # bridgev2 (megabridge). Digest-pinned like whatsapp; this digest is the
   # same image that migrated telegramdb to bridgev2 (schema v30) and is cached
   # on all nodes.
@@ -890,7 +900,11 @@ data:
   # --- kutschenapp (docker-host migration) ---
   kutschenapp_suspend: "true"
   kutschenapp_namespace: "kutschenapp"
-  kutschenapp_mariadb_tag: "11.4"
+  # 11.4 -> 11.8 LTS: datadir upgraded in place by MARIADB_AUTO_UPGRADE
+  # (flux-apps apps/kutschenapp/mariadb.yaml). Roll back by restoring a
+  # dump into 11.4, never by just reverting the tag.
+  # renovate: datasource=docker depName=mariadb
+  kutschenapp_mariadb_tag: "11.8.9@sha256:c4124d1afa875e47f2892edf26b482fa54f796e2f342d3717a04ca091a22a9bd"
   kutschenapp_db_secret_name: "kutschenapp-db"
   kutschenapp_db_storage_class_name: "longhorn-ssd-rwo-1r"
   kutschenapp_db_size: "5Gi"
