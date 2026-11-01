@@ -1012,8 +1012,8 @@ data:
   icarus_backup_keep_daily: "14"
   icarus_backup_keep_weekly: "8"
   icarus_olivetin_image: "ghcr.io/olivetin/olivetin:2024.05.27"
-  icarus_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.44.0"
-  icarus_kubectl_image: "docker.io/alpine/k8s:1.34.1"
+  icarus_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.63.23"
+  icarus_kubectl_image: "docker.io/alpine/k8s:1.35.10"
 
   # Valheim dedicated server (upstream image via the Harbor ghcr proxy-cache;
   # see flux-apps/apps/valheim). Suspended by default in base.
@@ -1056,8 +1056,8 @@ data:
   valheim_backup_keep_weekly: "8"
   valheim_restic_image: "restic/restic:0.19.1"
   valheim_olivetin_image: "ghcr.io/olivetin/olivetin:2024.05.27"
-  valheim_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.44.0"
-  valheim_kubectl_image: "docker.io/alpine/k8s:1.34.1"
+  valheim_filebrowser_image: "docker.io/filebrowser/filebrowser:v2.63.23"
+  valheim_kubectl_image: "docker.io/alpine/k8s:1.35.10"
 
   # tf-game: "Deploy Day" booth web game (game_tf2026 repo; Phaser PWA + API +
   # bundled PostgreSQL). The Helm chart ships inside the game repo, so it has a
