@@ -893,7 +893,11 @@ data:
   # --- kutschenapp (docker-host migration) ---
   kutschenapp_suspend: "true"
   kutschenapp_namespace: "kutschenapp"
-  kutschenapp_mariadb_tag: "11.4"
+  # 11.4 -> 11.8 LTS: datadir upgraded in place by MARIADB_AUTO_UPGRADE
+  # (flux-apps apps/kutschenapp/mariadb.yaml). Roll back by restoring a
+  # dump into 11.4, never by just reverting the tag.
+  # renovate: datasource=docker depName=mariadb
+  kutschenapp_mariadb_tag: "11.8.9@sha256:c4124d1afa875e47f2892edf26b482fa54f796e2f342d3717a04ca091a22a9bd"
   kutschenapp_db_secret_name: "kutschenapp-db"
   kutschenapp_db_storage_class_name: "longhorn-ssd-rwo-1r"
   kutschenapp_db_size: "5Gi"
