@@ -1163,8 +1163,7 @@ data:
   # and the Kustomization are suspended by default; the overlay of the cluster
   # that runs it flips them.
   kryomat_suspend: "true"
-  kryomat_repo_suspend: "true"
   kryomat_repo_url: "https://codeberg.org/lukasfriedhoff/kryomat.git"
   kryomat_repo_secret_name: "codeberg-read"
   kryomat_branch: "main"
-  kryomat_path: "./deploy/flux"
+  kryomat_path: "./apps/kryomat"

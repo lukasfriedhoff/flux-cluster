@@ -375,5 +375,4 @@ data:
   # kryomat: adopts the hand-applied cryo namespace (kryomat repo deploy/flux).
   # Needs codeberg.org/lukasfriedhoff/kryomat (push mirror of git.h4xx.io)
   # to exist BEFORE this merges — see base/repositories/kryomat-repo.yaml.
-  kryomat_repo_suspend: "false"
   kryomat_suspend: "false"
