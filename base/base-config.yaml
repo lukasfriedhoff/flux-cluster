@@ -669,7 +669,7 @@ data:
   matrix_mas_suspend: "true"
   matrix_mas_preflight_suspend: "true"
   matrix_mas_cutover_suspend: "true"
-  matrix_mas_image: "ghcr.io/element-hq/matrix-authentication-service:1.21.0@sha256:9b5013992767f9e67ca10848e1f4c7951e335360cd70f8f5427adc21bb185d8c"
+  matrix_mas_image: "ghcr.io/element-hq/matrix-authentication-service:1.28.0@sha256:494c67f08ee8344368f4ed336611dea02b26c4e058bf37a212d090d50b612659"
   matrix_mas_replicas: "0"
   matrix_mas_synapse_kind: "synapse_read_only"
   matrix_mas_upstream_provider_id: "01K1ZQ2A9S7F4P8K6W3C5D0R1T"
