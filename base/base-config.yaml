@@ -815,7 +815,7 @@ data:
   forgejo_suspend: "true"
   forgejo_namespace: "forgejo"
   forgejo_service_name: "forgejo"
-  forgejo_image: "codeberg.org/forgejo/forgejo:15.0.3-rootless"
+  forgejo_image: "codeberg.org/forgejo/forgejo:15.0.11-rootless"
   forgejo_image_pull_policy: "IfNotPresent"
   forgejo_replicas: "1"
   forgejo_admin_secret_name: "forgejo-admin"
