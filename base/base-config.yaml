@@ -969,7 +969,7 @@ data:
   ha_storage_class: "longhorn-ssd-rwo-1r"
   ha_image: "docker.io/homeassistant/home-assistant:stable"
   ha_mosquitto_image: "docker.io/library/eclipse-mosquitto:2.1.2-alpine"
-  ha_zigbee2mqtt_image: "docker.io/koenkk/zigbee2mqtt:2.13.0"
+  ha_zigbee2mqtt_image: "docker.io/koenkk/zigbee2mqtt:2.14.3"
   ha_zigbee2mqtt_replicas: "0"
   ha_config_size: "10Gi"
   ha_zigbee_serial: "/dev/null"
