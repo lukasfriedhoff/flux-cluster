@@ -830,8 +830,8 @@ data:
 
   # Forgejo Actions runner (CI builds -> Harbor)
   forgejo_runner_suspend: "true"
-  forgejo_runner_image: "code.forgejo.org/forgejo/runner:6.3.1"
-  forgejo_runner_dind_image: "docker.io/library/docker:27.5.1-dind"
+  forgejo_runner_image: "code.forgejo.org/forgejo/runner:13.2.1"
+  forgejo_runner_dind_image: "docker.io/library/docker:29.9.2-dind"
   forgejo_runner_name: "k8s-homelab"
   forgejo_runner_instance_url: "https://git.h4xx.io"
   forgejo_runner_token_secret_name: "forgejo-runner-token"
