@@ -596,7 +596,7 @@ data:
   matrix_suspend: "true"
   # Digest-pinned (was bare "latest"): a moved :latest digest + Always pull
   # policy ImagePullBackOff'd the homeserver on 2026-09-10. Bump via Renovate.
-  matrix_synapse_image_tag: "latest@sha256:18db676dd9f1a053edcf3033a78daeff035b773d58e5bc68802e379947332302"
+  matrix_synapse_image_tag: "v1.164.1@sha256:fa4aa980f279bcf26d4e7ecc2a2c9a701c73f2ebe8841da9bdcf3b2fdf693d75"
   matrix_element_image_tag: "latest"
   # Was pinned to a :latest digest, which upstream garbage collected on
   # 2026-08-07 — the bridge then sat in ImagePullBackOff for ~5h (1253 pull
