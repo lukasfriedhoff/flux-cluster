@@ -352,6 +352,9 @@ data:
   # Immutable image pin; bump to the sha-* tag of the desired CI build.
   tf_game_image_tag: sha-6318137
   gameserver_exporter_suspend: "false"
+  # MikroTik exporter: scrapes the Hiesfelder, kiosk and rue110 routers over API-SSL
+  # (credentials: overlays/homelab/secrets/mktxp-credentials.yaml).
+  mktxp_suspend: "false"
   # Event apps (ticketing + CfP) and their shared mail catcher. Backups for
   # pretix/pretalx Postgres are wired (barman -> backup.h4xx.io MinIO).
   # Mailpit stopped 2026-10-30 until the hackimpott.de DNS change is merged

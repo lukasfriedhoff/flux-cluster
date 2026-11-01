@@ -1104,6 +1104,14 @@ data:
   gameserver_exporter_port: "9109"
   gameserver_exporter_interval: "20"
   gameserver_exporter_targets: ""
+  # MikroTik RouterOS exporter (akpw/mktxp): the site routers (Hiesfelder L009,
+  # kiosk RB5009, rue110 L009) over API-SSL. Router inventory + credentials =
+  # SOPS Secret mktxp-credentials (overlays/<cluster>/secrets).
+  mktxp_suspend: "true"
+  mktxp_namespace: "monitoring"
+  # renovate: datasource=docker depName=ghcr.io/akpw/mktxp
+  mktxp_image_tag: "2.1.0"
+  mktxp_port: "49090"
   # MetalLB VIP for the game service (router DNAT target)
   icarus_vip: "10.3.20.42"
 

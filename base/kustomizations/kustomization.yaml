@@ -57,6 +57,7 @@ resources:
   - infra/lldap.yaml
   - infra/backrest.yaml
   - infra/home-automation.yaml
+  - infra/mktxp.yaml
   - infra/monitoring.yaml
   - infra/selkies-desktop.yaml
   - infra/sitemap.yaml
