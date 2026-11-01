@@ -476,7 +476,12 @@ data:
   # Immich
   immich_suspend: "true"
   immich_secret_name: "immich-secrets"
-  immich_image_tag: "release"
+  # Pinned: the floating "release" tag let nodes run mixed versions (server
+  # 3.1.0 next to an ML pod that had already pulled 3.3.5). Tag only - the
+  # same var feeds immich-server and immich-machine-learning, whose digests differ.
+  # Server DB migrations are forward-only: roll back by restoring the CNPG backup.
+  # renovate: datasource=docker depName=ghcr.io/immich-app/immich-server
+  immich_image_tag: "v3.3.5"
   immich_timezone: "Europe/Berlin"
   immich_oidc: "none"
   immich_oidc_client_id: "immich"
@@ -495,7 +500,6 @@ data:
   immich_ml_cache_size: "20Gi"
   immich_uploads_storage_class_name: "longhorn-rwo-1r"
   immich_uploads_size: "200Gi"
-  immich_postgres_image: "ghcr.io/tensorchord/cloudnative-pgvecto.rs:pg16-v0.3.0"
   immich_postgres_storage_class_name: "longhorn-rwo-1r"
   immich_postgres_size: "50Gi"
   immich_postgres_requests_cpu: "150m"
