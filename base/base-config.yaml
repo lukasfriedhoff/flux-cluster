@@ -620,7 +620,11 @@ data:
   # <= v26.07 and detach the rooms it reports as blocked, or the bridge
   # crash-loops once per broken portal.
   # renovate: datasource=docker depName=dock.mau.dev/mautrix/whatsapp
-  matrix_whatsapp_image_tag: "v26.10@sha256:c807054cb015d0f5c90d20d85aac216d062b4a6f4ae834b931fd5e7f03e27391"
+  # Back on v26.07 (2026-11-02): v26.10 re-IDs every phone-number DM to its LID at start
+  # and aborts on the first Matrix error; 140 DM rooms kept from the old homeserver cannot
+  # be re-IDed. Bump again only after scripts/preflight-matrix-whatsapp-lid-migration.sh
+  # has been run and its detach SQL applied with the bridge at 0 replicas.
+  matrix_whatsapp_image_tag: "v26.07@sha256:716cb6e6b59b1710bde0b7740e295aa889fef6494a8efcd4ad02ea1965293eaf"
   # bridgev2 (megabridge). Digest-pinned like whatsapp; this digest is the
   # same image that migrated telegramdb to bridgev2 (schema v30) and is cached
   # on all nodes.
