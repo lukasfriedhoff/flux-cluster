@@ -767,6 +767,11 @@ data:
   qbittorrent_max_active_downloads: "300"
   qbittorrent_max_active_torrents: "5000"
   qbittorrent_max_active_uploads: "3000"
+  # Global download cap in KiB/s (0 = unlimited). Torrent data is written to the kiosk
+  # NAS through the Hiesfelder<->kiosk WireGuard tunnel, whose single-flow capacity
+  # is ~25 Mbit/s while the Hiesfelder L009 drops packets on ether1 (2026-11-02).
+  # Uncapped torrents stalled every NFS mount on srv9; raise once the tunnel is fixed.
+  qbittorrent_dl_speed_limit_kib: "2560"
   qbittorrent_suspended: "false"
   qbittorrent_policy_suspended: "false"
   qbittorrent_vpn_endpoint_cidr: "0.0.0.0/0"
