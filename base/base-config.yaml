@@ -481,7 +481,7 @@ data:
   # same var feeds immich-server and immich-machine-learning, whose digests differ.
   # Server DB migrations are forward-only: roll back by restoring the CNPG backup.
   # renovate: datasource=docker depName=ghcr.io/immich-app/immich-server
-  immich_image_tag: "v3.3.5"
+  immich_image_tag: "v3.3.6"
   immich_timezone: "Europe/Berlin"
   immich_oidc: "none"
   immich_oidc_client_id: "immich"
@@ -523,7 +523,7 @@ data:
   immich_photos_secret_name: "immich-photos-secrets"
   # Pinned like immich_image_tag (see there).
   # renovate: datasource=docker depName=ghcr.io/immich-app/immich-server
-  immich_photos_image_tag: "v3.3.5"
+  immich_photos_image_tag: "v3.3.6"
   immich_photos_timezone: "Europe/Berlin"
   immich_photos_oidc: "none"
   immich_photos_oidc_client_id: "immich-photos"
