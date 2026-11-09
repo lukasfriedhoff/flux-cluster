@@ -628,7 +628,8 @@ data:
   # v26.10 (2026-11-02) after the LID-migration pre-flight: 140 renamed-server DM rooms were
   # detached with scripts/preflight-matrix-whatsapp-lid-migration.sh (bridge parked, backup
   # whatsappdb-pre-majors-20261101). Future bumps: run the pre-flight first if it reports blocked DMs.
-  matrix_whatsapp_image_tag: "v0.2610.0@sha256:48c5118c46bd01201e0b9b8318bd6d21bea71df880521a7068203bfe409c9d20"
+  # build 8df44e20 = v0.2610.0 + 3 lhns ghost-name guard patches (mautrix-images PR #1)
+  matrix_whatsapp_image_tag: "v0.2610.0@sha256:adf77334ac5c63b957ff80409a74a868fccd1b25220742425866191f1cebb884"
   # bridgev2 (megabridge). Digest-pinned like whatsapp; this digest is the
   # same image that migrated telegramdb to bridgev2 (schema v30) and is cached
   # on all nodes.
