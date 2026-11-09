@@ -268,6 +268,9 @@ data:
   # Forgejo
   forgejo_suspend: "false"
   forgejo_runner_suspend: "false"
+  # mautrix-images builds libsignal (Rust) inside dind; 8Gi OOM-kills the
+  # daemon mid-build and takes every running job with it.
+  forgejo_runner_dind_memory_limit: "16Gi"
   forgejo_data_storage_class_name: longhorn-ssd-rwo-1r
   forgejo_data_size: 50Gi
   forgejo_postgres_storage_class_name: longhorn-nvme-rwo-2r
