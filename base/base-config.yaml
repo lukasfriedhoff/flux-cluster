@@ -622,8 +622,7 @@ data:
   # Bridge images are self-built from the Forgejo mirrors by
   # git.h4xx.io/lukasf/mautrix-images (upstream Dockerfile + patches/, weekly
   # rebuild) and pushed to the public Harbor project "mautrix". Tags are the Go
-  # module tags (v0.2610.0 == upstream docker tag v26.10). Signal stays on
-  # dock.mau.dev until the libsignal build works in CI.
+  # module tags (v0.2610.0 == upstream docker tag v26.10).
   matrix_whatsapp_image: "harbor.h4xx.io/mautrix/whatsapp"
   # renovate: datasource=docker depName=harbor.h4xx.io/mautrix/whatsapp
   # v26.10 (2026-11-02) after the LID-migration pre-flight: 140 renamed-server DM rooms were
@@ -636,9 +635,14 @@ data:
   matrix_telegram_image: "harbor.h4xx.io/mautrix/telegram"
   # renovate: datasource=docker depName=harbor.h4xx.io/mautrix/telegram
   matrix_telegram_image_tag: "v0.2610.0@sha256:98af7402085e883f1723806dac713507a994f41d623f6bd89112a854e89e1ea2"
-  # dock.mau.dev garbage-collects old manifests, so only pin digests that are
-  # known-good and node-cached. signal stays on the floating tag until pinned.
-  matrix_signal_image_tag: "v26.10@sha256:39afa721aa69472b2e91c75bd7d81a739e47f7e480fc0ff5ac8247af28eb2d0a"
+  # Branch build of upstream main (34b4187e, 2026-11-05) from mautrix-images:
+  # Signal-Server v20261104 requires uploadLength on the upload form, v26.10
+  # fails every Matrix->Signal attachment with HTTP 400 (fix e2e994f, #703).
+  # Switch to the v0.2611.0 tag once released (~2026-11-16); until then the
+  # tag is not semver, so Renovate cannot propose updates for it.
+  matrix_signal_image: "harbor.h4xx.io/mautrix/signal"
+  # renovate: datasource=docker depName=harbor.h4xx.io/mautrix/signal
+  matrix_signal_image_tag: "main-34b4187e@sha256:c927a35c0838eaf6118594b875fd944b051a059718f07a1ccdc74ef79b72f669"
   # bridgev2 (mautrix-discord v0.7.x line). Digest-pinned like whatsapp/telegram.
   matrix_discord_image: "harbor.h4xx.io/mautrix/discord"
   # renovate: datasource=docker depName=harbor.h4xx.io/mautrix/discord
