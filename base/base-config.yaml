@@ -619,22 +619,30 @@ data:
   # scripts/preflight-matrix-whatsapp-lid-migration.sh before any bump from
   # <= v26.07 and detach the rooms it reports as blocked, or the bridge
   # crash-loops once per broken portal.
-  # renovate: datasource=docker depName=dock.mau.dev/mautrix/whatsapp
+  # Bridge images are self-built from the Forgejo mirrors by
+  # git.h4xx.io/lukasf/mautrix-images (upstream Dockerfile + patches/, weekly
+  # rebuild) and pushed to the public Harbor project "mautrix". Tags are the Go
+  # module tags (v0.2610.0 == upstream docker tag v26.10). Signal stays on
+  # dock.mau.dev until the libsignal build works in CI.
+  matrix_whatsapp_image: "harbor.h4xx.io/mautrix/whatsapp"
+  # renovate: datasource=docker depName=harbor.h4xx.io/mautrix/whatsapp
   # v26.10 (2026-11-02) after the LID-migration pre-flight: 140 renamed-server DM rooms were
   # detached with scripts/preflight-matrix-whatsapp-lid-migration.sh (bridge parked, backup
   # whatsappdb-pre-majors-20261101). Future bumps: run the pre-flight first if it reports blocked DMs.
-  matrix_whatsapp_image_tag: "v26.10@sha256:c807054cb015d0f5c90d20d85aac216d062b4a6f4ae834b931fd5e7f03e27391"
+  matrix_whatsapp_image_tag: "v0.2610.0@sha256:48c5118c46bd01201e0b9b8318bd6d21bea71df880521a7068203bfe409c9d20"
   # bridgev2 (megabridge). Digest-pinned like whatsapp; this digest is the
   # same image that migrated telegramdb to bridgev2 (schema v30) and is cached
   # on all nodes.
-  # renovate: datasource=docker depName=dock.mau.dev/mautrix/telegram
-  matrix_telegram_image_tag: "v26.10@sha256:ed3f3b39289fae425a875311d8875729271c24f88ba03209bd1bfbaf31e6c78f"
+  matrix_telegram_image: "harbor.h4xx.io/mautrix/telegram"
+  # renovate: datasource=docker depName=harbor.h4xx.io/mautrix/telegram
+  matrix_telegram_image_tag: "v0.2610.0@sha256:98af7402085e883f1723806dac713507a994f41d623f6bd89112a854e89e1ea2"
   # dock.mau.dev garbage-collects old manifests, so only pin digests that are
   # known-good and node-cached. signal stays on the floating tag until pinned.
   matrix_signal_image_tag: "v26.10@sha256:39afa721aa69472b2e91c75bd7d81a739e47f7e480fc0ff5ac8247af28eb2d0a"
   # bridgev2 (mautrix-discord v0.7.x line). Digest-pinned like whatsapp/telegram.
-  # renovate: datasource=docker depName=dock.mau.dev/mautrix/discord
-  matrix_discord_image_tag: "v0.7.7@sha256:065405ca2f961b2687ca577c4eb65592c139d641342a9611d98b5394f30cf84a"
+  matrix_discord_image: "harbor.h4xx.io/mautrix/discord"
+  # renovate: datasource=docker depName=harbor.h4xx.io/mautrix/discord
+  matrix_discord_image_tag: "v0.7.7@sha256:d8ebcf17cec487a3ebd85a2a567f21ea006a69c5888c2f2445467dfa0aed3a40"
   matrix_server_name: "matrix.h4xx.io"
   matrix_public_hostname: "matrix.h4xx.io"
   matrix_public_baseurl: "https://matrix.h4xx.io"
