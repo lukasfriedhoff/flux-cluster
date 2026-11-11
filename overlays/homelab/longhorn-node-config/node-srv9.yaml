@@ -4,6 +4,15 @@ metadata:
   name: srv9
   namespace: longhorn-system
 spec:
+  # Instance-manager CPU request in millicores; overrides the global
+  # guaranteed-instance-manager-cpu (12 % of allocatable = 7680m on this
+  # 64-core box, while the IM's 7-day p95 is 2.3 cores; no CPU limit, so it
+  # still bursts). Set 2026-11-11 during a reboot: Longhorn only applies a new
+  # request when it (re)creates the IM pod, i.e. when the IM has no running
+  # instances - never change this on a node with attached volumes and expect
+  # it to take effect before the next drain/reboot. Part of clearing
+  # KubeCPUOvercommit (requests must fit on srv1+srv8 if srv9 dies).
+  instanceManagerCPURequest: 3200
   tags:
     - arr-media-v2
   disks:
