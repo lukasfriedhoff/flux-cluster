@@ -168,6 +168,13 @@ data:
   # (requested 2026-10-23). The pod's supplementalGroups 1000 makes the NFS
   # export writable for www-data, so this takes effect.
   nextcloud_external_music_readonly: "false"
+  # Who sees the shared mounts (2026-11-11): the LLDAP service groups, so
+  # membership is edited in one place (lldap.h4xx.io) for immich/Jellyfin AND
+  # the matching Nextcloud folder. Nextcloud learns the groups at login via
+  # oidc_login; the seed pre-creates them and scopes the mounts.
+  nextcloud_external_photos_groups: "photos-users,photos-admins"
+  nextcloud_external_memes_groups: "meme-users,meme-admins"
+  nextcloud_shared_music_groups: "jellyfin-users,jellyfin-admins"
   nextcloud_postgres_storage_class_name: longhorn-nvme-rwo-2r
   nextcloud_photos_storage_class_name: longhorn-rwx-1r
   # Temporary, for diagnosing half-completed writes from the Android app.
