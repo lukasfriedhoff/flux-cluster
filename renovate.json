@@ -29,12 +29,12 @@
   ],
   "packageRules": [
     {
-      "description": "kubectl images: the k3s servers run 1.35; 1.37 already works for these one-shot jobs, hold the next minor until the cluster moves. Bump with k3s.",
+      "description": "kubectl images: the k3s servers run 1.36 (since 2026-11-11); 1.38 is within kubectl skew for these one-shot jobs, hold the next minor until the cluster moves. Bump with k3s.",
       "matchPackageNames": [
         "alpine/k8s",
         "docker.io/alpine/k8s"
       ],
-      "allowedVersions": "<1.38"
+      "allowedVersions": "<1.39"
     }
   ]
 }
