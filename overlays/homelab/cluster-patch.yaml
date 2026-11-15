@@ -330,6 +330,13 @@ data:
   # Selkies cloud desktop (browser streaming; image in harbor.h4xx.io/library)
   selkies_suspend: "false"
   selkies_home_storage_class_name: "longhorn-nvme-rwo-2r"
+  # Software mode (no GPU, see flux-apps apps/selkies-desktop): Pixman /
+  # llvmpipe compositing plus x264 encoding live on the CPU, so give the
+  # desktop real headroom on the 64-core performance node.
+  selkies_requests_cpu: "2000m"
+  selkies_limits_cpu: "8000m"
+  selkies_requests_memory: "2Gi"
+  selkies_limits_memory: "8Gi"
 
   # Icarus dedicated server (image imported node-locally on srv9; see
   # flux-apps/apps/icarus). Suspended by default in base; live here.
