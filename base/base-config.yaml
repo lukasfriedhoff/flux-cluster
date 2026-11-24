@@ -1150,7 +1150,7 @@ data:
   mktxp_suspend: "true"
   mktxp_namespace: "monitoring"
   # renovate: datasource=docker depName=ghcr.io/akpw/mktxp
-  mktxp_image_tag: "2.1.0"
+  mktxp_image_tag: "2.1.1"
   mktxp_port: "49090"
   # MetalLB VIP for the game service (router DNAT target)
   icarus_vip: "10.3.20.42"
