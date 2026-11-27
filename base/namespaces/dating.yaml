@@ -1,0 +1,8 @@
+# dating-automation: CronJobs/Jobs that drive the dating apps on the Android
+# device through phone-broker, later also its Postgres (CNPG) and web UI.
+# Separate from `android` (the device layer) so the data side can grow its own
+# NetworkPolicies and quotas without touching the emulator/broker fence.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dating

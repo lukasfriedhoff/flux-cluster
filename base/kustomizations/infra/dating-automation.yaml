@@ -1,0 +1,25 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: dating-automation-app
+  namespace: flux-system
+spec:
+  suspend: ${dating_automation_suspend:=true}
+  dependsOn:
+    - name: namespaces
+    - name: secrets
+    - name: longhorn-app
+    - name: phone-broker-app
+  interval: ${flux_kustomization_default_interval:=1h0m0s}
+  path: ./apps/dating-automation
+  prune: true
+  retryInterval: ${flux_kustomization_default_retry_interval:=10m0s}
+  sourceRef:
+    kind: GitRepository
+    name: flux-apps
+  timeout: ${flux_kustomization_default_timeout:=5m0s}
+  wait: true
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: base-config

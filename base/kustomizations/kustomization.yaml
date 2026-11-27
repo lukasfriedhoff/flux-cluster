@@ -7,6 +7,8 @@ resources:
   - infra/valheim.yaml
   - infra/kryomat.yaml
   - infra/android-emulator.yaml
+  - infra/phone-broker.yaml
+  - infra/dating-automation.yaml
   - infra/gameserver-exporter.yaml
   - infra/longhorn.yaml
   - infra/longhorn-recurringjobs.yaml

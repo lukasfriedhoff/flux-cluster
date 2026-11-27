@@ -46,3 +46,4 @@ resources:
   - tf-game.yaml
   - cryo.yaml
   - android.yaml
+  - dating.yaml

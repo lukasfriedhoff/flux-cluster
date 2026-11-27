@@ -1227,3 +1227,24 @@ data:
   android_emulator_limits_memory: "10Gi"
   android_emulator_storage_class_name: "longhorn-ssd-rwo-2r"
   android_emulator_data_size: "32Gi"
+  # phone-broker (apps/phone-broker in flux-apps): the emulator instance.
+  # Image is set per cluster once the pipeline has published the sha- tag.
+  phone_broker_suspend: "true"
+  phone_broker_namespace: "android"
+  phone_broker_image: ""
+  phone_broker_emulator_adb_connect: "android-emulator.android.svc.cluster.local:5555"
+  phone_broker_jobs_namespace: "dating"
+  phone_broker_node_cidr: "10.3.30.0/24"
+  # dating-automation (apps/dating-automation in flux-apps): CronJob behind the
+  # broker lease. Suspended until Bumble is installed and logged in on the device.
+  dating_automation_suspend: "true"
+  dating_automation_image: ""
+  dating_automation_cronjob_suspend: "true"
+  dating_automation_schedule: "15 9,13,19 * * *"
+  dating_automation_app: "bumble"
+  dating_automation_mode: "auto-vision"
+  dating_automation_cards: "15"
+  dating_automation_broker_url: "http://phone-broker-emulator.android.svc.cluster.local:8080"
+  dating_automation_adb_connect: "android-emulator.android.svc.cluster.local:5555"
+  dating_automation_storage_class_name: "longhorn-ssd-rwo-2r"
+  dating_automation_profiles_size: "10Gi"
