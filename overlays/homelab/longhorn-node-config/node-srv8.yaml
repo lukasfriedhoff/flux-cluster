@@ -42,14 +42,6 @@ spec:
       storageReserved: ${longhorn_disk_storage_reserved_bytes:=0}
       tags:
         - disk
-    # Seagate BUP Slim 2TB USB HDD (usb-Seagate_BUP_Slim_BK_NA7WEQ6F-0:0).
-    # Keep this disk quarantined after its 2026-07-27 USB disconnect left the
-    # filesystem read-only. The filesystem is repaired, but no new replicas
-    # should be scheduled until the cable/power/bridge is proven reliable.
-    longhorn-disk-2tb-usb:
-      path: /var/lib/longhorn-disk3
-      allowScheduling: false
-      evictionRequested: true
-      storageReserved: ${longhorn_disk_storage_reserved_bytes:=0}
-      tags:
-        - disk
+    # The Seagate BUP Slim USB HDD (former longhorn-disk-2tb-usb, disk3) was
+    # removed 2026-11-27: its second USB drop (after 2026-07-27) went
+    # emergency_ro and blocked k3s on a deploy. It held no replicas.
