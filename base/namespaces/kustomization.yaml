@@ -45,3 +45,4 @@ resources:
   - sitemap.yaml
   - tf-game.yaml
   - cryo.yaml
+  - android.yaml
