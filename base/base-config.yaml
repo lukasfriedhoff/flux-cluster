@@ -1209,10 +1209,14 @@ data:
   kryomat_path: "./apps/kryomat"
   # Android Emulator with Google Play Store (budtmo/docker-android), the virtual
   # Android for Bumble automation, controlled via noVNC from phone and PC.
+  # Android 11 (API 30) on purpose: it is the x86_64 Play image that carries ARM
+  # translation; the Android 13 Play image has no native bridge at all and
+  # Bumble ships arm64/arm-v7a only. Pixel 8 = 1080x2400 @ 420, the closest
+  # profile to the 1080x2340 geometry the automation was tuned on.
   # Suspended by default: privileged (KVM) and holds a logged-in account.
   android_emulator_suspend: "true"
-  android_emulator_image: "budtmo/docker-android:emulator_playstore_13.0_v3.9.1-p2@sha256:64f08a13cd53b84ab4490cc8f29fa4571517e95a6e72e1c48af9179e75da530e"
-  android_emulator_device: "Samsung Galaxy S10"
+  android_emulator_image: "budtmo/docker-android:emulator_playstore_11.0_v3.9.1-p2@sha256:93531721c87fbc39c90ebde7da13ca27656df004ecbec4fa42bc386f382025d8"
+  android_emulator_device: "Pixel 8"
   android_emulator_host: "android"
   android_emulator_node: "srv1"
   android_emulator_requests_cpu: "2000m"
