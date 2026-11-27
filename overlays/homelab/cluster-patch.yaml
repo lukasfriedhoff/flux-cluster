@@ -41,6 +41,10 @@ data:
 
   # Longhorn
   longhorn_suspend: "false"
+  # Android Emulator with Play Store on srv1: the virtual device for Bumble
+  # automation, controlled via noVNC behind Authelia. Verified image on tux
+  # was blocked by a full disk, so the cluster deployment is the test.
+  android_emulator_suspend: "false"
   longhorn_replica_soft_anti_affinity: "true"
   longhorn_storage_minimal_available_percentage: "5"
   longhorn_storage_over_provisioning_percentage: "300"
