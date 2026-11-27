@@ -869,7 +869,7 @@ data:
   forgejo_runner_instance_url: "https://git.h4xx.io"
   forgejo_runner_token_secret_name: "forgejo-runner-token"
   forgejo_runner_state_size: "1Gi"
-  forgejo_runner_dind_cache_size: "30Gi"
+  forgejo_runner_dind_cache_size: "60Gi"
   forgejo_runner_storage_class_name: "longhorn-ssd-rwo-1r"
   forgejo_requests_ephemeral_storage: "256Mi"
   forgejo_limits_memory: "2Gi"
