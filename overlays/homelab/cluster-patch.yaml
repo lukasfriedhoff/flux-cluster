@@ -45,6 +45,8 @@ data:
   # automation, controlled via noVNC behind Authelia. Verified image on tux
   # was blocked by a full disk, so the cluster deployment is the test.
   android_emulator_suspend: "false"
+  # phone-broker-emulator: the lease authority in front of the emulator.
+  phone_broker_suspend: "false"
   longhorn_replica_soft_anti_affinity: "true"
   longhorn_storage_minimal_available_percentage: "5"
   longhorn_storage_over_provisioning_percentage: "300"
