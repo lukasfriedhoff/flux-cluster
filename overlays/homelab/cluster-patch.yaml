@@ -97,6 +97,7 @@ data:
   matrix_telegramdb_backup_generation: g20261127/
   matrix_signaldbprivate_backup_generation: g20261127/
   matrix_masdb_backup_generation: g20261127/
+  attic_postgres_backup_generation: g20261127/
   stalwart_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   authelia_postgres_backup_generation: g20261127/
   authelia_postgres_backup_server_name: authelia-postgres-prod-g20260801
