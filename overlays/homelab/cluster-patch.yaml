@@ -86,6 +86,11 @@ data:
   status_dashboard_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   pretix_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   pretalx_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
+  # PostgreSQL 19 upgrade 2026-11-27: fresh backup prefix per upgraded cluster.
+  status_dashboard_postgres_backup_generation: g20261127/
+  pretix_postgres_backup_generation: g20261127/
+  pretalx_postgres_backup_generation: g20261127/
+  matrix_discorddb_backup_generation: g20261127/
   stalwart_postgres_backup_endpoint_url: http://backup.h4xx.io:9000
   authelia_postgres_backup_generation: g20260801/
   authelia_postgres_backup_server_name: authelia-postgres-prod-g20260801
