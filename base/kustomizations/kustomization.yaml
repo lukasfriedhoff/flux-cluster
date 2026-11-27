@@ -6,6 +6,7 @@ resources:
   - infra/icarus.yaml
   - infra/valheim.yaml
   - infra/kryomat.yaml
+  - infra/android-emulator.yaml
   - infra/gameserver-exporter.yaml
   - infra/longhorn.yaml
   - infra/longhorn-recurringjobs.yaml
