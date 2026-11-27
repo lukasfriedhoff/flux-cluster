@@ -1231,7 +1231,7 @@ data:
   # Image is set per cluster once the pipeline has published the sha- tag.
   phone_broker_suspend: "true"
   phone_broker_namespace: "android"
-  phone_broker_image: "harbor.h4xx.io/library/phone-broker:sha-27c7a403"
+  phone_broker_image: "harbor.h4xx.io/library/phone-broker:sha-ca13b9c8"
   phone_broker_emulator_adb_connect: "android-emulator.android.svc.cluster.local:5555"
   phone_broker_jobs_namespace: "dating"
   phone_broker_node_cidr: "10.3.30.0/24"

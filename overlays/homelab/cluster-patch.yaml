@@ -47,6 +47,9 @@ data:
   android_emulator_suspend: "false"
   # phone-broker-emulator: the lease authority in front of the emulator.
   phone_broker_suspend: "false"
+  # dating-automation: PVC + CronJob exist; the CronJob itself stays suspended
+  # (dating_automation_cronjob_suspend) until the first supervised manual run.
+  dating_automation_suspend: "false"
   longhorn_replica_soft_anti_affinity: "true"
   longhorn_storage_minimal_available_percentage: "5"
   longhorn_storage_over_provisioning_percentage: "300"
