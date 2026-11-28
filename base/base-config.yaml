@@ -1231,7 +1231,10 @@ data:
   # -skin 1080x2400 -fixed-scale: bezel-free 1:1 phone window inside the
   # 1240x2540 X screen KasmVNC serves (window pinned at 100,100 + title bar +
   # the 54 px emulator toolbar).
-  android_emulator_additional_args: "-cores 6 -memory 6144 -skin 1080x2400 -fixed-scale"
+  # -no-snapshot: cold boot from disk. A killed pod would otherwise load the
+  # last saved quick-boot snapshot and roll the disk back to it (observed
+  # 2026-11-28: settings reverted after a Recreate).
+  android_emulator_additional_args: "-cores 6 -memory 6144 -skin 1080x2400 -fixed-scale -no-snapshot"
   android_emulator_screen_width: "1240"
   android_emulator_screen_height: "2540"
   android_emulator_requests_cpu: "4000m"
