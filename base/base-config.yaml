@@ -1266,7 +1266,7 @@ data:
   # dating-automation (apps/dating-automation in flux-apps): CronJob behind the
   # broker lease. Suspended until Bumble is installed and logged in on the device.
   dating_automation_suspend: "true"
-  dating_automation_image: "harbor.h4xx.io/library/dating-automation:sha-da77805e"
+  dating_automation_image: "harbor.h4xx.io/library/dating-automation:sha-21cb77f2"
   dating_automation_cronjob_suspend: "true"
   dating_automation_schedule: "15 9,13,19 * * *"
   dating_automation_app: "bumble"
