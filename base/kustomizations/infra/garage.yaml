@@ -8,6 +8,7 @@ spec:
   dependsOn:
     - name: namespaces
     - name: secrets
+    - name: metallb-config
   interval: ${flux_kustomization_default_interval:=1h0m0s}
   path: ./apps/garage
   prune: true

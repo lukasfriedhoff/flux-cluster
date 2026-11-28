@@ -10,6 +10,9 @@ spec:
     - name: secrets
     - name: longhorn-app
     - name: phone-broker-app
+    - name: cnpg-app
+    - name: garage-app
+    - name: metallb-config
   interval: ${flux_kustomization_default_interval:=1h0m0s}
   path: ./apps/dating-automation
   prune: true

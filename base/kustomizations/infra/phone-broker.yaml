@@ -9,6 +9,7 @@ spec:
     - name: namespaces
     - name: secrets
     - name: android-emulator-app
+    - name: metallb-config
   interval: ${flux_kustomization_default_interval:=1h0m0s}
   path: ./apps/phone-broker
   prune: true
