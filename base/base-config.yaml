@@ -1218,13 +1218,22 @@ data:
   android_emulator_image: "budtmo/docker-android:emulator_playstore_11.0_v3.9.1-p2@sha256:93531721c87fbc39c90ebde7da13ca27656df004ecbec4fa42bc386f382025d8"
   android_emulator_device: "Pixel 8"
   android_emulator_host: "android"
-  android_emulator_node: "srv1"
+  # srv9: software rendering, so per-core speed decides (Xeon Gold 6226R vs
+  # srv1's E5-2620 v4), and it holds a replica of the volume (SSD tier).
+  android_emulator_node: "srv9"
   android_emulator_initcontainer_image: "alpine:3.23"
   android_emulator_adbkey_secret: "android-emulator-adbkey"
-  android_emulator_requests_cpu: "2000m"
-  android_emulator_requests_memory: "6Gi"
-  android_emulator_limits_cpu: "6000m"
-  android_emulator_limits_memory: "10Gi"
+  # 6 vCPUs / 6 GB guest: the AVD default (3 / 2 GB) left the Play image 600 MB
+  # deep in swap. Limits cover the guest plus qemu and the software renderer.
+  android_emulator_additional_args: "-cores 6 -memory 6144"
+  android_emulator_requests_cpu: "4000m"
+  android_emulator_requests_memory: "8Gi"
+  android_emulator_limits_cpu: "10000m"
+  android_emulator_limits_memory: "12Gi"
+  # adb VIP for scrcpy from the WireGuard client subnet (adbd key auth on top).
+  android_emulator_adb_vip: "10.3.20.44"
+  android_emulator_adb_client_cidr: "10.1.90.0/24"
+  android_emulator_node_cidr: "10.3.30.0/24"
   android_emulator_storage_class_name: "longhorn-ssd-rwo-2r"
   android_emulator_data_size: "32Gi"
   # phone-broker (apps/phone-broker in flux-apps): the emulator instance.
