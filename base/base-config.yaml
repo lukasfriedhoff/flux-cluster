@@ -1218,7 +1218,7 @@ data:
   # Our derivative of budtmo/docker-android (emulator_playstore_11.0_v3.9.1-p2)
   # with KasmVNC 1.5.2 instead of noVNC; built from phone-broker
   # images/android-emulator, tag = short commit, pinned by digest.
-  android_emulator_image: "harbor.h4xx.io/library/android-emulator:sha-9b5d618b@sha256:a87f70b88264a8144115af9cb5e13424cccf261c56b1078aa0b44afc988b5e39"
+  android_emulator_image: "harbor.h4xx.io/library/android-emulator:sha-263d3b74@sha256:9a861c5669d2aeba9d61ebe71d0402750aaee3ee3cd883ef90be688debc1a5f1"
   android_emulator_device: "Pixel 8"
   android_emulator_host: "android"
   # srv9: software rendering, so per-core speed decides (Xeon Gold 6226R vs
