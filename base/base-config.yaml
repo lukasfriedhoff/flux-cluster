@@ -1215,7 +1215,10 @@ data:
   # profile to the 1080x2340 geometry the automation was tuned on.
   # Suspended by default: privileged (KVM) and holds a logged-in account.
   android_emulator_suspend: "true"
-  android_emulator_image: "budtmo/docker-android:emulator_playstore_11.0_v3.9.1-p2@sha256:93531721c87fbc39c90ebde7da13ca27656df004ecbec4fa42bc386f382025d8"
+  # Our derivative of budtmo/docker-android (emulator_playstore_11.0_v3.9.1-p2)
+  # with KasmVNC 1.5.2 instead of noVNC; built from phone-broker
+  # images/android-emulator, tag = short commit, pinned by digest.
+  android_emulator_image: "harbor.h4xx.io/library/android-emulator:sha-9b5d618b@sha256:a87f70b88264a8144115af9cb5e13424cccf261c56b1078aa0b44afc988b5e39"
   android_emulator_device: "Pixel 8"
   android_emulator_host: "android"
   # srv9: software rendering, so per-core speed decides (Xeon Gold 6226R vs
@@ -1225,7 +1228,12 @@ data:
   android_emulator_adbkey_secret: "android-emulator-adbkey"
   # 6 vCPUs / 6 GB guest: the AVD default (3 / 2 GB) left the Play image 600 MB
   # deep in swap. Limits cover the guest plus qemu and the software renderer.
-  android_emulator_additional_args: "-cores 6 -memory 6144"
+  # -skin 1080x2400 -fixed-scale: bezel-free 1:1 phone window inside the
+  # 1240x2540 X screen KasmVNC serves (window pinned at 100,100 + title bar +
+  # the 54 px emulator toolbar).
+  android_emulator_additional_args: "-cores 6 -memory 6144 -skin 1080x2400 -fixed-scale"
+  android_emulator_screen_width: "1240"
+  android_emulator_screen_height: "2540"
   android_emulator_requests_cpu: "4000m"
   android_emulator_requests_memory: "8Gi"
   android_emulator_limits_cpu: "10000m"

@@ -21,6 +21,9 @@ spec:
   timeout: ${flux_kustomization_default_timeout:=5m0s}
   wait: true
   postBuild:
+    substitute:
+      # Lets manifests keep numeric env values as strings after substitution.
+      quote: '"'
     substituteFrom:
       - kind: ConfigMap
         name: base-config
