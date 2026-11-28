@@ -1258,8 +1258,8 @@ data:
   # phone-broker-oneplus8: the daily phone (OnePlus 8 Pro) over adb-TCP at
   # its WireGuard address; the port is armed over USB from the workstation
   # (adb tcpip 5555). API also on a MetalLB VIP for the WireGuard clients.
-  phone_broker_oneplus8_adb_connect: "10.1.90.6:5555"
-  phone_broker_oneplus8_device_cidr: "10.1.90.6/32"
+  phone_broker_oneplus8_adb_connect: "10.1.90.7:5555"
+  phone_broker_oneplus8_device_cidr: "10.1.90.7/32"
   phone_broker_oneplus8_k8s_lease_name: "phone-oneplus8"
   phone_broker_oneplus8_api_vip: "10.3.20.47"
   phone_broker_oneplus8_client_cidr: "10.1.90.0/24"
